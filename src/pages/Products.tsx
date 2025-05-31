@@ -2,7 +2,8 @@
 import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Cctv } from 'lucide-react';
+import BottomNav from '@/components/BottomNav';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 const Products = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -14,7 +15,7 @@ const Products = () => {
       name: "Gaming PC Ultimate",
       category: "gadgets",
       price: "$1,899",
-      image: "https://images.unsplash.com/photo-1587831990711-23ca6441447b?w=400&h=300&fit=crop",
+      image: "/images/HP 15_6.jpg",
       specs: ["Intel i9 Processor", "32GB DDR4 RAM", "RTX 4080 GPU", "1TB NVMe SSD"]
     },
     {
@@ -22,7 +23,7 @@ const Products = () => {
       name: "Business PC Pro",
       category: "gadgets",
       price: "$899",
-      image: "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=400&h=300&fit=crop",
+      image: "/images/dell_latitude.jpg",
       specs: ["Intel i5 Processor", "16GB RAM", "512GB SSD", "Windows 11 Pro"]
     },
     {
@@ -30,15 +31,15 @@ const Products = () => {
       name: "WiFi 6 Router Pro",
       category: "gadgets",
       price: "$299",
-      image: "https://images.unsplash.com/photo-1606904825846-647eb07f5be2?w=400&h=300&fit=crop",
+      image: "/images/router.jpg",
       specs: ["WiFi 6 Technology", "4 Gigabit Ports", "MU-MIMO", "Mesh Compatible"]
     },
     {
       id: 4,
-      name: "Enterprise Router",
+      name: "HP Slim Laptop",
       category: "gadgets",
       price: "$599",
-      image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400&h=300&fit=crop",
+      image: "/images/hp_slim.jpg",
       specs: ["Dual Band", "VPN Support", "Load Balancing", "24/7 Support"]
     },
     // CCTV Cameras
@@ -47,7 +48,7 @@ const Products = () => {
       name: "4K Security Camera",
       category: "cctv",
       price: "$399",
-      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+      image: "/images/bullet_cctv.jpg",
       specs: ["4K Ultra HD", "Night Vision", "Motion Detection", "Mobile App"]
     },
     {
@@ -55,24 +56,16 @@ const Products = () => {
       name: "PTZ Security Camera",
       category: "cctv",
       price: "$899",
-      image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=300&fit=crop",
+      image: "/images/dual_lens_ptz.jpg",
       specs: ["Pan-Tilt-Zoom", "Auto Tracking", "Audio Recording", "Weather Resistant"]
     },
     {
       id: 7,
-      name: "Dome Security Camera",
-      category: "cctv",
-      price: "$249",
-      image: "https://images.unsplash.com/photo-1591273700501-de3d25dfdfde?w=400&h=300&fit=crop",
-      specs: ["1080p HD", "Vandal Resistant", "IR Night Vision", "Easy Installation"]
-    },
-    {
-      id: 8,
-      name: "CCTV System Kit",
+      name: "Solar PTZ Camera",
       category: "cctv",
       price: "$1,299",
-      image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=300&fit=crop",
-      specs: ["8 Camera System", "NVR Included", "Remote Viewing", "Professional Installation"]
+      image: "/images/single_lens_solar_ptz.jpg",
+      specs: ["Solar Powered", "4G Connectivity", "PIR Detection", "Two-way Audio"]
     }
   ];
 
@@ -90,46 +83,52 @@ const Products = () => {
     <div className="min-h-screen">
       <Navbar />
       
-      <section className="pt-24 pb-20 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
+      <section className="pt-20 md:pt-24 pb-12 md:pb-20 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h1 className="text-5xl font-bold text-gray-900 mb-6">Our Products</h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <div className="text-center mb-12 md:mb-16">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 md:mb-6">Our Products</h1>
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
               Discover our premium collection of tech gadgets and security solutions designed for modern businesses
             </p>
           </div>
           
           {/* Category Filter */}
-          <div className="flex justify-center mb-12">
-            <div className="bg-white rounded-2xl p-2 shadow-lg">
-              {categories.map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => setActiveCategory(category.id)}
-                  className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
-                    activeCategory === category.id
-                      ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                  }`}
-                >
-                  {category.name}
-                </button>
-              ))}
+          <div className="flex justify-center mb-8 md:mb-12">
+            <div className="bg-white rounded-2xl p-1 md:p-2 shadow-lg overflow-x-auto">
+              <div className="flex space-x-1">
+                {categories.map((category) => (
+                  <button
+                    key={category.id}
+                    onClick={() => setActiveCategory(category.id)}
+                    className={`px-4 md:px-6 py-2 md:py-3 rounded-xl font-medium transition-all duration-300 whitespace-nowrap text-sm md:text-base ${
+                      activeCategory === category.id
+                        ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    }`}
+                  >
+                    {category.name}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
           
           {/* Products Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
             {filteredProducts.map((product) => (
               <div 
                 key={product.id}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group"
               >
                 <div className="relative overflow-hidden">
                   <img 
                     src={product.image} 
                     alt={product.name}
-                    className="w-full h-48 object-cover hover:scale-110 transition-transform duration-300"
+                    className="w-full h-40 md:h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = "https://images.unsplash.com/photo-1587831990711-23ca6441447b?w=400&h=300&fit=crop";
+                    }}
                   />
                   <div className="absolute top-4 left-4">
                     <span className={`px-3 py-1 rounded-full text-sm font-medium text-white ${
@@ -142,16 +141,16 @@ const Products = () => {
                   </div>
                 </div>
                 
-                <div className="p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">{product.name}</h3>
-                  <div className="space-y-1 mb-4">
+                <div className="p-4 md:p-6">
+                  <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-2 md:mb-3">{product.name}</h3>
+                  <div className="space-y-1 mb-3 md:mb-4">
                     {product.specs.map((spec, index) => (
-                      <p key={index} className="text-sm text-gray-600">• {spec}</p>
+                      <p key={index} className="text-xs md:text-sm text-gray-600">• {spec}</p>
                     ))}
                   </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-xl font-bold text-blue-600">{product.price}</span>
-                    <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                    <span className="text-lg md:text-xl font-bold text-blue-600">{product.price}</span>
+                    <button className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 md:px-4 py-2 rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm md:text-base">
                       Order Now
                     </button>
                   </div>
@@ -163,6 +162,8 @@ const Products = () => {
       </section>
       
       <Footer />
+      <BottomNav />
+      <WhatsAppButton />
     </div>
   );
 };

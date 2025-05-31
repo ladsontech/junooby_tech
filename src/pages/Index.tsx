@@ -5,6 +5,8 @@ import Hero from '@/components/Hero';
 import Services from '@/components/Services';
 import FeaturedProducts from '@/components/FeaturedProducts';
 import Footer from '@/components/Footer';
+import BottomNav from '@/components/BottomNav';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 const Index = () => {
   return (
@@ -14,6 +16,8 @@ const Index = () => {
       <Services />
       <FeaturedProducts />
       <Footer />
+      <BottomNav />
+      <WhatsAppButton />
     </div>
   );
 };
