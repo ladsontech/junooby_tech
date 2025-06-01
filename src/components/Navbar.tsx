@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
@@ -11,13 +12,13 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link to="/" className="flex items-center space-x-2">
-              <img src="/images/junooby_logo.png" alt="Junooby Logo" className="w-8 h-8 object-contain" onError={e => {
+              <img src="/images/junooby_logo.png" alt="Junooby Logo" className="w-12 h-12 object-contain" onError={e => {
               const target = e.target as HTMLImageElement;
               target.style.display = 'none';
               const fallback = target.nextElementSibling as HTMLElement;
               if (fallback) fallback.style.display = 'block';
             }} />
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg" style={{
+              <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg" style={{
               display: 'none'
             }}></div>
               <span className="text-2xl font-bold text-gray-900">Junooby</span>
@@ -46,13 +47,13 @@ const Navbar = () => {
         <div className="px-4">
           <div className="flex justify-between items-center h-16">
             <Link to="/" className="flex items-center space-x-2">
-              <img src="/images/junooby_logo.png" alt="Junooby Logo" className="w-8 h-8 object-contain" onError={e => {
+              <img src="/images/junooby_logo.png" alt="Junooby Logo" className="w-12 h-12 object-contain" onError={e => {
               const target = e.target as HTMLImageElement;
               target.style.display = 'none';
               const fallback = target.nextElementSibling as HTMLElement;
               if (fallback) fallback.style.display = 'block';
             }} />
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg" style={{
+              <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg" style={{
               display: 'none'
             }}></div>
               <span className="font-extrabold text-4xl text-rose-600">Junooby</span>
