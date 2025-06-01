@@ -55,7 +55,7 @@ const Navbar = () => {
               <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg" style={{
               display: 'none'
             }}></div>
-              <span className="text-gray-900 font-extrabold text-4xl">Junooby</span>
+              <span className="font-extrabold text-4xl text-rose-600">Junooby</span>
             </Link>
             
             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors">
