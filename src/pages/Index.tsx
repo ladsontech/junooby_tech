@@ -7,7 +7,6 @@ import FeaturedProducts from '@/components/FeaturedProducts';
 import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
 import WhatsAppButton from '@/components/WhatsAppButton';
-import TawkButton from '@/components/TawkButton';
 
 const Index = () => {
   return (
@@ -19,7 +18,6 @@ const Index = () => {
       <Footer />
       <BottomNav />
       <WhatsAppButton />
-      <TawkButton />
     </div>
   );
 };
