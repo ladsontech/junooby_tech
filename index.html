@@ -30,6 +30,23 @@
     })();
     </script>
     <!--End of Tawk.to Script-->
+
+    <style>
+      /* Adjust Tawk.to widget position on mobile to avoid bottom nav overlap */
+      @media (max-width: 768px) {
+        #tawkchat-minified-container {
+          bottom: 80px !important;
+        }
+        
+        .tawk-min-container {
+          bottom: 80px !important;
+        }
+        
+        iframe[title="chat widget"] {
+          bottom: 80px !important;
+        }
+      }
+    </style>
   </head>
 
   <body>
