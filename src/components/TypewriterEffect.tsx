@@ -25,7 +25,7 @@ const TypewriterEffect = () => {
     const timer = setTimeout(handleType, typeSpeed);
     return () => clearTimeout(timer);
   }, [currentText, isDeleting, currentIndex, services, typeSpeed]);
-  return <span className="text-blue-600 text-5xl my-0 py-[20px]">
+  return <span className="text-blue-600 my-0 py-[20px] text-3xl">
       {currentText}
       <span className="animate-pulse">|</span>
     </span>;
