@@ -13,7 +13,9 @@ const Hero = () => {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
                 We Deliver
                 <br />
-                <TypewriterEffect />
+                <div className="h-12 sm:h-14 lg:h-16 xl:h-20 flex items-center">
+                  <TypewriterEffect />
+                </div>
               </h1>
               <p className="text-lg md:text-xl text-gray-600 max-w-lg">
                 Junooby brings cutting-edge technology solutions to Sub-Saharan Africa. 
