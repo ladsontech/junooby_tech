@@ -9,7 +9,7 @@ const FeaturedProducts = () => {
       id: 1,
       name: "Gaming PC Pro",
       category: "Computer",
-      price: "$1,299",
+      price: "UGX 4,680,000",
       image: "/images/HP 15_6.jpg",
       features: ["Intel i7 Processor", "16GB RAM", "RTX 4060 GPU"]
     },
@@ -17,7 +17,7 @@ const FeaturedProducts = () => {
       id: 2,
       name: "Security Camera 4K",
       category: "CCTV",
-      price: "$299",
+      price: "UGX 1,080,000",
       image: "/images/bullet_cctv.jpg",
       features: ["4K Resolution", "Night Vision", "Mobile App"]
     },
@@ -25,7 +25,7 @@ const FeaturedProducts = () => {
       id: 3,
       name: "WiFi Router Pro",
       category: "Networking",
-      price: "$189",
+      price: "UGX 680,000",
       image: "/images/router.jpg",
       features: ["WiFi 6", "Gigabit Ports", "Mesh Ready"]
     }

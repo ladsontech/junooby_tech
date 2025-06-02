@@ -4,17 +4,13 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import Cart from '@/components/Cart';
+import { useCart } from '@/contexts/CartContext';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 const Products = () => {
   const [activeCategory, setActiveCategory] = useState('all');
-
-  const handleOrderNow = (productName: string) => {
-    const phoneNumber = '+256789572007';
-    const message = `Hello! I would like to order ${productName}.`;
-    const url = `https://wa.me/${phoneNumber.replace('+', '')}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
-  };
+  const { addToCart } = useCart();
 
   const products = [
     // Gadgets
@@ -22,7 +18,7 @@ const Products = () => {
       id: 1,
       name: "Gaming PC Ultimate",
       category: "gadgets",
-      price: "$1,899",
+      price: "UGX 6,840,000",
       image: "/images/HP 15_6.jpg",
       specs: ["Intel i9 Processor", "32GB DDR4 RAM", "RTX 4080 GPU", "1TB NVMe SSD"]
     },
@@ -30,7 +26,7 @@ const Products = () => {
       id: 2,
       name: "Business PC Pro",
       category: "gadgets",
-      price: "$899",
+      price: "UGX 3,240,000",
       image: "/images/dell_latitude.jpg",
       specs: ["Intel i5 Processor", "16GB RAM", "512GB SSD", "Windows 11 Pro"]
     },
@@ -38,7 +34,7 @@ const Products = () => {
       id: 3,
       name: "WiFi 6 Router Pro",
       category: "gadgets",
-      price: "$299",
+      price: "UGX 1,080,000",
       image: "/images/router.jpg",
       specs: ["WiFi 6 Technology", "4 Gigabit Ports", "MU-MIMO", "Mesh Compatible"]
     },
@@ -46,7 +42,7 @@ const Products = () => {
       id: 4,
       name: "HP Slim Laptop",
       category: "gadgets",
-      price: "$599",
+      price: "UGX 2,160,000",
       image: "/images/hp_slim.jpg",
       specs: ["Dual Band", "VPN Support", "Load Balancing", "24/7 Support"]
     },
@@ -55,7 +51,7 @@ const Products = () => {
       id: 5,
       name: "4K Security Camera",
       category: "cctv",
-      price: "$399",
+      price: "UGX 1,440,000",
       image: "/images/bullet_cctv.jpg",
       specs: ["4K Ultra HD", "Night Vision", "Motion Detection", "Mobile App"]
     },
@@ -63,7 +59,7 @@ const Products = () => {
       id: 6,
       name: "PTZ Security Camera",
       category: "cctv",
-      price: "$899",
+      price: "UGX 3,240,000",
       image: "/images/dual_lens_ptz.jpg",
       specs: ["Pan-Tilt-Zoom", "Auto Tracking", "Audio Recording", "Weather Resistant"]
     },
@@ -71,7 +67,7 @@ const Products = () => {
       id: 7,
       name: "Solar PTZ Camera",
       category: "cctv",
-      price: "$1,299",
+      price: "UGX 4,680,000",
       image: "/images/single_lens_solar_ptz.jpg",
       specs: ["Solar Powered", "4G Connectivity", "PIR Detection", "Two-way Audio"]
     }
@@ -87,9 +83,19 @@ const Products = () => {
     ? products 
     : products.filter(product => product.category === activeCategory);
 
+  const handleAddToCart = (product: any) => {
+    addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image
+    });
+  };
+
   return (
     <div className="min-h-screen">
       <Navbar />
+      <Cart />
       
       <section className="pt-20 md:pt-24 lg:pt-28 pb-12 md:pb-20 lg:pb-24 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -161,10 +167,10 @@ const Products = () => {
                   <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-3 lg:gap-4">
                     <span className="text-lg md:text-xl lg:text-2xl font-bold text-blue-600">{product.price}</span>
                     <button 
-                      onClick={() => handleOrderNow(product.name)}
+                      onClick={() => handleAddToCart(product)}
                       className="w-full lg:w-auto bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 md:px-4 lg:px-6 py-2 md:py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm md:text-base"
                     >
-                      Order Now
+                      Add to Cart
                     </button>
                   </div>
                 </div>
