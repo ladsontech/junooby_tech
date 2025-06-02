@@ -1,9 +1,7 @@
-
 import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
-import WhatsAppButton from '@/components/WhatsAppButton';
 import Cart from '@/components/Cart';
 import { useCart } from '@/contexts/CartContext';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
@@ -182,7 +180,6 @@ const Products = () => {
       
       <Footer />
       <BottomNav />
-      <WhatsAppButton />
     </div>
   );
 };

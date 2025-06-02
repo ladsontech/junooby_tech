@@ -35,15 +35,30 @@
       /* Adjust Tawk.to widget position on mobile to avoid bottom nav overlap */
       @media (max-width: 768px) {
         #tawkchat-minified-container {
-          bottom: 80px !important;
+          bottom: 100px !important;
         }
         
         .tawk-min-container {
-          bottom: 80px !important;
+          bottom: 100px !important;
         }
         
         iframe[title="chat widget"] {
-          bottom: 80px !important;
+          bottom: 100px !important;
+        }
+      }
+      
+      /* Adjust Tawk.to widget position on desktop to be slightly higher */
+      @media (min-width: 769px) {
+        #tawkchat-minified-container {
+          bottom: 30px !important;
+        }
+        
+        .tawk-min-container {
+          bottom: 30px !important;
+        }
+        
+        iframe[title="chat widget"] {
+          bottom: 30px !important;
         }
       }
     </style>
