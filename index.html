@@ -19,49 +19,25 @@
 
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/683b2cfaadfc42190e3947be/1isjifdji';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function() {
+      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/683b2cfaadfc42190e3947be/1isjifdji';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
     })();
+
+    // Custom Styling
+    Tawk_API.onLoad = function() {
+      var chatWidget = document.querySelector("iframe[title='chat widget']");
+      if (chatWidget) {
+        chatWidget.style.bottom = "80px";  // adjust the number here (e.g., 80px higher from bottom)
+      }
+    };
     </script>
     <!--End of Tawk.to Script-->
-
-    <style>
-      /* Adjust Tawk.to widget position on mobile to avoid bottom nav overlap */
-      @media (max-width: 768px) {
-        #tawkchat-minified-container {
-          bottom: 100px !important;
-        }
-        
-        .tawk-min-container {
-          bottom: 100px !important;
-        }
-        
-        iframe[title="chat widget"] {
-          bottom: 100px !important;
-        }
-      }
-      
-      /* Adjust Tawk.to widget position on desktop to be slightly higher */
-      @media (min-width: 769px) {
-        #tawkchat-minified-container {
-          bottom: 30px !important;
-        }
-        
-        .tawk-min-container {
-          bottom: 30px !important;
-        }
-        
-        iframe[title="chat widget"] {
-          bottom: 30px !important;
-        }
-      }
-    </style>
   </head>
 
   <body>
