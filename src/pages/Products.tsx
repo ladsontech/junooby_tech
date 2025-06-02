@@ -9,6 +9,13 @@ import { AspectRatio } from '@/components/ui/aspect-ratio';
 const Products = () => {
   const [activeCategory, setActiveCategory] = useState('all');
 
+  const handleOrderNow = (productName: string) => {
+    const phoneNumber = '+256789572007';
+    const message = `Hello! I would like to order ${productName}.`;
+    const url = `https://wa.me/${phoneNumber.replace('+', '')}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  };
+
   const products = [
     // Gadgets
     {
@@ -153,7 +160,10 @@ const Products = () => {
                   </div>
                   <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-3 lg:gap-4">
                     <span className="text-lg md:text-xl lg:text-2xl font-bold text-blue-600">{product.price}</span>
-                    <button className="w-full lg:w-auto bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 md:px-4 lg:px-6 py-2 md:py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm md:text-base">
+                    <button 
+                      onClick={() => handleOrderNow(product.name)}
+                      className="w-full lg:w-auto bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 md:px-4 lg:px-6 py-2 md:py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm md:text-base"
+                    >
                       Order Now
                     </button>
                   </div>

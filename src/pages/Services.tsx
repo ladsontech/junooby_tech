@@ -6,6 +6,13 @@ import BottomNav from '@/components/BottomNav';
 import WhatsAppButton from '@/components/WhatsAppButton';
 
 const Services = () => {
+  const handleGetQuote = (serviceName: string) => {
+    const phoneNumber = '+256789572007';
+    const message = `Hello! I would like to get a quote for ${serviceName}.`;
+    const url = `https://wa.me/${phoneNumber.replace('+', '')}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  };
+
   const services = [
     {
       title: "Web Development",
@@ -91,7 +98,10 @@ const Services = () => {
                 
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                   <span className="text-xl md:text-2xl font-bold text-blue-600">{service.price}</span>
-                  <button className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm md:text-base">
+                  <button 
+                    onClick={() => handleGetQuote(service.title)}
+                    className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm md:text-base"
+                  >
                     Get Quote
                   </button>
                 </div>
