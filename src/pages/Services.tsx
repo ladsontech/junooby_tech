@@ -11,42 +11,42 @@ const Services = () => {
       title: "Web Development",
       description: "Custom websites and web applications built with modern technologies like React, Next.js, and Node.js",
       features: ["Responsive Design", "E-commerce Solutions", "CMS Integration", "Performance Optimization"],
-      price: "Starting at $999",
+      price: "Starting at UGX 350,000",
       gradient: "from-blue-500 to-cyan-500"
     },
     {
       title: "Mobile App Design",
       description: "Native and cross-platform mobile applications for iOS and Android using React Native and Flutter",
       features: ["Cross-Platform Development", "UI/UX Design", "App Store Optimization", "Maintenance & Support"],
-      price: "Starting at $1,499",
+      price: "Starting at UGX 500,000",
       gradient: "from-purple-500 to-pink-500"
     },
     {
       title: "SEO Optimization",
       description: "Comprehensive search engine optimization to boost your online visibility and organic traffic",
       features: ["Keyword Research", "On-Page SEO", "Technical SEO", "Analytics & Reporting"],
-      price: "Starting at $299/month",
+      price: "Starting at UGX 150,000/month",
       gradient: "from-green-500 to-emerald-500"
     },
     {
       title: "Social Media Management",
       description: "Complete social media strategy, content creation, and community management across all platforms",
       features: ["Content Strategy", "Daily Posting", "Community Management", "Analytics & Reports"],
-      price: "Starting at $499/month",
+      price: "Starting at UGX 200,000/month",
       gradient: "from-orange-500 to-red-500"
     },
     {
       title: "Digital Marketing",
       description: "Data-driven marketing campaigns including PPC, email marketing, and conversion optimization",
       features: ["PPC Campaigns", "Email Marketing", "Conversion Optimization", "Marketing Automation"],
-      price: "Starting at $799/month",
+      price: "Starting at UGX 300,000/month",
       gradient: "from-indigo-500 to-purple-500"
     },
     {
       title: "CCTV Installation",
       description: "Professional security camera systems installation and maintenance for homes and businesses",
       features: ["Site Assessment", "Professional Installation", "Mobile App Access", "24/7 Support"],
-      price: "Starting at $599",
+      price: "Starting at UGX 250,000",
       gradient: "from-gray-600 to-gray-800"
     }
   ];
