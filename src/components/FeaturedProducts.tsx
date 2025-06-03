@@ -1,8 +1,10 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { supabase } from '@/integrations/supabase/client';
+import { Database } from '@/integrations/supabase/types';
+
+type DbProduct = Database['public']['Tables']['products']['Row'];
 
 interface Product {
   id: string;
@@ -35,9 +37,15 @@ const FeaturedProducts = () => {
       if (error) throw error;
       
       // Transform the data to ensure specs is always a string array
-      const transformedData = (data || []).map(product => ({
-        ...product,
-        specs: Array.isArray(product.specs) ? product.specs : []
+      const transformedData: Product[] = (data || []).map((product: DbProduct) => ({
+        id: product.id,
+        name: product.name,
+        category: product.category,
+        price: product.price,
+        description: product.description || '',
+        specs: Array.isArray(product.specs) ? (product.specs as string[]) : [],
+        main_image_url: product.main_image_url || '',
+        featured: product.featured || false
       }));
       
       setProducts(transformedData);

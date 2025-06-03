@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -11,6 +10,9 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { ArrowLeft, ShoppingCart } from 'lucide-react';
+import { Database } from '@/integrations/supabase/types';
+
+type DbProduct = Database['public']['Tables']['products']['Row'];
 
 interface Product {
   id: string;
@@ -56,9 +58,16 @@ const ProductDetail = () => {
       if (productError) throw productError;
       
       // Transform the product data to ensure specs is always a string array
-      const transformedProduct = {
-        ...productData,
-        specs: Array.isArray(productData.specs) ? productData.specs : []
+      const transformedProduct: Product = {
+        id: productData.id,
+        name: productData.name,
+        category: productData.category,
+        price: productData.price,
+        description: productData.description || '',
+        detailed_description: productData.detailed_description || '',
+        specs: Array.isArray(productData.specs) ? (productData.specs as string[]) : [],
+        main_image_url: productData.main_image_url || '',
+        featured: productData.featured || false
       };
       
       setProduct(transformedProduct);

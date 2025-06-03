@@ -12,6 +12,9 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
 import { Upload, X } from 'lucide-react';
+import { Database } from '@/integrations/supabase/types';
+
+type DbProduct = Database['public']['Tables']['products']['Row'];
 
 interface ProductImage {
   id?: string;
@@ -62,7 +65,7 @@ const ProductForm = () => {
         price: product.price,
         description: product.description || '',
         detailed_description: product.detailed_description || '',
-        specs: Array.isArray(product.specs) ? product.specs : [],
+        specs: Array.isArray(product.specs) ? (product.specs as string[]) : [],
         featured: product.featured || false
       });
 

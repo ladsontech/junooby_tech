@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useAdmin } from '@/contexts/AdminContext';
 import AdminLogin from '@/components/AdminLogin';
@@ -9,6 +8,9 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { supabase } from '@/integrations/supabase/client';
 import { Plus, Edit, Trash2, LogOut } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Database } from '@/integrations/supabase/types';
+
+type DbProduct = Database['public']['Tables']['products']['Row'];
 
 interface Product {
   id: string;
@@ -40,7 +42,20 @@ const AdminDashboard = () => {
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      setProducts(data || []);
+      
+      // Transform the data to match our Product interface
+      const transformedData: Product[] = (data || []).map((product: DbProduct) => ({
+        id: product.id,
+        name: product.name,
+        category: product.category,
+        price: product.price,
+        description: product.description || '',
+        main_image_url: product.main_image_url || '',
+        featured: product.featured || false,
+        created_at: product.created_at || ''
+      }));
+      
+      setProducts(transformedData);
     } catch (error) {
       console.error('Error fetching products:', error);
     } finally {
