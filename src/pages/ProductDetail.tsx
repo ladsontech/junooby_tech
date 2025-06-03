@@ -1,16 +1,16 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { supabase } from '@/integrations/supabase/client';
-import { useCart } from '@/contexts/CartContext';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
 import Cart from '@/components/Cart';
+import { useCart } from '@/contexts/CartContext';
+import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { ArrowLeft, ShoppingCart } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { ArrowLeft, ShoppingCart } from 'lucide-react';
 
 interface Product {
   id: string;
@@ -21,6 +21,7 @@ interface Product {
   detailed_description: string;
   specs: string[];
   main_image_url: string;
+  featured?: boolean;
 }
 
 interface ProductImage {
@@ -53,7 +54,14 @@ const ProductDetail = () => {
         .single();
 
       if (productError) throw productError;
-      setProduct(productData);
+      
+      // Transform the product data to ensure specs is always a string array
+      const transformedProduct = {
+        ...productData,
+        specs: Array.isArray(productData.specs) ? productData.specs : []
+      };
+      
+      setProduct(transformedProduct);
 
       const { data: imagesData, error: imagesError } = await supabase
         .from('product_images')
@@ -64,8 +72,9 @@ const ProductDetail = () => {
       if (imagesError) throw imagesError;
       setImages(imagesData || []);
       
+      // Set main image as selected or first image if no main image
       const mainImage = imagesData?.find(img => img.is_main);
-      setSelectedImage(mainImage?.image_url || productData?.main_image_url || '');
+      setSelectedImage(mainImage?.image_url || transformedProduct.main_image_url || (imagesData?.[0]?.image_url || ''));
     } catch (error) {
       console.error('Error fetching product:', error);
     } finally {
@@ -86,141 +95,148 @@ const ProductDetail = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
         <Navbar />
-        <div className="pt-20 flex items-center justify-center min-h-[60vh]">
+        <div className="pt-20 flex items-center justify-center min-h-screen">
           <div>Loading...</div>
         </div>
-        <Footer />
-        <BottomNav />
       </div>
     );
   }
 
   if (!product) {
     return (
-      <div className="min-h-screen">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
         <Navbar />
-        <div className="pt-20 flex items-center justify-center min-h-[60vh]">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Product Not Found</h2>
+        <div className="pt-20 p-4">
+          <div className="max-w-7xl mx-auto text-center">
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">Product not found</h1>
             <Link to="/products">
-              <Button>Back to Products</Button>
+              <Button variant="outline">
+                <ArrowLeft className="mr-2" size={16} />
+                Back to Products
+              </Button>
             </Link>
           </div>
         </div>
-        <Footer />
-        <BottomNav />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
       <Navbar />
       <Cart />
       
-      <section className="pt-20 md:pt-24 lg:pt-28 pb-12 md:pb-20 lg:pb-24 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
+      <section className="pt-20 md:pt-24 lg:pt-28 pb-12 md:pb-20 lg:pb-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-6">
-            <Link to="/products" className="inline-flex items-center text-blue-600 hover:text-blue-700 transition-colors">
-              <ArrowLeft size={20} className="mr-2" />
-              Back to Products
+            <Link to="/products">
+              <Button variant="outline" className="mb-4">
+                <ArrowLeft className="mr-2" size={16} />
+                Back to Products
+              </Button>
             </Link>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 md:gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
             {/* Product Images */}
             <div className="space-y-4">
-              <Card className="overflow-hidden">
+              <div className="bg-white rounded-2xl p-4 shadow-lg">
                 <AspectRatio ratio={1}>
                   <img
                     src={selectedImage || product.main_image_url || '/images/HP 15_6.jpg'}
                     alt={product.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover rounded-lg"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.src = "https://images.unsplash.com/photo-1587831990711-23ca6441447b?w=600&h=600&fit=crop";
                     }}
                   />
                 </AspectRatio>
-              </Card>
+              </div>
               
+              {/* Thumbnail Images */}
               {images.length > 1 && (
                 <div className="grid grid-cols-4 gap-2">
                   {images.map((image, index) => (
                     <button
                       key={image.id}
                       onClick={() => setSelectedImage(image.image_url)}
-                      className={`aspect-square rounded-lg overflow-hidden border-2 transition-colors ${
-                        selectedImage === image.image_url ? 'border-blue-500' : 'border-gray-200 hover:border-gray-300'
+                      className={`bg-white rounded-lg p-2 shadow-md hover:shadow-lg transition-all duration-300 ${
+                        selectedImage === image.image_url ? 'ring-2 ring-blue-500' : ''
                       }`}
                     >
-                      <img
-                        src={image.image_url}
-                        alt={`${product.name} ${index + 1}`}
-                        className="w-full h-full object-cover"
-                      />
+                      <AspectRatio ratio={1}>
+                        <img
+                          src={image.image_url}
+                          alt={`${product.name} ${index + 1}`}
+                          className="w-full h-full object-cover rounded"
+                        />
+                      </AspectRatio>
                     </button>
                   ))}
                 </div>
               )}
             </div>
 
-            {/* Product Details */}
+            {/* Product Info */}
             <div className="space-y-6">
               <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className={`px-3 py-1 rounded-full text-sm font-medium text-white ${
-                    product.category === 'gadgets' ? 'bg-blue-600' : 'bg-green-600'
-                  }`}>
+                <div className="flex items-center gap-3 mb-4">
+                  <Badge variant={product.category === 'gadgets' ? 'default' : 'secondary'}>
                     {product.category === 'gadgets' ? 'Gadget' : 'CCTV'}
-                  </span>
+                  </Badge>
+                  {product.featured && (
+                    <Badge variant="destructive">Featured</Badge>
+                  )}
                 </div>
-                <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{product.name}</h1>
-                <p className="text-xl md:text-2xl text-gray-600 mb-6">{product.description}</p>
-                <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-6">{product.price}</div>
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">{product.name}</h1>
+                <p className="text-xl md:text-2xl lg:text-3xl font-bold text-blue-600 mb-6">{product.price}</p>
               </div>
 
-              {product.specs && product.specs.length > 0 && (
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Specifications</h3>
-                    <ul className="space-y-2">
-                      {product.specs.map((spec, index) => (
-                        <li key={index} className="flex items-start">
-                          <span className="text-blue-600 mr-2">•</span>
-                          <span className="text-gray-700">{spec}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
+              <div>
+                <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-3">Description</h2>
+                <p className="text-gray-600 text-base md:text-lg leading-relaxed">
+                  {product.description}
+                </p>
+              </div>
+
+              {product.detailed_description && (
+                <div>
+                  <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-3">Detailed Description</h2>
+                  <p className="text-gray-600 text-base md:text-lg leading-relaxed whitespace-pre-line">
+                    {product.detailed_description}
+                  </p>
+                </div>
               )}
 
-              <Button 
-                onClick={handleAddToCart}
-                size="lg"
-                className="w-full md:w-auto bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 text-lg font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105"
-              >
-                <ShoppingCart size={20} className="mr-2" />
-                Add to Cart
-              </Button>
+              {product.specs && product.specs.length > 0 && (
+                <div>
+                  <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-3">Specifications</h2>
+                  <ul className="space-y-2">
+                    {product.specs.map((spec, index) => (
+                      <li key={index} className="text-gray-600 text-base md:text-lg flex items-start">
+                        <span className="text-blue-600 mr-2">•</span>
+                        {spec}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              <div className="pt-6">
+                <Button 
+                  onClick={handleAddToCart}
+                  size="lg"
+                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:shadow-lg transition-all duration-300 hover:scale-105"
+                >
+                  <ShoppingCart className="mr-2" size={20} />
+                  Add to Cart
+                </Button>
+              </div>
             </div>
           </div>
-
-          {product.detailed_description && (
-            <Card className="mt-12">
-              <CardContent className="p-6 md:p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Product Description</h2>
-                <div className="prose max-w-none text-gray-700">
-                  {product.detailed_description.split('\n').map((paragraph, index) => (
-                    <p key={index} className="mb-4 last:mb-0">{paragraph}</p>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          )}
         </div>
       </section>
       

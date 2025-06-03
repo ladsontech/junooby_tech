@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -17,6 +16,7 @@ interface Product {
   description: string;
   specs: string[];
   main_image_url: string;
+  featured?: boolean;
 }
 
 const Products = () => {
@@ -37,7 +37,14 @@ const Products = () => {
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      setProducts(data || []);
+      
+      // Transform the data to ensure specs is always a string array
+      const transformedData = (data || []).map(product => ({
+        ...product,
+        specs: Array.isArray(product.specs) ? product.specs : []
+      }));
+      
+      setProducts(transformedData);
     } catch (error) {
       console.error('Error fetching products:', error);
     } finally {
@@ -123,7 +130,7 @@ const Products = () => {
                         }}
                       />
                     </AspectRatio>
-                    <div className="absolute top-4 left-4">
+                    <div className="absolute top-4 left-4 flex gap-2">
                       <span className={`px-3 py-1 rounded-full text-sm font-medium text-white ${
                         product.category === 'gadgets' 
                           ? 'bg-blue-600' 
@@ -131,6 +138,11 @@ const Products = () => {
                       }`}>
                         {product.category === 'gadgets' ? 'Gadget' : 'CCTV'}
                       </span>
+                      {product.featured && (
+                        <span className="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                          Featured
+                        </span>
+                      )}
                     </div>
                   </div>
                   

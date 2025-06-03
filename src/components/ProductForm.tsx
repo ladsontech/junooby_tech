@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
@@ -11,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Switch } from '@/components/ui/switch';
 import { Upload, X } from 'lucide-react';
 
 interface ProductImage {
@@ -32,7 +32,8 @@ const ProductForm = () => {
     price: '',
     description: '',
     detailed_description: '',
-    specs: [] as string[]
+    specs: [] as string[],
+    featured: false
   });
   
   const [images, setImages] = useState<ProductImage[]>([]);
@@ -61,7 +62,8 @@ const ProductForm = () => {
         price: product.price,
         description: product.description || '',
         detailed_description: product.detailed_description || '',
-        specs: product.specs || []
+        specs: Array.isArray(product.specs) ? product.specs : [],
+        featured: product.featured || false
       });
 
       const { data: productImages, error: imagesError } = await supabase
@@ -217,11 +219,11 @@ const ProductForm = () => {
         <div className="max-w-4xl mx-auto">
           <Card>
             <CardHeader>
-              <CardTitle>{isEdit ? 'Edit Product' : 'Add New Product'}</CardTitle>
+              <CardTitle className="text-xl md:text-2xl">{isEdit ? 'Edit Product' : 'Add New Product'}</CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="name">Product Name</Label>
                     <Input
@@ -245,15 +247,25 @@ const ProductForm = () => {
                   </div>
                 </div>
 
-                <div>
-                  <Label htmlFor="price">Price</Label>
-                  <Input
-                    id="price"
-                    value={formData.price}
-                    onChange={(e) => setFormData(prev => ({ ...prev, price: e.target.value }))}
-                    placeholder="UGX 1,000,000"
-                    required
-                  />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="price">Price</Label>
+                    <Input
+                      id="price"
+                      value={formData.price}
+                      onChange={(e) => setFormData(prev => ({ ...prev, price: e.target.value }))}
+                      placeholder="UGX 1,000,000"
+                      required
+                    />
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Switch
+                      id="featured"
+                      checked={formData.featured}
+                      onCheckedChange={(checked) => setFormData(prev => ({ ...prev, featured: checked }))}
+                    />
+                    <Label htmlFor="featured">Featured Product</Label>
+                  </div>
                 </div>
 
                 <div>
@@ -343,11 +355,11 @@ const ProductForm = () => {
                   </div>
                 </div>
 
-                <div className="flex gap-4">
-                  <Button type="submit" disabled={saving}>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button type="submit" disabled={saving} className="flex-1 sm:flex-initial">
                     {saving ? 'Saving...' : isEdit ? 'Update Product' : 'Create Product'}
                   </Button>
-                  <Button type="button" variant="outline" onClick={() => navigate('/admin')}>
+                  <Button type="button" variant="outline" onClick={() => navigate('/admin')} className="flex-1 sm:flex-initial">
                     Cancel
                   </Button>
                 </div>

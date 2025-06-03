@@ -1,35 +1,68 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { supabase } from '@/integrations/supabase/client';
+
+interface Product {
+  id: string;
+  name: string;
+  category: string;
+  price: string;
+  description: string;
+  specs: string[];
+  main_image_url: string;
+  featured: boolean;
+}
 
 const FeaturedProducts = () => {
-  const products = [
-    {
-      id: 1,
-      name: "Gaming PC Pro",
-      category: "Computer",
-      price: "UGX 4,680,000",
-      image: "/images/HP 15_6.jpg",
-      features: ["Intel i7 Processor", "16GB RAM", "RTX 4060 GPU"]
-    },
-    {
-      id: 2,
-      name: "Security Camera 4K",
-      category: "CCTV",
-      price: "UGX 1,080,000",
-      image: "/images/bullet_cctv.jpg",
-      features: ["4K Resolution", "Night Vision", "Mobile App"]
-    },
-    {
-      id: 3,
-      name: "WiFi Router Pro",
-      category: "Networking",
-      price: "UGX 680,000",
-      image: "/images/router.jpg",
-      features: ["WiFi 6", "Gigabit Ports", "Mesh Ready"]
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchFeaturedProducts();
+  }, []);
+
+  const fetchFeaturedProducts = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('products')
+        .select('*')
+        .eq('featured', true)
+        .limit(3)
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      
+      // Transform the data to ensure specs is always a string array
+      const transformedData = (data || []).map(product => ({
+        ...product,
+        specs: Array.isArray(product.specs) ? product.specs : []
+      }));
+      
+      setProducts(transformedData);
+    } catch (error) {
+      console.error('Error fetching featured products:', error);
+    } finally {
+      setLoading(false);
     }
-  ];
+  };
+
+  if (loading) {
+    return (
+      <section className="py-12 md:py-20 lg:py-24 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <div className="text-lg">Loading featured products...</div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (products.length === 0) {
+    return null; // Don't show section if no featured products
+  }
 
   return (
     <section className="py-12 md:py-20 lg:py-24 bg-gradient-to-br from-gray-50 to-blue-50">
@@ -50,7 +83,7 @@ const FeaturedProducts = () => {
               <div className="relative overflow-hidden">
                 <AspectRatio ratio={1}>
                   <img 
-                    src={product.image} 
+                    src={product.main_image_url || '/images/HP 15_6.jpg'} 
                     alt={product.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                     onError={(e) => {
@@ -59,9 +92,16 @@ const FeaturedProducts = () => {
                     }}
                   />
                 </AspectRatio>
-                <div className="absolute top-4 left-4">
-                  <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-                    {product.category}
+                <div className="absolute top-4 left-4 flex gap-2">
+                  <span className={`px-3 py-1 rounded-full text-sm font-medium text-white ${
+                    product.category === 'gadgets' 
+                      ? 'bg-blue-600' 
+                      : 'bg-green-600'
+                  }`}>
+                    {product.category === 'gadgets' ? 'Gadget' : 'CCTV'}
+                  </span>
+                  <span className="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                    Featured
                   </span>
                 </div>
               </div>
@@ -69,15 +109,18 @@ const FeaturedProducts = () => {
               <div className="p-4 md:p-6 lg:p-8">
                 <h3 className="text-lg md:text-xl lg:text-2xl font-semibold text-gray-900 mb-2 md:mb-3">{product.name}</h3>
                 <div className="space-y-1 mb-4 md:mb-6">
-                  {product.features.map((feature, index) => (
-                    <p key={index} className="text-sm md:text-base text-gray-600">• {feature}</p>
+                  {product.specs && product.specs.slice(0, 3).map((spec, index) => (
+                    <p key={index} className="text-sm md:text-base text-gray-600">• {spec}</p>
                   ))}
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-xl md:text-2xl lg:text-3xl font-bold text-blue-600">{product.price}</span>
-                  <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 md:px-4 lg:px-6 py-2 md:py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm md:text-base">
+                  <Link 
+                    to={`/product/${product.id}`}
+                    className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 md:px-4 lg:px-6 py-2 md:py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm md:text-base"
+                  >
                     View Details
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
