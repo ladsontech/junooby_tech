@@ -62,42 +62,42 @@ const Services = () => {
     <div className="min-h-screen">
       <Navbar />
       
-      <section className="pt-20 md:pt-24 pb-12 md:pb-20 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
+      <section className="pt-16 md:pt-20 lg:pt-24 pb-8 md:pb-16 lg:pb-20 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 md:mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 md:mb-6">Our Services</h1>
-            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+          <div className="text-center mb-8 md:mb-12 lg:mb-16">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 md:mb-6">Our Services</h1>
+            <p className="text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Comprehensive technology solutions designed to transform your business and drive growth in the digital age
             </p>
           </div>
           
-          <div className="grid lg:grid-cols-2 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
             {services.map((service, index) => (
               <div 
                 key={index}
-                className="bg-white rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group"
+                className="bg-white rounded-xl p-4 md:p-6 lg:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group"
               >
-                <div className={`w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r ${service.gradient} rounded-2xl flex items-center justify-center text-xl md:text-2xl mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                <div className={`w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 bg-gradient-to-r ${service.gradient} rounded-xl flex items-center justify-center text-lg md:text-xl lg:text-2xl mb-3 md:mb-4 lg:mb-6 group-hover:scale-110 transition-transform duration-300`}>
                   📊
                 </div>
                 
-                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 md:mb-4">{service.title}</h3>
-                <p className="text-gray-600 mb-4 md:mb-6 text-sm md:text-base">{service.description}</p>
+                <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-2 md:mb-3 lg:mb-4">{service.title}</h3>
+                <p className="text-gray-600 mb-3 md:mb-4 lg:mb-6 text-sm md:text-base leading-relaxed">{service.description}</p>
                 
                 <div className="mb-4 md:mb-6">
-                  <h4 className="font-semibold text-gray-900 mb-3">What's Included:</h4>
-                  <ul className="space-y-2">
+                  <h4 className="font-semibold text-gray-900 mb-2 text-sm md:text-base">What's Included:</h4>
+                  <ul className="space-y-1 md:space-y-2">
                     {service.features.map((feature, idx) => (
                       <li key={idx} className="flex items-center text-gray-600 text-sm md:text-base">
-                        <span className="w-2 h-2 bg-blue-600 rounded-full mr-3 flex-shrink-0"></span>
+                        <span className="w-1.5 h-1.5 bg-blue-600 rounded-full mr-2 md:mr-3 flex-shrink-0"></span>
                         {feature}
                       </li>
                     ))}
                   </ul>
                 </div>
                 
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                  <span className="text-xl md:text-2xl font-bold text-blue-600">{service.price}</span>
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 md:gap-4">
+                  <span className="text-lg md:text-xl lg:text-2xl font-bold text-blue-600">{service.price}</span>
                   <button 
                     onClick={() => handleGetQuote(service.title)}
                     className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm md:text-base"

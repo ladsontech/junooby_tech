@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -32,6 +33,12 @@ interface ProductImage {
   is_main: boolean;
   display_order: number;
 }
+
+const formatPrice = (price: string) => {
+  const numericPrice = price.replace(/[^0-9]/g, '');
+  if (!numericPrice) return price;
+  return `UGX ${parseInt(numericPrice).toLocaleString()}`;
+};
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -137,29 +144,29 @@ const ProductDetail = () => {
       <Navbar />
       <Cart />
       
-      <section className="pt-20 md:pt-24 lg:pt-28 pb-12 md:pb-20 lg:pb-24">
+      <section className="pt-16 md:pt-20 lg:pt-24 pb-8 md:pb-16 lg:pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-6">
+          <div className="mb-4 md:mb-6">
             <Link to="/products">
-              <Button variant="outline" className="mb-4">
+              <Button variant="outline" className="mb-4 text-sm">
                 <ArrowLeft className="mr-2" size={16} />
                 Back to Products
               </Button>
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12">
             {/* Product Images */}
             <div className="space-y-4">
-              <div className="bg-white rounded-2xl p-4 shadow-lg">
-                <AspectRatio ratio={1}>
+              <div className="bg-white rounded-xl p-3 md:p-4 shadow-lg">
+                <AspectRatio ratio={4/3}>
                   <img
                     src={selectedImage || product.main_image_url || '/images/HP 15_6.jpg'}
                     alt={product.name}
                     className="w-full h-full object-cover rounded-lg"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
-                      target.src = "https://images.unsplash.com/photo-1587831990711-23ca6441447b?w=600&h=600&fit=crop";
+                      target.src = "https://images.unsplash.com/photo-1587831990711-23ca6441447b?w=600&h=450&fit=crop";
                     }}
                   />
                 </AspectRatio>
@@ -190,9 +197,9 @@ const ProductDetail = () => {
             </div>
 
             {/* Product Info */}
-            <div className="space-y-6">
+            <div className="space-y-4 md:space-y-6">
               <div>
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-center gap-2 mb-3">
                   <Badge variant={product.category === 'gadgets' ? 'default' : 'secondary'}>
                     {product.category === 'gadgets' ? 'Gadget' : 'CCTV'}
                   </Badge>
@@ -200,21 +207,21 @@ const ProductDetail = () => {
                     <Badge variant="destructive">Featured</Badge>
                   )}
                 </div>
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">{product.name}</h1>
-                <p className="text-xl md:text-2xl lg:text-3xl font-bold text-blue-600 mb-6">{product.price}</p>
+                <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3">{product.name}</h1>
+                <p className="text-xl md:text-2xl lg:text-3xl font-bold text-blue-600 mb-4">{formatPrice(product.price)}</p>
               </div>
 
               <div>
-                <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-3">Description</h2>
-                <p className="text-gray-600 text-base md:text-lg leading-relaxed">
+                <h2 className="text-lg md:text-xl font-semibold text-gray-900 mb-2">Description</h2>
+                <p className="text-gray-600 text-sm md:text-base leading-relaxed">
                   {product.description}
                 </p>
               </div>
 
               {product.detailed_description && (
                 <div>
-                  <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-3">Detailed Description</h2>
-                  <p className="text-gray-600 text-base md:text-lg leading-relaxed whitespace-pre-line">
+                  <h2 className="text-lg md:text-xl font-semibold text-gray-900 mb-2">Detailed Description</h2>
+                  <p className="text-gray-600 text-sm md:text-base leading-relaxed whitespace-pre-line">
                     {product.detailed_description}
                   </p>
                 </div>
@@ -222,10 +229,10 @@ const ProductDetail = () => {
 
               {product.specs && product.specs.length > 0 && (
                 <div>
-                  <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-3">Specifications</h2>
-                  <ul className="space-y-2">
+                  <h2 className="text-lg md:text-xl font-semibold text-gray-900 mb-2">Specifications</h2>
+                  <ul className="space-y-1">
                     {product.specs.map((spec, index) => (
-                      <li key={index} className="text-gray-600 text-base md:text-lg flex items-start">
+                      <li key={index} className="text-gray-600 text-sm md:text-base flex items-start">
                         <span className="text-blue-600 mr-2">•</span>
                         {spec}
                       </li>
@@ -234,13 +241,13 @@ const ProductDetail = () => {
                 </div>
               )}
 
-              <div className="pt-6">
+              <div className="pt-4">
                 <Button 
                   onClick={handleAddToCart}
                   size="lg"
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:shadow-lg transition-all duration-300 hover:scale-105"
+                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm md:text-base"
                 >
-                  <ShoppingCart className="mr-2" size={20} />
+                  <ShoppingCart className="mr-2" size={18} />
                   Add to Cart
                 </Button>
               </div>
