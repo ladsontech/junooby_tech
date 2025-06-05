@@ -5,11 +5,18 @@ import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
 
 const Contact = () => {
+  const handleWhatsAppClick = () => {
+    const phoneNumber = '+256789572007';
+    const message = 'Hello! I would like to know more about your services.';
+    const url = `https://wa.me/${phoneNumber.replace('+', '')}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  };
+
   return (
     <div className="min-h-screen">
       <Navbar />
       
-      <section className="pt-16 md:pt-20 lg:pt-24 pb-8 md:pb-16 lg:pb-20 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
+      <section className="pt-16 md:pt-20 lg:pt-24 pb-8 md:pb-16 lg:pb-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 md:mb-12 lg:mb-16">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 md:mb-6">Contact Us</h1>
@@ -75,7 +82,7 @@ const Contact = () => {
                 
                 <button 
                   type="submit"
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 md:py-4 rounded-lg font-semibold text-base md:text-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                  className="w-full bg-blue-600 text-white py-3 md:py-4 rounded-lg font-semibold text-base md:text-lg hover:bg-blue-700 hover:shadow-xl transition-all duration-300 hover:scale-105"
                 >
                   Send Message
                 </button>
@@ -118,8 +125,23 @@ const Contact = () => {
                   </div>
                 </div>
               </div>
+
+              {/* WhatsApp Contact */}
+              <div className="bg-green-500 rounded-xl p-4 md:p-6 lg:p-8 text-white">
+                <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4">Quick Chat on WhatsApp</h3>
+                <p className="text-sm md:text-base mb-4 md:mb-6">
+                  Get instant responses to your questions. Chat with us directly on WhatsApp for quick support and quotes.
+                </p>
+                <button 
+                  onClick={handleWhatsAppClick}
+                  className="w-full bg-white text-green-600 py-3 md:py-4 rounded-lg font-semibold text-base md:text-lg hover:bg-gray-100 transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2"
+                >
+                  <span>💬</span>
+                  <span>Chat on WhatsApp</span>
+                </button>
+              </div>
               
-              <div className="bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl p-4 md:p-6 lg:p-8 text-white">
+              <div className="bg-blue-600 rounded-xl p-4 md:p-6 lg:p-8 text-white">
                 <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4">Why Choose Junooby?</h3>
                 <ul className="space-y-2 md:space-y-3">
                   <li className="flex items-center space-x-2 md:space-x-3">

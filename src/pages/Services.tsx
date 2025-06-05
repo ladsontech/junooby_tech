@@ -3,7 +3,6 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
-import WhatsAppButton from '@/components/WhatsAppButton';
 
 const Services = () => {
   const handleGetQuote = (serviceName: string) => {
@@ -30,7 +29,7 @@ const Services = () => {
         "1 month free maintenance"
       ],
       price: "Starting at UGX 350,000",
-      gradient: "from-blue-400 to-blue-600",
+      bgColor: "bg-blue-500",
       deliveryTime: "5-7 business days"
     },
     {
@@ -54,7 +53,7 @@ const Services = () => {
         "Training on content management"
       ],
       price: "Starting at UGX 800,000",
-      gradient: "from-purple-500 to-indigo-600",
+      bgColor: "bg-purple-600",
       deliveryTime: "10-14 business days"
     },
     {
@@ -80,7 +79,7 @@ const Services = () => {
         "Staff training included"
       ],
       price: "Starting at UGX 1,200,000",
-      gradient: "from-green-500 to-emerald-600",
+      bgColor: "bg-emerald-600",
       deliveryTime: "15-21 business days"
     },
     {
@@ -104,7 +103,7 @@ const Services = () => {
         "Multiple data center locations"
       ],
       price: "Starting at UGX 50,000/month",
-      gradient: "from-orange-500 to-red-500",
+      bgColor: "bg-orange-500",
       deliveryTime: "Instant activation"
     },
     {
@@ -128,7 +127,7 @@ const Services = () => {
         "API integration and backend connectivity"
       ],
       price: "Starting at UGX 1,500,000",
-      gradient: "from-purple-500 to-pink-500",
+      bgColor: "bg-pink-500",
       deliveryTime: "20-30 business days"
     },
     {
@@ -152,7 +151,7 @@ const Services = () => {
         "Social signals optimization"
       ],
       price: "Starting at UGX 200,000/month",
-      gradient: "from-green-500 to-emerald-500",
+      bgColor: "bg-emerald-500",
       deliveryTime: "Ongoing service"
     },
     {
@@ -176,7 +175,7 @@ const Services = () => {
         "Social listening and trend analysis"
       ],
       price: "Starting at UGX 300,000/month",
-      gradient: "from-pink-500 to-rose-500",
+      bgColor: "bg-rose-500",
       deliveryTime: "Ongoing service"
     },
     {
@@ -200,7 +199,7 @@ const Services = () => {
         "Brand positioning and messaging"
       ],
       price: "Starting at UGX 400,000/month",
-      gradient: "from-indigo-500 to-purple-500",
+      bgColor: "bg-indigo-500",
       deliveryTime: "Ongoing service"
     },
     {
@@ -224,7 +223,7 @@ const Services = () => {
         "Expandable system design"
       ],
       price: "Starting at UGX 400,000",
-      gradient: "from-gray-600 to-gray-800",
+      bgColor: "bg-gray-700",
       deliveryTime: "2-3 business days"
     }
   ];
@@ -233,7 +232,7 @@ const Services = () => {
     <div className="min-h-screen">
       <Navbar />
       
-      <section className="pt-16 md:pt-20 lg:pt-24 pb-8 md:pb-16 lg:pb-20 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
+      <section className="pt-16 md:pt-20 lg:pt-24 pb-8 md:pb-16 lg:pb-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 md:mb-12 lg:mb-16">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 md:mb-6">Our Services</h1>
@@ -248,7 +247,7 @@ const Services = () => {
                 key={index}
                 className="bg-white rounded-xl p-4 md:p-6 lg:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group"
               >
-                <div className={`w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 bg-gradient-to-r ${service.gradient} rounded-xl flex items-center justify-center text-lg md:text-xl lg:text-2xl mb-3 md:mb-4 lg:mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                <div className={`w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 ${service.bgColor} rounded-xl flex items-center justify-center text-lg md:text-xl lg:text-2xl mb-3 md:mb-4 lg:mb-6 group-hover:scale-110 transition-transform duration-300 text-white`}>
                   📊
                 </div>
                 
@@ -257,14 +256,14 @@ const Services = () => {
                 
                 <div className="mb-4 md:mb-6">
                   <h4 className="font-semibold text-gray-900 mb-2 text-sm md:text-base">What's Included:</h4>
-                  <ul className="space-y-1 md:space-y-2 max-h-48 overflow-y-auto">
+                  <div className="space-y-1 md:space-y-2">
                     {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start text-gray-600 text-sm md:text-base">
+                      <div key={idx} className="flex items-start text-gray-600 text-sm md:text-base">
                         <span className="w-1.5 h-1.5 bg-blue-600 rounded-full mr-2 md:mr-3 flex-shrink-0 mt-2"></span>
                         <span className="leading-relaxed">{feature}</span>
-                      </li>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
                 
                 {service.deliveryTime && (
@@ -279,7 +278,7 @@ const Services = () => {
                   <span className="text-lg md:text-xl lg:text-2xl font-bold text-blue-600">{service.price}</span>
                   <button 
                     onClick={() => handleGetQuote(service.title)}
-                    className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm md:text-base"
+                    className="w-full sm:w-auto bg-blue-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg font-medium hover:bg-blue-700 hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm md:text-base"
                   >
                     Get Quote
                   </button>
@@ -292,7 +291,6 @@ const Services = () => {
       
       <Footer />
       <BottomNav />
-      <WhatsAppButton />
     </div>
   );
 };

@@ -8,7 +8,7 @@ const Services = () => {
       title: "Web Development",
       description: "Custom responsive websites, e-commerce platforms, and web applications built with modern technologies. From basic business websites to complex web systems.",
       icon: "🌐",
-      gradient: "from-blue-500 to-cyan-500",
+      bgColor: "bg-blue-500",
       features: ["Responsive Design", "E-commerce", "CMS Integration", "SEO Optimized"],
       pricing: "From UGX 350,000"
     },
@@ -16,7 +16,7 @@ const Services = () => {
       title: "Mobile App Development",
       description: "Native and cross-platform mobile applications for iOS and Android using React Native and Flutter with modern UI/UX design and backend integration.",
       icon: "📱",
-      gradient: "from-purple-500 to-pink-500",
+      bgColor: "bg-purple-500",
       features: ["iOS & Android", "Cross-platform", "Push Notifications", "App Store Publishing"],
       pricing: "From UGX 1,500,000"
     },
@@ -24,7 +24,7 @@ const Services = () => {
       title: "CCTV Installation & Security",
       description: "Professional security camera systems installation with HD/4K cameras, night vision, remote monitoring, and 24/7 surveillance for homes and businesses.",
       icon: "📹",
-      gradient: "from-gray-600 to-gray-800",
+      bgColor: "bg-gray-700",
       features: ["HD/4K Cameras", "Remote Monitoring", "Night Vision", "Professional Installation"],
       pricing: "From UGX 400,000"
     },
@@ -32,7 +32,7 @@ const Services = () => {
       title: "Solar Systems Installation",
       description: "Complete solar energy solutions including solar panels, inverters, batteries, and installation services for residential and commercial properties.",
       icon: "☀️",
-      gradient: "from-yellow-500 to-orange-500",
+      bgColor: "bg-orange-500",
       features: ["Solar Panels", "Battery Systems", "Grid-tie Systems", "Maintenance"],
       pricing: "From UGX 2,000,000"
     },
@@ -40,7 +40,7 @@ const Services = () => {
       title: "Digital Marketing & SEO",
       description: "Comprehensive digital marketing strategies including SEO optimization, social media management, Google Ads, and content marketing to boost your online presence.",
       icon: "🎯",
-      gradient: "from-indigo-500 to-purple-500",
+      bgColor: "bg-indigo-500",
       features: ["SEO Optimization", "Social Media", "Google Ads", "Content Marketing"],
       pricing: "From UGX 200,000/month"
     },
@@ -48,7 +48,7 @@ const Services = () => {
       title: "Web Hosting & Domains",
       description: "Reliable web hosting services with 99.9% uptime, SSL certificates, email hosting, and domain registration with 24/7 technical support.",
       icon: "🔗",
-      gradient: "from-green-500 to-emerald-500",
+      bgColor: "bg-emerald-500",
       features: ["99.9% Uptime", "SSL Certificates", "Email Hosting", "24/7 Support"],
       pricing: "From UGX 50,000/month"
     }
@@ -80,7 +80,7 @@ const Services = () => {
               key={index}
               className="bg-white rounded-2xl lg:rounded-3xl p-6 md:p-8 lg:p-10 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 group"
             >
-              <div className={`w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gradient-to-r ${service.gradient} rounded-2xl lg:rounded-3xl flex items-center justify-center text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-6 lg:mb-8 group-hover:scale-110 transition-transform duration-300`}>
+              <div className={`w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 ${service.bgColor} rounded-2xl lg:rounded-3xl flex items-center justify-center text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-6 lg:mb-8 group-hover:scale-110 transition-transform duration-300 text-white`}>
                 {service.icon}
               </div>
               
@@ -110,7 +110,7 @@ const Services = () => {
                 </span>
                 <button 
                   onClick={() => handleGetQuote(service.title)}
-                  className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 md:px-6 lg:px-8 py-2 md:py-3 lg:py-4 rounded-lg lg:rounded-xl font-medium hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm md:text-base lg:text-lg"
+                  className="w-full sm:w-auto bg-blue-600 text-white px-4 md:px-6 lg:px-8 py-2 md:py-3 lg:py-4 rounded-lg lg:rounded-xl font-medium hover:bg-blue-700 hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm md:text-base lg:text-lg"
                 >
                   Get Quote
                 </button>
@@ -122,7 +122,7 @@ const Services = () => {
         <div className="text-center">
           <Link 
             to="/services"
-            className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 md:px-12 lg:px-16 py-4 md:py-5 lg:py-6 rounded-xl lg:rounded-2xl font-bold text-lg md:text-xl lg:text-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+            className="inline-block bg-blue-600 text-white px-8 md:px-12 lg:px-16 py-4 md:py-5 lg:py-6 rounded-xl lg:rounded-2xl font-bold text-lg md:text-xl lg:text-2xl hover:bg-blue-700 hover:shadow-2xl transition-all duration-300 hover:scale-105"
           >
             View All Services & Pricing
           </Link>
