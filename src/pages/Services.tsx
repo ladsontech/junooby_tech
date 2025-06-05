@@ -15,46 +15,217 @@ const Services = () => {
 
   const services = [
     {
-      title: "Web Development",
-      description: "Custom websites and web applications built with modern technologies like React, Next.js, and Node.js",
-      features: ["Responsive Design", "E-commerce Solutions", "CMS Integration", "Performance Optimization"],
+      title: "Basic Website Development",
+      description: "Perfect starter websites for small businesses, personal portfolios, and simple online presence with essential features and modern design",
+      features: [
+        "Up to 5 responsive pages (Home, About, Services, Contact, Gallery)",
+        "Mobile-first responsive design",
+        "Contact form with email integration",
+        "Google Maps integration",
+        "Basic SEO optimization",
+        "Social media integration",
+        "Fast loading optimization",
+        "SSL certificate setup",
+        "2 rounds of revisions",
+        "1 month free maintenance"
+      ],
       price: "Starting at UGX 350,000",
-      gradient: "from-blue-500 to-cyan-500"
+      gradient: "from-blue-400 to-blue-600",
+      deliveryTime: "5-7 business days"
+    },
+    {
+      title: "Advanced Website Development",
+      description: "Feature-rich websites with custom functionality, content management systems, and advanced integrations for growing businesses",
+      features: [
+        "Up to 15 custom pages with dynamic content",
+        "Custom Content Management System (CMS)",
+        "Advanced contact forms with file uploads",
+        "Blog/News section with commenting system",
+        "User registration and login system",
+        "Payment gateway integration (Mobile Money, Cards)",
+        "Advanced SEO with schema markup",
+        "Analytics and reporting dashboard",
+        "Email newsletter integration",
+        "Social media automation",
+        "Advanced security features",
+        "Database design and optimization",
+        "API integrations (WhatsApp, SMS, etc.)",
+        "3 months free maintenance",
+        "Training on content management"
+      ],
+      price: "Starting at UGX 800,000",
+      gradient: "from-purple-500 to-indigo-600",
+      deliveryTime: "10-14 business days"
+    },
+    {
+      title: "E-commerce Website Development",
+      description: "Complete online store solutions with inventory management, payment processing, and customer management systems",
+      features: [
+        "Unlimited product listings with categories",
+        "Shopping cart and checkout system",
+        "Multiple payment gateways (Mobile Money, Visa, MasterCard)",
+        "Inventory management system",
+        "Order tracking and management",
+        "Customer account creation and management",
+        "Wishlist and favorites functionality",
+        "Product reviews and ratings",
+        "Discount codes and promotions system",
+        "Email order confirmations",
+        "Sales analytics and reporting",
+        "Multi-currency support",
+        "Shipping calculator integration",
+        "SEO optimized product pages",
+        "Mobile app-like experience (PWA)",
+        "6 months free maintenance",
+        "Staff training included"
+      ],
+      price: "Starting at UGX 1,200,000",
+      gradient: "from-green-500 to-emerald-600",
+      deliveryTime: "15-21 business days"
+    },
+    {
+      title: "Web Hosting Services",
+      description: "Reliable, fast, and secure web hosting solutions with 99.9% uptime guarantee and 24/7 technical support",
+      features: [
+        "99.9% uptime guarantee with SLA",
+        "Free SSL certificates for all domains",
+        "Daily automated backups",
+        "DDoS protection and security monitoring",
+        "Email hosting with professional addresses",
+        "One-click WordPress installation",
+        "Website builder tools included",
+        "24/7 technical support",
+        "Control panel access (cPanel)",
+        "Database management (MySQL/PostgreSQL)",
+        "File manager and FTP access",
+        "Domain registration assistance",
+        "Website migration service",
+        "Performance monitoring and optimization",
+        "Multiple data center locations"
+      ],
+      price: "Starting at UGX 50,000/month",
+      gradient: "from-orange-500 to-red-500",
+      deliveryTime: "Instant activation"
     },
     {
       title: "Mobile App Design",
-      description: "Native and cross-platform mobile applications for iOS and Android using React Native and Flutter",
-      features: ["Cross-Platform Development", "UI/UX Design", "App Store Optimization", "Maintenance & Support"],
-      price: "Starting at UGX 500,000",
-      gradient: "from-purple-500 to-pink-500"
+      description: "Native and cross-platform mobile applications for iOS and Android using React Native and Flutter with modern UI/UX design",
+      features: [
+        "Cross-platform development (iOS & Android)",
+        "Modern UI/UX design with user research",
+        "Push notifications system",
+        "User authentication and profiles",
+        "Offline functionality",
+        "In-app purchases integration",
+        "Social media integration",
+        "Analytics and crash reporting",
+        "App store optimization (ASO)",
+        "Beta testing and deployment",
+        "App store submission assistance",
+        "Post-launch support and updates",
+        "Performance optimization",
+        "Security implementation",
+        "API integration and backend connectivity"
+      ],
+      price: "Starting at UGX 1,500,000",
+      gradient: "from-purple-500 to-pink-500",
+      deliveryTime: "20-30 business days"
     },
     {
       title: "SEO Optimization",
-      description: "Comprehensive search engine optimization to boost your online visibility and organic traffic",
-      features: ["Keyword Research", "On-Page SEO", "Technical SEO", "Analytics & Reporting"],
-      price: "Starting at UGX 150,000/month",
-      gradient: "from-green-500 to-emerald-500"
+      description: "Comprehensive search engine optimization to boost your online visibility, organic traffic, and search rankings with proven strategies",
+      features: [
+        "Complete website SEO audit",
+        "Keyword research and analysis",
+        "On-page optimization (meta tags, content)",
+        "Technical SEO (site speed, mobile optimization)",
+        "Local SEO optimization",
+        "Google My Business setup and optimization",
+        "Content strategy and creation",
+        "Link building campaigns",
+        "Competitor analysis",
+        "Monthly performance reports",
+        "Google Analytics and Search Console setup",
+        "Schema markup implementation",
+        "Website structure optimization",
+        "Image and video optimization",
+        "Social signals optimization"
+      ],
+      price: "Starting at UGX 200,000/month",
+      gradient: "from-green-500 to-emerald-500",
+      deliveryTime: "Ongoing service"
     },
     {
       title: "Social Media Management",
-      description: "Complete social media strategy, content creation, and community management across all platforms",
-      features: ["Content Strategy", "Daily Posting", "Community Management", "Analytics & Reports"],
-      price: "Starting at UGX 200,000/month",
-      gradient: "from-orange-500 to-red-500"
+      description: "Complete social media strategy, content creation, and community management across all platforms to build your brand presence",
+      features: [
+        "Social media strategy development",
+        "Daily content creation and posting",
+        "Platform management (Facebook, Instagram, Twitter, LinkedIn)",
+        "Community management and engagement",
+        "Social media advertising campaigns",
+        "Influencer collaboration management",
+        "Brand voice and tone development",
+        "Visual content creation (graphics, videos)",
+        "Hashtag research and optimization",
+        "Monthly analytics and performance reports",
+        "Crisis management and reputation monitoring",
+        "Social media contest and giveaway management",
+        "User-generated content campaigns",
+        "Cross-platform content adaptation",
+        "Social listening and trend analysis"
+      ],
+      price: "Starting at UGX 300,000/month",
+      gradient: "from-pink-500 to-rose-500",
+      deliveryTime: "Ongoing service"
     },
     {
       title: "Digital Marketing",
-      description: "Data-driven marketing campaigns including PPC, email marketing, and conversion optimization",
-      features: ["PPC Campaigns", "Email Marketing", "Conversion Optimization", "Marketing Automation"],
-      price: "Starting at UGX 300,000/month",
-      gradient: "from-indigo-500 to-purple-500"
+      description: "Data-driven marketing campaigns including PPC, email marketing, conversion optimization, and comprehensive digital strategies",
+      features: [
+        "Digital marketing strategy development",
+        "Google Ads and Facebook Ads management",
+        "Email marketing automation",
+        "Conversion rate optimization (CRO)",
+        "Marketing funnel development",
+        "Lead generation campaigns",
+        "Retargeting and remarketing campaigns",
+        "A/B testing and optimization",
+        "Landing page creation and optimization",
+        "Marketing automation setup",
+        "Customer journey mapping",
+        "ROI tracking and attribution modeling",
+        "Comprehensive analytics and reporting",
+        "Market research and competitor analysis",
+        "Brand positioning and messaging"
+      ],
+      price: "Starting at UGX 400,000/month",
+      gradient: "from-indigo-500 to-purple-500",
+      deliveryTime: "Ongoing service"
     },
     {
       title: "CCTV Installation",
-      description: "Professional security camera systems installation and maintenance for homes and businesses",
-      features: ["Site Assessment", "Professional Installation", "Mobile App Access", "24/7 Support"],
-      price: "Starting at UGX 250,000",
-      gradient: "from-gray-600 to-gray-800"
+      description: "Professional security camera systems installation and maintenance for homes and businesses with remote monitoring capabilities",
+      features: [
+        "Free site assessment and consultation",
+        "HD/4K camera installation",
+        "Night vision and motion detection",
+        "Remote viewing via mobile app",
+        "Cloud storage and local backup options",
+        "Professional cable management",
+        "Weatherproof outdoor cameras",
+        "Indoor and outdoor camera options",
+        "Motion alerts and notifications",
+        "24/7 monitoring services available",
+        "Integration with existing security systems",
+        "Regular maintenance and updates",
+        "Technical support and training",
+        "Warranty on equipment and installation",
+        "Expandable system design"
+      ],
+      price: "Starting at UGX 400,000",
+      gradient: "from-gray-600 to-gray-800",
+      deliveryTime: "2-3 business days"
     }
   ];
 
@@ -86,15 +257,23 @@ const Services = () => {
                 
                 <div className="mb-4 md:mb-6">
                   <h4 className="font-semibold text-gray-900 mb-2 text-sm md:text-base">What's Included:</h4>
-                  <ul className="space-y-1 md:space-y-2">
+                  <ul className="space-y-1 md:space-y-2 max-h-48 overflow-y-auto">
                     {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-gray-600 text-sm md:text-base">
-                        <span className="w-1.5 h-1.5 bg-blue-600 rounded-full mr-2 md:mr-3 flex-shrink-0"></span>
-                        {feature}
+                      <li key={idx} className="flex items-start text-gray-600 text-sm md:text-base">
+                        <span className="w-1.5 h-1.5 bg-blue-600 rounded-full mr-2 md:mr-3 flex-shrink-0 mt-2"></span>
+                        <span className="leading-relaxed">{feature}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
+                
+                {service.deliveryTime && (
+                  <div className="mb-3 md:mb-4">
+                    <span className="text-sm md:text-base text-gray-500">
+                      <strong>Delivery Time:</strong> {service.deliveryTime}
+                    </span>
+                  </div>
+                )}
                 
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 md:gap-4">
                   <span className="text-lg md:text-xl lg:text-2xl font-bold text-blue-600">{service.price}</span>
