@@ -21,7 +21,7 @@ const Navbar = () => {
               const fallback = target.nextElementSibling as HTMLElement;
               if (fallback) fallback.style.display = 'block';
             }} />
-              <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg" style={{
+              <div className="w-12 h-12 bg-blue-600 rounded-lg" style={{
               display: 'none'
             }}></div>
               <span className="font-bold text-red-700 text-4xl">Junooby</span>
@@ -37,7 +37,7 @@ const Navbar = () => {
               <Link to="/products" className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive('/products') ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'}`}>
                 Products
               </Link>
-              <Link to="/contact" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105">
+              <Link to="/contact" className="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition-all duration-300 hover:scale-105">
                 Contact Us
               </Link>
             </div>
@@ -56,7 +56,7 @@ const Navbar = () => {
               const fallback = target.nextElementSibling as HTMLElement;
               if (fallback) fallback.style.display = 'block';
             }} />
-              <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg" style={{
+              <div className="w-12 h-12 bg-blue-600 rounded-lg" style={{
               display: 'none'
             }}></div>
               <span className="font-extrabold text-4xl text-rose-600">Junooby</span>
@@ -82,7 +82,7 @@ const Navbar = () => {
               <Link to="/products" onClick={() => setIsMenuOpen(false)} className={`block px-4 py-3 text-sm font-medium transition-colors ${isActive('/products') ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'}`}>
                 Products
               </Link>
-              <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="block mx-4 my-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-medium text-center">
+              <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="block mx-4 my-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium text-center hover:bg-blue-700">
                 Contact Us
               </Link>
             </div>

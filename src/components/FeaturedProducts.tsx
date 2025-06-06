@@ -132,7 +132,7 @@ const FeaturedProducts = () => {
                   <span className="text-lg md:text-xl font-bold text-blue-600">{formatPrice(product.price)}</span>
                   <Link 
                     to={`/product/${product.id}`}
-                    className="w-full sm:w-auto bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm text-center"
+                    className="w-full sm:w-auto bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-all duration-300 hover:scale-105 text-sm text-center"
                   >
                     View Details
                   </Link>
@@ -145,7 +145,7 @@ const FeaturedProducts = () => {
         <div className="text-center">
           <Link 
             to="/products"
-            className="inline-block bg-blue-600 text-white px-8 md:px-12 py-3 md:py-4 rounded-lg font-semibold text-base md:text-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+            className="inline-block bg-blue-600 text-white px-8 md:px-12 py-3 md:py-4 rounded-lg font-semibold text-base md:text-lg hover:bg-blue-700 transition-all duration-300 hover:scale-105"
           >
             View All Products
           </Link>

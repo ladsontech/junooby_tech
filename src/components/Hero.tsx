@@ -12,7 +12,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 pt-20 flex items-center">
+    <section className="min-h-screen bg-slate-50 pt-20 flex items-center">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 md:py-20 py-0">
         <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
           <div className="space-y-6 md:space-y-8 animate-fade-in order-2 lg:order-1">
@@ -56,7 +56,7 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link 
                 to="/services" 
-                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold text-base md:text-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-center"
+                className="bg-blue-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold text-base md:text-lg hover:bg-blue-700 transition-all duration-300 hover:scale-105 text-center"
               >
                 Explore Our Services
               </Link>
@@ -70,10 +70,10 @@ const Hero = () => {
           </div>
           
           <div className="relative animate-scale-in order-1 lg:order-2">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-3xl blur-2xl opacity-20 animate-pulse"></div>
+            <div className="absolute inset-0 bg-blue-400 rounded-3xl blur-2xl opacity-20 animate-pulse"></div>
             <div className="relative">
               <div className="aspect-square w-full max-w-md mx-auto relative overflow-hidden rounded-3xl shadow-2xl">
-                <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-white/30 pointer-events-none z-10"></div>
+                <div className="absolute inset-0 bg-white/30 pointer-events-none z-10"></div>
                 <img 
                   src="/images/hero_section.jpg" 
                   alt="Professional Web Development and Tech Solutions in Uganda - Junooby Digital Craft" 
@@ -87,22 +87,22 @@ const Hero = () => {
                 />
                 <div className="bg-white/80 backdrop-blur-sm p-6 md:p-8 rounded-3xl shadow-2xl" style={{display: 'none'}}>
                   <div className="grid grid-cols-2 gap-4 md:gap-6">
-                    <div className="bg-gradient-to-br from-blue-100 to-blue-200 p-4 md:p-6 rounded-2xl">
+                    <div className="bg-blue-100 p-4 md:p-6 rounded-2xl">
                       <div className="w-8 h-8 md:w-12 md:h-12 bg-blue-600 rounded-xl mb-2 md:mb-4"></div>
                       <h3 className="font-semibold text-gray-900 text-sm md:text-base">Web Development</h3>
                       <p className="text-xs md:text-sm text-gray-600 mt-1 md:mt-2">Custom websites & e-commerce</p>
                     </div>
-                    <div className="bg-gradient-to-br from-purple-100 to-purple-200 p-4 md:p-6 rounded-2xl">
+                    <div className="bg-purple-100 p-4 md:p-6 rounded-2xl">
                       <div className="w-8 h-8 md:w-12 md:h-12 bg-purple-600 rounded-xl mb-2 md:mb-4"></div>
                       <h3 className="font-semibold text-gray-900 text-sm md:text-base">Mobile Apps</h3>
                       <p className="text-xs md:text-sm text-gray-600 mt-1 md:mt-2">iOS & Android development</p>
                     </div>
-                    <div className="bg-gradient-to-br from-green-100 to-green-200 p-4 md:p-6 rounded-2xl">
+                    <div className="bg-green-100 p-4 md:p-6 rounded-2xl">
                       <div className="w-8 h-8 md:w-12 md:h-12 bg-green-600 rounded-xl mb-2 md:mb-4"></div>
                       <h3 className="font-semibold text-gray-900 text-sm md:text-base">CCTV Systems</h3>
                       <p className="text-xs md:text-sm text-gray-600 mt-1 md:mt-2">Security camera installation</p>
                     </div>
-                    <div className="bg-gradient-to-br from-orange-100 to-orange-200 p-4 md:p-6 rounded-2xl">
+                    <div className="bg-orange-100 p-4 md:p-6 rounded-2xl">
                       <div className="w-8 h-8 md:w-12 md:h-12 bg-orange-600 rounded-xl mb-2 md:mb-4"></div>
                       <h3 className="font-semibold text-gray-900 text-sm md:text-base">Solar Systems</h3>
                       <p className="text-xs md:text-sm text-gray-600 mt-1 md:mt-2">Renewable energy solutions</p>
