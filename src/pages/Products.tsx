@@ -111,7 +111,7 @@ const Products = () => {
                     onClick={() => setActiveCategory(category.id)}
                     className={`flex-1 px-3 md:px-6 py-2 md:py-3 rounded-lg font-medium transition-all duration-300 whitespace-nowrap text-sm md:text-base ${
                       activeCategory === category.id
-                        ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+                        ? 'bg-blue-600 text-white shadow-lg'
                         : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                     }`}
                   >
@@ -132,7 +132,7 @@ const Products = () => {
               <div className="text-base md:text-lg text-gray-500">No products found in this category.</div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
               {filteredProducts.map((product) => (
                 <div 
                   key={product.id}
@@ -166,25 +166,25 @@ const Products = () => {
                     </div>
                   </div>
                   
-                  <div className="p-4 md:p-5">
-                    <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-2 line-clamp-2">{product.name}</h3>
+                  <div className="p-4 md:p-5 lg:p-6">
+                    <h3 className="text-base md:text-lg lg:text-xl font-semibold text-gray-900 mb-2 line-clamp-2">{product.name}</h3>
                     <div className="space-y-1 mb-3 md:mb-4">
                       {product.specs && product.specs.slice(0, 2).map((spec, index) => (
                         <p key={index} className="text-xs md:text-sm text-gray-600 line-clamp-1">• {spec}</p>
                       ))}
                     </div>
-                    <div className="flex flex-col gap-3">
-                      <span className="text-lg md:text-xl font-bold text-blue-600">{formatPrice(product.price)}</span>
-                      <div className="flex flex-col sm:flex-row gap-2">
+                    <div className="flex flex-col gap-3 lg:gap-4">
+                      <span className="text-lg md:text-xl lg:text-2xl font-bold text-blue-600">{formatPrice(product.price)}</span>
+                      <div className="flex flex-col sm:flex-row gap-2 lg:gap-3">
                         <Link 
                           to={`/product/${product.id}`}
-                          className="flex-1 bg-white border border-blue-600 text-blue-600 px-3 py-2 rounded-lg font-medium hover:bg-blue-50 transition-all duration-300 text-sm text-center"
+                          className="flex-1 bg-white border border-blue-600 text-blue-600 px-3 py-2 lg:px-4 lg:py-3 rounded-lg font-medium hover:bg-blue-50 transition-all duration-300 text-sm lg:text-base text-center"
                         >
                           View Details
                         </Link>
                         <button 
                           onClick={() => handleAddToCart(product)}
-                          className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 py-2 rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm"
+                          className="flex-1 bg-blue-600 text-white px-3 py-2 lg:px-4 lg:py-3 rounded-lg font-medium hover:bg-blue-700 transition-all duration-300 hover:scale-105 text-sm lg:text-base"
                         >
                           Add to Cart
                         </button>
