@@ -46,19 +46,19 @@ const LocationServices = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-4 gap-6 md:gap-8">
           {valueProps.map((prop, index) => (
             <div 
               key={index}
-              className="bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100"
+              className="bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 h-full flex flex-col"
             >
-              <div className={`w-12 h-12 ${prop.bgColor} rounded-lg flex items-center justify-center text-2xl mb-4`}>
+              <div className={`w-12 h-12 ${prop.bgColor} rounded-lg flex items-center justify-center text-2xl mb-4 flex-shrink-0`}>
                 {prop.icon}
               </div>
               <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">
                 {prop.title}
               </h3>
-              <p className="text-gray-600 mb-4 text-sm md:text-base">
+              <p className="text-gray-600 mb-4 text-sm md:text-base flex-grow">
                 {prop.description}
               </p>
               <div className="space-y-2">

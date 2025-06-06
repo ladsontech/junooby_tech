@@ -74,13 +74,13 @@ const Services = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8 lg:gap-10 mb-12 md:mb-16 lg:mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-6 md:gap-8 lg:gap-10 mb-12 md:mb-16 lg:mb-20">
           {services.map((service, index) => (
             <div 
               key={index}
-              className="bg-white rounded-2xl lg:rounded-3xl p-6 md:p-8 lg:p-10 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 group"
+              className="bg-white rounded-2xl lg:rounded-3xl p-6 md:p-8 lg:p-10 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 group h-full flex flex-col"
             >
-              <div className={`w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 ${service.bgColor} rounded-2xl lg:rounded-3xl flex items-center justify-center text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-6 lg:mb-8 group-hover:scale-110 transition-transform duration-300 text-white`}>
+              <div className={`w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 ${service.bgColor} rounded-2xl lg:rounded-3xl flex items-center justify-center text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-6 lg:mb-8 group-hover:scale-110 transition-transform duration-300 text-white flex-shrink-0`}>
                 {service.icon}
               </div>
               
@@ -88,7 +88,7 @@ const Services = () => {
                 {service.title}
               </h3>
               
-              <p className="text-gray-600 leading-relaxed text-sm md:text-base lg:text-lg mb-4 md:mb-6 lg:mb-8">
+              <p className="text-gray-600 leading-relaxed text-sm md:text-base lg:text-lg mb-4 md:mb-6 lg:mb-8 flex-grow">
                 {service.description}
               </p>
               
@@ -104,7 +104,7 @@ const Services = () => {
                 </div>
               </div>
               
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 md:gap-4 lg:gap-6 pt-4 border-t border-gray-100">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 md:gap-4 lg:gap-6 pt-4 border-t border-gray-100 mt-auto">
                 <span className="text-lg md:text-xl lg:text-2xl font-bold text-blue-600">
                   {service.pricing}
                 </span>

@@ -65,7 +65,7 @@ const FeaturedProducts = () => {
 
   if (loading) {
     return (
-      <section className="py-8 md:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section className="py-8 md:py-16 lg:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="text-base md:text-lg">Loading featured products...</div>
@@ -80,7 +80,7 @@ const FeaturedProducts = () => {
   }
 
   return (
-    <section className="py-8 md:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+    <section className="py-8 md:py-16 lg:py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8 md:mb-12 lg:mb-16">
           <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 md:mb-6">Featured Products</h2>
@@ -89,11 +89,11 @@ const FeaturedProducts = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6 lg:gap-8 mb-8 md:mb-12 lg:mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-4 md:gap-6 lg:gap-8 mb-8 md:mb-12 lg:mb-16">
           {products.map((product) => (
             <div 
               key={product.id}
-              className="bg-white rounded-xl lg:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group"
+              className="bg-white rounded-xl lg:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group h-full flex flex-col"
             >
               <div className="relative overflow-hidden">
                 <AspectRatio ratio={4/3}>
@@ -121,18 +121,18 @@ const FeaturedProducts = () => {
                 </div>
               </div>
               
-              <div className="p-4 md:p-6">
+              <div className="p-4 md:p-6 flex flex-col flex-grow">
                 <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2 line-clamp-2">{product.name}</h3>
-                <div className="space-y-1 mb-4">
+                <div className="space-y-1 mb-4 flex-grow">
                   {product.specs && product.specs.slice(0, 2).map((spec, index) => (
                     <p key={index} className="text-sm text-gray-600 line-clamp-1">• {spec}</p>
                   ))}
                 </div>
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mt-auto">
                   <span className="text-lg md:text-xl font-bold text-blue-600">{formatPrice(product.price)}</span>
                   <Link 
                     to={`/product/${product.id}`}
-                    className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm text-center"
+                    className="w-full sm:w-auto bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm text-center"
                   >
                     View Details
                   </Link>
@@ -145,7 +145,7 @@ const FeaturedProducts = () => {
         <div className="text-center">
           <Link 
             to="/products"
-            className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 md:px-12 py-3 md:py-4 rounded-lg font-semibold text-base md:text-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+            className="inline-block bg-blue-600 text-white px-8 md:px-12 py-3 md:py-4 rounded-lg font-semibold text-base md:text-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
           >
             View All Products
           </Link>
