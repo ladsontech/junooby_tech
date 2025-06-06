@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
+
 const Services = () => {
   const handleGetQuote = (serviceName: string) => {
     const phoneNumber = '+256789572007';
@@ -9,6 +10,7 @@ const Services = () => {
     const url = `https://wa.me/${phoneNumber.replace('+', '')}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   };
+
   const services = [{
     title: "Basic Website Development",
     description: "Perfect starter websites for small businesses, personal portfolios, and simple online presence with essential features and modern design",
@@ -73,7 +75,9 @@ const Services = () => {
     bgColor: "bg-gray-700",
     deliveryTime: "2-3 business days"
   }];
-  return <div className="min-h-screen">
+
+  return (
+    <div className="min-h-screen">
       <Navbar />
       
       <section className="pt-16 md:pt-20 lg:pt-24 pb-8 md:pb-16 lg:pb-20 bg-slate-50">
@@ -86,7 +90,8 @@ const Services = () => {
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
-            {services.map((service, index) => <div key={index} className="bg-white rounded-xl p-4 md:p-6 lg:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group">
+            {services.map((service, index) => (
+              <div key={index} className="bg-white rounded-xl p-4 md:p-6 lg:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group">
                 <div className={`w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 ${service.bgColor} rounded-xl flex items-center justify-center text-lg md:text-xl lg:text-2xl mb-3 md:mb-4 lg:mb-6 group-hover:scale-110 transition-transform duration-300 text-white`}>
                   📊
                 </div>
@@ -97,32 +102,42 @@ const Services = () => {
                 <div className="mb-4 md:mb-6">
                   <h4 className="font-semibold text-gray-900 mb-2 text-sm md:text-base">What's Included:</h4>
                   <div className="space-y-1 md:space-y-2">
-                    {service.features.map((feature, idx) => <div key={idx} className="flex items-start text-gray-600 text-sm md:text-base">
+                    {service.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-start text-gray-600 text-sm md:text-base">
                         <span className="w-1.5 h-1.5 bg-blue-600 rounded-full mr-2 md:mr-3 flex-shrink-0 mt-2"></span>
                         <span className="leading-relaxed">{feature}</span>
-                      </div>)}
+                      </div>
+                    ))}
                   </div>
                 </div>
                 
-                {service.deliveryTime && <div className="mb-3 md:mb-4">
+                {service.deliveryTime && (
+                  <div className="mb-3 md:mb-4">
                     <span className="text-sm md:text-base text-gray-500">
                       <strong>Delivery Time:</strong> {service.deliveryTime}
                     </span>
-                  </div>}
+                  </div>
+                )}
                 
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 md:gap-4">
-                  <span className="text-lg md:text-xl font-bold text-blue-600 lg:text-base">{service.price}</span>
-                  <button onClick={() => handleGetQuote(service.title)} className="w-full sm:w-auto bg-blue-600 text-white px-4 py-2 md:py-3 rounded-lg font-medium hover:bg-blue-700 hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm md:text-base md:px-[24px]">
+                <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-3 md:gap-4">
+                  <span className="text-lg md:text-xl lg:text-2xl font-bold text-blue-600 order-2 lg:order-1">{service.price}</span>
+                  <button 
+                    onClick={() => handleGetQuote(service.title)} 
+                    className="w-full lg:w-auto bg-blue-600 text-white px-6 py-3 lg:px-8 lg:py-3 rounded-lg font-medium hover:bg-blue-700 hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm md:text-base order-1 lg:order-2 min-w-[140px]"
+                  >
                     Get Quote
                   </button>
                 </div>
-              </div>)}
+              </div>
+            ))}
           </div>
         </div>
       </section>
       
       <Footer />
       <BottomNav />
-    </div>;
+    </div>
+  );
 };
+
 export default Services;
