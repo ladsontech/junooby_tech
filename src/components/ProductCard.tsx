@@ -44,7 +44,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
       </div>
       
       <div className="p-3 md:p-4 flex flex-col flex-grow">
-        <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium text-white mb-2 ${
+        <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium text-white mb-2 self-start ${
             product.condition === 'new' 
               ? 'bg-emerald-600' 
               : 'bg-amber-600'
