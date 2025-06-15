@@ -25,7 +25,6 @@ const ProductsLayout: React.FC<ProductsLayoutProps> = ({
               </div>
               <div className="flex flex-col lg:flex-row lg:items-baseline lg:space-x-2">
                 <span className="font-bold lg:text-2xl xl:text-3xl text-gray-800 tracking-tight text-3xl">Junooby</span>
-                <span className="text-sm lg:text-base text-gray-500 font-medium text-center">Gadgets Store</span>
               </div>
             </Link>
             
