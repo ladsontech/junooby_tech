@@ -1,4 +1,3 @@
-
 import React from 'react';
 import TypewriterEffect from './TypewriterEffect';
 import { Link } from 'react-router-dom';
@@ -54,17 +53,6 @@ const Hero = () => {
               Empowering innovation with modern web, mobile, security, and marketing technology.<br className="hidden sm:block" />
               Built with passion. Delivered with precision.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 mt-2 w-full">
-              <Link
-                to="/services"
-                className="bg-blue-600 text-white px-5 xs:px-8 py-2.5 xs:py-3.5 rounded-lg font-semibold text-sm xs:text-base md:text-lg hover:bg-blue-700 shadow-md transition hover:scale-105 text-center"
-              >
-                Explore Our Services
-              </Link>
-              <div>
-                <WhatsappButton message="Hello! I would like to get a quote for your services." />
-              </div>
-            </div>
           </div>
           {/* Right: Circular Avatar with Image */}
           <div className="flex-1 flex items-center justify-center w-full">
