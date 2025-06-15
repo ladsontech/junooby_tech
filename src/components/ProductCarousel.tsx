@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
@@ -99,7 +100,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ products, onAddToCart
                         <Button 
                           onClick={() => onAddToCart(product)}
                           size="sm"
-                          className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-xs"
+                          className="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-xs"
                         >
                           Add to Cart
                         </Button>

@@ -1,6 +1,8 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useCart } from '@/contexts/CartContext';
+import { ShoppingCart } from 'lucide-react';
 
 interface ProductsLayoutProps {
   children: React.ReactNode;
@@ -8,6 +10,8 @@ interface ProductsLayoutProps {
 }
 
 const ProductsLayout: React.FC<ProductsLayoutProps> = ({ children, showBackToMain = true }) => {
+  const { openCart, getCartItemsCount } = useCart();
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
       {/* Products-specific header */}
@@ -31,6 +35,21 @@ const ProductsLayout: React.FC<ProductsLayoutProps> = ({ children, showBackToMai
                 <span className="font-bold text-blue-600 text-2xl lg:text-3xl xl:text-4xl">Junooby</span>
                 <span className="text-sm lg:text-base text-gray-600">Products Store</span>
               </div>
+            </div>
+            
+            <div className="flex items-center">
+              <button
+                onClick={openCart}
+                className="relative p-2 rounded-full hover:bg-gray-100 transition-colors"
+                aria-label="Open cart"
+              >
+                <ShoppingCart className="h-6 w-6 text-gray-700" />
+                {getCartItemsCount() > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {getCartItemsCount()}
+                  </span>
+                )}
+              </button>
             </div>
           </div>
         </div>

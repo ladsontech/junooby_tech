@@ -1,11 +1,9 @@
-
-import React, { useState } from 'react';
+import React from 'react';
 import { useCart } from '@/contexts/CartContext';
-import { X, Minus, Plus, ShoppingCart } from 'lucide-react';
+import { X, Minus, Plus } from 'lucide-react';
 
 const Cart = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const { cartItems, removeFromCart, updateQuantity, clearCart, getCartTotal, getCartItemsCount } = useCart();
+  const { cartItems, removeFromCart, updateQuantity, clearCart, getCartTotal, isCartOpen, closeCart } = useCart();
 
   const handleCheckout = () => {
     if (cartItems.length === 0) return;
@@ -19,35 +17,21 @@ const Cart = () => {
     const url = `https://wa.me/${phoneNumber.replace('+', '')}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
     clearCart();
-    setIsOpen(false);
+    closeCart();
   };
 
   return (
     <>
-      {/* Cart Button */}
-      <button
-        onClick={() => setIsOpen(true)}
-        className="fixed top-24 md:top-28 right-4 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 z-50"
-        aria-label="Open cart"
-      >
-        <ShoppingCart size={24} />
-        {getCartItemsCount() > 0 && (
-          <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center">
-            {getCartItemsCount()}
-          </span>
-        )}
-      </button>
-
       {/* Cart Overlay */}
-      {isOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50">
-          <div className="fixed right-0 top-0 h-full w-full max-w-md bg-white shadow-xl">
+      {isCartOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50" onClick={closeCart}>
+          <div className="fixed right-0 top-0 h-full w-full max-w-md bg-white shadow-xl" onClick={(e) => e.stopPropagation()}>
             <div className="flex flex-col h-full">
               {/* Header */}
               <div className="flex items-center justify-between p-4 border-b">
                 <h2 className="text-xl font-semibold">Shopping Cart</h2>
                 <button
-                  onClick={() => setIsOpen(false)}
+                  onClick={closeCart}
                   className="p-2 hover:bg-gray-100 rounded-full"
                 >
                   <X size={20} />
@@ -115,7 +99,7 @@ const Cart = () => {
                   </div>
                   <button
                     onClick={handleCheckout}
-                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-300"
+                    className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 hover:shadow-lg transition-all duration-300"
                   >
                     Checkout via WhatsApp
                   </button>
