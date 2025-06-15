@@ -1,9 +1,9 @@
+
 import React from 'react';
 import TypewriterEffect from './TypewriterEffect';
 import { Link } from 'react-router-dom';
-import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
-// WhatsApp button native implementation
 const WhatsappButton = ({ message }: { message: string }) => {
   const phoneNumber = '+256789572007';
   const handleClick = () => {
@@ -26,9 +26,15 @@ const WhatsappButton = ({ message }: { message: string }) => {
 };
 
 const Hero = () => {
+  // Responsive circle diameter (equal width & height): adjusts with breakpoints
+  // Mobile: 220px, xs: 260px, sm: 300px, md+: 340px
+  // You can tweak these if needed
+  const avatarClass =
+    "mx-auto rounded-full shadow-2xl border-4 border-blue-700 bg-slate-900 object-cover " +
+    "w-[220px] h-[220px] xs:w-[260px] xs:h-[260px] sm:w-[300px] sm:h-[300px] md:w-[340px] md:h-[340px]";
+
   return (
     <>
-      {/* Tech Hero Section */}
       <section className="min-h-[70vh] bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 pt-16 pb-8 md:pt-24 md:pb-14 flex items-center animate-fade-in">
         <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center md:items-stretch justify-between px-4 gap-8 md:gap-8 lg:gap-14">
           {/* Left: Headline & Actions */}
@@ -49,8 +55,8 @@ const Hero = () => {
               Built with passion. Delivered with precision.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 mt-2 w-full">
-              <Link 
-                to="/services" 
+              <Link
+                to="/services"
                 className="bg-blue-600 text-white px-5 xs:px-8 py-2.5 xs:py-3.5 rounded-lg font-semibold text-sm xs:text-base md:text-lg hover:bg-blue-700 shadow-md transition hover:scale-105 text-center"
               >
                 Explore Our Services
@@ -60,21 +66,20 @@ const Hero = () => {
               </div>
             </div>
           </div>
-          {/* Right: Hero Image (Portrait Aspect Ratio) */}
+          {/* Right: Circular Avatar with Image */}
           <div className="flex-1 flex items-center justify-center w-full">
-            <div className="relative w-full max-w-[270px] xs:max-w-[320px] sm:max-w-[370px] md:max-w-[410px] lg:max-w-[420px] xl:max-w-[440px] 2xl:max-w-[460px] transition-all rounded-2xl overflow-hidden shadow-2xl border-4 border-blue-700 animate-scale-in">
-              <AspectRatio ratio={3 / 4}>
-                <img
-                  src="/images/hero_section.jpg"
-                  alt="Tech solutions in action - Junooby Digital"
-                  className="w-full h-full object-cover select-none"
-                  onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
-                  loading="eager"
-                  draggable={false}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-950/60 via-transparent to-transparent pointer-events-none" />
-              </AspectRatio>
-            </div>
+            <Avatar className={avatarClass}>
+              <AvatarImage
+                src="/images/hero_section.jpg"
+                alt="Tech solutions in action - Junooby Digital"
+                draggable={false}
+                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
+              />
+              <AvatarFallback className="bg-blue-900 flex items-center justify-center text-white font-bold w-full h-full text-4xl">
+                JD
+              </AvatarFallback>
+            </Avatar>
           </div>
         </div>
       </section>
