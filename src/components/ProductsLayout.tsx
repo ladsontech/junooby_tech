@@ -32,15 +32,6 @@ const ProductsLayout: React.FC<ProductsLayoutProps> = ({ children, showBackToMai
                 <span className="text-sm lg:text-base text-gray-600">Products Store</span>
               </div>
             </div>
-            
-            {showBackToMain && (
-              <Link 
-                to="/" 
-                className="bg-blue-600 text-white px-6 py-2 lg:px-8 lg:py-3 xl:px-10 xl:py-4 rounded-lg font-medium hover:bg-blue-700 transition-all duration-300 hover:scale-105 text-sm lg:text-base xl:text-lg"
-              >
-                Back to Main Site
-              </Link>
-            )}
           </div>
         </div>
       </header>
@@ -73,6 +64,14 @@ const ProductsLayout: React.FC<ProductsLayoutProps> = ({ children, showBackToMai
               <p className="text-gray-400 leading-relaxed text-base lg:text-lg xl:text-xl max-w-2xl">
                 Premium tech gadgets and security solutions for modern businesses. Discover cutting-edge technology that transforms your workspace.
               </p>
+              <div className="pt-4">
+                <Link 
+                  to="/services" 
+                  className="inline-block bg-blue-600 text-white px-6 py-3 lg:px-8 lg:py-4 xl:px-10 xl:py-5 rounded-lg font-medium hover:bg-blue-700 transition-all duration-300 hover:scale-105 text-base lg:text-lg xl:text-xl"
+                >
+                  View Our Services
+                </Link>
+              </div>
             </div>
             
             <div className="lg:space-y-6">
