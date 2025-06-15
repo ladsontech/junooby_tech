@@ -24,8 +24,8 @@ const ProductsLayout: React.FC<ProductsLayoutProps> = ({
                   <img src="/images/junooby_logo.png" alt="Junooby Logo" className="w-10 h-10 lg:w-12 lg:h-12 object-contain" />
               </div>
               <div className="flex flex-col lg:flex-row lg:items-baseline lg:space-x-2">
-                <span className="font-bold text-xl lg:text-2xl xl:text-3xl text-gray-800 tracking-tight">Junooby</span>
-                <span className="text-sm lg:text-base text-gray-500 font-medium">Gadgets Store</span>
+                <span className="font-bold lg:text-2xl xl:text-3xl text-gray-800 tracking-tight text-3xl">Junooby</span>
+                <span className="text-sm lg:text-base text-gray-500 font-medium text-center">Gadgets Store</span>
               </div>
             </Link>
             
