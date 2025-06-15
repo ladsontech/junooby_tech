@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ProductsLayout from '@/components/ProductsLayout';
@@ -10,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { ArrowLeft, ShoppingCart } from 'lucide-react';
 import { Database } from '@/integrations/supabase/types';
+import ProductCard from '@/components/ProductCard';
 
 type DbProduct = Database['public']['Tables']['products']['Row'];
 
@@ -44,16 +44,21 @@ const ProductDetail = () => {
   const { addToCart } = useCart();
   const [product, setProduct] = useState<Product | null>(null);
   const [images, setImages] = useState<ProductImage[]>([]);
+  const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
   const [selectedImage, setSelectedImage] = useState<string>('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (id) {
+      setProduct(null);
+      setRelatedProducts([]);
       fetchProduct();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const fetchProduct = async () => {
+    setLoading(true);
     try {
       const { data: productData, error: productError } = await supabase
         .from('products')
@@ -63,7 +68,6 @@ const ProductDetail = () => {
 
       if (productError) throw productError;
       
-      // Transform the product data to ensure specs is always a string array
       const transformedProduct: Product = {
         id: productData.id,
         name: productData.name,
@@ -88,9 +92,36 @@ const ProductDetail = () => {
       if (imagesError) throw imagesError;
       setImages(imagesData || []);
       
-      // Set main image as selected or first image if no main image
       const mainImage = imagesData?.find(img => img.is_main);
       setSelectedImage(mainImage?.image_url || transformedProduct.main_image_url || (imagesData?.[0]?.image_url || ''));
+
+      // Fetch related products
+      if (transformedProduct.category) {
+        const { data: relatedData, error: relatedError } = await supabase
+          .from('products')
+          .select('*')
+          .eq('category', transformedProduct.category)
+          .neq('id', transformedProduct.id)
+          .limit(4);
+
+        if (relatedError) {
+          console.error('Error fetching related products:', relatedError);
+        } else if (relatedData) {
+          const transformedRelatedData: Product[] = relatedData.map((p: DbProduct) => ({
+            id: p.id,
+            name: p.name,
+            category: p.category,
+            price: p.price,
+            description: p.description || '',
+            detailed_description: p.detailed_description || '',
+            specs: Array.isArray(p.specs) ? (p.specs as string[]) : [],
+            main_image_url: p.main_image_url || '',
+            featured: p.featured || false,
+            condition: p.condition || 'new',
+          }));
+          setRelatedProducts(transformedRelatedData);
+        }
+      }
     } catch (error) {
       console.error('Error fetching product:', error);
     } finally {
@@ -98,15 +129,13 @@ const ProductDetail = () => {
     }
   };
 
-  const handleAddToCart = () => {
-    if (product) {
-      addToCart({
-        id: parseInt(product.id),
-        name: product.name,
-        price: product.price,
-        image: product.main_image_url || '/images/HP 15_6.jpg'
-      });
-    }
+  const handleAddToCart = (productToAdd: Product) => {
+    addToCart({
+      id: parseInt(productToAdd.id),
+      name: productToAdd.name,
+      price: productToAdd.price,
+      image: productToAdd.main_image_url || '/images/HP 15_6.jpg'
+    });
   };
 
   if (loading) {
@@ -141,18 +170,18 @@ const ProductDetail = () => {
     <ProductsLayout>
       <Cart />
       
-      <section className="py-8 md:py-16 lg:py-20">
+      <section className="py-6 md:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-4 md:mb-6">
+          <div className="mb-4">
             <Link to="/products">
-              <Button variant="outline" className="mb-4 text-sm">
+              <Button variant="outline" className="mb-2 text-sm">
                 <ArrowLeft className="mr-2" size={16} />
                 Back to Products
               </Button>
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
             {/* Product Images */}
             <div className="space-y-4">
               <div className="bg-white rounded-xl p-3 md:p-4 shadow-lg">
@@ -194,9 +223,9 @@ const ProductDetail = () => {
             </div>
 
             {/* Product Info */}
-            <div className="space-y-4 md:space-y-6">
+            <div className="space-y-3 md:space-y-4">
               <div>
-                <div className="flex items-center gap-2 mb-3 flex-wrap">
+                <div className="flex items-center gap-2 mb-2 flex-wrap">
                   <Badge variant={product.category === 'gadgets' ? 'default' : 'secondary'}>
                     {product.category === 'gadgets' ? 'Gadget' : 'CCTV'}
                   </Badge>
@@ -209,21 +238,21 @@ const ProductDetail = () => {
                     <Badge variant="destructive">Featured</Badge>
                   )}
                 </div>
-                <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3">{product.name}</h1>
-                <p className="text-xl md:text-2xl lg:text-3xl font-bold text-blue-600 mb-4">{formatPrice(product.price)}</p>
+                <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">{product.name}</h1>
+                <p className="text-xl md:text-2xl font-bold text-blue-600 mb-3">{formatPrice(product.price)}</p>
               </div>
 
               <div>
-                <h2 className="text-lg md:text-xl font-semibold text-gray-900 mb-2">Description</h2>
-                <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+                <h2 className="text-lg font-semibold text-gray-900 mb-1">Description</h2>
+                <p className="text-gray-600 text-sm leading-relaxed">
                   {product.description}
                 </p>
               </div>
 
               {product.detailed_description && (
                 <div>
-                  <h2 className="text-lg md:text-xl font-semibold text-gray-900 mb-2">Detailed Description</h2>
-                  <p className="text-gray-600 text-sm md:text-base leading-relaxed whitespace-pre-line">
+                  <h2 className="text-lg font-semibold text-gray-900 mb-1">Detailed Description</h2>
+                  <p className="text-gray-600 text-sm leading-relaxed whitespace-pre-line">
                     {product.detailed_description}
                   </p>
                 </div>
@@ -231,10 +260,10 @@ const ProductDetail = () => {
 
               {product.specs && product.specs.length > 0 && (
                 <div>
-                  <h2 className="text-lg md:text-xl font-semibold text-gray-900 mb-2">Specifications</h2>
+                  <h2 className="text-lg font-semibold text-gray-900 mb-1">Specifications</h2>
                   <ul className="space-y-1">
                     {product.specs.map((spec, index) => (
-                      <li key={index} className="text-gray-600 text-sm md:text-base flex items-start">
+                      <li key={index} className="text-gray-600 text-sm flex items-start">
                         <span className="text-blue-600 mr-2">•</span>
                         {spec}
                       </li>
@@ -243,11 +272,11 @@ const ProductDetail = () => {
                 </div>
               )}
 
-              <div className="pt-4">
+              <div className="pt-2">
                 <Button 
-                  onClick={handleAddToCart}
+                  onClick={() => product && handleAddToCart(product)}
                   size="lg"
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm md:text-base"
+                  className="w-full bg-blue-600 hover:bg-blue-700 hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm md:text-base"
                 >
                   <ShoppingCart className="mr-2" size={18} />
                   Add to Cart
@@ -257,6 +286,25 @@ const ProductDetail = () => {
           </div>
         </div>
       </section>
+      
+      {relatedProducts.length > 0 && (
+        <section className="py-8 md:py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 md:mb-8 text-center">
+              Related Products
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+              {relatedProducts.map((p) => (
+                <ProductCard
+                  key={p.id}
+                  product={p}
+                  onAddToCart={handleAddToCart}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </ProductsLayout>
   );
 };
