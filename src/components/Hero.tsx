@@ -29,28 +29,29 @@ const Hero = () => {
   return (
     <>
       {/* Tech Hero Section */}
-      <section className="min-h-[75vh] bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 pt-24 pb-10 md:pb-20 flex items-center animate-fade-in">
-        <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center md:items-stretch justify-between px-4 gap-12 md:gap-8">
+      <section className="min-h-[75vh] bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 pt-20 pb-10 md:pt-28 md:pb-20 flex items-center animate-fade-in">
+        <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center md:items-stretch justify-between px-4 gap-10 md:gap-8 lg:gap-16">
           {/* Left: Headline & Actions */}
           <div className="flex-1 flex flex-col justify-center items-start text-left space-y-7">
-            <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold leading-tight tracking-tight text-white drop-shadow-xl">
-              <span className="block mb-2 text-blue-400">Junooby Digital Solutions</span>
+            <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight text-white drop-shadow-xl">
+              <span className="block mb-2 text-blue-400 text-lg xs:text-xl sm:text-2xl md:text-3xl">
+                Junooby Digital Solutions
+              </span>
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-200 to-cyan-400 animate-glow">
-                Tech for Uganda's Businesses
+                Tech for Uganda&#39;s Businesses
               </span>
             </h1>
-            <div className="h-12 flex items-center text-cyan-300 font-semibold text-2xl sm:text-3xl mb-1">
+            <div className="h-10 xs:h-12 flex items-center text-cyan-300 font-semibold text-xl xs:text-2xl sm:text-3xl mb-1">
               <TypewriterEffect />
             </div>
-            <p className="text-gray-300 text-lg md:text-xl max-w-xl leading-relaxed font-medium">
-              Empowering innovation with modern web, mobile, security, and marketing technology.
-              <br className="hidden sm:block" />
+            <p className="text-gray-300 text-base xs:text-lg sm:text-xl md:text-2xl max-w-xl leading-relaxed font-medium">
+              Empowering innovation with modern web, mobile, security, and marketing technology.<br className="hidden sm:block" />
               Built with passion. Delivered with precision.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 mt-2 w-full">
               <Link 
                 to="/services" 
-                className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold text-base md:text-lg hover:bg-blue-700 shadow-md transition hover:scale-105 text-center"
+                className="bg-blue-600 text-white px-6 xs:px-8 py-3 xs:py-3.5 rounded-lg font-semibold text-sm xs:text-base md:text-lg hover:bg-blue-700 shadow-md transition hover:scale-105 text-center"
               >
                 Explore Our Services
               </Link>
@@ -61,7 +62,9 @@ const Hero = () => {
           </div>
           {/* Right: Hero Image */}
           <div className="flex-1 flex items-center justify-center">
-            <div className="relative w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl border-4 border-blue-700 animate-scale-in">
+            <div className="relative w-full max-w-xs xs:max-w-sm sm:max-w-md md:max-w-lg rounded-2xl overflow-hidden shadow-2xl border-4 border-blue-700 animate-scale-in"
+                 style={{height: '280px', maxHeight: '36vw', minHeight: '200px'}}
+            >
               <img
                 src="/images/hero_section.jpg"
                 alt="Tech solutions in action - Junooby Digital"
@@ -69,8 +72,8 @@ const Hero = () => {
                 onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
                 loading="eager"
                 draggable={false}
+                style={{ objectFit: 'cover', height: '100%'}}
               />
-              {/* techy accent: gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-blue-950/60 via-transparent to-transparent pointer-events-none" />
             </div>
           </div>
@@ -81,3 +84,4 @@ const Hero = () => {
 };
 
 export default Hero;
+
