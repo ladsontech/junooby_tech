@@ -173,6 +173,8 @@ const ProductForm = () => {
 
       let phoneSubcategory = '';
       let pcBrand = '';
+
+      // Only compare to our new enum values
       if (product.category === 'phones') {
         for (const option of phoneSubcategories) {
           if (
@@ -335,7 +337,7 @@ const ProductForm = () => {
 
       const productData: Partial<DbProduct> = {
         name: formData.name,
-        category: formData.category,
+        category: formData.category, // guaranteed to be 'phones' | 'pcs' | 'cctv'
         price: formData.price,
         description: formData.description,
         detailed_description: formData.detailed_description,
