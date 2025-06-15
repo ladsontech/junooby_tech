@@ -27,7 +27,7 @@ const formatPrice = (price: string) => {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
   return (
-    <div className="bg-white rounded-xl lg:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group">
+    <div className="bg-white rounded-xl lg:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group h-full flex flex-col">
       <div className="relative overflow-hidden">
         <AspectRatio ratio={4/3}>
           <img 
@@ -41,7 +41,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
           />
         </AspectRatio>
         <div className="absolute top-3 left-3 flex flex-wrap gap-1">
-          <span className={`px-2 py-1 rounded-full text-xs font-medium text-white ${
+          <span className={`px-2 py-1 lg:px-3 lg:py-2 rounded-full text-xs lg:text-sm font-medium text-white ${
             product.category === 'gadgets' 
               ? 'bg-blue-600' 
               : 'bg-green-600'
@@ -49,32 +49,32 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
             {product.category === 'gadgets' ? 'Gadget' : 'CCTV'}
           </span>
           {product.featured && (
-            <span className="bg-orange-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+            <span className="bg-orange-500 text-white px-2 py-1 lg:px-3 lg:py-2 rounded-full text-xs lg:text-sm font-medium">
               Featured
             </span>
           )}
         </div>
       </div>
       
-      <div className="p-4 md:p-5 lg:p-6">
-        <h3 className="text-base md:text-lg lg:text-xl font-semibold text-gray-900 mb-2 line-clamp-2">{product.name}</h3>
-        <div className="space-y-1 mb-3 md:mb-4">
+      <div className="p-4 md:p-5 lg:p-6 xl:p-8 flex flex-col flex-grow">
+        <h3 className="text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-gray-900 mb-2 lg:mb-3 line-clamp-2">{product.name}</h3>
+        <div className="space-y-1 lg:space-y-2 mb-3 md:mb-4 lg:mb-6 flex-grow">
           {product.specs && product.specs.slice(0, 2).map((spec, index) => (
-            <p key={index} className="text-xs md:text-sm text-gray-600 line-clamp-1">• {spec}</p>
+            <p key={index} className="text-xs md:text-sm lg:text-base text-gray-600 line-clamp-1">• {spec}</p>
           ))}
         </div>
-        <div className="flex flex-col gap-3 lg:gap-4">
-          <span className="text-lg md:text-xl lg:text-2xl font-bold text-blue-600">{formatPrice(product.price)}</span>
-          <div className="flex flex-col sm:flex-row gap-2 lg:gap-3">
+        <div className="flex flex-col gap-3 lg:gap-4 xl:gap-6 mt-auto">
+          <span className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-blue-600">{formatPrice(product.price)}</span>
+          <div className="flex flex-col sm:flex-row gap-2 lg:gap-3 xl:gap-4">
             <Link 
               to={`/product/${product.id}`}
-              className="flex-1 bg-white border border-blue-600 text-blue-600 px-3 py-2 lg:px-4 lg:py-3 rounded-lg font-medium hover:bg-blue-50 transition-all duration-300 text-sm lg:text-base text-center"
+              className="flex-1 bg-white border border-blue-600 text-blue-600 px-3 py-2 lg:px-4 lg:py-3 xl:px-6 xl:py-4 rounded-lg font-medium hover:bg-blue-50 transition-all duration-300 text-sm lg:text-base xl:text-lg text-center"
             >
               View Details
             </Link>
             <button 
               onClick={() => onAddToCart(product)}
-              className="flex-1 bg-blue-600 text-white px-3 py-2 lg:px-4 lg:py-3 rounded-lg font-medium hover:bg-blue-700 transition-all duration-300 hover:scale-105 text-sm lg:text-base"
+              className="flex-1 bg-blue-600 text-white px-3 py-2 lg:px-4 lg:py-3 xl:px-6 xl:py-4 rounded-lg font-medium hover:bg-blue-700 transition-all duration-300 hover:scale-105 text-sm lg:text-base xl:text-lg"
             >
               Add to Cart
             </button>

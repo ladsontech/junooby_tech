@@ -82,24 +82,24 @@ const Products = () => {
     <ProductsLayout>
       <Cart />
       
-      <section className="py-8 md:py-16 lg:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 md:mb-12 lg:mb-16">
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-3 md:mb-6">Our Products</h1>
-            <p className="text-base md:text-xl lg:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+      <section className="py-8 md:py-16 lg:py-20 xl:py-24">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          <div className="text-center mb-8 md:mb-12 lg:mb-16 xl:mb-20">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 mb-3 md:mb-6 lg:mb-8">Our Products</h1>
+            <p className="text-base md:text-xl lg:text-2xl xl:text-3xl text-gray-600 max-w-5xl mx-auto leading-relaxed">
               Discover our premium collection of tech gadgets and security solutions designed for modern businesses
             </p>
           </div>
           
           {/* Category Filter */}
-          <div className="flex justify-center mb-6 md:mb-8 lg:mb-12">
-            <div className="bg-white rounded-xl p-1 shadow-lg overflow-x-auto w-full max-w-2xl">
-              <div className="flex space-x-1">
+          <div className="flex justify-center mb-6 md:mb-8 lg:mb-12 xl:mb-16">
+            <div className="bg-white rounded-xl lg:rounded-2xl p-1 lg:p-2 shadow-lg overflow-x-auto w-full max-w-3xl xl:max-w-4xl">
+              <div className="flex space-x-1 lg:space-x-2">
                 {categories.map((category) => (
                   <button
                     key={category.id}
                     onClick={() => setActiveCategory(category.id)}
-                    className={`flex-1 px-3 md:px-6 py-2 md:py-3 rounded-lg font-medium transition-all duration-300 whitespace-nowrap text-sm md:text-base ${
+                    className={`flex-1 px-3 md:px-6 lg:px-8 xl:px-10 py-2 md:py-3 lg:py-4 xl:py-5 rounded-lg lg:rounded-xl font-medium transition-all duration-300 whitespace-nowrap text-sm md:text-base lg:text-lg xl:text-xl ${
                       activeCategory === category.id
                         ? 'bg-blue-600 text-white shadow-lg'
                         : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
@@ -114,15 +114,15 @@ const Products = () => {
           
           {/* Products Grid */}
           {loading ? (
-            <div className="text-center py-12">
-              <div className="text-base md:text-lg">Loading products...</div>
+            <div className="text-center py-12 lg:py-16 xl:py-20">
+              <div className="text-base md:text-lg lg:text-xl xl:text-2xl">Loading products...</div>
             </div>
           ) : filteredProducts.length === 0 ? (
-            <div className="text-center py-12">
-              <div className="text-base md:text-lg text-gray-500">No products found in this category.</div>
+            <div className="text-center py-12 lg:py-16 xl:py-20">
+              <div className="text-base md:text-lg lg:text-xl xl:text-2xl text-gray-500">No products found in this category.</div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:gap-6 lg:gap-8 xl:gap-10">
               {filteredProducts.map((product) => (
                 <ProductCard
                   key={product.id}
