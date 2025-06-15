@@ -114,17 +114,17 @@ const Products = () => {
         </div>
       )}
       
-      <section className="py-8 md:py-16 lg:py-20 xl:py-24">
+      <section className="py-6 md:py-12">
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-          <div className="text-center mb-8 md:mb-12 lg:mb-16 xl:mb-20">
-            <h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 mb-3 md:mb-6 lg:mb-8">Our Products</h1>
-            <p className="text-base md:text-xl lg:text-2xl xl:text-3xl text-gray-600 max-w-5xl mx-auto leading-relaxed">
+          <div className="text-center mb-8 md:mb-12">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 md:mb-4">Our Products</h1>
+            <p className="text-base md:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
               Discover our premium collection of tech gadgets and security solutions designed for modern businesses
             </p>
           </div>
           
           {/* Search Bar */}
-          <div className="flex justify-center mb-6 md:mb-8 lg:mb-10">
+          <div className="flex justify-center mb-6 md:mb-8">
             <div className="relative w-full max-w-2xl xl:max-w-3xl">
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
               <Input
@@ -132,23 +132,23 @@ const Products = () => {
                 placeholder="Search products by name, description, or specifications..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-12 pr-4 py-3 lg:py-4 xl:py-5 text-base lg:text-lg xl:text-xl w-full rounded-xl lg:rounded-2xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                className="pl-12 pr-4 py-3 text-base w-full rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
               />
             </div>
           </div>
           
           {/* Category and Condition Filters */}
-          <div className="flex flex-col lg:flex-row justify-center gap-4 lg:gap-6 mb-6 md:mb-8 lg:mb-12 xl:mb-16">
+          <div className="flex flex-col lg:flex-row justify-center gap-4 lg:gap-6 mb-8 md:mb-10">
             {/* Category Filter */}
-            <div className="bg-white rounded-xl lg:rounded-2xl p-1 lg:p-2 shadow-lg overflow-x-auto w-full lg:max-w-2xl xl:max-w-3xl">
+            <div className="bg-white rounded-xl p-1 shadow-md overflow-x-auto w-full lg:max-w-2xl xl:max-w-3xl">
               <div className="flex space-x-1 lg:space-x-2">
                 {categories.map((category) => (
                   <button
                     key={category.id}
                     onClick={() => setActiveCategory(category.id)}
-                    className={`flex-1 px-3 md:px-4 lg:px-6 xl:px-8 py-2 md:py-3 lg:py-3 xl:py-4 rounded-lg lg:rounded-xl font-medium transition-all duration-300 whitespace-nowrap text-sm md:text-base lg:text-lg xl:text-xl ${
+                    className={`flex-1 px-4 py-2 rounded-lg font-medium transition-all duration-300 whitespace-nowrap text-sm md:text-base ${
                       activeCategory === category.id
-                        ? 'bg-blue-600 text-white shadow-lg'
+                        ? 'bg-blue-600 text-white shadow-md'
                         : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                     }`}
                   >
@@ -159,15 +159,15 @@ const Products = () => {
             </div>
 
             {/* Condition Filter */}
-            <div className="bg-white rounded-xl lg:rounded-2xl p-1 lg:p-2 shadow-lg overflow-x-auto w-full lg:max-w-xl xl:max-w-2xl">
+            <div className="bg-white rounded-xl p-1 shadow-md overflow-x-auto w-full lg:max-w-xl xl:max-w-2xl">
               <div className="flex space-x-1 lg:space-x-2">
                 {conditions.map((condition) => (
                   <button
                     key={condition.id}
                     onClick={() => setActiveCondition(condition.id)}
-                    className={`flex-1 px-3 md:px-4 lg:px-6 xl:px-8 py-2 md:py-3 lg:py-3 xl:py-4 rounded-lg lg:rounded-xl font-medium transition-all duration-300 whitespace-nowrap text-sm md:text-base lg:text-lg xl:text-xl ${
+                    className={`flex-1 px-4 py-2 rounded-lg font-medium transition-all duration-300 whitespace-nowrap text-sm md:text-base ${
                       activeCondition === condition.id
-                        ? 'bg-green-600 text-white shadow-lg'
+                        ? 'bg-green-600 text-white shadow-md'
                         : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                     }`}
                   >
@@ -180,17 +180,17 @@ const Products = () => {
           
           {/* Products Grid */}
           {loading ? (
-            <div className="text-center py-12 lg:py-16 xl:py-20">
-              <div className="text-base md:text-lg lg:text-xl xl:text-2xl">Loading products...</div>
+            <div className="text-center py-12">
+              <div className="text-base md:text-lg">Loading products...</div>
             </div>
           ) : filteredProducts.length === 0 ? (
-            <div className="text-center py-12 lg:py-16 xl:py-20">
-              <div className="text-base md:text-lg lg:text-xl xl:text-2xl text-gray-500">
+            <div className="text-center py-12">
+              <div className="text-base md:text-lg text-gray-500">
                 {searchQuery ? `No products found matching "${searchQuery}"` : 'No products found with the selected filters.'}
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:gap-6 lg:gap-8 xl:gap-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:gap-5">
               {filteredProducts.map((product) => (
                 <ProductCard
                   key={product.id}
