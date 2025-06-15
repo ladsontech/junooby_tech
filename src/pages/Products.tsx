@@ -7,8 +7,16 @@ import { useCart } from '@/contexts/CartContext';
 import { supabase } from '@/integrations/supabase/client';
 import { Database } from '@/integrations/supabase/types';
 import { Input } from '@/components/ui/input';
-import { Search } from 'lucide-react';
+import { Search, Filter } from 'lucide-react';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import {
+  Select,
+  SelectTrigger,
+  SelectContent,
+  SelectItem,
+  SelectValue,
+  SelectLabel,
+} from '@/components/ui/select';
 
 type DbProduct = Database['public']['Tables']['products']['Row'];
 
@@ -138,43 +146,50 @@ const Products = () => {
             </div>
           </div>
           
-          {/* Category and Condition Filters */}
-          <div className="flex flex-col lg:flex-row justify-center gap-4 lg:gap-6 mb-8 md:mb-10">
-            {/* Category Filter */}
-            <div className="bg-white rounded-xl p-1 shadow-md overflow-x-auto w-full lg:max-w-2xl xl:max-w-3xl">
-              <div className="flex space-x-1 lg:space-x-2">
-                {categories.map((category) => (
-                  <button
-                    key={category.id}
-                    onClick={() => setActiveCategory(category.id)}
-                    className={`flex-1 px-4 py-2 rounded-lg font-medium transition-all duration-300 whitespace-nowrap text-sm md:text-base ${
-                      activeCategory === category.id
-                        ? 'bg-blue-600 text-white shadow-md'
-                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                    }`}
-                  >
-                    {category.name}
-                  </button>
-                ))}
+          {/* Organized Filters Panel */}
+          <div className="flex justify-center mb-8 md:mb-10">
+            <div className="bg-white rounded-2xl shadow-lg w-full max-w-3xl px-4 py-5 flex flex-col sm:flex-row gap-4 items-center">
+              <div className="flex items-center gap-2 w-full sm:w-1/2">
+                <Filter className="h-5 w-5 text-blue-500" />
+                <label htmlFor="category-filter" className="font-medium text-gray-700 text-sm whitespace-nowrap mr-2">Category</label>
+                <Select
+                  value={activeCategory}
+                  onValueChange={(value) => setActiveCategory(value)}
+                >
+                  <SelectTrigger id="category-filter" className="w-full max-w-xs">
+                    <SelectValue>
+                      {categories.find((cat) => cat.id === activeCategory)?.name}
+                    </SelectValue>
+                  </SelectTrigger>
+                  <SelectContent>
+                    {categories.map((category) => (
+                      <SelectItem key={category.id} value={category.id}>
+                        {category.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
-            </div>
-
-            {/* Condition Filter */}
-            <div className="bg-white rounded-xl p-1 shadow-md overflow-x-auto w-full lg:max-w-xl xl:max-w-2xl">
-              <div className="flex space-x-1 lg:space-x-2">
-                {conditions.map((condition) => (
-                  <button
-                    key={condition.id}
-                    onClick={() => setActiveCondition(condition.id)}
-                    className={`flex-1 px-4 py-2 rounded-lg font-medium transition-all duration-300 whitespace-nowrap text-sm md:text-base ${
-                      activeCondition === condition.id
-                        ? 'bg-green-600 text-white shadow-md'
-                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                    }`}
-                  >
-                    {condition.name}
-                  </button>
-                ))}
+              <div className="flex items-center gap-2 w-full sm:w-1/2">
+                <Filter className="h-5 w-5 text-green-600" />
+                <label htmlFor="condition-filter" className="font-medium text-gray-700 text-sm whitespace-nowrap mr-2">Condition</label>
+                <Select
+                  value={activeCondition}
+                  onValueChange={(value) => setActiveCondition(value)}
+                >
+                  <SelectTrigger id="condition-filter" className="w-full max-w-xs">
+                    <SelectValue>
+                      {conditions.find((cond) => cond.id === activeCondition)?.name}
+                    </SelectValue>
+                  </SelectTrigger>
+                  <SelectContent>
+                    {conditions.map((condition) => (
+                      <SelectItem key={condition.id} value={condition.id}>
+                        {condition.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
             </div>
           </div>
