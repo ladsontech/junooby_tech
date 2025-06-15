@@ -152,7 +152,7 @@ const ProductForm = () => {
   // ---------------
   useEffect(() => {
     setSpecValues({});
-  }, [formData.gadgetSubcategory, formData.laptopBrand]);
+  }, [formData.phoneSubcategory, formData.pcBrand]);
 
   // ---------------
   // On cctv subcat/ptz type select reset cctv specs
@@ -171,28 +171,27 @@ const ProductForm = () => {
 
       if (productError) throw productError;
 
-      // Determine possible subcategories/brands from product.name or add a new property if your data model supports it
-      let gadgetSubcategory = '';
-      let laptopBrand = '';
-      if (product.category === 'gadgets') {
-        for (const option of gadgetSubcategories) {
+      let phoneSubcategory = '';
+      let pcBrand = '';
+      if (product.category === 'phones') {
+        for (const option of phoneSubcategories) {
           if (
             product.name.toLowerCase().includes(option.label.toLowerCase()) ||
             product.description?.toLowerCase().includes(option.label.toLowerCase())
           ) {
-            gadgetSubcategory = option.value;
+            phoneSubcategory = option.value;
             break;
           }
         }
-        if (gadgetSubcategory === 'laptops') {
-          for (const brand of laptopBrands) {
-            if (
-              product.name.toLowerCase().includes(brand.label.toLowerCase()) ||
-              product.description?.toLowerCase().includes(brand.label.toLowerCase())
-            ) {
-              laptopBrand = brand.value;
-              break;
-            }
+      }
+      if (product.category === 'pcs') {
+        for (const brand of pcBrands) {
+          if (
+            product.name.toLowerCase().includes(brand.label.toLowerCase()) ||
+            product.description?.toLowerCase().includes(brand.label.toLowerCase())
+          ) {
+            pcBrand = brand.value;
+            break;
           }
         }
       }
@@ -211,7 +210,7 @@ const ProductForm = () => {
       }
 
       if (product.specs && typeof product.specs === 'object' && !Array.isArray(product.specs)) {
-        if (product.category === 'gadgets') {
+        if (product.category === 'phones' || product.category === 'pcs') {
           setSpecValues(product.specs as { [specId: string]: string });
         } else if (product.category === 'cctv') {
           setCctvSpecValues(product.specs as { [specId: string]: string });
@@ -221,8 +220,8 @@ const ProductForm = () => {
       setFormData({
         name: product.name,
         category: product.category,
-        gadgetSubcategory,
-        laptopBrand,
+        phoneSubcategory,
+        pcBrand,
         cctvSubcategory,
         ptzType,
         price: product.price,
@@ -309,11 +308,11 @@ const ProductForm = () => {
 
   // Helper to resolve actual subcategory/brand IDs
   const selectedSubcatId = subcategories.find(
-    (x) => x.name.toLowerCase() === formData.gadgetSubcategory.toLowerCase()
+    (x) => x.name.toLowerCase() === formData.phoneSubcategory.toLowerCase()
   )?.id || null;
 
   const selectedBrandId = brands.find(
-    (x) => x.name.toLowerCase() === formData.laptopBrand.toLowerCase()
+    (x) => x.name.toLowerCase() === formData.pcBrand.toLowerCase()
   )?.id || null;
 
   const selectedCctvSubcatId = cctvSubcategories.find(
@@ -330,9 +329,11 @@ const ProductForm = () => {
 
     try {
       const mainImage = images.find(img => img.is_main);
-      const productSpecs = formData.category === 'gadgets' ? specValues : cctvSpecValues;
+      const productSpecs = formData.category === 'phones' || formData.category === 'pcs'
+        ? specValues
+        : cctvSpecValues;
 
-      const productData = {
+      const productData: Partial<DbProduct> = {
         name: formData.name,
         category: formData.category,
         price: formData.price,
@@ -527,8 +528,8 @@ const ProductForm = () => {
                       </SelectTrigger>
                       <SelectContent>
                         {cctvSubcategories.map((s) => (
-                          <SelectItem key={s.value} value={s.value}>
-                            {s.label}
+                          <SelectItem key={s.id} value={s.name}>
+                            {s.name}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -537,7 +538,7 @@ const ProductForm = () => {
                 )}
 
                 {/* PTZ Type dropdown if "ptz" selected */}
-                {formData.category === 'cctv' && formData.cctvSubcategory === 'ptz' && (
+                {formData.category === 'cctv' && formData.cctvSubcategory.toLowerCase() === 'ptz' && (
                   <div>
                     <Label htmlFor="ptzType">PTZ Type</Label>
                     <Select
