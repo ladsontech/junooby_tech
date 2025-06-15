@@ -28,45 +28,52 @@ const WhatsappButton = ({ message }: { message: string }) => {
 const Hero = () => {
   return (
     <>
-      {/* Cleaner Hero Section */}
-      <section className="min-h-[70vh] bg-slate-50 pt-24 pb-14 flex items-center">
-        <div className="max-w-4xl mx-auto px-4 flex flex-col items-center text-center space-y-7 animate-fade-in">
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 tracking-tight leading-tight">
-            Grow Your Business <span className="block text-blue-600">with Junooby</span>
-          </h1>
-          <div className="h-10 flex justify-center items-center text-blue-700 font-semibold text-xl sm:text-2xl">
-            <TypewriterEffect />
+      {/* Tech Hero Section */}
+      <section className="min-h-[75vh] bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 pt-24 pb-10 md:pb-20 flex items-center animate-fade-in">
+        <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center md:items-stretch justify-between px-4 gap-12 md:gap-8">
+          {/* Left: Headline & Actions */}
+          <div className="flex-1 flex flex-col justify-center items-start text-left space-y-7">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold leading-tight tracking-tight text-white drop-shadow-xl">
+              <span className="block mb-2 text-blue-400">Junooby Digital Solutions</span>
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-200 to-cyan-400 animate-glow">
+                Tech for Uganda's Businesses
+              </span>
+            </h1>
+            <div className="h-12 flex items-center text-cyan-300 font-semibold text-2xl sm:text-3xl mb-1">
+              <TypewriterEffect />
+            </div>
+            <p className="text-gray-300 text-lg md:text-xl max-w-xl leading-relaxed font-medium">
+              Empowering innovation with modern web, mobile, security, and marketing technology.
+              <br className="hidden sm:block" />
+              Built with passion. Delivered with precision.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 mt-2 w-full">
+              <Link 
+                to="/services" 
+                className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold text-base md:text-lg hover:bg-blue-700 shadow-md transition hover:scale-105 text-center"
+              >
+                Explore Our Services
+              </Link>
+              <div>
+                <WhatsappButton message="Hello! I would like to get a quote for your services." />
+              </div>
+            </div>
           </div>
-          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Professional web, mobile, security, and marketing solutions in Kampala, Uganda.
-            <br className="hidden sm:block" />
-            Let's unleash your business potential with creative technology.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4 mt-2">
-            <Link 
-              to="/services" 
-              className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold text-base md:text-lg hover:bg-blue-700 transition-all duration-300 hover:scale-105 text-center"
-            >
-              Explore Our Services
-            </Link>
-            <WhatsappButton message="Hello! I would like to get a quote for your services." />
+          {/* Right: Hero Image */}
+          <div className="flex-1 flex items-center justify-center">
+            <div className="relative w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl border-4 border-blue-700 animate-scale-in">
+              <img
+                src="/images/hero_section.jpg"
+                alt="Tech solutions in action - Junooby Digital"
+                className="w-full h-full object-cover"
+                onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                loading="eager"
+                draggable={false}
+              />
+              {/* techy accent: gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-950/60 via-transparent to-transparent pointer-events-none" />
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* Moved Hero Image Section */}
-      <section className="bg-white py-10 px-4 flex justify-center items-center">
-        <div className="max-w-3xl w-full mx-auto">
-          <div className="relative aspect-[16/9] rounded-3xl shadow-2xl overflow-hidden animate-scale-in">
-            <img
-              src="/images/hero_section.jpg"
-              alt="Our Work in Action - Junooby Digital Craft"
-              className="w-full h-full object-cover"
-              onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
-            />
-            {/* fallback is gracefully omitted, as there's no alternate content here */}
-          </div>
-          <div className="mt-4 text-center text-gray-500 text-base">Our recent project in action</div>
         </div>
       </section>
     </>
