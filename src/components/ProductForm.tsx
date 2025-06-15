@@ -55,6 +55,8 @@ const ProductForm = () => {
     category: 'gadgets' as 'gadgets' | 'cctv',
     gadgetSubcategory: '',
     laptopBrand: '',
+    cctvSubcategory: '',
+    ptzType: '',
     price: '',
     description: '',
     detailed_description: '',
@@ -78,14 +80,15 @@ const ProductForm = () => {
   // New state for CCTV subcategories, PTZ types, and cctv spec field values
   // ----------------------------
   const [cctvSubcategories, setCctvSubcategories] = useState<{ id: string; name: string }[]>([]);
-  const [ptzTypes, setPtzTypes] = useState<{ id: string; name: string }[]>([]);
+  const [ptzTypes, setPtzTypes] = useState<{ id: string; name: string; subcategory_id: string | null }[]>([]);
   const [cctvSpecValues, setCctvSpecValues] = useState<{ [specId: string]: string }>({});
 
   useEffect(() => {
-    if (isEdit && id && admin) {
+    // Fetch product data once metadata is available to avoid race conditions
+    if (isEdit && id && admin && cctvSubcategories.length > 0) {
       fetchProduct();
     }
-  }, [isEdit, id, admin]);
+  }, [isEdit, id, admin, cctvSubcategories, ptzTypes]);
 
   // ---------------
   // Fetch subcategories and brands on mount
@@ -112,7 +115,7 @@ const ProductForm = () => {
         supabase.from('ptz_camera_types').select('id, name, subcategory_id').order('name'),
       ]);
       setCctvSubcategories(cctvSubcat || []);
-      setPtzTypes(ptz || []);
+      setPtzTypes(ptz as any[] || []);
     };
     fetchCctvMeta();
   }, []);
@@ -167,11 +170,34 @@ const ProductForm = () => {
         }
       }
 
+      let cctvSubcategory = '';
+      let ptzType = '';
+      if (product.category === 'cctv' && cctvSubcategories.length > 0) {
+        const subcat = cctvSubcategories.find(s => s.id === product.cctv_subcategory_id);
+        if (subcat) {
+          cctvSubcategory = subcat.name;
+          const ptz = ptzTypes.find(p => p.id === product.ptz_type_id);
+          if (ptz) {
+            ptzType = ptz.name;
+          }
+        }
+      }
+
+      if (product.specs && typeof product.specs === 'object' && !Array.isArray(product.specs)) {
+        if (product.category === 'gadgets') {
+          setSpecValues(product.specs as { [specId: string]: string });
+        } else if (product.category === 'cctv') {
+          setCctvSpecValues(product.specs as { [specId: string]: string });
+        }
+      }
+
       setFormData({
         name: product.name,
         category: product.category,
         gadgetSubcategory,
         laptopBrand,
+        cctvSubcategory,
+        ptzType,
         price: product.price,
         description: product.description || '',
         detailed_description: product.detailed_description || '',
@@ -388,7 +414,9 @@ const ProductForm = () => {
                         ...prev,
                         category: value as 'gadgets' | 'cctv',
                         gadgetSubcategory: '',
-                        laptopBrand: ''
+                        laptopBrand: '',
+                        cctvSubcategory: '',
+                        ptzType: '',
                       }))}
                     >
                       <SelectTrigger>
