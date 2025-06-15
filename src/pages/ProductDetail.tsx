@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ProductsLayout from '@/components/ProductsLayout';
@@ -22,6 +23,7 @@ interface Product {
   specs: string[];
   main_image_url: string;
   featured?: boolean;
+  condition: string;
 }
 
 interface ProductImage {
@@ -71,7 +73,8 @@ const ProductDetail = () => {
         detailed_description: productData.detailed_description || '',
         specs: Array.isArray(productData.specs) ? (productData.specs as string[]) : [],
         main_image_url: productData.main_image_url || '',
-        featured: productData.featured || false
+        featured: productData.featured || false,
+        condition: productData.condition || 'new'
       };
       
       setProduct(transformedProduct);
@@ -193,9 +196,14 @@ const ProductDetail = () => {
             {/* Product Info */}
             <div className="space-y-4 md:space-y-6">
               <div>
-                <div className="flex items-center gap-2 mb-3">
+                <div className="flex items-center gap-2 mb-3 flex-wrap">
                   <Badge variant={product.category === 'gadgets' ? 'default' : 'secondary'}>
                     {product.category === 'gadgets' ? 'Gadget' : 'CCTV'}
+                  </Badge>
+                  <Badge variant={product.condition === 'new' ? 'default' : 'secondary'} className={
+                    product.condition === 'new' ? 'bg-emerald-600' : 'bg-amber-600'
+                  }>
+                    {product.condition === 'new' ? 'Brand New' : 'Refurbished'}
                   </Badge>
                   {product.featured && (
                     <Badge variant="destructive">Featured</Badge>

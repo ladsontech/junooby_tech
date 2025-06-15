@@ -12,6 +12,7 @@ interface Product {
   specs: string[];
   main_image_url: string;
   featured?: boolean;
+  condition: string;
 }
 
 interface ProductCardProps {
@@ -47,6 +48,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
               : 'bg-green-600'
           }`}>
             {product.category === 'gadgets' ? 'Gadget' : 'CCTV'}
+          </span>
+          <span className={`px-2 py-1 lg:px-3 lg:py-2 rounded-full text-xs lg:text-sm font-medium text-white ${
+            product.condition === 'new' 
+              ? 'bg-emerald-600' 
+              : 'bg-amber-600'
+          }`}>
+            {product.condition === 'new' ? 'Brand New' : 'Refurbished'}
           </span>
           {product.featured && (
             <span className="bg-orange-500 text-white px-2 py-1 lg:px-3 lg:py-2 rounded-full text-xs lg:text-sm font-medium">

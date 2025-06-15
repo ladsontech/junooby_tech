@@ -36,7 +36,8 @@ const ProductForm = () => {
     description: '',
     detailed_description: '',
     specs: [] as string[],
-    featured: false
+    featured: false,
+    condition: 'new' as 'new' | 'refurbished'
   });
   
   const [images, setImages] = useState<ProductImage[]>([]);
@@ -66,7 +67,8 @@ const ProductForm = () => {
         description: product.description || '',
         detailed_description: product.detailed_description || '',
         specs: Array.isArray(product.specs) ? (product.specs as string[]) : [],
-        featured: product.featured || false
+        featured: product.featured || false,
+        condition: (product.condition as 'new' | 'refurbished') || 'new'
       });
 
       const { data: productImages, error: imagesError } = await supabase
@@ -250,7 +252,7 @@ const ProductForm = () => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
                     <Label htmlFor="price">Price</Label>
                     <Input
@@ -260,6 +262,18 @@ const ProductForm = () => {
                       placeholder="UGX 1,000,000"
                       required
                     />
+                  </div>
+                  <div>
+                    <Label htmlFor="condition">Condition</Label>
+                    <Select value={formData.condition} onValueChange={(value) => setFormData(prev => ({ ...prev, condition: value as 'new' | 'refurbished' }))}>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="new">Brand New</SelectItem>
+                        <SelectItem value="refurbished">Refurbished</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Switch

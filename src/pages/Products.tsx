@@ -6,6 +6,8 @@ import Cart from '@/components/Cart';
 import { useCart } from '@/contexts/CartContext';
 import { supabase } from '@/integrations/supabase/client';
 import { Database } from '@/integrations/supabase/types';
+import { Input } from '@/components/ui/input';
+import { Search } from 'lucide-react';
 
 type DbProduct = Database['public']['Tables']['products']['Row'];
 
@@ -18,10 +20,13 @@ interface Product {
   specs: string[];
   main_image_url: string;
   featured?: boolean;
+  condition: string;
 }
 
 const Products = () => {
   const [activeCategory, setActiveCategory] = useState('all');
+  const [activeCondition, setActiveCondition] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const { addToCart } = useCart();
@@ -48,7 +53,8 @@ const Products = () => {
         description: product.description || '',
         specs: Array.isArray(product.specs) ? (product.specs as string[]) : [],
         main_image_url: product.main_image_url || '',
-        featured: product.featured || false
+        featured: product.featured || false,
+        condition: product.condition || 'new'
       }));
       
       setProducts(transformedData);
@@ -65,9 +71,22 @@ const Products = () => {
     { id: 'cctv', name: 'CCTV Cameras' }
   ];
 
-  const filteredProducts = activeCategory === 'all' 
-    ? products 
-    : products.filter(product => product.category === activeCategory);
+  const conditions = [
+    { id: 'all', name: 'All Conditions' },
+    { id: 'new', name: 'Brand New' },
+    { id: 'refurbished', name: 'Refurbished' }
+  ];
+
+  const filteredProducts = products.filter(product => {
+    const matchesCategory = activeCategory === 'all' || product.category === activeCategory;
+    const matchesCondition = activeCondition === 'all' || product.condition === activeCondition;
+    const matchesSearch = searchQuery === '' || 
+      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.specs.some(spec => spec.toLowerCase().includes(searchQuery.toLowerCase()));
+    
+    return matchesCategory && matchesCondition && matchesSearch;
+  });
 
   const handleAddToCart = (product: Product) => {
     addToCart({
@@ -91,21 +110,55 @@ const Products = () => {
             </p>
           </div>
           
-          {/* Category Filter */}
-          <div className="flex justify-center mb-6 md:mb-8 lg:mb-12 xl:mb-16">
-            <div className="bg-white rounded-xl lg:rounded-2xl p-1 lg:p-2 shadow-lg overflow-x-auto w-full max-w-3xl xl:max-w-4xl">
+          {/* Search Bar */}
+          <div className="flex justify-center mb-6 md:mb-8 lg:mb-10">
+            <div className="relative w-full max-w-2xl xl:max-w-3xl">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+              <Input
+                type="text"
+                placeholder="Search products by name, description, or specifications..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-12 pr-4 py-3 lg:py-4 xl:py-5 text-base lg:text-lg xl:text-xl w-full rounded-xl lg:rounded-2xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+              />
+            </div>
+          </div>
+          
+          {/* Category and Condition Filters */}
+          <div className="flex flex-col lg:flex-row justify-center gap-4 lg:gap-6 mb-6 md:mb-8 lg:mb-12 xl:mb-16">
+            {/* Category Filter */}
+            <div className="bg-white rounded-xl lg:rounded-2xl p-1 lg:p-2 shadow-lg overflow-x-auto w-full lg:max-w-2xl xl:max-w-3xl">
               <div className="flex space-x-1 lg:space-x-2">
                 {categories.map((category) => (
                   <button
                     key={category.id}
                     onClick={() => setActiveCategory(category.id)}
-                    className={`flex-1 px-3 md:px-6 lg:px-8 xl:px-10 py-2 md:py-3 lg:py-4 xl:py-5 rounded-lg lg:rounded-xl font-medium transition-all duration-300 whitespace-nowrap text-sm md:text-base lg:text-lg xl:text-xl ${
+                    className={`flex-1 px-3 md:px-4 lg:px-6 xl:px-8 py-2 md:py-3 lg:py-3 xl:py-4 rounded-lg lg:rounded-xl font-medium transition-all duration-300 whitespace-nowrap text-sm md:text-base lg:text-lg xl:text-xl ${
                       activeCategory === category.id
                         ? 'bg-blue-600 text-white shadow-lg'
                         : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                     }`}
                   >
                     {category.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Condition Filter */}
+            <div className="bg-white rounded-xl lg:rounded-2xl p-1 lg:p-2 shadow-lg overflow-x-auto w-full lg:max-w-xl xl:max-w-2xl">
+              <div className="flex space-x-1 lg:space-x-2">
+                {conditions.map((condition) => (
+                  <button
+                    key={condition.id}
+                    onClick={() => setActiveCondition(condition.id)}
+                    className={`flex-1 px-3 md:px-4 lg:px-6 xl:px-8 py-2 md:py-3 lg:py-3 xl:py-4 rounded-lg lg:rounded-xl font-medium transition-all duration-300 whitespace-nowrap text-sm md:text-base lg:text-lg xl:text-xl ${
+                      activeCondition === condition.id
+                        ? 'bg-green-600 text-white shadow-lg'
+                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    }`}
+                  >
+                    {condition.name}
                   </button>
                 ))}
               </div>
@@ -119,7 +172,9 @@ const Products = () => {
             </div>
           ) : filteredProducts.length === 0 ? (
             <div className="text-center py-12 lg:py-16 xl:py-20">
-              <div className="text-base md:text-lg lg:text-xl xl:text-2xl text-gray-500">No products found in this category.</div>
+              <div className="text-base md:text-lg lg:text-xl xl:text-2xl text-gray-500">
+                {searchQuery ? `No products found matching "${searchQuery}"` : 'No products found with the selected filters.'}
+              </div>
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:gap-6 lg:gap-8 xl:gap-10">
