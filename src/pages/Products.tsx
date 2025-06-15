@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import ProductsLayout from '@/components/ProductsLayout';
 import ProductCard from '@/components/ProductCard';
+import ProductCarousel from '@/components/ProductCarousel';
 import Cart from '@/components/Cart';
 import { useCart } from '@/contexts/CartContext';
 import { supabase } from '@/integrations/supabase/client';
@@ -88,6 +89,11 @@ const Products = () => {
     return matchesCategory && matchesCondition && matchesSearch;
   });
 
+  // Get newest products for carousel (last 10 products)
+  const newestProducts = products
+    .filter(product => product.condition === 'new')
+    .slice(0, 8);
+
   const handleAddToCart = (product: Product) => {
     addToCart({
       id: parseInt(product.id),
@@ -100,6 +106,13 @@ const Products = () => {
   return (
     <ProductsLayout>
       <Cart />
+      
+      {/* New Arrivals Carousel Section */}
+      {!loading && newestProducts.length > 0 && (
+        <div className="bg-gradient-to-br from-blue-50 via-white to-purple-50">
+          <ProductCarousel products={newestProducts} onAddToCart={handleAddToCart} />
+        </div>
+      )}
       
       <section className="py-8 md:py-16 lg:py-20 xl:py-24">
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">

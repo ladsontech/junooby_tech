@@ -64,25 +64,25 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
         </div>
       </div>
       
-      <div className="p-4 md:p-5 lg:p-6 xl:p-8 flex flex-col flex-grow">
-        <h3 className="text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-gray-900 mb-2 lg:mb-3 line-clamp-2">{product.name}</h3>
-        <div className="space-y-1 lg:space-y-2 mb-3 md:mb-4 lg:mb-6 flex-grow">
+      <div className="p-3 md:p-4 lg:p-5 xl:p-6 flex flex-col flex-grow">
+        <h3 className="text-base md:text-lg lg:text-xl xl:text-xl font-semibold text-gray-900 mb-2 lg:mb-3 line-clamp-2">{product.name}</h3>
+        <div className="space-y-1 lg:space-y-2 mb-3 md:mb-4 lg:mb-4 flex-grow">
           {product.specs && product.specs.slice(0, 2).map((spec, index) => (
-            <p key={index} className="text-xs md:text-sm lg:text-base text-gray-600 line-clamp-1">• {spec}</p>
+            <p key={index} className="text-xs md:text-sm lg:text-sm text-gray-600 line-clamp-1">• {spec}</p>
           ))}
         </div>
-        <div className="flex flex-col gap-3 lg:gap-4 xl:gap-6 mt-auto">
-          <span className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-blue-600">{formatPrice(product.price)}</span>
-          <div className="flex flex-col sm:flex-row gap-2 lg:gap-3 xl:gap-4">
+        <div className="flex flex-col gap-3 lg:gap-3 xl:gap-4 mt-auto">
+          <span className="text-lg md:text-xl lg:text-xl xl:text-2xl font-bold text-blue-600">{formatPrice(product.price)}</span>
+          <div className="flex flex-col sm:flex-row gap-2 lg:gap-2 xl:gap-3">
             <Link 
               to={`/product/${product.id}`}
-              className="flex-1 bg-white border border-blue-600 text-blue-600 px-3 py-2 lg:px-4 lg:py-3 xl:px-6 xl:py-4 rounded-lg font-medium hover:bg-blue-50 transition-all duration-300 text-sm lg:text-base xl:text-lg text-center"
+              className="flex-1 bg-white border border-blue-600 text-blue-600 px-3 py-2 lg:px-3 lg:py-2 xl:px-4 xl:py-3 rounded-lg font-medium hover:bg-blue-50 transition-all duration-300 text-sm lg:text-sm xl:text-base text-center"
             >
               View Details
             </Link>
             <button 
               onClick={() => onAddToCart(product)}
-              className="flex-1 bg-blue-600 text-white px-3 py-2 lg:px-4 lg:py-3 xl:px-6 xl:py-4 rounded-lg font-medium hover:bg-blue-700 transition-all duration-300 hover:scale-105 text-sm lg:text-base xl:text-lg"
+              className="flex-1 bg-blue-600 text-white px-3 py-2 lg:px-3 lg:py-2 xl:px-4 xl:py-3 rounded-lg font-medium hover:bg-blue-700 transition-all duration-300 hover:scale-105 text-sm lg:text-sm xl:text-base"
             >
               Add to Cart
             </button>
