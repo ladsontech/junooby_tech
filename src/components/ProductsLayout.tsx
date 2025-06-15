@@ -30,7 +30,7 @@ const ProductsLayout: React.FC<ProductsLayoutProps> = ({
               display: 'none'
             }}></div>
               <div className="flex flex-col lg:flex-row lg:items-baseline lg:space-x-2">
-                <span className="font-bold text-blue-600 text-2xl lg:text-3xl xl:text-4xl">Junooby</span>
+                <span className="font-bold text-2xl lg:text-3xl xl:text-4xl text-red-600">Junooby</span>
                 <span className="text-sm lg:text-base text-red-700 font-medium">Gadgets Store</span>
               </div>
             </div>
