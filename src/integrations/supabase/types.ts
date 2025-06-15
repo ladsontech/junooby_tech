@@ -30,6 +30,81 @@ export type Database = {
         }
         Relationships: []
       }
+      gadget_specs: {
+        Row: {
+          brand_id: string | null
+          created_at: string | null
+          id: string
+          name: string
+          subcategory_id: string | null
+        }
+        Insert: {
+          brand_id?: string | null
+          created_at?: string | null
+          id?: string
+          name: string
+          subcategory_id?: string | null
+        }
+        Update: {
+          brand_id?: string | null
+          created_at?: string | null
+          id?: string
+          name?: string
+          subcategory_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "gadget_specs_brand_id_fkey"
+            columns: ["brand_id"]
+            isOneToOne: false
+            referencedRelation: "laptop_brands"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "gadget_specs_subcategory_id_fkey"
+            columns: ["subcategory_id"]
+            isOneToOne: false
+            referencedRelation: "gadget_subcategories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      gadget_subcategories: {
+        Row: {
+          created_at: string | null
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      laptop_brands: {
+        Row: {
+          created_at: string | null
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
       product_images: {
         Row: {
           created_at: string | null
@@ -67,6 +142,7 @@ export type Database = {
       }
       products: {
         Row: {
+          brand_id: string | null
           category: Database["public"]["Enums"]["product_category"]
           condition: string | null
           created_at: string | null
@@ -78,9 +154,11 @@ export type Database = {
           name: string
           price: string
           specs: Json | null
+          subcategory_id: string | null
           updated_at: string | null
         }
         Insert: {
+          brand_id?: string | null
           category: Database["public"]["Enums"]["product_category"]
           condition?: string | null
           created_at?: string | null
@@ -92,9 +170,11 @@ export type Database = {
           name: string
           price: string
           specs?: Json | null
+          subcategory_id?: string | null
           updated_at?: string | null
         }
         Update: {
+          brand_id?: string | null
           category?: Database["public"]["Enums"]["product_category"]
           condition?: string | null
           created_at?: string | null
@@ -106,9 +186,25 @@ export type Database = {
           name?: string
           price?: string
           specs?: Json | null
+          subcategory_id?: string | null
           updated_at?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "products_brand_id_fkey"
+            columns: ["brand_id"]
+            isOneToOne: false
+            referencedRelation: "laptop_brands"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "products_subcategory_id_fkey"
+            columns: ["subcategory_id"]
+            isOneToOne: false
+            referencedRelation: "gadget_subcategories"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {

@@ -14,6 +14,8 @@ import { Switch } from '@/components/ui/switch';
 import { Upload, X } from 'lucide-react';
 import { Database } from '@/integrations/supabase/types';
 
+import ProductSpecsFields from './ProductSpecsFields';
+
 type DbProduct = Database['public']['Tables']['products']['Row'];
 
 interface ProductImage {
@@ -64,11 +66,40 @@ const ProductForm = () => {
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
 
+  // ----------------------------
+  // New state for DB-driven subcats, brands, and spec values
+  // ----------------------------
+  const [subcategories, setSubcategories] = useState<{id: string, name: string}[]>([]);
+  const [brands, setBrands] = useState<{id: string, name: string}[]>([]);
+  const [specValues, setSpecValues] = useState<{[specId: string]: string}>({});
+
   useEffect(() => {
     if (isEdit && id && admin) {
       fetchProduct();
     }
   }, [isEdit, id, admin]);
+
+  // ---------------
+  // Fetch subcategories and brands on mount
+  // ---------------
+  useEffect(() => {
+    const fetchMeta = async () => {
+      const [{ data: subcat }, { data: brand }] = await Promise.all([
+        supabase.from('gadget_subcategories').select('id, name').order('name'),
+        supabase.from('laptop_brands').select('id, name').order('name'),
+      ]);
+      setSubcategories(subcat || []);
+      setBrands(brand || []);
+    };
+    fetchMeta();
+  }, []);
+
+  // ---------------
+  // On subcat/brand select reset specs
+  // ---------------
+  useEffect(() => {
+    setSpecValues({});
+  }, [formData.gadgetSubcategory, formData.laptopBrand]);
 
   const fetchProduct = async () => {
     try {
@@ -193,6 +224,15 @@ const ProductForm = () => {
     }));
   };
 
+  // Helper to resolve actual subcategory/brand IDs
+  const selectedSubcatId = subcategories.find(
+    (x) => x.name.toLowerCase() === formData.gadgetSubcategory.toLowerCase()
+  )?.id || null;
+
+  const selectedBrandId = brands.find(
+    (x) => x.name.toLowerCase() === formData.laptopBrand.toLowerCase()
+  )?.id || null;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSaving(true);
@@ -203,20 +243,22 @@ const ProductForm = () => {
       let displayCategory = formData.category;
       if (formData.category === 'gadgets' && formData.gadgetSubcategory) {
         displayCategory += ':' + formData.gadgetSubcategory;
-        if (formData.gadgetSubcategory === 'laptops' && formData.laptopBrand) {
+        if (formData.gadgetSubcategory.toLowerCase() === 'laptops' && formData.laptopBrand) {
           displayCategory += ':' + formData.laptopBrand;
         }
       }
 
-      const productData = {
+      const productData: any = {
         ...formData,
         category: formData.category,
         subcategory: formData.gadgetSubcategory,
         brand: formData.laptopBrand,
         main_image_url: mainImage?.image_url || null,
-        specs: formData.specs.filter(spec => spec.trim() !== ''),
-        // Optionally store combined displayCategory for easier querying
-        display_category: displayCategory
+        // Instead of specs: formData.specs...use specValues as a map {specId:value}
+        specs: specValues,
+        display_category: displayCategory,
+        subcategory_id: selectedSubcatId,
+        brand_id: selectedBrandId,
       };
 
       let productId = id;
@@ -322,49 +364,72 @@ const ProductForm = () => {
                   </div>
                 </div>
 
-                {/* Sub-Category logic for Gadgets */}
+                {/* ------------------------------- */}
+                {/* Sub-Category select from DB */}
                 {formData.category === 'gadgets' && (
                   <div>
                     <Label htmlFor="gadgetSubcategory">Gadget Type</Label>
-                    <Select
+                    <select
+                      id="gadgetSubcategory"
+                      className="w-full border rounded p-2 mt-1"
                       value={formData.gadgetSubcategory}
-                      onValueChange={(value) => setFormData(prev => ({
-                        ...prev,
-                        gadgetSubcategory: value,
-                        laptopBrand: ''
-                      }))}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          gadgetSubcategory: e.target.value,
+                          laptopBrand: '',
+                        }))
+                      }
                     >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select Gadget Type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {gadgetSubcategories.map(sub => (
-                          <SelectItem key={sub.value} value={sub.value}>{sub.label}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                      <option value="">Select Gadget Type</option>
+                      {subcategories.map((s) => (
+                        <option key={s.id} value={s.name}>
+                          {s.name}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                 )}
-                {/* Laptop Brand logic */}
-                {formData.category === 'gadgets' && formData.gadgetSubcategory === 'laptops' && (
-                  <div>
-                    <Label htmlFor="laptopBrand">Laptop Brand</Label>
-                    <Select
-                      value={formData.laptopBrand}
-                      onValueChange={(value) => setFormData(prev => ({
-                        ...prev,
-                        laptopBrand: value
-                      }))}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select Laptop Brand" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {laptopBrands.map(brand => (
-                          <SelectItem key={brand.value} value={brand.value}>{brand.label}</SelectItem>
+                {/* Laptop Brand select from DB */}
+                {formData.category === 'gadgets' &&
+                  formData.gadgetSubcategory.toLowerCase() === 'laptops' && (
+                    <div>
+                      <Label htmlFor="laptopBrand">Laptop Brand</Label>
+                      <select
+                        id="laptopBrand"
+                        className="w-full border rounded p-2 mt-1"
+                        value={formData.laptopBrand}
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            laptopBrand: e.target.value,
+                          }))
+                        }
+                      >
+                        <option value="">Select Laptop Brand</option>
+                        {brands.map((b) => (
+                          <option key={b.id} value={b.name}>
+                            {b.name}
+                          </option>
                         ))}
-                      </SelectContent>
-                    </Select>
+                      </select>
+                    </div>
+                  )}
+
+                {/* --- Specs fields --- */}
+                {formData.category === 'gadgets' && (
+                  <div>
+                    <Label>Specifications</Label>
+                    <ProductSpecsFields
+                      subcategoryId={selectedSubcatId}
+                      brandId={
+                        formData.gadgetSubcategory?.toLowerCase() === 'laptops'
+                          ? selectedBrandId
+                          : undefined
+                      }
+                      values={specValues}
+                      onChange={setSpecValues}
+                    />
                   </div>
                 )}
 
@@ -419,25 +484,6 @@ const ProductForm = () => {
                     onChange={(e) => setFormData(prev => ({ ...prev, detailed_description: e.target.value }))}
                     rows={6}
                   />
-                </div>
-
-                <div>
-                  <Label>Specifications</Label>
-                  {formData.specs.map((spec, index) => (
-                    <div key={index} className="flex gap-2 mt-2">
-                      <Input
-                        value={spec}
-                        onChange={(e) => updateSpec(index, e.target.value)}
-                        placeholder="Enter specification"
-                      />
-                      <Button type="button" variant="outline" size="sm" onClick={() => removeSpec(index)}>
-                        <X size={16} />
-                      </Button>
-                    </div>
-                  ))}
-                  <Button type="button" variant="outline" onClick={addSpec} className="mt-2">
-                    Add Specification
-                  </Button>
                 </div>
 
                 <div>
