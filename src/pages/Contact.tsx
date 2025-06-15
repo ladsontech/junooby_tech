@@ -1,8 +1,6 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import BottomNav from '@/components/BottomNav';
 
 const Contact = () => {
   const handleWhatsAppClick = () => {
@@ -168,7 +166,6 @@ const Contact = () => {
       </section>
       
       <Footer />
-      <BottomNav />
     </div>
   );
 };

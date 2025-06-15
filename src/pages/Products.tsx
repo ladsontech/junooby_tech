@@ -8,6 +8,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { Database } from '@/integrations/supabase/types';
 import { Input } from '@/components/ui/input';
 import { Search } from 'lucide-react';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 type DbProduct = Database['public']['Tables']['products']['Row'];
 
@@ -105,6 +106,7 @@ const Products = () => {
   return (
     <ProductsLayout>
       <Cart />
+      <WhatsAppButton />
       
       {/* New Arrivals Carousel Section */}
       {!loading && newestProducts.length > 0 && (

@@ -10,6 +10,7 @@ import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { ArrowLeft, ShoppingCart } from 'lucide-react';
 import { Database } from '@/integrations/supabase/types';
 import ProductCard from '@/components/ProductCard';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 type DbProduct = Database['public']['Tables']['products']['Row'];
 type ProductCategory = Database['public']['Enums']['product_category'];
@@ -170,6 +171,7 @@ const ProductDetail = () => {
   return (
     <ProductsLayout>
       <Cart />
+      <WhatsAppButton />
       
       <section className="py-6 md:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
