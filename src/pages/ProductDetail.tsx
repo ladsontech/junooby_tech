@@ -1,9 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import BottomNav from '@/components/BottomNav';
+import ProductsLayout from '@/components/ProductsLayout';
 import Cart from '@/components/Cart';
 import { useCart } from '@/contexts/CartContext';
 import { supabase } from '@/integrations/supabase/client';
@@ -111,20 +108,18 @@ const ProductDetail = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
-        <Navbar />
-        <div className="pt-20 flex items-center justify-center min-h-screen">
+      <ProductsLayout>
+        <div className="py-20 flex items-center justify-center min-h-[50vh]">
           <div>Loading...</div>
         </div>
-      </div>
+      </ProductsLayout>
     );
   }
 
   if (!product) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
-        <Navbar />
-        <div className="pt-20 p-4">
+      <ProductsLayout>
+        <div className="py-20 p-4">
           <div className="max-w-7xl mx-auto text-center">
             <h1 className="text-2xl font-bold text-gray-900 mb-4">Product not found</h1>
             <Link to="/products">
@@ -135,16 +130,15 @@ const ProductDetail = () => {
             </Link>
           </div>
         </div>
-      </div>
+      </ProductsLayout>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
-      <Navbar />
+    <ProductsLayout>
       <Cart />
       
-      <section className="pt-16 md:pt-20 lg:pt-24 pb-8 md:pb-16 lg:pb-20">
+      <section className="py-8 md:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-4 md:mb-6">
             <Link to="/products">
@@ -255,10 +249,7 @@ const ProductDetail = () => {
           </div>
         </div>
       </section>
-      
-      <Footer />
-      <BottomNav />
-    </div>
+    </ProductsLayout>
   );
 };
 
