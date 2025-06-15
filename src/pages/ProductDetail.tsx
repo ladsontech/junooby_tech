@@ -12,11 +12,12 @@ import { Database } from '@/integrations/supabase/types';
 import ProductCard from '@/components/ProductCard';
 
 type DbProduct = Database['public']['Tables']['products']['Row'];
+type ProductCategory = Database['public']['Enums']['product_category'];
 
 interface Product {
   id: string;
   name: string;
-  category: string;
+  category: ProductCategory;
   price: string;
   description: string;
   detailed_description: string;
