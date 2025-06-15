@@ -19,21 +19,15 @@ const ProductsLayout: React.FC<ProductsLayoutProps> = ({
       <header className="bg-white/95 backdrop-blur-sm shadow-lg sticky top-0 z-50">
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="flex justify-between items-center h-16 lg:h-20">
-            <div className="flex items-center space-x-2 lg:space-x-3">
-              <img src="/images/junooby_logo.png" alt="Junooby Logo" className="w-12 h-12 lg:w-14 lg:h-14 object-contain" onError={e => {
-              const target = e.target as HTMLImageElement;
-              target.style.display = 'none';
-              const fallback = target.nextElementSibling as HTMLElement;
-              if (fallback) fallback.style.display = 'block';
-            }} />
-              <div className="w-12 h-12 lg:w-14 lg:h-14 bg-blue-600 rounded-lg" style={{
-              display: 'none'
-            }}></div>
-              <div className="flex flex-col lg:flex-row lg:items-baseline lg:space-x-2">
-                <span className="font-bold text-2xl lg:text-3xl xl:text-4xl text-red-600">Junooby</span>
-                <span className="text-sm lg:text-base text-red-700 font-medium">Gadgets Store</span>
+            <Link to="/products" className="flex items-center space-x-3 lg:space-x-4">
+              <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-blue-50 flex items-center justify-center ring-2 ring-blue-100 shadow-sm">
+                  <img src="/images/junooby_logo.png" alt="Junooby Logo" className="w-10 h-10 lg:w-12 lg:h-12 object-contain" />
               </div>
-            </div>
+              <div className="flex flex-col lg:flex-row lg:items-baseline lg:space-x-2">
+                <span className="font-bold text-xl lg:text-2xl xl:text-3xl text-gray-800 tracking-tight">Junooby</span>
+                <span className="text-sm lg:text-base text-gray-500 font-medium">Gadgets Store</span>
+              </div>
+            </Link>
             
             <div className="flex items-center">
               <button onClick={openCart} className="relative p-2 rounded-full hover:bg-gray-100 transition-colors" aria-label="Open cart">
