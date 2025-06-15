@@ -23,6 +23,24 @@ interface ProductImage {
   display_order: number;
 }
 
+const gadgetSubcategories = [
+  { value: 'iphones', label: 'iPhones' },
+  { value: 'samsung_phones', label: 'Samsung Phones' },
+  { value: 'tecno_phones', label: 'Tecno Phones' },
+  { value: 'laptops', label: 'Laptops' }
+];
+
+const laptopBrands = [
+  { value: 'hp', label: 'HP' },
+  { value: 'dell', label: 'Dell' },
+  { value: 'lenovo', label: 'Lenovo' },
+  { value: 'acer', label: 'Acer' },
+  { value: 'asus', label: 'ASUS' },
+  { value: 'macbook', label: 'MacBook' },
+  { value: 'msi', label: 'MSI' },
+  { value: 'toshiba', label: 'Toshiba' }
+];
+
 const ProductForm = () => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -32,6 +50,8 @@ const ProductForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     category: 'gadgets' as 'gadgets' | 'cctv',
+    gadgetSubcategory: '',
+    laptopBrand: '',
     price: '',
     description: '',
     detailed_description: '',
@@ -60,9 +80,37 @@ const ProductForm = () => {
 
       if (productError) throw productError;
 
+      // Determine possible subcategories/brands from product.name or add a new property if your data model supports it
+      let gadgetSubcategory = '';
+      let laptopBrand = '';
+      if (product.category === 'gadgets') {
+        for (const option of gadgetSubcategories) {
+          if (
+            product.name.toLowerCase().includes(option.label.toLowerCase()) ||
+            product.description?.toLowerCase().includes(option.label.toLowerCase())
+          ) {
+            gadgetSubcategory = option.value;
+            break;
+          }
+        }
+        if (gadgetSubcategory === 'laptops') {
+          for (const brand of laptopBrands) {
+            if (
+              product.name.toLowerCase().includes(brand.label.toLowerCase()) ||
+              product.description?.toLowerCase().includes(brand.label.toLowerCase())
+            ) {
+              laptopBrand = brand.value;
+              break;
+            }
+          }
+        }
+      }
+
       setFormData({
         name: product.name,
         category: product.category,
+        gadgetSubcategory,
+        laptopBrand,
         price: product.price,
         description: product.description || '',
         detailed_description: product.detailed_description || '',
@@ -151,10 +199,24 @@ const ProductForm = () => {
 
     try {
       const mainImage = images.find(img => img.is_main);
+      // Build displayCategory string for storage and searchability
+      let displayCategory = formData.category;
+      if (formData.category === 'gadgets' && formData.gadgetSubcategory) {
+        displayCategory += ':' + formData.gadgetSubcategory;
+        if (formData.gadgetSubcategory === 'laptops' && formData.laptopBrand) {
+          displayCategory += ':' + formData.laptopBrand;
+        }
+      }
+
       const productData = {
         ...formData,
+        category: formData.category,
+        subcategory: formData.gadgetSubcategory,
+        brand: formData.laptopBrand,
         main_image_url: mainImage?.image_url || null,
-        specs: formData.specs.filter(spec => spec.trim() !== '')
+        specs: formData.specs.filter(spec => spec.trim() !== ''),
+        // Optionally store combined displayCategory for easier querying
+        display_category: displayCategory
       };
 
       let productId = id;
@@ -240,9 +302,17 @@ const ProductForm = () => {
                   </div>
                   <div>
                     <Label htmlFor="category">Category</Label>
-                    <Select value={formData.category} onValueChange={(value) => setFormData(prev => ({ ...prev, category: value as 'gadgets' | 'cctv' }))}>
+                    <Select
+                      value={formData.category}
+                      onValueChange={(value) => setFormData(prev => ({
+                        ...prev,
+                        category: value as 'gadgets' | 'cctv',
+                        gadgetSubcategory: '',
+                        laptopBrand: ''
+                      }))}
+                    >
                       <SelectTrigger>
-                        <SelectValue />
+                        <SelectValue placeholder="Category" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="gadgets">Gadgets</SelectItem>
@@ -251,6 +321,52 @@ const ProductForm = () => {
                     </Select>
                   </div>
                 </div>
+
+                {/* Sub-Category logic for Gadgets */}
+                {formData.category === 'gadgets' && (
+                  <div>
+                    <Label htmlFor="gadgetSubcategory">Gadget Type</Label>
+                    <Select
+                      value={formData.gadgetSubcategory}
+                      onValueChange={(value) => setFormData(prev => ({
+                        ...prev,
+                        gadgetSubcategory: value,
+                        laptopBrand: ''
+                      }))}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select Gadget Type" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {gadgetSubcategories.map(sub => (
+                          <SelectItem key={sub.value} value={sub.value}>{sub.label}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                )}
+                {/* Laptop Brand logic */}
+                {formData.category === 'gadgets' && formData.gadgetSubcategory === 'laptops' && (
+                  <div>
+                    <Label htmlFor="laptopBrand">Laptop Brand</Label>
+                    <Select
+                      value={formData.laptopBrand}
+                      onValueChange={(value) => setFormData(prev => ({
+                        ...prev,
+                        laptopBrand: value
+                      }))}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select Laptop Brand" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {laptopBrands.map(brand => (
+                          <SelectItem key={brand.value} value={brand.value}>{brand.label}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                )}
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
