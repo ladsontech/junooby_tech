@@ -41,30 +41,16 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
             }}
           />
         </AspectRatio>
-        <div className="absolute top-2 left-2 flex flex-wrap gap-1">
-          <span className={`px-2 py-1 rounded-full text-xs font-medium text-white ${
-            product.category === 'gadgets' 
-              ? 'bg-blue-600' 
-              : 'bg-green-600'
-          }`}>
-            {product.category === 'gadgets' ? 'Gadget' : 'CCTV'}
-          </span>
-          <span className={`px-2 py-1 rounded-full text-xs font-medium text-white ${
+      </div>
+      
+      <div className="p-3 md:p-4 flex flex-col flex-grow">
+        <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium text-white mb-2 ${
             product.condition === 'new' 
               ? 'bg-emerald-600' 
               : 'bg-amber-600'
           }`}>
             {product.condition === 'new' ? 'Brand New' : 'Refurbished'}
-          </span>
-          {product.featured && (
-            <span className="bg-orange-500 text-white px-2 py-1 rounded-full text-xs font-medium">
-              Featured
-            </span>
-          )}
-        </div>
-      </div>
-      
-      <div className="p-3 md:p-4 flex flex-col flex-grow">
+        </span>
         <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-2 line-clamp-2">{product.name}</h3>
         <div className="space-y-1 mb-3 flex-grow">
           {product.specs && product.specs.slice(0, 2).map((spec, index) => (

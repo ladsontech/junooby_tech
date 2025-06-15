@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
@@ -67,7 +66,10 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ products, onAddToCart
                         }}
                       />
                     </AspectRatio>
-                    <div className="absolute top-2 left-2 flex flex-wrap gap-1">
+                  </div>
+                  
+                  <div className="p-4 flex flex-col flex-grow">
+                    <div className="flex flex-wrap gap-2 mb-2">
                       <Badge variant="default" className="bg-gradient-to-r from-blue-600 to-purple-600 text-xs">
                         New Arrival
                       </Badge>
@@ -77,9 +79,6 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ products, onAddToCart
                         {product.condition === 'new' ? 'Brand New' : 'Refurbished'}
                       </Badge>
                     </div>
-                  </div>
-                  
-                  <div className="p-4 flex flex-col flex-grow">
                     <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-2 line-clamp-2">{product.name}</h3>
                     <div className="space-y-1 mb-3 flex-grow">
                       {product.specs && product.specs.slice(0, 1).map((spec, index) => (
