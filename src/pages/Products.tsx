@@ -17,6 +17,7 @@ import {
   SelectValue,
   SelectLabel,
 } from '@/components/ui/select';
+import ProductFilters from '@/components/ProductFilters';
 
 type DbProduct = Database['public']['Tables']['products']['Row'];
 
@@ -33,7 +34,9 @@ interface Product {
 }
 
 const Products = () => {
-  const [activeCategory, setActiveCategory] = useState('all');
+  // ADDED: new state for subcategory
+  const [activeCategory, setActiveCategory] = useState('phones');
+  const [activeSubcategory, setActiveSubcategory] = useState('all');
   const [activeCondition, setActiveCondition] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [products, setProducts] = useState<Product[]>([]);
@@ -76,7 +79,8 @@ const Products = () => {
 
   const categories = [
     { id: 'all', name: 'All Products' },
-    { id: 'gadgets', name: 'Gadgets' },
+    { id: 'phones', name: 'Phones' },
+    { id: 'pcs', name: 'PCs/Laptops' },
     { id: 'cctv', name: 'CCTV Cameras' }
   ];
 
@@ -86,15 +90,60 @@ const Products = () => {
     { id: 'refurbished', name: 'Refurbished' }
   ];
 
+  // Subcategory logic for filtering
+  const getSubcategoryCheck = (product: Product) => {
+    // PHONES
+    if (activeCategory === "phones" && activeSubcategory !== "all") {
+      return (
+        (activeSubcategory === "samsung" && product.specs.some(s => /samsung/i.test(s))) ||
+        (activeSubcategory === "zte" && product.specs.some(s => /zte/i.test(s))) ||
+        (activeSubcategory === "iphone" && product.specs.some(s => /iphone/i.test(s))) ||
+        (activeSubcategory === "googlepixel" && product.specs.some(s => /google\s*pixel/i.test(s)))
+      );
+    }
+    // PCS/LAPTOPS
+    if (activeCategory === "pcs" && activeSubcategory !== "all") {
+      return (
+        (activeSubcategory === "hp" && product.specs.some(s => /hp/i.test(s))) ||
+        (activeSubcategory === "dell" && product.specs.some(s => /dell/i.test(s))) ||
+        (activeSubcategory === "lenovo" && product.specs.some(s => /lenovo/i.test(s))) ||
+        (activeSubcategory === "asus" && product.specs.some(s => /asus/i.test(s))) ||
+        (activeSubcategory === "acer" && product.specs.some(s => /acer/i.test(s))) ||
+        (activeSubcategory === "macbook" && product.specs.some(s => /macbook/i.test(s))) ||
+        (activeSubcategory === "msi" && product.specs.some(s => /msi/i.test(s))) ||
+        (activeSubcategory === "toshiba" && product.specs.some(s => /toshiba/i.test(s)))
+      );
+    }
+    // CCTV cameras
+    if (activeCategory === "cctv" && activeSubcategory !== "all") {
+      return (
+        (activeSubcategory === "bullet" && product.specs.some(s => /bullet/i.test(s))) ||
+        (activeSubcategory === "dome" && product.specs.some(s => /dome/i.test(s))) ||
+        (activeSubcategory === "ptz" && product.specs.some(s => /ptz/i.test(s)))
+      );
+    }
+    // If "all" subcategory, always return true
+    return true;
+  };
+
   const filteredProducts = products.filter(product => {
-    const matchesCategory = activeCategory === 'all' || product.category === activeCategory;
+    // CATEGORY
+    const matchesCategory =
+      (activeCategory === "phones" && /phone/i.test(product.category)) ||
+      (activeCategory === "pcs" && /(pc|laptop|notebook)/i.test(product.category)) ||
+      (activeCategory === "cctv" && /cctv/i.test(product.category));
+    // SUBCATEGORY
+    const matchesSubcategory = getSubcategoryCheck(product);
+    // CONDITION
     const matchesCondition = activeCondition === 'all' || product.condition === activeCondition;
-    const matchesSearch = searchQuery === '' || 
+    // SEARCH
+    const matchesSearch =
+      searchQuery === '' ||
       product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.specs.some(spec => spec.toLowerCase().includes(searchQuery.toLowerCase()));
-    
-    return matchesCategory && matchesCondition && matchesSearch;
+
+    return matchesCategory && matchesSubcategory && matchesCondition && matchesSearch;
   });
 
   // Get newest products for carousel (last 10 products)
@@ -146,53 +195,15 @@ const Products = () => {
             </div>
           </div>
           
-          {/* Organized Filters Panel */}
-          <div className="flex justify-center mb-8 md:mb-10">
-            <div className="bg-white rounded-2xl shadow-lg w-full max-w-3xl px-4 py-5 flex flex-col sm:flex-row gap-4 items-center">
-              <div className="flex items-center gap-2 w-full sm:w-1/2">
-                <Filter className="h-5 w-5 text-blue-500" />
-                <label htmlFor="category-filter" className="font-medium text-gray-700 text-sm whitespace-nowrap mr-2">Category</label>
-                <Select
-                  value={activeCategory}
-                  onValueChange={(value) => setActiveCategory(value)}
-                >
-                  <SelectTrigger id="category-filter" className="w-full max-w-xs">
-                    <SelectValue>
-                      {categories.find((cat) => cat.id === activeCategory)?.name}
-                    </SelectValue>
-                  </SelectTrigger>
-                  <SelectContent>
-                    {categories.map((category) => (
-                      <SelectItem key={category.id} value={category.id}>
-                        {category.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="flex items-center gap-2 w-full sm:w-1/2">
-                <Filter className="h-5 w-5 text-green-600" />
-                <label htmlFor="condition-filter" className="font-medium text-gray-700 text-sm whitespace-nowrap mr-2">Condition</label>
-                <Select
-                  value={activeCondition}
-                  onValueChange={(value) => setActiveCondition(value)}
-                >
-                  <SelectTrigger id="condition-filter" className="w-full max-w-xs">
-                    <SelectValue>
-                      {conditions.find((cond) => cond.id === activeCondition)?.name}
-                    </SelectValue>
-                  </SelectTrigger>
-                  <SelectContent>
-                    {conditions.map((condition) => (
-                      <SelectItem key={condition.id} value={condition.id}>
-                        {condition.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-          </div>
+          {/* Product Filters */}
+          <ProductFilters
+            activeCategory={activeCategory}
+            setActiveCategory={setActiveCategory}
+            activeSubcategory={activeSubcategory}
+            setActiveSubcategory={setActiveSubcategory}
+            activeCondition={activeCondition}
+            setActiveCondition={setActiveCondition}
+          />
           
           {/* Products Grid */}
           {loading ? (
