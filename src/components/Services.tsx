@@ -26,11 +26,11 @@ const Services = () => {
       bgColor: "bg-green-600"
     },
     {
-      title: "Solar Systems",
-      description: "Renewable energy solutions to reduce your electricity costs",
-      features: ["Cost Effective", "Eco-Friendly", "Long Lasting", "Government Incentives"],
-      icon: "☀️",
-      bgColor: "bg-orange-600"
+      title: "Digital Marketing",
+      description: "Boost your online presence with SEO, social media, and content strategies.",
+      features: ["SEO Strategy", "Social Media", "Content Creation", "Performance Reports"],
+      icon: "📈",
+      bgColor: "bg-indigo-600"
     }
   ];
 
