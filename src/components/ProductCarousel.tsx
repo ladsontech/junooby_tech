@@ -5,6 +5,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import Autoplay from 'embla-carousel-autoplay';
 
 interface Product {
   id: string;
@@ -32,6 +33,10 @@ const formatPrice = (price: string) => {
 const ProductCarousel: React.FC<ProductCarouselProps> = ({ products, onAddToCart }) => {
   if (products.length === 0) return null;
 
+  const plugin = React.useRef(
+    Autoplay({ delay: 3000, stopOnInteraction: true })
+  );
+
   return (
     <section className="py-8 md:py-12">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
@@ -45,11 +50,14 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ products, onAddToCart
         </div>
 
         <Carousel
+          plugins={[plugin.current]}
           opts={{
             align: "start",
             loop: true,
           }}
           className="w-full"
+          onMouseEnter={plugin.current.stop}
+          onMouseLeave={plugin.current.reset}
         >
           <CarouselContent className="-ml-2 md:-ml-4">
             {products.map((product) => (
