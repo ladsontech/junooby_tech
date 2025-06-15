@@ -56,18 +56,28 @@ const Products = () => {
 
       if (error) throw error;
       
-      // Transform the data to ensure specs is always a string array
-      const transformedData: Product[] = (data || []).map((product: DbProduct) => ({
-        id: product.id,
-        name: product.name,
-        category: product.category,
-        price: product.price,
-        description: product.description || '',
-        specs: Array.isArray(product.specs) ? (product.specs as string[]) : [],
-        main_image_url: product.main_image_url || '',
-        featured: product.featured || false,
-        condition: product.condition || 'new'
-      }));
+      // Normalize specs: Convert JSON object to array of string values as needed
+      const transformedData: Product[] = (data || []).map((product: DbProduct) => {
+        let specs: string[] = [];
+        if (Array.isArray(product.specs)) {
+          specs = product.specs as string[];
+        } else if (product.specs && typeof product.specs === 'object') {
+          specs = Object.values(product.specs).map((val) =>
+            typeof val === 'string' ? val : JSON.stringify(val)
+          );
+        }
+        return {
+          id: product.id,
+          name: product.name,
+          category: product.category,
+          price: product.price,
+          description: product.description || '',
+          specs,
+          main_image_url: product.main_image_url || '',
+          featured: product.featured || false,
+          condition: product.condition || 'new'
+        };
+      });
       
       setProducts(transformedData);
     } catch (error) {
@@ -92,34 +102,35 @@ const Products = () => {
 
   // Subcategory logic for filtering
   const getSubcategoryCheck = (product: Product) => {
+    const specs = product.specs || [];
     // PHONES
     if (activeCategory === "phones" && activeSubcategory !== "all") {
       return (
-        (activeSubcategory === "samsung" && product.specs.some(s => /samsung/i.test(s))) ||
-        (activeSubcategory === "zte" && product.specs.some(s => /zte/i.test(s))) ||
-        (activeSubcategory === "iphone" && product.specs.some(s => /iphone/i.test(s))) ||
-        (activeSubcategory === "googlepixel" && product.specs.some(s => /google\s*pixel/i.test(s)))
+        (activeSubcategory === "samsung" && specs.some(s => /samsung/i.test(s))) ||
+        (activeSubcategory === "zte" && specs.some(s => /zte/i.test(s))) ||
+        (activeSubcategory === "iphone" && specs.some(s => /iphone/i.test(s))) ||
+        (activeSubcategory === "googlepixel" && specs.some(s => /google\s*pixel/i.test(s)))
       );
     }
     // PCS/LAPTOPS
     if (activeCategory === "pcs" && activeSubcategory !== "all") {
       return (
-        (activeSubcategory === "hp" && product.specs.some(s => /hp/i.test(s))) ||
-        (activeSubcategory === "dell" && product.specs.some(s => /dell/i.test(s))) ||
-        (activeSubcategory === "lenovo" && product.specs.some(s => /lenovo/i.test(s))) ||
-        (activeSubcategory === "asus" && product.specs.some(s => /asus/i.test(s))) ||
-        (activeSubcategory === "acer" && product.specs.some(s => /acer/i.test(s))) ||
-        (activeSubcategory === "macbook" && product.specs.some(s => /macbook/i.test(s))) ||
-        (activeSubcategory === "msi" && product.specs.some(s => /msi/i.test(s))) ||
-        (activeSubcategory === "toshiba" && product.specs.some(s => /toshiba/i.test(s)))
+        (activeSubcategory === "hp" && specs.some(s => /hp/i.test(s))) ||
+        (activeSubcategory === "dell" && specs.some(s => /dell/i.test(s))) ||
+        (activeSubcategory === "lenovo" && specs.some(s => /lenovo/i.test(s))) ||
+        (activeSubcategory === "asus" && specs.some(s => /asus/i.test(s))) ||
+        (activeSubcategory === "acer" && specs.some(s => /acer/i.test(s))) ||
+        (activeSubcategory === "macbook" && specs.some(s => /macbook/i.test(s))) ||
+        (activeSubcategory === "msi" && specs.some(s => /msi/i.test(s))) ||
+        (activeSubcategory === "toshiba" && specs.some(s => /toshiba/i.test(s)))
       );
     }
     // CCTV cameras
     if (activeCategory === "cctv" && activeSubcategory !== "all") {
       return (
-        (activeSubcategory === "bullet" && product.specs.some(s => /bullet/i.test(s))) ||
-        (activeSubcategory === "dome" && product.specs.some(s => /dome/i.test(s))) ||
-        (activeSubcategory === "ptz" && product.specs.some(s => /ptz/i.test(s)))
+        (activeSubcategory === "bullet" && specs.some(s => /bullet/i.test(s))) ||
+        (activeSubcategory === "dome" && specs.some(s => /dome/i.test(s))) ||
+        (activeSubcategory === "ptz" && specs.some(s => /ptz/i.test(s)))
       );
     }
     // If "all" subcategory, always return true
