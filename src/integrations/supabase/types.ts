@@ -30,6 +30,63 @@ export type Database = {
         }
         Relationships: []
       }
+      cctv_specs: {
+        Row: {
+          cctv_subcategory_id: string | null
+          created_at: string | null
+          id: string
+          name: string
+          ptz_type_id: string | null
+        }
+        Insert: {
+          cctv_subcategory_id?: string | null
+          created_at?: string | null
+          id?: string
+          name: string
+          ptz_type_id?: string | null
+        }
+        Update: {
+          cctv_subcategory_id?: string | null
+          created_at?: string | null
+          id?: string
+          name?: string
+          ptz_type_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cctv_specs_cctv_subcategory_id_fkey"
+            columns: ["cctv_subcategory_id"]
+            isOneToOne: false
+            referencedRelation: "cctv_subcategories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "cctv_specs_ptz_type_id_fkey"
+            columns: ["ptz_type_id"]
+            isOneToOne: false
+            referencedRelation: "ptz_camera_types"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      cctv_subcategories: {
+        Row: {
+          created_at: string | null
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
       gadget_specs: {
         Row: {
           brand_id: string | null
@@ -144,6 +201,7 @@ export type Database = {
         Row: {
           brand_id: string | null
           category: Database["public"]["Enums"]["product_category"]
+          cctv_subcategory_id: string | null
           condition: string | null
           created_at: string | null
           description: string | null
@@ -153,6 +211,7 @@ export type Database = {
           main_image_url: string | null
           name: string
           price: string
+          ptz_type_id: string | null
           specs: Json | null
           subcategory_id: string | null
           updated_at: string | null
@@ -160,6 +219,7 @@ export type Database = {
         Insert: {
           brand_id?: string | null
           category: Database["public"]["Enums"]["product_category"]
+          cctv_subcategory_id?: string | null
           condition?: string | null
           created_at?: string | null
           description?: string | null
@@ -169,6 +229,7 @@ export type Database = {
           main_image_url?: string | null
           name: string
           price: string
+          ptz_type_id?: string | null
           specs?: Json | null
           subcategory_id?: string | null
           updated_at?: string | null
@@ -176,6 +237,7 @@ export type Database = {
         Update: {
           brand_id?: string | null
           category?: Database["public"]["Enums"]["product_category"]
+          cctv_subcategory_id?: string | null
           condition?: string | null
           created_at?: string | null
           description?: string | null
@@ -185,6 +247,7 @@ export type Database = {
           main_image_url?: string | null
           name?: string
           price?: string
+          ptz_type_id?: string | null
           specs?: Json | null
           subcategory_id?: string | null
           updated_at?: string | null
@@ -198,10 +261,53 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "products_cctv_subcategory_id_fkey"
+            columns: ["cctv_subcategory_id"]
+            isOneToOne: false
+            referencedRelation: "cctv_subcategories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "products_ptz_type_id_fkey"
+            columns: ["ptz_type_id"]
+            isOneToOne: false
+            referencedRelation: "ptz_camera_types"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "products_subcategory_id_fkey"
             columns: ["subcategory_id"]
             isOneToOne: false
             referencedRelation: "gadget_subcategories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ptz_camera_types: {
+        Row: {
+          created_at: string | null
+          id: string
+          name: string
+          subcategory_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          name: string
+          subcategory_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          name?: string
+          subcategory_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ptz_camera_types_subcategory_id_fkey"
+            columns: ["subcategory_id"]
+            isOneToOne: false
+            referencedRelation: "cctv_subcategories"
             referencedColumns: ["id"]
           },
         ]

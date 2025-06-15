@@ -15,6 +15,7 @@ import { Upload, X } from 'lucide-react';
 import { Database } from '@/integrations/supabase/types';
 
 import ProductSpecsFields from './ProductSpecsFields';
+import CctvSpecsFields from './CctvSpecsFields';
 
 type DbProduct = Database['public']['Tables']['products']['Row'];
 
@@ -73,6 +74,13 @@ const ProductForm = () => {
   const [brands, setBrands] = useState<{id: string, name: string}[]>([]);
   const [specValues, setSpecValues] = useState<{[specId: string]: string}>({});
 
+  // ----------------------------
+  // New state for CCTV subcategories, PTZ types, and cctv spec field values
+  // ----------------------------
+  const [cctvSubcategories, setCctvSubcategories] = useState<{ id: string; name: string }[]>([]);
+  const [ptzTypes, setPtzTypes] = useState<{ id: string; name: string }[]>([]);
+  const [cctvSpecValues, setCctvSpecValues] = useState<{ [specId: string]: string }>({});
+
   useEffect(() => {
     if (isEdit && id && admin) {
       fetchProduct();
@@ -95,11 +103,33 @@ const ProductForm = () => {
   }, []);
 
   // ---------------
+  // Fetch all meta on mount
+  // ---------------
+  useEffect(() => {
+    const fetchCctvMeta = async () => {
+      const [{ data: cctvSubcat }, { data: ptz }] = await Promise.all([
+        supabase.from('cctv_subcategories').select('id, name').order('name'),
+        supabase.from('ptz_camera_types').select('id, name, subcategory_id').order('name'),
+      ]);
+      setCctvSubcategories(cctvSubcat || []);
+      setPtzTypes(ptz || []);
+    };
+    fetchCctvMeta();
+  }, []);
+
+  // ---------------
   // On subcat/brand select reset specs
   // ---------------
   useEffect(() => {
     setSpecValues({});
   }, [formData.gadgetSubcategory, formData.laptopBrand]);
+
+  // ---------------
+  // On cctv subcat/ptz type select reset cctv specs
+  // ---------------
+  useEffect(() => {
+    setCctvSpecValues({});
+  }, [formData.category, formData.cctvSubcategory, formData.ptzType]);
 
   const fetchProduct = async () => {
     try {
@@ -231,6 +261,14 @@ const ProductForm = () => {
 
   const selectedBrandId = brands.find(
     (x) => x.name.toLowerCase() === formData.laptopBrand.toLowerCase()
+  )?.id || null;
+
+  const selectedCctvSubcatId = cctvSubcategories.find(
+    x => x.name.toLowerCase() === (formData.cctvSubcategory || "").toLowerCase()
+  )?.id || null;
+  const selectedPtzTypeId = ptzTypes.find(
+    x => x.name.toLowerCase() === (formData.ptzType || "").toLowerCase()
+      && x.subcategory_id === selectedCctvSubcatId
   )?.id || null;
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -416,6 +454,60 @@ const ProductForm = () => {
                     </div>
                   )}
 
+                {/* CCTV Subcategory select */}
+                {formData.category === 'cctv' && (
+                  <div>
+                    <Label htmlFor="cctvSubcategory">Camera Type</Label>
+                    <select
+                      id="cctvSubcategory"
+                      className="w-full border rounded p-2 mt-1"
+                      value={formData.cctvSubcategory || ''}
+                      onChange={e =>
+                        setFormData(prev => ({
+                          ...prev,
+                          cctvSubcategory: e.target.value,
+                          ptzType: '',
+                        }))
+                      }
+                    >
+                      <option value="">Select Camera Type</option>
+                      {cctvSubcategories.map(s => (
+                        <option key={s.id} value={s.name}>
+                          {s.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+
+                {/* PTZ Type select (only if cctvSubcategory is "ptz") */}
+                {formData.category === 'cctv' &&
+                  (formData.cctvSubcategory || '').toLowerCase() === 'ptz' && (
+                    <div>
+                      <Label htmlFor="ptzType">PTZ Type</Label>
+                      <select
+                        id="ptzType"
+                        className="w-full border rounded p-2 mt-1"
+                        value={formData.ptzType || ''}
+                        onChange={e =>
+                          setFormData(prev => ({
+                            ...prev,
+                            ptzType: e.target.value,
+                          }))
+                        }
+                      >
+                        <option value="">Select PTZ Type</option>
+                        {ptzTypes
+                          .filter((t) => t.subcategory_id === selectedCctvSubcatId)
+                          .map((t) => (
+                            <option key={t.id} value={t.name}>
+                              {t.name}
+                            </option>
+                          ))}
+                      </select>
+                    </div>
+                  )}
+
                 {/* --- Specs fields --- */}
                 {formData.category === 'gadgets' && (
                   <div>
@@ -429,6 +521,21 @@ const ProductForm = () => {
                       }
                       values={specValues}
                       onChange={setSpecValues}
+                    />
+                  </div>
+                )}
+                {formData.category === 'cctv' && (
+                  <div>
+                    <Label>Specifications</Label>
+                    <CctvSpecsFields
+                      cctvSubcategoryId={selectedCctvSubcatId}
+                      ptzTypeId={
+                        (formData.cctvSubcategory || '').toLowerCase() === 'ptz'
+                          ? selectedPtzTypeId
+                          : undefined
+                      }
+                      values={cctvSpecValues}
+                      onChange={setCctvSpecValues}
                     />
                   </div>
                 )}
