@@ -303,26 +303,22 @@ const ProductForm = () => {
 
     try {
       const mainImage = images.find(img => img.is_main);
-      // Build displayCategory string for storage and searchability
-      let displayCategory = formData.category;
-      if (formData.category === 'gadgets' && formData.gadgetSubcategory) {
-        displayCategory += ':' + formData.gadgetSubcategory;
-        if (formData.gadgetSubcategory.toLowerCase() === 'laptops' && formData.laptopBrand) {
-          displayCategory += ':' + formData.laptopBrand;
-        }
-      }
+      const productSpecs = formData.category === 'gadgets' ? specValues : cctvSpecValues;
 
-      const productData: any = {
-        ...formData,
+      const productData = {
+        name: formData.name,
         category: formData.category,
-        subcategory: formData.gadgetSubcategory,
-        brand: formData.laptopBrand,
+        price: formData.price,
+        description: formData.description,
+        detailed_description: formData.detailed_description,
+        condition: formData.condition,
+        featured: formData.featured,
         main_image_url: mainImage?.image_url || null,
-        // Instead of specs: formData.specs...use specValues as a map {specId:value}
-        specs: specValues,
-        display_category: displayCategory,
+        specs: productSpecs,
         subcategory_id: selectedSubcatId,
         brand_id: selectedBrandId,
+        cctv_subcategory_id: selectedCctvSubcatId,
+        ptz_type_id: selectedPtzTypeId,
       };
 
       let productId = id;
