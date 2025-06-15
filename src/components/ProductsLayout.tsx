@@ -31,9 +31,9 @@ const ProductsLayout: React.FC<ProductsLayoutProps> = ({ children, showBackToMai
                 }} 
               />
               <div className="w-12 h-12 lg:w-14 lg:h-14 bg-blue-600 rounded-lg" style={{display: 'none'}}></div>
-              <div className="flex flex-col">
+              <div className="flex flex-col lg:flex-row lg:items-baseline lg:space-x-2">
                 <span className="font-bold text-blue-600 text-2xl lg:text-3xl xl:text-4xl">Junooby</span>
-                <span className="text-sm lg:text-base text-gray-600">Products Store</span>
+                <span className="text-sm lg:text-base text-gray-600">Gadgets Store</span>
               </div>
             </div>
             
