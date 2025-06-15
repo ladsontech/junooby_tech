@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import ProductsLayout from '@/components/ProductsLayout';
 import ProductCard from '@/components/ProductCard';
@@ -190,7 +189,7 @@ const Products = () => {
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:gap-5">
+            <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:gap-5">
               {filteredProducts.map((product) => (
                 <ProductCard
                   key={product.id}
