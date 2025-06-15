@@ -229,8 +229,11 @@ const ProductDetail = () => {
             <div className="space-y-3 md:space-y-4">
               <div>
                 <div className="flex items-center gap-2 mb-2 flex-wrap">
-                  <Badge variant={product.category === 'gadgets' ? 'default' : 'secondary'}>
-                    {product.category === 'gadgets' ? 'Gadget' : 'CCTV'}
+                  {/* Only show condition and featured badges */}
+                  <Badge variant={product.category === 'cctv' ? 'default' : 'secondary'}>
+                    {product.category === 'phones' && "Phone"}
+                    {product.category === 'pcs' && "PC"}
+                    {product.category === 'cctv' && "CCTV"}
                   </Badge>
                   <Badge variant={product.condition === 'new' ? 'default' : 'secondary'} className={
                     product.condition === 'new' ? 'bg-emerald-600' : 'bg-amber-600'

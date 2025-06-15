@@ -335,9 +335,11 @@ const ProductForm = () => {
         ? specValues
         : cctvSpecValues;
 
-      const productData: Partial<DbProduct> = {
+      // Compose insert type with required fields for Supabase
+      // category is now required, so we guarantee it's present
+      const productData = {
         name: formData.name,
-        category: formData.category, // guaranteed to be 'phones' | 'pcs' | 'cctv'
+        category: formData.category, // guaranteed to be present, type 'phones' | 'pcs' | 'cctv'
         price: formData.price,
         description: formData.description,
         detailed_description: formData.detailed_description,
@@ -360,9 +362,10 @@ const ProductForm = () => {
           .eq('id', id);
         if (error) throw error;
       } else {
+        // Do NOT use Partial for insert, supply with all required values!
         const { data, error } = await supabase
           .from('products')
-          .insert(productData)
+          .insert([productData])
           .select()
           .single();
         if (error) throw error;
