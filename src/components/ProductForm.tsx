@@ -44,6 +44,33 @@ const laptopBrands = [
   { value: 'toshiba', label: 'Toshiba' }
 ];
 
+const phoneSubcategories = [
+  { value: 'samsung', label: 'Samsung' },
+  { value: 'zte', label: 'ZTE' },
+  { value: 'iphone', label: 'iPhone' },
+  { value: 'googlepixel', label: 'Google Pixel' },
+  { value: 'other', label: 'Other' },
+];
+
+const pcBrands = [
+  { value: 'hp', label: 'HP' },
+  { value: 'dell', label: 'Dell' },
+  { value: 'lenovo', label: 'Lenovo' },
+  { value: 'acer', label: 'Acer' },
+  { value: 'asus', label: 'ASUS' },
+  { value: 'macbook', label: 'MacBook' },
+  { value: 'msi', label: 'MSI' },
+  { value: 'toshiba', label: 'Toshiba' },
+  { value: 'other', label: 'Other' },
+];
+
+const cctvSubcategories = [
+  { value: 'bullet', label: 'Bullet' },
+  { value: 'dome', label: 'Dome' },
+  { value: 'ptz', label: 'PTZ' },
+  { value: 'other', label: 'Other' },
+];
+
 const ProductForm = () => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -52,9 +79,9 @@ const ProductForm = () => {
 
   const [formData, setFormData] = useState({
     name: '',
-    category: 'gadgets' as 'gadgets' | 'cctv',
-    gadgetSubcategory: '',
-    laptopBrand: '',
+    category: 'phones' as 'phones' | 'pcs' | 'cctv', // default to 'phones'
+    phoneSubcategory: '',
+    pcBrand: '',
     cctvSubcategory: '',
     ptzType: '',
     price: '',
@@ -408,9 +435,9 @@ const ProductForm = () => {
                       value={formData.category}
                       onValueChange={(value) => setFormData(prev => ({
                         ...prev,
-                        category: value as 'gadgets' | 'cctv',
-                        gadgetSubcategory: '',
-                        laptopBrand: '',
+                        category: value as 'phones' | 'pcs' | 'cctv',
+                        phoneSubcategory: '',
+                        pcBrand: '',
                         cctvSubcategory: '',
                         ptzType: '',
                       }))}
@@ -419,76 +446,75 @@ const ProductForm = () => {
                         <SelectValue placeholder="Category" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="gadgets">Gadgets</SelectItem>
-                        <SelectItem value="cctv">CCTV</SelectItem>
+                        <SelectItem value="phones">Phones</SelectItem>
+                        <SelectItem value="pcs">PCs</SelectItem>
+                        <SelectItem value="cctv">CCTV Cameras</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                 </div>
 
-                {/* ------------------------------- */}
-                {/* Sub-Category select from DB */}
-                {formData.category === 'gadgets' && (
+                {/* --- Phones Subcategory --- */}
+                {formData.category === 'phones' && (
                   <div>
-                    <Label htmlFor="gadgetSubcategory">Gadget Type</Label>
+                    <Label htmlFor="phoneSubcategory">Phone Brand</Label>
                     <Select
-                      value={formData.gadgetSubcategory}
+                      value={formData.phoneSubcategory}
                       onValueChange={(value) =>
                         setFormData((prev) => ({
                           ...prev,
-                          gadgetSubcategory: value,
-                          laptopBrand: '',
+                          phoneSubcategory: value,
                         }))
                       }
                     >
-                      <SelectTrigger id="gadgetSubcategory">
-                        <SelectValue placeholder="Select Gadget Type" />
+                      <SelectTrigger id="phoneSubcategory">
+                        <SelectValue placeholder="Select Phone Brand" />
                       </SelectTrigger>
                       <SelectContent>
-                        {subcategories.map((s) => (
-                          <SelectItem key={s.id} value={s.name}>
-                            {s.name}
+                        {phoneSubcategories.map((b) => (
+                          <SelectItem key={b.value} value={b.value}>
+                            {b.label}
                           </SelectItem>
                         ))}
                       </SelectContent>
                     </Select>
                   </div>
                 )}
-                {/* Laptop Brand select from DB */}
-                {formData.category === 'gadgets' &&
-                  formData.gadgetSubcategory.toLowerCase() === 'laptops' && (
-                    <div>
-                      <Label htmlFor="laptopBrand">Laptop Brand</Label>
-                      <Select
-                        value={formData.laptopBrand}
-                        onValueChange={(value) =>
-                          setFormData((prev) => ({
-                            ...prev,
-                            laptopBrand: value,
-                          }))
-                        }
-                      >
-                        <SelectTrigger id="laptopBrand">
-                          <SelectValue placeholder="Select Laptop Brand" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {brands.map((b) => (
-                            <SelectItem key={b.id} value={b.name}>
-                              {b.name}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  )}
 
-                {/* CCTV Subcategory select */}
+                {/* --- PC Brand --- */}
+                {formData.category === 'pcs' && (
+                  <div>
+                    <Label htmlFor="pcBrand">PC/Laptop Brand</Label>
+                    <Select
+                      value={formData.pcBrand}
+                      onValueChange={(value) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          pcBrand: value,
+                        }))
+                      }
+                    >
+                      <SelectTrigger id="pcBrand">
+                        <SelectValue placeholder="Select Brand" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {pcBrands.map((b) => (
+                          <SelectItem key={b.value} value={b.value}>
+                            {b.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                )}
+
+                {/* --- CCTV Subcategory --- */}
                 {formData.category === 'cctv' && (
                   <div>
                     <Label htmlFor="cctvSubcategory">Camera Type</Label>
                     <Select
-                      value={formData.cctvSubcategory || ''}
-                      onValueChange={value =>
+                      value={formData.cctvSubcategory}
+                      onValueChange={(value) =>
                         setFormData(prev => ({
                           ...prev,
                           cctvSubcategory: value,
@@ -500,9 +526,9 @@ const ProductForm = () => {
                         <SelectValue placeholder="Select Camera Type" />
                       </SelectTrigger>
                       <SelectContent>
-                        {cctvSubcategories.map(s => (
-                          <SelectItem key={s.id} value={s.name}>
-                            {s.name}
+                        {cctvSubcategories.map((s) => (
+                          <SelectItem key={s.value} value={s.value}>
+                            {s.label}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -510,65 +536,32 @@ const ProductForm = () => {
                   </div>
                 )}
 
-                {/* PTZ Type select (only if cctvSubcategory is "ptz") */}
-                {formData.category === 'cctv' &&
-                  (formData.cctvSubcategory || '').toLowerCase() === 'ptz' && (
-                    <div>
-                      <Label htmlFor="ptzType">PTZ Type</Label>
-                      <Select
-                        value={formData.ptzType || ''}
-                        onValueChange={value =>
-                          setFormData(prev => ({
-                            ...prev,
-                            ptzType: value,
-                          }))
-                        }
-                      >
-                        <SelectTrigger id="ptzType">
-                          <SelectValue placeholder="Select PTZ Type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {ptzTypes
-                            .filter((t) => t.subcategory_id === selectedCctvSubcatId)
-                            .map((t) => (
-                              <SelectItem key={t.id} value={t.name}>
-                                {t.name}
-                              </SelectItem>
-                            ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  )}
-
-                {/* --- Specs fields --- */}
-                {formData.category === 'gadgets' && (
+                {/* PTZ Type dropdown if "ptz" selected */}
+                {formData.category === 'cctv' && formData.cctvSubcategory === 'ptz' && (
                   <div>
-                    <Label>Specifications</Label>
-                    <ProductSpecsFields
-                      subcategoryId={selectedSubcatId}
-                      brandId={
-                        formData.gadgetSubcategory?.toLowerCase() === 'laptops'
-                          ? selectedBrandId
-                          : undefined
+                    <Label htmlFor="ptzType">PTZ Type</Label>
+                    <Select
+                      value={formData.ptzType || ''}
+                      onValueChange={(value) =>
+                        setFormData(prev => ({
+                          ...prev,
+                          ptzType: value,
+                        }))
                       }
-                      values={specValues}
-                      onChange={setSpecValues}
-                    />
-                  </div>
-                )}
-                {formData.category === 'cctv' && (
-                  <div>
-                    <Label>Specifications</Label>
-                    <CctvSpecsFields
-                      cctvSubcategoryId={selectedCctvSubcatId}
-                      ptzTypeId={
-                        (formData.cctvSubcategory || '').toLowerCase() === 'ptz'
-                          ? selectedPtzTypeId
-                          : undefined
-                      }
-                      values={cctvSpecValues}
-                      onChange={setCctvSpecValues}
-                    />
+                    >
+                      <SelectTrigger id="ptzType">
+                        <SelectValue placeholder="Select PTZ Type" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {ptzTypes
+                          .filter((t) => t.subcategory_id === selectedCctvSubcatId)
+                          .map((t) => (
+                            <SelectItem key={t.id} value={t.name}>
+                              {t.name}
+                            </SelectItem>
+                          ))}
+                      </SelectContent>
+                    </Select>
                   </div>
                 )}
 
