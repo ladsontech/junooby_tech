@@ -43,32 +43,32 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
         </AspectRatio>
       </div>
       
-      <div className="p-3 md:p-4 flex flex-col flex-grow">
-        <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium text-white mb-2 self-start ${
+      <div className="p-2 sm:p-3 md:p-4 flex flex-col flex-grow">
+        <span className={`inline-block px-1.5 sm:px-2 py-0.5 rounded-full text-xs font-medium text-white mb-1.5 sm:mb-2 self-start ${
             product.condition === 'new' 
               ? 'bg-emerald-600' 
               : 'bg-amber-600'
           }`}>
             {product.condition === 'new' ? 'Brand New' : 'Refurbished'}
         </span>
-        <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-2 line-clamp-2">{product.name}</h3>
-        <div className="space-y-1 mb-3 flex-grow">
+        <h3 className="text-sm sm:text-base md:text-lg font-semibold text-gray-900 mb-1.5 sm:mb-2 line-clamp-2 leading-tight">{product.name}</h3>
+        <div className="space-y-0.5 sm:space-y-1 mb-2 sm:mb-3 flex-grow">
           {product.specs && product.specs.slice(0, 2).map((spec, index) => (
-            <p key={index} className="text-xs text-gray-600 line-clamp-1">• {spec}</p>
+            <p key={index} className="text-xs sm:text-xs text-gray-600 line-clamp-1 leading-tight">• {spec}</p>
           ))}
         </div>
-        <div className="flex flex-col gap-2 mt-auto">
-          <span className="text-lg md:text-xl font-bold text-blue-600">{formatPrice(product.price)}</span>
-          <div className="flex flex-col sm:flex-row gap-2">
+        <div className="flex flex-col gap-1.5 sm:gap-2 mt-auto">
+          <span className="text-base sm:text-lg md:text-xl font-bold text-blue-600">{formatPrice(product.price)}</span>
+          <div className="flex flex-col gap-1.5 sm:gap-2">
             <Link 
               to={`/product/${product.id}`}
-              className="flex-1 bg-white border border-blue-600 text-blue-600 px-3 py-2 rounded-lg font-medium hover:bg-blue-50 transition-all duration-300 text-sm text-center"
+              className="w-full bg-white border border-blue-600 text-blue-600 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg font-medium hover:bg-blue-50 transition-all duration-300 text-xs sm:text-sm text-center"
             >
               View Details
             </Link>
             <button 
               onClick={() => onAddToCart(product)}
-              className="flex-1 bg-blue-600 text-white px-3 py-2 rounded-lg font-medium hover:bg-blue-700 transition-all duration-300 text-sm"
+              className="w-full bg-blue-600 text-white px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg font-medium hover:bg-blue-700 transition-all duration-300 text-xs sm:text-sm"
             >
               Add to Cart
             </button>
