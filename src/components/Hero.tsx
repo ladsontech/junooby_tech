@@ -1,3 +1,4 @@
+
 import React from 'react';
 import TypewriterEffect from './TypewriterEffect';
 import { Link } from 'react-router-dom';
@@ -37,7 +38,7 @@ const Hero = () => {
       <section className="min-h-[70vh] bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 pt-16 pb-8 md:pt-24 md:pb-14 flex items-center animate-fade-in">
         <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center md:items-stretch justify-between px-4 gap-8 md:gap-8 lg:gap-14">
           {/* Left: Headline & Actions */}
-          <div className="flex-1 flex flex-col justify-center items-start text-left space-y-6 xs:space-y-7">
+          <div className="flex-1 flex flex-col justify-center items-center md:items-start text-center md:text-left space-y-6 xs:space-y-7">
             <h1 className="font-extrabold leading-tight tracking-tight text-white drop-shadow-xl text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl transition-all">
               <span className="block mb-1 xs:mb-2 text-blue-400 text-base xs:text-lg sm:text-2xl md:text-3xl">
                 Junooby Digital Solutions
@@ -46,7 +47,7 @@ const Hero = () => {
                 Tech for Uganda&#39;s Businesses
               </span>
             </h1>
-            <div className="h-8 xs:h-10 sm:h-12 flex items-center text-cyan-300 font-semibold text-base xs:text-xl sm:text-2xl md:text-3xl mb-0.5 xs:mb-1 transition-all">
+            <div className="h-8 xs:h-10 sm:h-12 flex items-center justify-center md:justify-start text-cyan-300 font-semibold text-base xs:text-xl sm:text-2xl md:text-3xl mb-0.5 xs:mb-1 transition-all">
               <TypewriterEffect />
             </div>
             <p className="text-gray-300 text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl max-w-xl leading-relaxed font-medium">
