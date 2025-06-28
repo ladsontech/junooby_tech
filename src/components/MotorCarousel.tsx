@@ -55,16 +55,16 @@ const MotorCarousel: React.FC<MotorCarouselProps> = ({ cars, onInquire }) => {
             {cars.map((car) => (
               <CarouselItem key={car.id} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/4 2xl:basis-1/5">
                 <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 group h-full flex flex-col">
-                  {/* Car Image with 16:9 ratio */}
+                  {/* Car Image with 1:1 ratio */}
                   <div className="relative overflow-hidden">
-                    <AspectRatio ratio={16/9}>
+                    <AspectRatio ratio={1}>
                       <img 
                         src={car.image} 
                         alt={car.name}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
-                          target.src = "https://images.unsplash.com/photo-1623869675781-80aa31012a5a?w=600&h=338&fit=crop";
+                          target.src = "https://images.unsplash.com/photo-1623869675781-80aa31012a5a?w=400&h=400&fit=crop";
                         }}
                       />
                     </AspectRatio>

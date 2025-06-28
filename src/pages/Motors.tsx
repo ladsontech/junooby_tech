@@ -20,7 +20,7 @@ const Motors = () => {
     {
       id: 1,
       name: "Toyota Corolla 2019",
-      image: "https://images.unsplash.com/photo-1623869675781-80aa31012a5a?w=600&h=338&fit=crop",
+      image: "https://images.unsplash.com/photo-1623869675781-80aa31012a5a?w=400&h=400&fit=crop",
       condition: "used",
       year: 2019,
       price: "UGX 45,000,000",
@@ -40,7 +40,7 @@ const Motors = () => {
     {
       id: 2,
       name: "Honda CR-V 2020",
-      image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=600&h=338&fit=crop",
+      image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=400&fit=crop",
       condition: "used",
       year: 2020,
       price: "UGX 85,000,000",
@@ -60,7 +60,7 @@ const Motors = () => {
     {
       id: 3,
       name: "Toyota Hiace 2018",
-      image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&h=338&fit=crop",
+      image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=400&h=400&fit=crop",
       condition: "used",
       year: 2018,
       price: "UGX 65,000,000",
@@ -80,7 +80,7 @@ const Motors = () => {
     {
       id: 4,
       name: "Subaru Forester 2021",
-      image: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=600&h=338&fit=crop",
+      image: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=400&h=400&fit=crop",
       condition: "new",
       year: 2021,
       price: "UGX 95,000,000",
@@ -100,7 +100,7 @@ const Motors = () => {
     {
       id: 5,
       name: "Nissan X-Trail 2019",
-      image: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=600&h=338&fit=crop",
+      image: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=400&h=400&fit=crop",
       condition: "used",
       year: 2019,
       price: "UGX 70,000,000",
@@ -120,7 +120,7 @@ const Motors = () => {
     {
       id: 6,
       name: "Toyota Land Cruiser 2020",
-      image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=600&h=338&fit=crop",
+      image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=400&fit=crop",
       condition: "used",
       year: 2020,
       price: "UGX 180,000,000",
@@ -140,7 +140,7 @@ const Motors = () => {
     {
       id: 7,
       name: "Honda Fit 2017",
-      image: "https://images.unsplash.com/photo-1623869675781-80aa31012a5a?w=600&h=338&fit=crop",
+      image: "https://images.unsplash.com/photo-1623869675781-80aa31012a5a?w=400&h=400&fit=crop",
       condition: "used",
       year: 2017,
       price: "UGX 28,000,000",
@@ -160,7 +160,7 @@ const Motors = () => {
     {
       id: 8,
       name: "Toyota Prado 2022",
-      image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&h=338&fit=crop",
+      image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=400&h=400&fit=crop",
       condition: "new",
       year: 2022,
       price: "UGX 150,000,000",
@@ -259,16 +259,16 @@ const Motors = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {cars.map((car) => (
               <div key={car.id} className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group">
-                {/* Car Image with 16:9 ratio */}
+                {/* Car Image with 1:1 ratio */}
                 <div className="relative overflow-hidden">
-                  <AspectRatio ratio={16/9}>
+                  <AspectRatio ratio={1}>
                     <img 
                       src={car.image} 
                       alt={car.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
-                        target.src = "https://images.unsplash.com/photo-1623869675781-80aa31012a5a?w=600&h=338&fit=crop";
+                        target.src = "https://images.unsplash.com/photo-1623869675781-80aa31012a5a?w=400&h=400&fit=crop";
                       }}
                     />
                   </AspectRatio>

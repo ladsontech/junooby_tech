@@ -70,14 +70,14 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({
               <CarouselItem key={product.id} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/4 2xl:basis-1/5">
                 <div className="bg-gradient-to-br from-white to-blue-50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 group h-full flex flex-col border border-blue-100">
                   <div className="relative overflow-hidden">
-                    <AspectRatio ratio={16/9}>
+                    <AspectRatio ratio={1}>
                       <img 
                         src={product.main_image_url || '/images/HP 15_6.jpg'} 
                         alt={product.name}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
-                          target.src = "https://images.unsplash.com/photo-1587831990711-23ca6441447b?w=600&h=338&fit=crop";
+                          target.src = "https://images.unsplash.com/photo-1587831990711-23ca6441447b?w=400&h=400&fit=crop";
                         }}
                       />
                     </AspectRatio>
