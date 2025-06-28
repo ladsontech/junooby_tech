@@ -11,7 +11,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
-import { Upload, X } from 'lucide-react';
+import { Upload, X, ArrowLeft } from 'lucide-react';
 import { Database } from '@/integrations/supabase/types';
 
 import ProductSpecsFields from './ProductSpecsFields';
@@ -79,7 +79,7 @@ const ProductForm = () => {
 
   const [formData, setFormData] = useState({
     name: '',
-    category: 'phones' as 'phones' | 'pcs' | 'cctv', // default to 'phones'
+    category: 'phones' as 'phones' | 'pcs' | 'cctv',
     phoneSubcategory: '',
     pcBrand: '',
     cctvSubcategory: '',
@@ -96,16 +96,12 @@ const ProductForm = () => {
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
 
-  // ----------------------------
   // New state for DB-driven subcats, brands, and spec values
-  // ----------------------------
   const [subcategories, setSubcategories] = useState<{id: string, name: string}[]>([]);
   const [brands, setBrands] = useState<{id: string, name: string}[]>([]);
   const [specValues, setSpecValues] = useState<{[specId: string]: string}>({});
 
-  // ----------------------------
   // New state for CCTV subcategories, PTZ types, and cctv spec field values
-  // ----------------------------
   const [cctvSubcategories, setCctvSubcategories] = useState<{ id: string; name: string }[]>([]);
   const [ptzTypes, setPtzTypes] = useState<{ id: string; name: string; subcategory_id: string | null }[]>([]);
   const [cctvSpecValues, setCctvSpecValues] = useState<{ [specId: string]: string }>({});
@@ -117,9 +113,7 @@ const ProductForm = () => {
     }
   }, [isEdit, id, admin, cctvSubcategories, ptzTypes]);
 
-  // ---------------
   // Fetch subcategories and brands on mount
-  // ---------------
   useEffect(() => {
     const fetchMeta = async () => {
       const [{ data: subcat }, { data: brand }] = await Promise.all([
@@ -132,9 +126,7 @@ const ProductForm = () => {
     fetchMeta();
   }, []);
 
-  // ---------------
   // Fetch all meta on mount
-  // ---------------
   useEffect(() => {
     const fetchCctvMeta = async () => {
       const [{ data: cctvSubcat }, { data: ptz }] = await Promise.all([
@@ -147,16 +139,12 @@ const ProductForm = () => {
     fetchCctvMeta();
   }, []);
 
-  // ---------------
   // On subcat/brand select reset specs
-  // ---------------
   useEffect(() => {
     setSpecValues({});
   }, [formData.phoneSubcategory, formData.pcBrand]);
 
-  // ---------------
   // On cctv subcat/ptz type select reset cctv specs
-  // ---------------
   useEffect(() => {
     setCctvSpecValues({});
   }, [formData.category, formData.cctvSubcategory, formData.ptzType]);
@@ -336,10 +324,9 @@ const ProductForm = () => {
         : cctvSpecValues;
 
       // Compose insert type with required fields for Supabase
-      // category is now required, so we guarantee it's present
       const productData = {
         name: formData.name,
-        category: formData.category, // guaranteed to be present, type 'phones' | 'pcs' | 'cctv'
+        category: formData.category,
         price: formData.price,
         description: formData.description,
         detailed_description: formData.detailed_description,
@@ -362,7 +349,6 @@ const ProductForm = () => {
           .eq('id', id);
         if (error) throw error;
       } else {
-        // Do NOT use Partial for insert, supply with all required values!
         const { data, error } = await supabase
           .from('products')
           .insert([productData])
@@ -405,9 +391,11 @@ const ProductForm = () => {
   };
 
   if (isLoading) {
-    return <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 flex items-center justify-center">
-      <div>Loading...</div>
-    </div>;
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 flex items-center justify-center">
+        <div className="text-lg">Loading...</div>
+      </div>
+    );
   }
 
   if (!admin) {
@@ -417,26 +405,49 @@ const ProductForm = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
       <Navbar />
-      <div className="pt-20 p-4">
+      
+      {/* Main Content Container with proper spacing */}
+      <div className="pt-20 md:pt-24 pb-6 px-3 sm:px-4 md:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-xl md:text-2xl">{isEdit ? 'Edit Product' : 'Add New Product'}</CardTitle>
+          
+          {/* Back Button */}
+          <div className="mb-6">
+            <Button 
+              variant="outline" 
+              onClick={() => navigate('/admin')}
+              className="flex items-center gap-2"
+            >
+              <ArrowLeft size={16} />
+              Back to Dashboard
+            </Button>
+          </div>
+
+          <Card className="shadow-lg border-0">
+            <CardHeader className="pb-6">
+              <CardTitle className="text-xl sm:text-2xl md:text-3xl">
+                {isEdit ? 'Edit Product' : 'Add New Product'}
+              </CardTitle>
             </CardHeader>
-            <CardContent>
+            
+            <CardContent className="space-y-6">
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="name">Product Name</Label>
+                
+                {/* Basic Information */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="name" className="text-sm font-medium">Product Name</Label>
                     <Input
                       id="name"
                       value={formData.name}
                       onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                      placeholder="Enter product name"
                       required
+                      className="w-full"
                     />
                   </div>
-                  <div>
-                    <Label htmlFor="category">Category</Label>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="category" className="text-sm font-medium">Category</Label>
                     <Select
                       value={formData.category}
                       onValueChange={(value) => setFormData(prev => ({
@@ -448,8 +459,8 @@ const ProductForm = () => {
                         ptzType: '',
                       }))}
                     >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Category" />
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Select category" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="phones">Phones</SelectItem>
@@ -460,10 +471,10 @@ const ProductForm = () => {
                   </div>
                 </div>
 
-                {/* --- Phones Subcategory --- */}
+                {/* Category-specific fields */}
                 {formData.category === 'phones' && (
-                  <div>
-                    <Label htmlFor="phoneSubcategory">Phone Brand</Label>
+                  <div className="space-y-2">
+                    <Label htmlFor="phoneSubcategory" className="text-sm font-medium">Phone Brand</Label>
                     <Select
                       value={formData.phoneSubcategory}
                       onValueChange={(value) =>
@@ -473,7 +484,7 @@ const ProductForm = () => {
                         }))
                       }
                     >
-                      <SelectTrigger id="phoneSubcategory">
+                      <SelectTrigger id="phoneSubcategory" className="w-full">
                         <SelectValue placeholder="Select Phone Brand" />
                       </SelectTrigger>
                       <SelectContent>
@@ -487,10 +498,9 @@ const ProductForm = () => {
                   </div>
                 )}
 
-                {/* --- PC Brand --- */}
                 {formData.category === 'pcs' && (
-                  <div>
-                    <Label htmlFor="pcBrand">PC/Laptop Brand</Label>
+                  <div className="space-y-2">
+                    <Label htmlFor="pcBrand" className="text-sm font-medium">PC/Laptop Brand</Label>
                     <Select
                       value={formData.pcBrand}
                       onValueChange={(value) =>
@@ -500,7 +510,7 @@ const ProductForm = () => {
                         }))
                       }
                     >
-                      <SelectTrigger id="pcBrand">
+                      <SelectTrigger id="pcBrand" className="w-full">
                         <SelectValue placeholder="Select Brand" />
                       </SelectTrigger>
                       <SelectContent>
@@ -514,78 +524,84 @@ const ProductForm = () => {
                   </div>
                 )}
 
-                {/* --- CCTV Subcategory --- */}
                 {formData.category === 'cctv' && (
-                  <div>
-                    <Label htmlFor="cctvSubcategory">Camera Type</Label>
-                    <Select
-                      value={formData.cctvSubcategory}
-                      onValueChange={(value) =>
-                        setFormData(prev => ({
-                          ...prev,
-                          cctvSubcategory: value,
-                          ptzType: '',
-                        }))
-                      }
-                    >
-                      <SelectTrigger id="cctvSubcategory">
-                        <SelectValue placeholder="Select Camera Type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {cctvSubcategories.map((s) => (
-                          <SelectItem key={s.id} value={s.name}>
-                            {s.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                )}
-
-                {/* PTZ Type dropdown if "ptz" selected */}
-                {formData.category === 'cctv' && formData.cctvSubcategory.toLowerCase() === 'ptz' && (
-                  <div>
-                    <Label htmlFor="ptzType">PTZ Type</Label>
-                    <Select
-                      value={formData.ptzType || ''}
-                      onValueChange={(value) =>
-                        setFormData(prev => ({
-                          ...prev,
-                          ptzType: value,
-                        }))
-                      }
-                    >
-                      <SelectTrigger id="ptzType">
-                        <SelectValue placeholder="Select PTZ Type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {ptzTypes
-                          .filter((t) => t.subcategory_id === selectedCctvSubcatId)
-                          .map((t) => (
-                            <SelectItem key={t.id} value={t.name}>
-                              {t.name}
+                  <div className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="cctvSubcategory" className="text-sm font-medium">Camera Type</Label>
+                      <Select
+                        value={formData.cctvSubcategory}
+                        onValueChange={(value) =>
+                          setFormData(prev => ({
+                            ...prev,
+                            cctvSubcategory: value,
+                            ptzType: '',
+                          }))
+                        }
+                      >
+                        <SelectTrigger id="cctvSubcategory" className="w-full">
+                          <SelectValue placeholder="Select Camera Type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {cctvSubcategories.map((s) => (
+                            <SelectItem key={s.id} value={s.name}>
+                              {s.name}
                             </SelectItem>
                           ))}
-                      </SelectContent>
-                    </Select>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {formData.cctvSubcategory.toLowerCase() === 'ptz' && (
+                      <div className="space-y-2">
+                        <Label htmlFor="ptzType" className="text-sm font-medium">PTZ Type</Label>
+                        <Select
+                          value={formData.ptzType || ''}
+                          onValueChange={(value) =>
+                            setFormData(prev => ({
+                              ...prev,
+                              ptzType: value,
+                            }))
+                          }
+                        >
+                          <SelectTrigger id="ptzType" className="w-full">
+                            <SelectValue placeholder="Select PTZ Type" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {ptzTypes
+                              .filter((t) => t.subcategory_id === selectedCctvSubcatId)
+                              .map((t) => (
+                                <SelectItem key={t.id} value={t.name}>
+                                  {t.name}
+                                </SelectItem>
+                              ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    )}
                   </div>
                 )}
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div>
-                    <Label htmlFor="price">Price</Label>
+                {/* Price, Condition, Featured */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="price" className="text-sm font-medium">Price</Label>
                     <Input
                       id="price"
                       value={formData.price}
                       onChange={(e) => setFormData(prev => ({ ...prev, price: e.target.value }))}
                       placeholder="UGX 1,000,000"
                       required
+                      className="w-full"
                     />
                   </div>
-                  <div>
-                    <Label htmlFor="condition">Condition</Label>
-                    <Select value={formData.condition} onValueChange={(value) => setFormData(prev => ({ ...prev, condition: value as 'new' | 'refurbished' }))}>
-                      <SelectTrigger>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="condition" className="text-sm font-medium">Condition</Label>
+                    <Select 
+                      value={formData.condition} 
+                      onValueChange={(value) => setFormData(prev => ({ ...prev, condition: value as 'new' | 'refurbished' }))}
+                    >
+                      <SelectTrigger className="w-full">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -594,54 +610,65 @@ const ProductForm = () => {
                       </SelectContent>
                     </Select>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  
+                  <div className="flex items-center space-x-3 pt-6">
                     <Switch
                       id="featured"
                       checked={formData.featured}
                       onCheckedChange={(checked) => setFormData(prev => ({ ...prev, featured: checked }))}
                     />
-                    <Label htmlFor="featured">Featured Product</Label>
+                    <Label htmlFor="featured" className="text-sm font-medium">Featured Product</Label>
                   </div>
                 </div>
 
-                <div>
-                  <Label htmlFor="description">Short Description</Label>
-                  <Textarea
-                    id="description"
-                    value={formData.description}
-                    onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
-                    rows={3}
-                  />
+                {/* Descriptions */}
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="description" className="text-sm font-medium">Short Description</Label>
+                    <Textarea
+                      id="description"
+                      value={formData.description}
+                      onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
+                      rows={3}
+                      placeholder="Brief product description"
+                      className="w-full resize-none"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="detailed_description" className="text-sm font-medium">Detailed Description</Label>
+                    <Textarea
+                      id="detailed_description"
+                      value={formData.detailed_description}
+                      onChange={(e) => setFormData(prev => ({ ...prev, detailed_description: e.target.value }))}
+                      rows={6}
+                      placeholder="Detailed product information"
+                      className="w-full resize-none"
+                    />
+                  </div>
                 </div>
 
-                <div>
-                  <Label htmlFor="detailed_description">Detailed Description</Label>
-                  <Textarea
-                    id="detailed_description"
-                    value={formData.detailed_description}
-                    onChange={(e) => setFormData(prev => ({ ...prev, detailed_description: e.target.value }))}
-                    rows={6}
-                  />
-                </div>
-
-                <div>
-                  <Label>Product Images</Label>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-2">
+                {/* Product Images */}
+                <div className="space-y-4">
+                  <Label className="text-sm font-medium">Product Images</Label>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                     {images.map((image, index) => (
-                      <div key={index} className="relative">
+                      <div key={index} className="relative group">
                         <img
                           src={image.image_url}
                           alt={`Product ${index + 1}`}
-                          className={`w-full h-32 object-cover rounded ${image.is_main ? 'ring-2 ring-blue-500' : ''}`}
+                          className={`w-full h-32 object-cover rounded-lg border-2 transition-all ${
+                            image.is_main ? 'border-blue-500 ring-2 ring-blue-200' : 'border-gray-200'
+                          }`}
                         />
-                        <div className="absolute top-2 right-2 flex gap-1">
+                        <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                           {!image.is_main && (
                             <Button
                               type="button"
                               size="sm"
                               variant="secondary"
                               onClick={() => setMainImage(index)}
-                              className="p-1 h-6 text-xs"
+                              className="p-1 h-6 text-xs bg-white/90 hover:bg-white"
                             >
                               Main
                             </Button>
@@ -651,16 +678,25 @@ const ProductForm = () => {
                             size="sm"
                             variant="destructive"
                             onClick={() => removeImage(index)}
-                            className="p-1 h-6"
+                            className="p-1 h-6 w-6"
                           >
                             <X size={12} />
                           </Button>
                         </div>
+                        {image.is_main && (
+                          <div className="absolute top-2 left-2 bg-blue-500 text-white text-xs px-2 py-1 rounded">
+                            Main
+                          </div>
+                        )}
                       </div>
                     ))}
-                    <label className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center cursor-pointer hover:border-gray-400">
+                    
+                    {/* Upload Button */}
+                    <label className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center cursor-pointer hover:border-gray-400 transition-colors flex flex-col items-center justify-center h-32">
                       <Upload className="mx-auto mb-2" size={24} />
-                      <span className="text-sm">Upload Image</span>
+                      <span className="text-sm text-gray-600">
+                        {uploading ? 'Uploading...' : 'Upload Image'}
+                      </span>
                       <input
                         type="file"
                         accept="image/*"
@@ -670,13 +706,26 @@ const ProductForm = () => {
                       />
                     </label>
                   </div>
+                  <p className="text-xs text-gray-500">
+                    Click "Main" to set the primary product image. First uploaded image is automatically set as main.
+                  </p>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button type="submit" disabled={saving} className="flex-1 sm:flex-initial">
+                {/* Form Actions */}
+                <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t">
+                  <Button 
+                    type="submit" 
+                    disabled={saving} 
+                    className="flex-1 sm:flex-initial min-w-[140px]"
+                  >
                     {saving ? 'Saving...' : isEdit ? 'Update Product' : 'Create Product'}
                   </Button>
-                  <Button type="button" variant="outline" onClick={() => navigate('/admin')} className="flex-1 sm:flex-initial">
+                  <Button 
+                    type="button" 
+                    variant="outline" 
+                    onClick={() => navigate('/admin')} 
+                    className="flex-1 sm:flex-initial min-w-[100px]"
+                  >
                     Cancel
                   </Button>
                 </div>

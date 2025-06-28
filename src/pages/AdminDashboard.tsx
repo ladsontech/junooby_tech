@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useAdmin } from '@/contexts/AdminContext';
 import AdminLogin from '@/components/AdminLogin';
@@ -87,9 +86,11 @@ const AdminDashboard = () => {
   };
 
   if (isLoading) {
-    return <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 flex items-center justify-center">
-      <div>Loading...</div>
-    </div>;
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 flex items-center justify-center">
+        <div className="text-lg">Loading...</div>
+      </div>
+    );
   }
 
   if (!admin) {
@@ -99,145 +100,215 @@ const AdminDashboard = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
       <Navbar />
-      <div className="pt-16 md:pt-20 p-3 md:p-6 lg:p-8">
+      
+      {/* Main Content Container with proper spacing */}
+      <div className="pt-20 md:pt-24 pb-6 px-3 sm:px-4 md:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col gap-4 mb-6 md:mb-8">
-            <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
-              <div>
-                <h1 className="text-xl md:text-3xl font-bold text-gray-900">Admin Dashboard</h1>
-                <p className="text-sm md:text-base text-gray-600 mt-1">Welcome back, {admin.username}</p>
+          
+          {/* Header Section */}
+          <div className="mb-6 md:mb-8">
+            <div className="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:justify-between sm:items-start">
+              <div className="flex-1">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                  Admin Dashboard
+                </h1>
+                <p className="text-sm sm:text-base md:text-lg text-gray-600">
+                  Welcome back, <span className="font-medium">{admin.username}</span>
+                </p>
               </div>
-              <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+              
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-2 w-full sm:w-auto">
                 <Link to="/admin/product/new" className="w-full sm:w-auto">
-                  <Button className="flex items-center justify-center gap-2 w-full sm:w-auto text-sm">
+                  <Button className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium">
                     <Plus size={16} />
-                    Add Product
+                    <span>Add Product</span>
                   </Button>
                 </Link>
-                <Button variant="outline" onClick={logout} className="flex items-center justify-center gap-2 w-full sm:w-auto text-sm">
+                <Button 
+                  variant="outline" 
+                  onClick={logout} 
+                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium"
+                >
                   <LogOut size={16} />
-                  Logout
+                  <span>Logout</span>
                 </Button>
               </div>
             </div>
           </div>
 
-          <Card className="overflow-hidden">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-lg md:text-xl">Products ({products.length})</CardTitle>
+          {/* Products Card */}
+          <Card className="shadow-lg border-0">
+            <CardHeader className="pb-4">
+              <CardTitle className="text-lg sm:text-xl md:text-2xl flex items-center justify-between">
+                <span>Products</span>
+                <span className="text-sm sm:text-base font-normal text-gray-500">
+                  ({products.length} total)
+                </span>
+              </CardTitle>
             </CardHeader>
+            
             <CardContent className="p-0">
               {loadingProducts ? (
-                <div className="p-6 text-center">Loading products...</div>
+                <div className="p-8 text-center">
+                  <div className="text-base md:text-lg text-gray-500">Loading products...</div>
+                </div>
               ) : products.length === 0 ? (
-                <div className="p-6 text-center text-gray-500">
-                  <p>No products found. Start by adding your first product!</p>
+                <div className="p-8 text-center">
+                  <div className="text-gray-500 mb-4">
+                    <Package size={48} className="mx-auto mb-4 text-gray-300" />
+                    <p className="text-lg font-medium">No products found</p>
+                    <p className="text-sm">Start by adding your first product!</p>
+                  </div>
+                  <Link to="/admin/product/new">
+                    <Button className="mt-4">
+                      <Plus size={16} className="mr-2" />
+                      Add Your First Product
+                    </Button>
+                  </Link>
                 </div>
               ) : (
-                <div className="overflow-x-auto">
+                <>
                   {/* Mobile Card View */}
-                  <div className="block lg:hidden space-y-3 p-3">
-                    {products.map((product) => (
-                      <div key={product.id} className="bg-gray-50 border rounded-lg p-3 shadow-sm">
-                        <div className="flex items-start gap-3">
-                          <img
-                            src={product.main_image_url || '/images/HP 15_6.jpg'}
-                            alt={product.name}
-                            className="w-12 h-12 object-cover rounded flex-shrink-0"
-                          />
-                          <div className="flex-1 min-w-0">
-                            <h3 className="font-medium text-gray-900 text-sm line-clamp-1">{product.name}</h3>
-                            <div className="flex items-center gap-2 mt-1">
-                              <span className="text-xs text-gray-500 capitalize">{product.category}</span>
-                              {product.featured && (
-                                <span className="bg-orange-100 text-orange-800 text-xs px-1.5 py-0.5 rounded">
-                                  Featured
-                                </span>
-                              )}
-                            </div>
-                            <p className="text-sm font-medium text-blue-600 mt-1">{formatPrice(product.price)}</p>
-                            <div className="flex gap-2 mt-2">
-                              <Link to={`/admin/product/edit/${product.id}`} className="flex-1">
-                                <Button size="sm" variant="outline" className="w-full text-xs h-8">
-                                  <Edit size={12} className="mr-1" />
-                                  Edit
-                                </Button>
-                              </Link>
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                onClick={() => deleteProduct(product.id)}
-                                className="text-red-600 hover:text-red-700 text-xs h-8 px-2"
-                              >
-                                <Trash2 size={12} />
-                              </Button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Desktop Table View */}
-                  <div className="hidden lg:block">
-                    <Table>
-                      <TableHeader>
-                        <TableRow>
-                          <TableHead className="w-16">Image</TableHead>
-                          <TableHead>Name</TableHead>
-                          <TableHead className="w-24">Category</TableHead>
-                          <TableHead className="w-20">Featured</TableHead>
-                          <TableHead className="w-32">Price</TableHead>
-                          <TableHead className="w-24">Actions</TableHead>
-                        </TableRow>
-                      </TableHeader>
-                      <TableBody>
-                        {products.map((product) => (
-                          <TableRow key={product.id}>
-                            <TableCell>
+                  <div className="block lg:hidden">
+                    <div className="space-y-3 p-4">
+                      {products.map((product) => (
+                        <div key={product.id} className="bg-gray-50 border rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
+                          <div className="flex items-start gap-4">
+                            {/* Product Image */}
+                            <div className="flex-shrink-0">
                               <img
                                 src={product.main_image_url || '/images/HP 15_6.jpg'}
                                 alt={product.name}
-                                className="w-12 h-12 object-cover rounded"
+                                className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-lg border"
+                                onError={(e) => {
+                                  const target = e.target as HTMLImageElement;
+                                  target.src = "https://images.unsplash.com/photo-1587831990711-23ca6441447b?w=80&h=80&fit=crop";
+                                }}
                               />
-                            </TableCell>
-                            <TableCell className="font-medium max-w-xs">
-                              <div className="line-clamp-2">{product.name}</div>
-                            </TableCell>
-                            <TableCell className="capitalize text-sm">{product.category}</TableCell>
-                            <TableCell>
-                              {product.featured ? (
-                                <span className="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded">
-                                  Featured
+                            </div>
+                            
+                            {/* Product Info */}
+                            <div className="flex-1 min-w-0">
+                              <h3 className="font-semibold text-gray-900 text-sm sm:text-base line-clamp-2 mb-2">
+                                {product.name}
+                              </h3>
+                              
+                              <div className="flex flex-wrap items-center gap-2 mb-2">
+                                <span className="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full capitalize">
+                                  {product.category}
                                 </span>
-                              ) : (
-                                <span className="text-gray-400 text-sm">-</span>
-                              )}
-                            </TableCell>
-                            <TableCell className="font-medium text-sm">{formatPrice(product.price)}</TableCell>
-                            <TableCell>
-                              <div className="flex gap-1">
-                                <Link to={`/admin/product/edit/${product.id}`}>
-                                  <Button size="sm" variant="outline" className="h-8 w-8 p-0">
-                                    <Edit size={14} />
+                                {product.featured && (
+                                  <span className="text-xs px-2 py-1 bg-orange-100 text-orange-800 rounded-full">
+                                    Featured
+                                  </span>
+                                )}
+                              </div>
+                              
+                              <p className="text-sm sm:text-base font-semibold text-blue-600 mb-3">
+                                {formatPrice(product.price)}
+                              </p>
+                              
+                              {/* Action Buttons */}
+                              <div className="flex gap-2">
+                                <Link to={`/admin/product/edit/${product.id}`} className="flex-1">
+                                  <Button size="sm" variant="outline" className="w-full text-xs h-8">
+                                    <Edit size={12} className="mr-1" />
+                                    Edit
                                   </Button>
                                 </Link>
                                 <Button
                                   size="sm"
                                   variant="outline"
                                   onClick={() => deleteProduct(product.id)}
-                                  className="text-red-600 hover:text-red-700 h-8 w-8 p-0"
+                                  className="text-red-600 hover:text-red-700 hover:bg-red-50 text-xs h-8 px-3"
                                 >
-                                  <Trash2 size={14} />
+                                  <Trash2 size={12} />
                                 </Button>
                               </div>
-                            </TableCell>
-                          </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
+
+                  {/* Desktop Table View */}
+                  <div className="hidden lg:block">
+                    <div className="overflow-x-auto">
+                      <Table>
+                        <TableHeader>
+                          <TableRow className="hover:bg-transparent">
+                            <TableHead className="w-20">Image</TableHead>
+                            <TableHead className="min-w-[200px]">Name</TableHead>
+                            <TableHead className="w-24">Category</TableHead>
+                            <TableHead className="w-20">Featured</TableHead>
+                            <TableHead className="w-32">Price</TableHead>
+                            <TableHead className="w-24">Actions</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {products.map((product) => (
+                            <TableRow key={product.id} className="hover:bg-gray-50">
+                              <TableCell className="p-4">
+                                <img
+                                  src={product.main_image_url || '/images/HP 15_6.jpg'}
+                                  alt={product.name}
+                                  className="w-14 h-14 object-cover rounded-lg border"
+                                  onError={(e) => {
+                                    const target = e.target as HTMLImageElement;
+                                    target.src = "https://images.unsplash.com/photo-1587831990711-23ca6441447b?w=56&h=56&fit=crop";
+                                  }}
+                                />
+                              </TableCell>
+                              <TableCell className="p-4">
+                                <div className="font-medium text-gray-900 line-clamp-2 max-w-xs">
+                                  {product.name}
+                                </div>
+                              </TableCell>
+                              <TableCell className="p-4">
+                                <span className="capitalize text-sm px-2 py-1 bg-blue-100 text-blue-800 rounded-full">
+                                  {product.category}
+                                </span>
+                              </TableCell>
+                              <TableCell className="p-4">
+                                {product.featured ? (
+                                  <span className="text-xs px-2 py-1 bg-orange-100 text-orange-800 rounded-full">
+                                    Featured
+                                  </span>
+                                ) : (
+                                  <span className="text-gray-400 text-sm">-</span>
+                                )}
+                              </TableCell>
+                              <TableCell className="p-4">
+                                <span className="font-medium text-sm">
+                                  {formatPrice(product.price)}
+                                </span>
+                              </TableCell>
+                              <TableCell className="p-4">
+                                <div className="flex gap-2">
+                                  <Link to={`/admin/product/edit/${product.id}`}>
+                                    <Button size="sm" variant="outline" className="h-8 w-8 p-0">
+                                      <Edit size={14} />
+                                    </Button>
+                                  </Link>
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    onClick={() => deleteProduct(product.id)}
+                                    className="text-red-600 hover:text-red-700 hover:bg-red-50 h-8 w-8 p-0"
+                                  >
+                                    <Trash2 size={14} />
+                                  </Button>
+                                </div>
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </div>
+                  </div>
+                </>
               )}
             </CardContent>
           </Card>
