@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ProductsLayout from '@/components/ProductsLayout';
 import ProductCard from '@/components/ProductCard';
 import ProductCarousel from '@/components/ProductCarousel';
+import AdvertisementSection from '@/components/AdvertisementSection';
 import Cart from '@/components/Cart';
 import { useCart } from '@/contexts/CartContext';
 import { supabase } from '@/integrations/supabase/client';
@@ -149,6 +150,52 @@ const Products = () => {
     });
   };
 
+  // Sample advertisements for Products section
+  const productAdvertisements = [
+    {
+      id: 1,
+      title: "New Year Tech Sale",
+      image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&h=338&fit=crop",
+      description: "Up to 30% off on all laptops and smartphones. Limited time offer!",
+      link: "https://wa.me/256789572007?text=I'm interested in the New Year tech sale"
+    },
+    {
+      id: 2,
+      title: "Free Installation Service",
+      image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=338&fit=crop",
+      description: "Get free CCTV installation with every security camera purchase this month.",
+      link: "https://wa.me/256789572007?text=Tell me about free CCTV installation"
+    },
+    {
+      id: 3,
+      title: "Student Discount Program",
+      image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&h=338&fit=crop",
+      description: "Special pricing for students on laptops and tablets. Valid student ID required.",
+      link: "https://wa.me/256789572007?text=I need information about student discounts"
+    },
+    {
+      id: 4,
+      title: "Trade-In Your Old Device",
+      image: "https://images.unsplash.com/photo-1556656793-08538906a9f8?w=600&h=338&fit=crop",
+      description: "Get credit for your old phone or laptop when upgrading to a newer model.",
+      link: "https://wa.me/256789572007?text=I want to trade in my device"
+    },
+    {
+      id: 5,
+      title: "Extended Warranty Available",
+      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=338&fit=crop",
+      description: "Protect your tech investment with our comprehensive warranty plans.",
+      link: "https://wa.me/256789572007?text=Tell me about extended warranty options"
+    },
+    {
+      id: 6,
+      title: "Bulk Purchase Discounts",
+      image: "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=600&h=338&fit=crop",
+      description: "Special rates for businesses and organizations buying in bulk quantities.",
+      link: "https://wa.me/256789572007?text=I need a quote for bulk purchase"
+    }
+  ];
+
   return (
     <ProductsLayout>
       <Cart />
@@ -160,6 +207,14 @@ const Products = () => {
           <ProductCarousel products={newestProducts} onAddToCart={handleAddToCart} />
         </div>
       )}
+
+      {/* Product Advertisements Section */}
+      <AdvertisementSection 
+        advertisements={productAdvertisements}
+        title="Special Deals & Offers"
+        description="Don't miss out on our exclusive tech deals and premium services"
+        autoplayDelay={5000}
+      />
       
       <section className="py-6 md:py-12">
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">

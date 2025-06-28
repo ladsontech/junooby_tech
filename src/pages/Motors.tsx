@@ -3,6 +3,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
 import MotorCarousel from '@/components/MotorCarousel';
+import AdvertisementSection from '@/components/AdvertisementSection';
 import { Badge } from '@/components/ui/badge';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { MapPin, Calendar, Fuel, Settings } from 'lucide-react';
@@ -178,6 +179,45 @@ const Motors = () => {
     }
   ];
 
+  // Sample advertisements for Motors section
+  const motorAdvertisements = [
+    {
+      id: 1,
+      title: "Special Year-End Car Sale",
+      image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&h=338&fit=crop",
+      description: "Get up to 15% discount on all vehicles. Limited time offer until December 31st!",
+      link: "https://wa.me/256789572007?text=I'm interested in the year-end car sale"
+    },
+    {
+      id: 2,
+      title: "Free Vehicle Inspection",
+      image: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&h=338&fit=crop",
+      description: "Professional vehicle inspection service now available for free with every purchase.",
+      link: "https://wa.me/256789572007?text=Tell me about the free vehicle inspection"
+    },
+    {
+      id: 3,
+      title: "Financing Options Available",
+      image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=338&fit=crop",
+      description: "Flexible payment plans and financing options to help you get your dream car.",
+      link: "https://wa.me/256789572007?text=I need information about car financing"
+    },
+    {
+      id: 4,
+      title: "Trade-In Your Old Vehicle",
+      image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=600&h=338&fit=crop",
+      description: "Get the best value for your old car when you trade it in for a newer model.",
+      link: "https://wa.me/256789572007?text=I want to trade in my vehicle"
+    },
+    {
+      id: 5,
+      title: "Extended Warranty Program",
+      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=338&fit=crop",
+      description: "Protect your investment with our comprehensive extended warranty coverage.",
+      link: "https://wa.me/256789572007?text=Tell me about extended warranty options"
+    }
+  ];
+
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -197,6 +237,14 @@ const Motors = () => {
       <div className="bg-gradient-to-br from-blue-50 via-white to-purple-50">
         <MotorCarousel cars={cars} onInquire={handleInquire} />
       </div>
+
+      {/* Motor Advertisements Section */}
+      <AdvertisementSection 
+        advertisements={motorAdvertisements}
+        title="Special Offers & Services"
+        description="Don't miss out on our exclusive deals and premium automotive services"
+        autoplayDelay={6000}
+      />
       
       <section className="py-8 md:py-16 lg:py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
