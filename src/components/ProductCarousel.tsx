@@ -39,6 +39,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({
 }) => {
   if (products.length === 0) return null;
 
+  // Auto-scroll with 3 second delay
   const plugin = useRef(
     Autoplay({ delay: 3000, stopOnInteraction: true })
   );

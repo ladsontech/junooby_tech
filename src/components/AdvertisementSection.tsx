@@ -26,6 +26,7 @@ const AdvertisementSection: React.FC<AdvertisementSectionProps> = ({
 }) => {
   if (advertisements.length === 0) return null;
 
+  // Auto-scroll with customizable delay
   const plugin = useRef(
     Autoplay({ delay: autoplayDelay, stopOnInteraction: true })
   );
@@ -86,7 +87,7 @@ const AdvertisementSection: React.FC<AdvertisementSectionProps> = ({
             ))}
           </CarouselContent>
           
-          {/* Navigation Buttons - Always visible */}
+          {/* Navigation Buttons - Always visible with better positioning */}
           <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg border-0 h-10 w-10" />
           <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg border-0 h-10 w-10" />
         </Carousel>
