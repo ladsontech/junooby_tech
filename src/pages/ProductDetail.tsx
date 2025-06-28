@@ -21,7 +21,6 @@ interface Product {
   category: ProductCategory;
   price: string;
   description: string;
-  detailed_description: string;
   specs: string[];
   main_image_url: string;
   featured?: boolean;
@@ -76,7 +75,6 @@ const ProductDetail = () => {
         category: productData.category,
         price: productData.price,
         description: productData.description || '',
-        detailed_description: productData.detailed_description || '',
         specs: Array.isArray(productData.specs) ? (productData.specs as string[]) : [],
         main_image_url: productData.main_image_url || '',
         featured: productData.featured || false,
@@ -115,7 +113,6 @@ const ProductDetail = () => {
             category: p.category,
             price: p.price,
             description: p.description || '',
-            detailed_description: p.detailed_description || '',
             specs: Array.isArray(p.specs) ? (p.specs as string[]) : [],
             main_image_url: p.main_image_url || '',
             featured: p.featured || false,
@@ -248,30 +245,24 @@ const ProductDetail = () => {
                 <p className="text-xl md:text-2xl font-bold text-blue-600 mb-3">{formatPrice(product.price)}</p>
               </div>
 
-              <div>
-                <h2 className="text-lg font-semibold text-gray-900 mb-1">Description</h2>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  {product.description}
-                </p>
-              </div>
-
-              {product.detailed_description && (
-                <div>
-                  <h2 className="text-lg font-semibold text-gray-900 mb-1">Detailed Description</h2>
-                  <p className="text-gray-600 text-sm leading-relaxed whitespace-pre-line">
-                    {product.detailed_description}
+              {/* Single Description Section */}
+              <div className="bg-gray-50 rounded-lg p-4">
+                <h2 className="text-lg font-semibold text-gray-900 mb-3">Product Details</h2>
+                <div className="prose prose-sm max-w-none">
+                  <p className="text-gray-700 text-sm leading-relaxed whitespace-pre-line">
+                    {product.description}
                   </p>
                 </div>
-              )}
+              </div>
 
               {product.specs && product.specs.length > 0 && (
-                <div>
-                  <h2 className="text-lg font-semibold text-gray-900 mb-1">Specifications</h2>
-                  <ul className="space-y-1">
+                <div className="bg-blue-50 rounded-lg p-4">
+                  <h2 className="text-lg font-semibold text-gray-900 mb-3">Specifications</h2>
+                  <ul className="space-y-2">
                     {product.specs.map((spec, index) => (
-                      <li key={index} className="text-gray-600 text-sm flex items-start">
-                        <span className="text-blue-600 mr-2">•</span>
-                        {spec}
+                      <li key={index} className="text-gray-700 text-sm flex items-start">
+                        <span className="text-blue-600 mr-2 font-bold">•</span>
+                        <span className="leading-relaxed">{spec}</span>
                       </li>
                     ))}
                   </ul>

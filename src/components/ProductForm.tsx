@@ -86,7 +86,6 @@ const ProductForm = () => {
     ptzType: '',
     price: '',
     description: '',
-    detailed_description: '',
     specs: [] as string[],
     featured: false,
     condition: 'new' as 'new' | 'refurbished'
@@ -207,6 +206,14 @@ const ProductForm = () => {
         }
       }
 
+      // Combine description and detailed_description into one field
+      let combinedDescription = product.description || '';
+      if (product.detailed_description) {
+        combinedDescription = combinedDescription 
+          ? `${combinedDescription}\n\n${product.detailed_description}`
+          : product.detailed_description;
+      }
+
       setFormData({
         name: product.name,
         category: product.category,
@@ -215,8 +222,7 @@ const ProductForm = () => {
         cctvSubcategory,
         ptzType,
         price: product.price,
-        description: product.description || '',
-        detailed_description: product.detailed_description || '',
+        description: combinedDescription,
         specs: Array.isArray(product.specs) ? (product.specs as string[]) : [],
         featured: product.featured || false,
         condition: (product.condition as 'new' | 'refurbished') || 'new'
@@ -329,7 +335,7 @@ const ProductForm = () => {
         category: formData.category,
         price: formData.price,
         description: formData.description,
-        detailed_description: formData.detailed_description,
+        detailed_description: null, // Set to null since we're removing this field
         condition: formData.condition,
         featured: formData.featured,
         main_image_url: mainImage?.image_url || null,
@@ -621,31 +627,20 @@ const ProductForm = () => {
                   </div>
                 </div>
 
-                {/* Descriptions */}
-                <div className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="description" className="text-sm font-medium">Short Description</Label>
-                    <Textarea
-                      id="description"
-                      value={formData.description}
-                      onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
-                      rows={3}
-                      placeholder="Brief product description"
-                      className="w-full resize-none"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="detailed_description" className="text-sm font-medium">Detailed Description</Label>
-                    <Textarea
-                      id="detailed_description"
-                      value={formData.detailed_description}
-                      onChange={(e) => setFormData(prev => ({ ...prev, detailed_description: e.target.value }))}
-                      rows={6}
-                      placeholder="Detailed product information"
-                      className="w-full resize-none"
-                    />
-                  </div>
+                {/* Single Description Field */}
+                <div className="space-y-2">
+                  <Label htmlFor="description" className="text-sm font-medium">Product Description</Label>
+                  <Textarea
+                    id="description"
+                    value={formData.description}
+                    onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
+                    rows={6}
+                    placeholder="Enter complete product description including features, specifications, and details..."
+                    className="w-full resize-none"
+                  />
+                  <p className="text-xs text-gray-500">
+                    Include all product information, features, and specifications in this single description field.
+                  </p>
                 </div>
 
                 {/* Product Images */}
