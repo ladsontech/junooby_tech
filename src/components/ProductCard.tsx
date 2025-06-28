@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
@@ -30,27 +29,29 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
   return (
     <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 group h-full flex flex-col">
       <div className="relative overflow-hidden">
-        <AspectRatio ratio={4/3}>
+        <AspectRatio ratio={16/9}>
           <img 
             src={product.main_image_url || '/images/HP 15_6.jpg'} 
             alt={product.name}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
-              target.src = "https://images.unsplash.com/photo-1587831990711-23ca6441447b?w=400&h=300&fit=crop";
+              target.src = "https://images.unsplash.com/photo-1587831990711-23ca6441447b?w=600&h=338&fit=crop";
             }}
           />
         </AspectRatio>
+        <div className="absolute top-3 left-3">
+          <span className={`inline-block px-1.5 sm:px-2 py-0.5 rounded-full text-xs font-medium text-white ${
+              product.condition === 'new' 
+                ? 'bg-emerald-600' 
+                : 'bg-amber-600'
+            }`}>
+              {product.condition === 'new' ? 'New' : 'Used'}
+          </span>
+        </div>
       </div>
       
       <div className="p-2 sm:p-3 md:p-4 flex flex-col flex-grow">
-        <span className={`inline-block px-1.5 sm:px-2 py-0.5 rounded-full text-xs font-medium text-white mb-1.5 sm:mb-2 self-start ${
-            product.condition === 'new' 
-              ? 'bg-emerald-600' 
-              : 'bg-amber-600'
-          }`}>
-            {product.condition === 'new' ? 'Brand New' : 'Refurbished'}
-        </span>
         <h3 className="text-sm sm:text-base md:text-lg font-semibold text-gray-900 mb-1.5 sm:mb-2 line-clamp-2 leading-tight">{product.name}</h3>
         <div className="space-y-0.5 sm:space-y-1 mb-2 sm:mb-3 flex-grow">
           {product.specs && product.specs.slice(0, 2).map((spec, index) => (

@@ -7,16 +7,8 @@ import { useCart } from '@/contexts/CartContext';
 import { supabase } from '@/integrations/supabase/client';
 import { Database } from '@/integrations/supabase/types';
 import { Input } from '@/components/ui/input';
-import { Search, Filter } from 'lucide-react';
+import { Search } from 'lucide-react';
 import WhatsAppButton from '@/components/WhatsAppButton';
-import {
-  Select,
-  SelectTrigger,
-  SelectContent,
-  SelectItem,
-  SelectValue,
-  SelectLabel,
-} from '@/components/ui/select';
 import ProductFilters from '@/components/ProductFilters';
 
 type DbProduct = Database['public']['Tables']['products']['Row'];
@@ -34,7 +26,6 @@ interface Product {
 }
 
 const Products = () => {
-  // ADDED: new state for subcategory
   const [activeCategory, setActiveCategory] = useState('phones');
   const [activeSubcategory, setActiveSubcategory] = useState('all');
   const [activeCondition, setActiveCondition] = useState('all');
@@ -86,19 +77,6 @@ const Products = () => {
       setLoading(false);
     }
   };
-
-  const categories = [
-    { id: 'all', name: 'All Products' },
-    { id: 'phones', name: 'Phones' },
-    { id: 'pcs', name: 'PCs/Laptops' },
-    { id: 'cctv', name: 'CCTV Cameras' }
-  ];
-
-  const conditions = [
-    { id: 'all', name: 'All Conditions' },
-    { id: 'new', name: 'Brand New' },
-    { id: 'refurbished', name: 'Refurbished' }
-  ];
 
   // Subcategory logic for filtering
   const getSubcategoryCheck = (product: Product) => {
@@ -157,7 +135,7 @@ const Products = () => {
     return matchesCategory && matchesSubcategory && matchesCondition && matchesSearch;
   });
 
-  // Get newest products for carousel (last 10 products)
+  // Get newest products for carousel (last 8 products)
   const newestProducts = products
     .filter(product => product.condition === 'new')
     .slice(0, 8);
