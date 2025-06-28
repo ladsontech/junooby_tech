@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { supabase } from '@/integrations/supabase/client';
-import { Plus, Edit, Trash2, LogOut } from 'lucide-react';
+import { Plus, Edit, Trash2, LogOut, Package } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Database } from '@/integrations/supabase/types';
 
