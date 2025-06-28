@@ -96,11 +96,23 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({
                   
                   <div className="p-4 flex flex-col flex-grow">
                     <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-2 line-clamp-2">{product.name}</h3>
+                    
+                    {/* Product Description */}
+                    {product.description && (
+                      <div className="mb-2">
+                        <p className="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                          {product.description}
+                        </p>
+                      </div>
+                    )}
+                    
+                    {/* Specifications */}
                     <div className="space-y-1 mb-3 flex-grow">
                       {product.specs && product.specs.slice(0, 1).map((spec, index) => (
                         <p key={index} className="text-xs text-gray-600 line-clamp-1">• {spec}</p>
                       ))}
                     </div>
+                    
                     <div className="flex flex-col gap-2 mt-auto">
                       <span className="text-lg md:text-xl font-bold text-blue-600">{formatPrice(product.price)}</span>
                       <div className="flex gap-2">
