@@ -2,64 +2,180 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
+import { Badge } from '@/components/ui/badge';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { MapPin, Calendar, Fuel, Settings } from 'lucide-react';
 
 const Motors = () => {
-  const handleGetQuote = (vehicleName: string) => {
+  const handleInquire = (vehicleName: string, location: string) => {
     const phoneNumber = '+256789572007';
-    const message = `Hello! I would like to inquire about ${vehicleName}.`;
+    const message = `Hello! I would like to inquire about the ${vehicleName} located in ${location}.`;
     const url = `https://wa.me/${phoneNumber.replace('+', '')}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   };
 
-  const vehicles = [{
-    title: "Toyota Corolla",
-    description: "Reliable and fuel-efficient sedan perfect for city driving and long-distance travel. Known for its durability and low maintenance costs.",
-    features: ["Automatic Transmission", "Air Conditioning", "Power Steering", "ABS Brakes", "Airbags", "Fuel Efficient Engine"],
-    price: "Starting at UGX 45,000,000",
-    bgColor: "bg-red-500",
-    year: "2018-2023 Models Available",
-    icon: '🚗'
-  }, {
-    title: "Honda CR-V",
-    description: "Spacious SUV with excellent safety ratings and all-weather capability. Perfect for families and adventure seekers.",
-    features: ["4WD Capability", "Spacious Interior", "Advanced Safety Features", "Backup Camera", "Bluetooth Connectivity", "Roof Rails"],
-    price: "Starting at UGX 85,000,000",
-    bgColor: "bg-blue-500",
-    year: "2017-2023 Models Available",
-    icon: '🚙'
-  }, {
-    title: "Toyota Hiace",
-    description: "Versatile commercial van ideal for passenger transport, cargo delivery, and business operations across Uganda.",
-    features: ["14-Seater Capacity", "Diesel Engine", "Manual Transmission", "High Ground Clearance", "Durable Build", "Easy Maintenance"],
-    price: "Starting at UGX 65,000,000",
-    bgColor: "bg-green-500",
-    year: "2015-2022 Models Available",
-    icon: '🚐'
-  }, {
-    title: "Subaru Forester",
-    description: "All-wheel drive SUV with excellent off-road capabilities and safety features. Perfect for Uganda's diverse terrain.",
-    features: ["All-Wheel Drive", "High Ground Clearance", "EyeSight Safety System", "Panoramic Sunroof", "X-Mode for Off-Road", "Boxer Engine"],
-    price: "Starting at UGX 75,000,000",
-    bgColor: "bg-purple-500",
-    year: "2016-2023 Models Available",
-    icon: '🏔️'
-  }, {
-    title: "Nissan X-Trail",
-    description: "Modern crossover SUV with advanced technology and comfort features. Great for both urban and rural driving.",
-    features: ["CVT Transmission", "Intelligent 4WD", "Around View Monitor", "LED Headlights", "7-Seater Option", "Eco Mode"],
-    price: "Starting at UGX 70,000,000",
-    bgColor: "bg-indigo-500",
-    year: "2017-2023 Models Available",
-    icon: '🌟'
-  }, {
-    title: "Toyota Land Cruiser",
-    description: "Premium off-road vehicle built for extreme conditions. The ultimate choice for serious adventurers and professionals.",
-    features: ["V8 Engine", "Full-Time 4WD", "Multi-Terrain Select", "Crawl Control", "Premium Interior", "Towing Capacity 3.5T"],
-    price: "Starting at UGX 180,000,000",
-    bgColor: "bg-yellow-600",
-    year: "2016-2023 Models Available",
-    icon: '🏜️'
-  }];
+  const cars = [
+    {
+      id: 1,
+      name: "Toyota Corolla 2019",
+      image: "https://images.unsplash.com/photo-1623869675781-80aa31012a5a?w=600&h=400&fit=crop",
+      condition: "used",
+      year: 2019,
+      price: "UGX 45,000,000",
+      location: "Kampala Bond",
+      mileage: "85,000 km",
+      transmission: "Automatic",
+      fuelType: "Petrol",
+      features: [
+        "Air Conditioning",
+        "Power Steering", 
+        "ABS Brakes",
+        "Airbags",
+        "Electric Windows",
+        "Central Locking"
+      ]
+    },
+    {
+      id: 2,
+      name: "Honda CR-V 2020",
+      image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=600&h=400&fit=crop",
+      condition: "used",
+      year: 2020,
+      price: "UGX 85,000,000",
+      location: "Entebbe Bond",
+      mileage: "45,000 km",
+      transmission: "CVT",
+      fuelType: "Petrol",
+      features: [
+        "4WD",
+        "Backup Camera",
+        "Bluetooth",
+        "Cruise Control",
+        "Sunroof",
+        "Leather Seats"
+      ]
+    },
+    {
+      id: 3,
+      name: "Toyota Hiace 2018",
+      image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&h=400&fit=crop",
+      condition: "used",
+      year: 2018,
+      price: "UGX 65,000,000",
+      location: "Jinja Bond",
+      mileage: "120,000 km",
+      transmission: "Manual",
+      fuelType: "Diesel",
+      features: [
+        "14 Seater",
+        "High Roof",
+        "Power Steering",
+        "Air Conditioning",
+        "Manual Windows",
+        "Dual Airbags"
+      ]
+    },
+    {
+      id: 4,
+      name: "Subaru Forester 2021",
+      image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=600&h=400&fit=crop",
+      condition: "new",
+      year: 2021,
+      price: "UGX 95,000,000",
+      location: "Kampala Bond",
+      mileage: "15,000 km",
+      transmission: "CVT",
+      fuelType: "Petrol",
+      features: [
+        "All-Wheel Drive",
+        "EyeSight Safety",
+        "X-Mode",
+        "Panoramic Sunroof",
+        "Heated Seats",
+        "Keyless Entry"
+      ]
+    },
+    {
+      id: 5,
+      name: "Nissan X-Trail 2019",
+      image: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=600&h=400&fit=crop",
+      condition: "used",
+      year: 2019,
+      price: "UGX 70,000,000",
+      location: "Mbarara Bond",
+      mileage: "65,000 km",
+      transmission: "CVT",
+      fuelType: "Petrol",
+      features: [
+        "Intelligent 4WD",
+        "Around View Monitor",
+        "LED Headlights",
+        "7 Seater",
+        "Eco Mode",
+        "Remote Start"
+      ]
+    },
+    {
+      id: 6,
+      name: "Toyota Land Cruiser 2020",
+      image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=600&h=400&fit=crop",
+      condition: "used",
+      year: 2020,
+      price: "UGX 180,000,000",
+      location: "Kampala Bond",
+      mileage: "35,000 km",
+      transmission: "Automatic",
+      fuelType: "Diesel",
+      features: [
+        "V8 Engine",
+        "Full-Time 4WD",
+        "Multi-Terrain Select",
+        "Crawl Control",
+        "Premium Interior",
+        "Towing Package"
+      ]
+    },
+    {
+      id: 7,
+      name: "Honda Fit 2017",
+      image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=600&h=400&fit=crop",
+      condition: "used",
+      year: 2017,
+      price: "UGX 28,000,000",
+      location: "Gulu Bond",
+      mileage: "95,000 km",
+      transmission: "CVT",
+      fuelType: "Petrol",
+      features: [
+        "Fuel Efficient",
+        "Compact Size",
+        "Easy Parking",
+        "Air Conditioning",
+        "Power Steering",
+        "Electric Windows"
+      ]
+    },
+    {
+      id: 8,
+      name: "Toyota Prado 2022",
+      image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=600&h=400&fit=crop",
+      condition: "new",
+      year: 2022,
+      price: "UGX 150,000,000",
+      location: "Kampala Bond",
+      mileage: "8,000 km",
+      transmission: "Automatic",
+      fuelType: "Diesel",
+      features: [
+        "4WD",
+        "Leather Interior",
+        "Navigation System",
+        "Reverse Camera",
+        "Roof Rails",
+        "Premium Sound"
+      ]
+    }
+  ];
 
   return (
     <div className="min-h-screen">
@@ -70,85 +186,177 @@ const Motors = () => {
           <div className="text-center mb-8 md:mb-12 lg:mb-16">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 md:mb-6">Quality Motors</h1>
             <p className="text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Discover our premium collection of reliable vehicles perfect for Uganda's roads. From fuel-efficient sedans to rugged SUVs, we have the right vehicle for your needs.
+              Discover our premium collection of reliable vehicles available across Uganda. From fuel-efficient cars to rugged SUVs, find your perfect vehicle today.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
-            {vehicles.map((vehicle, index) => (
-              <div key={index} className="bg-white rounded-xl p-4 md:p-6 lg:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group">
-                <div className={`w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 ${vehicle.bgColor} rounded-xl flex items-center justify-center text-lg md:text-xl lg:text-2xl mb-3 md:mb-4 lg:mb-6 group-hover:scale-110 transition-transform duration-300 text-white`}>
-                  {vehicle.icon}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {cars.map((car) => (
+              <div key={car.id} className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group">
+                {/* Car Image */}
+                <div className="relative overflow-hidden">
+                  <AspectRatio ratio={4/3}>
+                    <img 
+                      src={car.image} 
+                      alt={car.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = "https://images.unsplash.com/photo-1623869675781-80aa31012a5a?w=600&h=400&fit=crop";
+                      }}
+                    />
+                  </AspectRatio>
+                  <div className="absolute top-3 left-3 flex flex-wrap gap-1">
+                    <Badge variant={car.condition === 'new' ? 'default' : 'secondary'} className={
+                      car.condition === 'new' ? 'bg-emerald-600' : 'bg-amber-600'
+                    }>
+                      {car.condition === 'new' ? 'Brand New' : 'Used'}
+                    </Badge>
+                  </div>
                 </div>
                 
-                <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-2 md:mb-3 lg:mb-4">{vehicle.title}</h3>
-                <p className="text-gray-600 mb-3 md:mb-4 lg:mb-6 text-sm md:text-base leading-relaxed">{vehicle.description}</p>
-                
-                <div className="mb-4 md:mb-6">
-                  <h4 className="font-semibold text-gray-900 mb-2 text-sm md:text-base">Key Features:</h4>
-                  <div className="space-y-1 md:space-y-2">
-                    {vehicle.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-start text-gray-600 text-sm md:text-base">
-                        <span className="w-1.5 h-1.5 bg-blue-600 rounded-full mr-2 md:mr-3 flex-shrink-0 mt-2"></span>
-                        <span className="leading-relaxed">{feature}</span>
+                {/* Car Details */}
+                <div className="p-4">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-1">{car.name}</h3>
+                  
+                  {/* Location and Year */}
+                  <div className="flex items-center justify-between mb-3 text-sm text-gray-600">
+                    <div className="flex items-center">
+                      <MapPin size={14} className="mr-1" />
+                      <span>{car.location}</span>
+                    </div>
+                    <div className="flex items-center">
+                      <Calendar size={14} className="mr-1" />
+                      <span>{car.year}</span>
+                    </div>
+                  </div>
+
+                  {/* Car Specs */}
+                  <div className="grid grid-cols-2 gap-2 mb-3 text-xs text-gray-600">
+                    <div className="flex items-center">
+                      <Settings size={12} className="mr-1" />
+                      <span>{car.transmission}</span>
+                    </div>
+                    <div className="flex items-center">
+                      <Fuel size={12} className="mr-1" />
+                      <span>{car.fuelType}</span>
+                    </div>
+                  </div>
+
+                  {/* Mileage */}
+                  <div className="text-sm text-gray-600 mb-3">
+                    <strong>Mileage:</strong> {car.mileage}
+                  </div>
+
+                  {/* Features */}
+                  <div className="mb-4">
+                    <h4 className="text-sm font-semibold text-gray-900 mb-2">Key Features:</h4>
+                    <div className="grid grid-cols-2 gap-1">
+                      {car.features.slice(0, 4).map((feature, idx) => (
+                        <div key={idx} className="flex items-center text-xs text-gray-600">
+                          <span className="w-1 h-1 bg-blue-600 rounded-full mr-1 flex-shrink-0"></span>
+                          <span className="truncate">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                    {car.features.length > 4 && (
+                      <div className="text-xs text-gray-500 mt-1">
+                        +{car.features.length - 4} more features
                       </div>
-                    ))}
+                    )}
                   </div>
-                </div>
-                
-                {vehicle.year && (
-                  <div className="mb-3 md:mb-4">
-                    <span className="text-sm md:text-base text-gray-500">
-                      <strong>Available:</strong> {vehicle.year}
-                    </span>
+
+                  {/* Price and Action */}
+                  <div className="flex flex-col gap-2">
+                    <div className="text-lg font-bold text-blue-600">{car.price}</div>
+                    <button 
+                      onClick={() => handleInquire(car.name, car.location)}
+                      className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition-all duration-300 hover:scale-105 text-sm"
+                    >
+                      Inquire Now
+                    </button>
                   </div>
-                )}
-                
-                <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-3 md:gap-4">
-                  <span className="text-lg md:text-xl lg:text-2xl font-bold text-blue-600 order-2 lg:order-1">{vehicle.price}</span>
-                  <button 
-                    onClick={() => handleGetQuote(vehicle.title)} 
-                    className="w-full lg:w-auto bg-blue-600 text-white px-6 py-3 lg:px-8 lg:py-3 rounded-lg font-medium hover:bg-blue-700 hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm md:text-base order-1 lg:order-2 min-w-[140px]"
-                  >
-                    Inquire Now
-                  </button>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Additional Services Section */}
+          {/* Bond Locations Info */}
           <div className="mt-12 md:mt-16 lg:mt-20">
             <div className="text-center mb-8 md:mb-12">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4">Additional Services</h2>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4">Our Bond Locations</h2>
               <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
-                Complete automotive solutions to keep your vehicle running smoothly
+                Visit our strategically located bonds across Uganda for vehicle inspection and collection
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="bg-white rounded-xl p-6 shadow-lg text-center">
-                <div className="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center text-2xl mb-4 mx-auto">
-                  🔧
+                <div className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center text-2xl mb-4 mx-auto">
+                  🏢
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Vehicle Inspection</h3>
-                <p className="text-gray-600 text-sm">Comprehensive pre-purchase inspections to ensure quality and reliability</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Kampala Bond</h3>
+                <p className="text-gray-600 text-sm">Main showroom with largest inventory</p>
               </div>
 
               <div className="bg-white rounded-xl p-6 shadow-lg text-center">
                 <div className="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center text-2xl mb-4 mx-auto">
-                  📋
+                  ✈️
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Documentation</h3>
-                <p className="text-gray-600 text-sm">Complete assistance with vehicle registration and transfer processes</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Entebbe Bond</h3>
+                <p className="text-gray-600 text-sm">Near airport for imported vehicles</p>
               </div>
 
               <div className="bg-white rounded-xl p-6 shadow-lg text-center">
-                <div className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center text-2xl mb-4 mx-auto">
+                <div className="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center text-2xl mb-4 mx-auto">
+                  🌊
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Jinja Bond</h3>
+                <p className="text-gray-600 text-sm">Eastern region service center</p>
+              </div>
+
+              <div className="bg-white rounded-xl p-6 shadow-lg text-center">
+                <div className="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center text-2xl mb-4 mx-auto">
+                  🏔️
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Mbarara Bond</h3>
+                <p className="text-gray-600 text-sm">Western region headquarters</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Additional Services */}
+          <div className="mt-12 md:mt-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-6 md:p-8 lg:p-12 text-white">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold mb-4">Complete Automotive Solutions</h2>
+              <p className="text-base md:text-lg opacity-90 max-w-2xl mx-auto">
+                We provide end-to-end services to make your car buying experience seamless
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center text-3xl mb-4 mx-auto">
+                  🔧
+                </div>
+                <h3 className="text-xl font-bold mb-2">Vehicle Inspection</h3>
+                <p className="text-sm opacity-90">Comprehensive pre-purchase inspections by certified mechanics</p>
+              </div>
+
+              <div className="text-center">
+                <div className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center text-3xl mb-4 mx-auto">
+                  📋
+                </div>
+                <h3 className="text-xl font-bold mb-2">Documentation</h3>
+                <p className="text-sm opacity-90">Complete assistance with registration, transfer, and insurance</p>
+              </div>
+
+              <div className="text-center">
+                <div className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center text-3xl mb-4 mx-auto">
                   🛡️
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Warranty</h3>
-                <p className="text-gray-600 text-sm">Extended warranty options available for peace of mind</p>
+                <h3 className="text-xl font-bold mb-2">Warranty & Support</h3>
+                <p className="text-sm opacity-90">Extended warranty options and after-sales support</p>
               </div>
             </div>
           </div>
