@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import ProductsLayout from '@/components/ProductsLayout';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import BottomNav from '@/components/BottomNav';
 import Cart from '@/components/Cart';
 import { useCart } from '@/contexts/CartContext';
 import { supabase } from '@/integrations/supabase/client';
@@ -139,18 +141,22 @@ const ProductDetail = () => {
 
   if (loading) {
     return (
-      <ProductsLayout>
-        <div className="py-20 flex items-center justify-center min-h-[50vh]">
+      <div className="min-h-screen">
+        <Navbar />
+        <div className="pt-20 py-20 flex items-center justify-center min-h-[50vh]">
           <div>Loading...</div>
         </div>
-      </ProductsLayout>
+        <Footer />
+        <BottomNav />
+      </div>
     );
   }
 
   if (!product) {
     return (
-      <ProductsLayout>
-        <div className="py-20 p-4">
+      <div className="min-h-screen">
+        <Navbar />
+        <div className="pt-20 py-20 p-4">
           <div className="max-w-7xl mx-auto text-center">
             <h1 className="text-2xl font-bold text-gray-900 mb-4">Product not found</h1>
             <Link to="/products">
@@ -161,16 +167,19 @@ const ProductDetail = () => {
             </Link>
           </div>
         </div>
-      </ProductsLayout>
+        <Footer />
+        <BottomNav />
+      </div>
     );
   }
 
   return (
-    <ProductsLayout>
+    <div className="min-h-screen">
+      <Navbar />
       <Cart />
       <WhatsAppButton />
       
-      <section className="py-6 md:py-12">
+      <section className="pt-20 py-6 md:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-4">
             <Link to="/products">
@@ -302,7 +311,10 @@ const ProductDetail = () => {
           </div>
         </section>
       )}
-    </ProductsLayout>
+      
+      <Footer />
+      <BottomNav />
+    </div>
   );
 };
 

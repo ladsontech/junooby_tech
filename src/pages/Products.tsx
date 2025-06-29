@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import ProductsLayout from '@/components/ProductsLayout';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import BottomNav from '@/components/BottomNav';
 import ProductCard from '@/components/ProductCard';
 import ProductCarousel from '@/components/ProductCarousel';
 import AdvertisementSection from '@/components/AdvertisementSection';
@@ -197,10 +199,23 @@ const Products = () => {
   ];
 
   return (
-    <ProductsLayout>
+    <div className="min-h-screen">
+      <Navbar />
       <Cart />
       <WhatsAppButton />
       
+      {/* Hero Section */}
+      <section className="pt-16 md:pt-20 lg:pt-24 pb-8 md:pb-16 lg:pb-20 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8 md:mb-12 lg:mb-16">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 md:mb-6">Tech Products</h1>
+            <p className="text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Discover our premium collection of tech gadgets and security solutions designed for modern businesses across Uganda
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* New Arrivals Carousel Section */}
       {!loading && newestProducts.length > 0 && (
         <div className="bg-gradient-to-br from-blue-50 via-white to-purple-50">
@@ -216,18 +231,18 @@ const Products = () => {
         autoplayDelay={5000}
       />
       
-      <section className="py-6 md:py-12">
-        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+      <section className="py-8 md:py-16 lg:py-20 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 md:mb-12">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 md:mb-4">Our Products</h1>
-            <p className="text-base md:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Discover our premium collection of tech gadgets and security solutions designed for modern businesses
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4">Browse All Products</h2>
+            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
+              Find the perfect tech solution for your needs from our comprehensive inventory
             </p>
           </div>
           
           {/* Search Bar */}
           <div className="flex justify-center mb-6 md:mb-8">
-            <div className="relative w-full max-w-2xl xl:max-w-3xl">
+            <div className="relative w-full max-w-2xl">
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
               <Input
                 type="text"
@@ -261,7 +276,7 @@ const Products = () => {
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {filteredProducts.map((product) => (
                 <ProductCard
                   key={product.id}
@@ -271,9 +286,92 @@ const Products = () => {
               ))}
             </div>
           )}
+
+          {/* Product Categories Info */}
+          <div className="mt-12 md:mt-16 lg:mt-20">
+            <div className="text-center mb-8 md:mb-12">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4">Product Categories</h2>
+              <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
+                Explore our diverse range of technology products across different categories
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-white rounded-xl p-6 shadow-lg text-center">
+                <div className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center text-2xl mb-4 mx-auto">
+                  📱
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Smartphones</h3>
+                <p className="text-gray-600 text-sm">Latest smartphones from top brands including Samsung, iPhone, and more</p>
+              </div>
+
+              <div className="bg-white rounded-xl p-6 shadow-lg text-center">
+                <div className="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center text-2xl mb-4 mx-auto">
+                  💻
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Laptops & PCs</h3>
+                <p className="text-gray-600 text-sm">High-performance computers from HP, Dell, Lenovo, and other leading manufacturers</p>
+              </div>
+
+              <div className="bg-white rounded-xl p-6 shadow-lg text-center">
+                <div className="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center text-2xl mb-4 mx-auto">
+                  📹
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">CCTV Cameras</h3>
+                <p className="text-gray-600 text-sm">Professional security cameras including bullet, dome, and PTZ systems</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Why Choose Our Products */}
+          <div className="mt-12 md:mt-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-6 md:p-8 lg:p-12 text-white">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold mb-4">Why Choose Our Products?</h2>
+              <p className="text-base md:text-lg opacity-90 max-w-2xl mx-auto">
+                We provide only the highest quality tech products with comprehensive support and warranty
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center text-3xl mb-4 mx-auto">
+                  ✅
+                </div>
+                <h3 className="text-xl font-bold mb-2">Genuine Products</h3>
+                <p className="text-sm opacity-90">100% authentic products from authorized distributors</p>
+              </div>
+
+              <div className="text-center">
+                <div className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center text-3xl mb-4 mx-auto">
+                  🛡️
+                </div>
+                <h3 className="text-xl font-bold mb-2">Warranty Coverage</h3>
+                <p className="text-sm opacity-90">Comprehensive warranty and after-sales support</p>
+              </div>
+
+              <div className="text-center">
+                <div className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center text-3xl mb-4 mx-auto">
+                  🚚
+                </div>
+                <h3 className="text-xl font-bold mb-2">Fast Delivery</h3>
+                <p className="text-sm opacity-90">Quick delivery across Uganda with secure packaging</p>
+              </div>
+
+              <div className="text-center">
+                <div className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center text-3xl mb-4 mx-auto">
+                  💰
+                </div>
+                <h3 className="text-xl font-bold mb-2">Best Prices</h3>
+                <p className="text-sm opacity-90">Competitive pricing with flexible payment options</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
-    </ProductsLayout>
+      
+      <Footer />
+      <BottomNav />
+    </div>
   );
 };
 
