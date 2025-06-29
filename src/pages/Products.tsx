@@ -208,10 +208,25 @@ const Products = () => {
       <section className="pt-16 md:pt-20 lg:pt-24 pb-8 md:pb-16 lg:pb-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 md:mb-12 lg:mb-16">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 md:mb-6">Tech Products</h1>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 md:mb-6">Premium Tech Products</h1>
             <p className="text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Discover our premium collection of tech gadgets and security solutions designed for modern businesses across Uganda
+              Explore our extensive collection of cutting-edge smartphones, high-performance laptops, and professional security cameras. 
+              From the latest iPhone models to enterprise-grade CCTV systems, find the perfect technology solution for your needs.
             </p>
+            <div className="mt-6 md:mt-8 flex flex-wrap justify-center gap-4 text-sm md:text-base">
+              <div className="flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
+                <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                <span className="text-gray-700">Latest Models Available</span>
+              </div>
+              <div className="flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
+                <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                <span className="text-gray-700">Genuine Products Only</span>
+              </div>
+              <div className="flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
+                <span className="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
+                <span className="text-gray-700">Warranty Included</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
