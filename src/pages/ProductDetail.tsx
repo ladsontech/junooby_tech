@@ -60,6 +60,34 @@ const ProductDetail = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
+  const processSpecs = (specs: any): string[] => {
+    if (!specs) return [];
+    
+    if (Array.isArray(specs)) {
+      return specs.filter(spec => typeof spec === 'string');
+    }
+    
+    if (typeof specs === 'object') {
+      return Object.entries(specs).map(([key, value]) => `${key}: ${value}`);
+    }
+    
+    if (typeof specs === 'string') {
+      try {
+        const parsed = JSON.parse(specs);
+        if (Array.isArray(parsed)) {
+          return parsed.filter(spec => typeof spec === 'string');
+        }
+        if (typeof parsed === 'object') {
+          return Object.entries(parsed).map(([key, value]) => `${key}: ${value}`);
+        }
+      } catch {
+        return [specs];
+      }
+    }
+    
+    return [];
+  };
+
   const fetchProduct = async () => {
     setLoading(true);
     try {
@@ -77,7 +105,7 @@ const ProductDetail = () => {
         category: productData.category,
         price: productData.price,
         description: productData.description || '',
-        specs: Array.isArray(productData.specs) ? (productData.specs as string[]) : [],
+        specs: processSpecs(productData.specs),
         main_image_url: productData.main_image_url || '',
         featured: productData.featured || false,
         condition: productData.condition || 'new'
@@ -115,7 +143,7 @@ const ProductDetail = () => {
             category: p.category,
             price: p.price,
             description: p.description || '',
-            specs: Array.isArray(p.specs) ? (p.specs as string[]) : [],
+            specs: processSpecs(p.specs),
             main_image_url: p.main_image_url || '',
             featured: p.featured || false,
             condition: p.condition || 'new',
@@ -309,7 +337,7 @@ const ProductDetail = () => {
               ))}
             </div>
           </div>
-        </div>
+        </section>
       )}
       
       <Footer />
