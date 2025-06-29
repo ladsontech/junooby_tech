@@ -143,7 +143,7 @@ const ProductDetail = () => {
     return (
       <div className="min-h-screen">
         <Navbar />
-        <div className="pt-20 py-20 flex items-center justify-center min-h-[50vh]">
+        <div className="pt-20 md:pt-24 py-20 flex items-center justify-center min-h-[50vh]">
           <div>Loading...</div>
         </div>
         <Footer />
@@ -156,7 +156,7 @@ const ProductDetail = () => {
     return (
       <div className="min-h-screen">
         <Navbar />
-        <div className="pt-20 py-20 p-4">
+        <div className="pt-20 md:pt-24 py-20 p-4">
           <div className="max-w-7xl mx-auto text-center">
             <h1 className="text-2xl font-bold text-gray-900 mb-4">Product not found</h1>
             <Link to="/products">
@@ -179,7 +179,7 @@ const ProductDetail = () => {
       <Cart />
       <WhatsAppButton />
       
-      <section className="pt-20 py-6 md:py-12">
+      <section className="pt-20 md:pt-24 py-6 md:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-4">
             <Link to="/products">
@@ -194,14 +194,14 @@ const ProductDetail = () => {
             {/* Product Images */}
             <div className="space-y-4">
               <div className="bg-white rounded-xl p-3 md:p-4 shadow-lg">
-                <AspectRatio ratio={4/3}>
+                <AspectRatio ratio={1}>
                   <img
                     src={selectedImage || product.main_image_url || '/images/HP 15_6.jpg'}
                     alt={product.name}
                     className="w-full h-full object-cover rounded-lg"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
-                      target.src = "https://images.unsplash.com/photo-1587831990711-23ca6441447b?w=600&h=450&fit=crop";
+                      target.src = "https://images.unsplash.com/photo-1587831990711-23ca6441447b?w=600&h=600&fit=crop";
                     }}
                   />
                 </AspectRatio>
@@ -309,7 +309,7 @@ const ProductDetail = () => {
               ))}
             </div>
           </div>
-        </section>
+        </div>
       )}
       
       <Footer />
