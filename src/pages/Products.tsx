@@ -208,33 +208,23 @@ const Products = () => {
       <section className="pt-16 md:pt-20 lg:pt-24 pb-8 md:pb-16 lg:pb-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 md:mb-12 lg:mb-16">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 md:mb-6">Premium Tech Products</h1>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 md:mb-6">Products</h1>
             <p className="text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Explore our extensive collection of cutting-edge smartphones, high-performance laptops, and professional security cameras. 
-              From the latest iPhone models to enterprise-grade CCTV systems, find the perfect technology solution for your needs.
+              Discover our collection of quality tech products and security solutions available across Uganda.
             </p>
-            <div className="mt-6 md:mt-8 flex flex-wrap justify-center gap-4 text-sm md:text-base">
-              <div className="flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
-                <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                <span className="text-gray-700">Latest Models Available</span>
-              </div>
-              <div className="flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
-                <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                <span className="text-gray-700">Genuine Products Only</span>
-              </div>
-              <div className="flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
-                <span className="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
-                <span className="text-gray-700">Warranty Included</span>
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* New Arrivals Carousel Section */}
+      {/* Featured Products Carousel */}
       {!loading && newestProducts.length > 0 && (
         <div className="bg-gradient-to-br from-blue-50 via-white to-purple-50">
-          <ProductCarousel products={newestProducts} onAddToCart={handleAddToCart} />
+          <ProductCarousel 
+            products={newestProducts} 
+            onAddToCart={handleAddToCart}
+            title="Featured Products"
+            description="Check out our latest and most popular tech items"
+          />
         </div>
       )}
 
@@ -249,9 +239,9 @@ const Products = () => {
       <section className="py-8 md:py-16 lg:py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 md:mb-12">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4">Browse All Products</h2>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4">All Available Products</h2>
             <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
-              Find the perfect tech solution for your needs from our comprehensive inventory
+              Browse our complete inventory of tech products across all categories
             </p>
           </div>
           
@@ -317,7 +307,7 @@ const Products = () => {
                   📱
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Smartphones</h3>
-                <p className="text-gray-600 text-sm">Latest smartphones from top brands including Samsung, iPhone, and more</p>
+                <p className="text-gray-600 text-sm">Latest smartphones from top brands</p>
               </div>
 
               <div className="bg-white rounded-xl p-6 shadow-lg text-center">
@@ -325,7 +315,7 @@ const Products = () => {
                   💻
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Laptops & PCs</h3>
-                <p className="text-gray-600 text-sm">High-performance computers from HP, Dell, Lenovo, and other leading manufacturers</p>
+                <p className="text-gray-600 text-sm">High-performance computers and laptops</p>
               </div>
 
               <div className="bg-white rounded-xl p-6 shadow-lg text-center">
@@ -333,7 +323,7 @@ const Products = () => {
                   📹
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">CCTV Cameras</h3>
-                <p className="text-gray-600 text-sm">Professional security cameras including bullet, dome, and PTZ systems</p>
+                <p className="text-gray-600 text-sm">Professional security camera systems</p>
               </div>
             </div>
           </div>
@@ -343,7 +333,7 @@ const Products = () => {
             <div className="text-center mb-8">
               <h2 className="text-2xl md:text-3xl font-bold mb-4">Why Choose Our Products?</h2>
               <p className="text-base md:text-lg opacity-90 max-w-2xl mx-auto">
-                We provide only the highest quality tech products with comprehensive support and warranty
+                Quality products with comprehensive support and warranty
               </p>
             </div>
 
@@ -353,7 +343,7 @@ const Products = () => {
                   ✅
                 </div>
                 <h3 className="text-xl font-bold mb-2">Genuine Products</h3>
-                <p className="text-sm opacity-90">100% authentic products from authorized distributors</p>
+                <p className="text-sm opacity-90">100% authentic products</p>
               </div>
 
               <div className="text-center">
@@ -361,7 +351,7 @@ const Products = () => {
                   🛡️
                 </div>
                 <h3 className="text-xl font-bold mb-2">Warranty Coverage</h3>
-                <p className="text-sm opacity-90">Comprehensive warranty and after-sales support</p>
+                <p className="text-sm opacity-90">Comprehensive warranty support</p>
               </div>
 
               <div className="text-center">
@@ -369,7 +359,7 @@ const Products = () => {
                   🚚
                 </div>
                 <h3 className="text-xl font-bold mb-2">Fast Delivery</h3>
-                <p className="text-sm opacity-90">Quick delivery across Uganda with secure packaging</p>
+                <p className="text-sm opacity-90">Quick delivery across Uganda</p>
               </div>
 
               <div className="text-center">
@@ -377,7 +367,7 @@ const Products = () => {
                   💰
                 </div>
                 <h3 className="text-xl font-bold mb-2">Best Prices</h3>
-                <p className="text-sm opacity-90">Competitive pricing with flexible payment options</p>
+                <p className="text-sm opacity-90">Competitive pricing</p>
               </div>
             </div>
           </div>
