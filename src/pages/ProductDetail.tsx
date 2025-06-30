@@ -9,9 +9,8 @@ import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
-import { ArrowLeft, ShoppingCart } from 'lucide-react';
+import { ArrowLeft, ShoppingCart, Eye, Heart } from 'lucide-react';
 import { Database } from '@/integrations/supabase/types';
-import ProductCard from '@/components/ProductCard';
 import WhatsAppButton from '@/components/WhatsAppButton';
 
 type DbProduct = Database['public']['Tables']['products']['Row'];
@@ -132,7 +131,7 @@ const ProductDetail = () => {
           .select('*')
           .eq('category', transformedProduct.category)
           .neq('id', transformedProduct.id)
-          .limit(4);
+          .limit(8);
 
         if (relatedError) {
           console.error('Error fetching related products:', relatedError);
@@ -321,20 +320,128 @@ const ProductDetail = () => {
         </div>
       </section>
       
+      {/* Modern Related Products Section - Inspired by daxx.shop */}
       {relatedProducts.length > 0 && (
-        <section className="py-8 md:py-16 bg-gray-50">
+        <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 md:mb-8 text-center">
-              Related Products
-            </h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-              {relatedProducts.map((p) => (
-                <ProductCard
-                  key={p.id}
-                  product={p}
-                  onAddToCart={handleAddToCart}
-                />
+            {/* Section Header */}
+            <div className="text-center mb-8 md:mb-12">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4">
+                You Might Also Like
+              </h2>
+              <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
+                Discover more amazing products from our collection
+              </p>
+            </div>
+
+            {/* Products Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+              {relatedProducts.map((relatedProduct) => (
+                <div 
+                  key={relatedProduct.id} 
+                  className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100"
+                >
+                  {/* Product Image Container */}
+                  <div className="relative overflow-hidden bg-gray-50">
+                    <AspectRatio ratio={1}>
+                      <img
+                        src={relatedProduct.main_image_url || '/images/HP 15_6.jpg'}
+                        alt={relatedProduct.name}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.src = "https://images.unsplash.com/photo-1587831990711-23ca6441447b?w=400&h=400&fit=crop";
+                        }}
+                      />
+                    </AspectRatio>
+                    
+                    {/* Overlay Actions */}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                      <div className="flex gap-3">
+                        <Link to={`/product/${relatedProduct.id}`}>
+                          <button className="bg-white/90 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110">
+                            <Eye size={18} />
+                          </button>
+                        </Link>
+                        <button className="bg-white/90 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110">
+                          <Heart size={18} />
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Product Badges */}
+                    <div className="absolute top-3 left-3 flex flex-col gap-1">
+                      {relatedProduct.condition === 'new' && (
+                        <Badge className="bg-emerald-500 hover:bg-emerald-600 text-white text-xs px-2 py-1">
+                          New
+                        </Badge>
+                      )}
+                      {relatedProduct.featured && (
+                        <Badge className="bg-orange-500 hover:bg-orange-600 text-white text-xs px-2 py-1">
+                          Featured
+                        </Badge>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Product Info */}
+                  <div className="p-4 md:p-5">
+                    {/* Product Category */}
+                    <div className="mb-2">
+                      <span className="text-xs font-medium text-blue-600 uppercase tracking-wide">
+                        {relatedProduct.category === 'phones' && "Smartphone"}
+                        {relatedProduct.category === 'pcs' && "Computer"}
+                        {relatedProduct.category === 'cctv' && "Security"}
+                      </span>
+                    </div>
+
+                    {/* Product Name */}
+                    <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-2 line-clamp-2 leading-tight group-hover:text-blue-600 transition-colors duration-300">
+                      {relatedProduct.name}
+                    </h3>
+
+                    {/* Product Description */}
+                    <p className="text-sm text-gray-600 mb-3 line-clamp-2 leading-relaxed">
+                      {relatedProduct.description || "Premium quality product with excellent features and performance."}
+                    </p>
+
+                    {/* Price */}
+                    <div className="mb-4">
+                      <span className="text-lg md:text-xl font-bold text-gray-900">
+                        {formatPrice(relatedProduct.price)}
+                      </span>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => handleAddToCart(relatedProduct)}
+                        className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-xl font-medium text-sm transition-all duration-300 hover:shadow-lg hover:scale-105 flex items-center justify-center gap-2"
+                      >
+                        <ShoppingCart size={16} />
+                        Add to Cart
+                      </button>
+                      <Link to={`/product/${relatedProduct.id}`}>
+                        <button className="bg-gray-100 hover:bg-gray-200 text-gray-700 py-2.5 px-4 rounded-xl font-medium text-sm transition-all duration-300 hover:shadow-md">
+                          <Eye size={16} />
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
               ))}
+            </div>
+
+            {/* View All Products Button */}
+            <div className="text-center mt-8 md:mt-12">
+              <Link to="/products">
+                <Button 
+                  size="lg" 
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-xl font-semibold text-base hover:shadow-xl transition-all duration-300 hover:scale-105"
+                >
+                  View All Products
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
