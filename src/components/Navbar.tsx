@@ -31,6 +31,12 @@ const Navbar = () => {
               <Link to="/" className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive('/') ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'}`}>
                 Home
               </Link>
+              <Link to="/web" className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive('/web') ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'}`}>
+                Web
+              </Link>
+              <Link to="/ecommerce" className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive('/ecommerce') ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'}`}>
+                Ecommerce
+              </Link>
               <Link to="/contact" className="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition-all duration-300 hover:scale-105">
                 Contact Us
               </Link>
@@ -69,6 +75,12 @@ const Navbar = () => {
             <div className="py-4 space-y-2">
               <Link to="/" onClick={() => setIsMenuOpen(false)} className={`block px-4 py-3 text-sm font-medium transition-colors ${isActive('/') ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'}`}>
                 Home
+              </Link>
+              <Link to="/web" onClick={() => setIsMenuOpen(false)} className={`block px-4 py-3 text-sm font-medium transition-colors ${isActive('/web') ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'}`}>
+                Web
+              </Link>
+              <Link to="/ecommerce" onClick={() => setIsMenuOpen(false)} className={`block px-4 py-3 text-sm font-medium transition-colors ${isActive('/ecommerce') ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'}`}>
+                Ecommerce
               </Link>
               <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="block mx-4 my-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium text-center hover:bg-blue-700">
                 Contact Us
