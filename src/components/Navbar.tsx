@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
@@ -29,12 +30,6 @@ const Navbar = () => {
             <div className="flex items-center space-x-8">
               <Link to="/" className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive('/') ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'}`}>
                 Home
-              </Link>
-              <Link to="/motors" className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive('/motors') ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'}`}>
-                Motors
-              </Link>
-              <Link to="/products" className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive('/products') ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'}`}>
-                Products
               </Link>
               <Link to="/contact" className="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition-all duration-300 hover:scale-105">
                 Contact Us
@@ -74,12 +69,6 @@ const Navbar = () => {
             <div className="py-4 space-y-2">
               <Link to="/" onClick={() => setIsMenuOpen(false)} className={`block px-4 py-3 text-sm font-medium transition-colors ${isActive('/') ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'}`}>
                 Home
-              </Link>
-              <Link to="/motors" onClick={() => setIsMenuOpen(false)} className={`block px-4 py-3 text-sm font-medium transition-colors ${isActive('/motors') ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'}`}>
-                Motors
-              </Link>
-              <Link to="/products" onClick={() => setIsMenuOpen(false)} className={`block px-4 py-3 text-sm font-medium transition-colors ${isActive('/products') ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'}`}>
-                Products
               </Link>
               <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="block mx-4 my-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium text-center hover:bg-blue-700">
                 Contact Us
