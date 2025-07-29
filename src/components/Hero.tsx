@@ -2,7 +2,6 @@ import React from 'react';
 import TypewriterEffect from './TypewriterEffect';
 import { Link } from 'react-router-dom';
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-
 const WhatsappButton = ({
   message
 }: {
@@ -22,14 +21,12 @@ const WhatsappButton = ({
       Chat on WhatsApp
     </button>;
 };
-
 const Hero = () => {
   // Responsive circle diameter (equal width & height): adjusts with breakpoints
   // Mobile: 220px, xs: 260px, sm: 300px, md+: 340px
   // You can tweak these if needed
   const avatarClass = "mx-auto rounded-full shadow-2xl border-4 border-orange-600 bg-slate-900 object-cover " + "w-[220px] h-[220px] xs:w-[260px] xs:h-[260px] sm:w-[300px] sm:h-[300px] md:w-[340px] md:h-[340px]";
-  
-  return <section className="min-h-[70vh] bg-gradient-to-br from-orange-50 via-orange-400 to-orange-600 pt-16 pb-8 md:pt-24 md:pb-14 flex items-center animate-fade-in">
+  return <section className="min-h-[70vh] bg-gradient-to-br from-orange-50 via-orange-400 to-orange-600 pt-16 pb-8 md:pt-24 md:pb-14 flex items-center animate-fade-in bg-orange-500">
       <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center md:items-stretch justify-between px-4 gap-8 md:gap-8 lg:gap-14">
         {/* Left: Headline & Actions */}
         <div className="flex-1 flex flex-col justify-center items-center md:items-start text-center md:text-left space-y-6 xs:space-y-7">
@@ -60,5 +57,4 @@ const Hero = () => {
       </div>
     </section>;
 };
-
 export default Hero;
