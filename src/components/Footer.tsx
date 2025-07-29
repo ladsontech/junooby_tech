@@ -19,7 +19,7 @@ const Footer = () => {
                   if (fallback) fallback.style.display = 'block';
                 }}
               />
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg" style={{display: 'none'}}></div>
+              <div className="w-8 h-8 bg-gradient-to-r from-orange-600 to-orange-400 rounded-lg" style={{display: 'none'}}></div>
               <span className="text-2xl font-bold">Junooby</span>
             </div>
             <p className="text-gray-400 leading-relaxed">
