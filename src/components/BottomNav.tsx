@@ -27,8 +27,8 @@ const BottomNav = () => {
               to={item.path}
               className={`flex flex-col items-center py-2 px-3 min-w-0 transition-colors ${
                 isActive(item.path)
-                  ? 'text-blue-600'
-                  : 'text-gray-600 hover:text-blue-600'
+                  ? 'text-orange-600'
+                  : 'text-gray-600 hover:text-orange-600'
               }`}
             >
               <Icon size={20} className="mb-1" />
