@@ -1,9 +1,7 @@
-
 import React from 'react';
 import TypewriterEffect from './TypewriterEffect';
 import { Link } from 'react-router-dom';
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-
 const WhatsappButton = ({
   message
 }: {
@@ -23,21 +21,16 @@ const WhatsappButton = ({
       Chat on WhatsApp
     </button>;
 };
-
 const Hero = () => {
   // Responsive circle diameter (equal width & height): adjusts with breakpoints
   // Mobile: 220px, xs: 260px, sm: 300px, md+: 340px
   // You can tweak these if needed
   const avatarClass = "mx-auto rounded-full shadow-2xl border-4 border-blue-700 bg-slate-900 object-cover " + "w-[220px] h-[220px] xs:w-[260px] xs:h-[260px] sm:w-[300px] sm:h-[300px] md:w-[340px] md:h-[340px]";
-  
-  return (
-    <section className="min-h-[70vh] bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 pt-16 pb-8 md:pt-24 md:pb-14 flex items-center animate-fade-in">
+  return <section className="min-h-[70vh] bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 pt-16 pb-8 md:pt-24 md:pb-14 flex items-center animate-fade-in">
       <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center md:items-stretch justify-between px-4 gap-8 md:gap-8 lg:gap-14">
         {/* Left: Headline & Actions */}
         <div className="flex-1 flex flex-col justify-center items-center md:items-start text-center md:text-left space-y-6 xs:space-y-7">
-          <h1 className="font-extrabold leading-tight tracking-tight text-white drop-shadow-xl text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl transition-all">
-            Digital Solutions for Uganda's Future
-          </h1>
+          <h1 className="font-extrabold leading-tight tracking-tight text-white drop-shadow-xl text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl transition-all">Digital Solutions for Business</h1>
           <div className="h-8 xs:h-10 sm:h-12 flex items-center justify-center md:justify-start text-cyan-300 font-semibold text-base xs:text-xl sm:text-2xl md:text-3xl mb-0.5 xs:mb-1 transition-all">
             <TypewriterEffect />
           </div>
@@ -50,20 +43,18 @@ const Hero = () => {
         <div className="flex-1 flex items-center justify-center w-full">
           <Avatar className={avatarClass}>
             <AvatarImage src="/images/hero_section.jpg" alt="Tech solutions in action - Junooby Digital" draggable={false} style={{
-              objectFit: 'cover',
-              width: '100%',
-              height: '100%'
-            }} onError={e => {
-              (e.target as HTMLImageElement).style.display = 'none';
-            }} />
+            objectFit: 'cover',
+            width: '100%',
+            height: '100%'
+          }} onError={e => {
+            (e.target as HTMLImageElement).style.display = 'none';
+          }} />
             <AvatarFallback className="bg-blue-900 flex items-center justify-center text-white font-bold w-full h-full text-4xl">
               JD
             </AvatarFallback>
           </Avatar>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
