@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { supabase } from '@/integrations/supabase/client';
 import { Database } from '@/integrations/supabase/types';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import Autoplay from 'embla-carousel-autoplay';
 
 type DbProduct = Database['public']['Tables']['products']['Row'];
 
@@ -28,10 +28,6 @@ const formatPrice = (price: string) => {
 const FeaturedProducts = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-
-  const plugin = useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: true })
-  );
 
   useEffect(() => {
     fetchFeaturedProducts();
@@ -95,14 +91,11 @@ const FeaturedProducts = () => {
         </div>
         
         <Carousel
-          plugins={[plugin.current]}
           opts={{
             align: "start",
             loop: true,
           }}
           className="w-full"
-          onMouseEnter={plugin.current.stop}
-          onMouseLeave={plugin.current.reset}
         >
           <CarouselContent className="-ml-2 md:-ml-4">
             {products.map((product) => (

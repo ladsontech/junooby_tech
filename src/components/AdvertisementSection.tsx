@@ -1,7 +1,7 @@
-import React, { useRef } from 'react';
+
+import React from 'react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
-import Autoplay from 'embla-carousel-autoplay';
 
 interface Advertisement {
   id: number;
@@ -15,21 +15,14 @@ interface AdvertisementSectionProps {
   advertisements: Advertisement[];
   title?: string;
   description?: string;
-  autoplayDelay?: number;
 }
 
 const AdvertisementSection: React.FC<AdvertisementSectionProps> = ({ 
   advertisements, 
   title = "Featured Advertisements",
-  description = "Discover our latest offers and promotions",
-  autoplayDelay = 5000
+  description = "Discover our latest offers and promotions"
 }) => {
   if (advertisements.length === 0) return null;
-
-  // Auto-scroll with customizable delay
-  const plugin = useRef(
-    Autoplay({ delay: autoplayDelay, stopOnInteraction: true })
-  );
 
   const handleAdClick = (ad: Advertisement) => {
     if (ad.link) {
@@ -50,14 +43,11 @@ const AdvertisementSection: React.FC<AdvertisementSectionProps> = ({
         </div>
 
         <Carousel
-          plugins={[plugin.current]}
           opts={{
             align: "start",
             loop: true,
           }}
           className="w-full relative"
-          onMouseEnter={plugin.current.stop}
-          onMouseLeave={plugin.current.reset}
         >
           <CarouselContent className="-ml-2 md:-ml-4">
             {advertisements.map((ad) => (

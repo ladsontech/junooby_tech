@@ -1,11 +1,10 @@
-import React, { useRef } from 'react';
+
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import { ShoppingCart, Eye, Heart } from 'lucide-react';
-import Autoplay from 'embla-carousel-autoplay';
 
 interface Product {
   id: string;
@@ -40,11 +39,6 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({
 }) => {
   if (products.length === 0) return null;
 
-  // Auto-scroll with 4 second delay
-  const plugin = useRef(
-    Autoplay({ delay: 4000, stopOnInteraction: true })
-  );
-
   return (
     <section className="py-12 md:py-16 lg:py-20">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
@@ -58,14 +52,11 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({
         </div>
 
         <Carousel
-          plugins={[plugin.current]}
           opts={{
             align: "start",
             loop: true,
           }}
           className="w-full"
-          onMouseEnter={plugin.current.stop}
-          onMouseLeave={plugin.current.reset}
         >
           <CarouselContent className="-ml-2 md:-ml-4">
             {products.map((product) => (
