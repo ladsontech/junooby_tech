@@ -52,7 +52,7 @@ const LocationServices = () => {
               key={index}
               className="bg-card rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-border h-full flex flex-col animate-neon-pulse"
             >
-              <div className={`w-12 h-12 ${prop.bgColor} rounded-lg flex items-center justify-center text-2xl mb-4 flex-shrink-0 animate-glow`}>
+              <div className={`w-12 h-12 ${prop.bgColor} rounded-lg flex items-center justify-center text-2xl mb-4 flex-shrink-0 animate-glow text-primary-foreground`}>
                 {prop.icon}
               </div>
               <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3">
@@ -74,14 +74,14 @@ const LocationServices = () => {
         </div>
 
         <div className="mt-8 md:mt-12 lg:mt-16 text-center">
-          <div className="bg-gradient-to-r from-primary to-primary/80 rounded-2xl p-6 md:p-8 shadow-lg border border-border max-w-4xl mx-auto animate-neon-pulse">
-            <h3 className="text-xl md:text-2xl font-bold text-primary-foreground mb-4">
+          <div className="bg-card border border-border rounded-2xl p-6 md:p-8 shadow-lg max-w-4xl mx-auto animate-neon-pulse">
+            <h3 className="text-xl md:text-2xl font-bold text-primary mb-4">
               Ready to Transform Your Business?
             </h3>
-            <p className="text-primary-foreground/90 leading-relaxed text-sm md:text-base lg:text-lg">
+            <p className="text-foreground leading-relaxed text-sm md:text-base lg:text-lg">
               Join hundreds of Ugandan businesses that have already transformed their operations with our 
-              <strong> web development</strong>, <strong>mobile app development</strong>, 
-              <strong>CCTV security systems</strong>, and <strong>solar energy solutions</strong>. 
+              <strong className="text-primary"> web development</strong>, <strong className="text-primary">mobile app development</strong>, 
+              <strong className="text-primary">CCTV security systems</strong>, and <strong className="text-primary">solar energy solutions</strong>. 
               Get started today and see the difference professional digital solutions can make.
             </p>
           </div>

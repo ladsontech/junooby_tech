@@ -77,7 +77,7 @@ const Services = () => {
               key={index}
               className="bg-card border border-border rounded-xl lg:rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 h-full flex flex-col group animate-neon-pulse"
             >
-              <div className={`w-12 h-12 ${service.bgColor} rounded-lg flex items-center justify-center text-2xl mb-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
+              <div className={`w-12 h-12 ${service.bgColor} rounded-lg flex items-center justify-center text-2xl mb-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300 text-primary-foreground`}>
                 {service.icon}
               </div>
               <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3">{service.title}</h3>
@@ -108,33 +108,33 @@ const Services = () => {
         </div>
 
         {/* Why Choose Us Section */}
-        <div className="bg-gradient-to-r from-primary to-primary/80 rounded-2xl p-6 md:p-8 lg:p-12 text-primary-foreground text-center">
-          <h3 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">Why Choose Junooby?</h3>
+        <div className="bg-card border border-border rounded-2xl p-6 md:p-8 lg:p-12 text-foreground text-center">
+          <h3 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-primary">Why Choose Junooby?</h3>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8">
             <div className="flex flex-col items-center">
               <div className="text-3xl mb-2">🏆</div>
-              <div className="font-semibold">Local Expertise</div>
-              <div className="text-sm opacity-90">Global Standards</div>
+              <div className="font-semibold text-foreground">Local Expertise</div>
+              <div className="text-sm text-muted-foreground">Global Standards</div>
             </div>
             <div className="flex flex-col items-center">
               <div className="text-3xl mb-2">⚡</div>
-              <div className="font-semibold">Fast Delivery</div>
-              <div className="text-sm opacity-90">Quick Turnaround</div>
+              <div className="font-semibold text-foreground">Fast Delivery</div>
+              <div className="text-sm text-muted-foreground">Quick Turnaround</div>
             </div>
             <div className="flex flex-col items-center">
               <div className="text-3xl mb-2">💰</div>
-              <div className="font-semibold">Competitive Pricing</div>
-              <div className="text-sm opacity-90">Best Value</div>
+              <div className="font-semibold text-foreground">Competitive Pricing</div>
+              <div className="text-sm text-muted-foreground">Best Value</div>
             </div>
             <div className="flex flex-col items-center">
               <div className="text-3xl mb-2">🛠️</div>
-              <div className="font-semibold">24/7 Support</div>
-              <div className="text-sm opacity-90">Always Available</div>
+              <div className="font-semibold text-foreground">24/7 Support</div>
+              <div className="text-sm text-muted-foreground">Always Available</div>
             </div>
           </div>
           <Link 
             to="/motors"
-            className="inline-block bg-background text-foreground px-8 md:px-12 py-3 md:py-4 rounded-lg font-semibold text-base md:text-lg hover:bg-background/90 transition-all duration-300 hover:scale-105"
+            className="inline-block bg-primary text-primary-foreground px-8 md:px-12 py-3 md:py-4 rounded-lg font-semibold text-base md:text-lg hover:bg-primary/90 transition-all duration-300 hover:scale-105"
           >
             Explore Our Motors
           </Link>

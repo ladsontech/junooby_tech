@@ -115,10 +115,10 @@ const FeaturedProducts = () => {
                       />
                     </AspectRatio>
                     <div className="absolute top-3 left-3 flex flex-wrap gap-1">
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium text-white ${
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                         product.category === 'gadgets' 
-                          ? 'bg-primary' 
-                          : 'bg-green-600'
+                          ? 'bg-primary text-primary-foreground' 
+                          : 'bg-secondary text-secondary-foreground'
                       }`}>
                         {product.category === 'gadgets' ? 'Gadget' : 'CCTV'}
                       </span>

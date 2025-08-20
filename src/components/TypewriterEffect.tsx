@@ -31,10 +31,12 @@ const TypewriterEffect = () => {
     return () => clearTimeout(timer);
   }, [currentText, isDeleting, currentIndex, services, typeSpeed]);
 
-  return <span className="text-primary my-0 py-[20px] text-3xl animate-neon-pulse">
+  return (
+    <span className="text-primary my-0 py-[20px] text-3xl animate-neon-pulse">
       {currentText}
       <span className="animate-pulse text-primary">|</span>
-    </span>;
+    </span>
+  );
 };
 
 export default TypewriterEffect;

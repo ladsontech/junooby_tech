@@ -94,7 +94,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({
                         New Arrival
                       </Badge>
                       {product.condition === 'new' && (
-                        <Badge className="bg-green-500 hover:bg-green-600 text-white text-xs px-2 py-1">
+                        <Badge className="bg-secondary text-secondary-foreground text-xs px-2 py-1">
                           New
                         </Badge>
                       )}
