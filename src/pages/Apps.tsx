@@ -33,16 +33,16 @@ const Apps = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-black">
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-20 pb-12 bg-gradient-to-br from-green-900 via-blue-900 to-slate-800">
+      <section className="pt-20 pb-12 bg-black tech-grid">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
               Mobile App Development
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-400">
+              <span className="block text-primary animate-glow">
                 For Every Platform
               </span>
             </h1>
@@ -55,13 +55,13 @@ const Apps = () => {
       </section>
 
       {/* Services Grid */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Mobile App Development Services
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
               From native iOS and Android apps to cross-platform solutions, we create 
               mobile experiences that users love and businesses rely on.
             </p>
@@ -69,14 +69,14 @@ const Apps = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {appServices.map((service, index) => (
-              <div key={index} className="bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+              <div key={index} className="bg-gray-900 border border-gray-800 rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 animate-neon-pulse">
                 <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">{service.title}</h3>
-                <p className="text-gray-600 mb-6">{service.description}</p>
+                <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
+                <p className="text-gray-400 mb-6">{service.description}</p>
                 <div className="space-y-2">
                   {service.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-center text-gray-700">
-                      <span className="w-2 h-2 bg-green-600 rounded-full mr-3"></span>
+                    <div key={idx} className="flex items-center text-gray-300">
+                      <span className="w-2 h-2 bg-primary rounded-full mr-3"></span>
                       <span>{feature}</span>
                     </div>
                   ))}
@@ -88,49 +88,49 @@ const Apps = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               Why Choose Our Mobile App Development
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 bg-gray-800 border border-gray-700 rounded-full flex items-center justify-center mx-auto mb-6 animate-glow">
                 <span className="text-white text-2xl">⚡</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">High Performance</h3>
-              <p className="text-gray-600">Optimized for speed and efficiency with smooth animations and fast loading times.</p>
+              <h3 className="text-xl font-bold text-white mb-4">High Performance</h3>
+              <p className="text-gray-400">Optimized for speed and efficiency with smooth animations and fast loading times.</p>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 bg-gray-800 border border-gray-700 rounded-full flex items-center justify-center mx-auto mb-6 animate-glow">
                 <span className="text-white text-2xl">🎨</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Beautiful Design</h3>
-              <p className="text-gray-600">Intuitive and attractive user interfaces that follow platform-specific design guidelines.</p>
+              <h3 className="text-xl font-bold text-white mb-4">Beautiful Design</h3>
+              <p className="text-gray-400">Intuitive and attractive user interfaces that follow platform-specific design guidelines.</p>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 bg-gray-800 border border-gray-700 rounded-full flex items-center justify-center mx-auto mb-6 animate-glow">
                 <span className="text-white text-2xl">🔒</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Secure & Reliable</h3>
-              <p className="text-gray-600">Built with security best practices and thorough testing for reliable performance.</p>
+              <h3 className="text-xl font-bold text-white mb-4">Secure & Reliable</h3>
+              <p className="text-gray-400">Built with security best practices and thorough testing for reliable performance.</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-green-600 to-blue-600">
+      <section className="py-16 bg-gray-900 border-t border-gray-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Ready to Build Your Mobile App?
           </h2>
-          <p className="text-xl text-green-100 mb-8 leading-relaxed">
+          <p className="text-xl text-gray-300 mb-8 leading-relaxed">
             Turn your app idea into reality with our expert mobile development team. 
             Let's create something amazing together.
           </p>
