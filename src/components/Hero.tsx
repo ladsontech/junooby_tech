@@ -1,9 +1,7 @@
-
 import React from 'react';
 import TypewriterEffect from './TypewriterEffect';
 import { Link } from 'react-router-dom';
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-
 const WhatsappButton = ({
   message
 }: {
@@ -23,24 +21,28 @@ const WhatsappButton = ({
       Chat on WhatsApp
     </button>;
 };
-
 const Hero = () => {
   const avatarClass = "mx-auto rounded-full shadow-2xl border-4 border-primary bg-card object-cover animate-glow " + "w-[220px] h-[220px] xs:w-[260px] xs:h-[260px] sm:w-[300px] sm:h-[300px] md:w-[340px] md:h-[340px]";
-  
   return <section className="min-h-[70vh] bg-gradient-to-br from-background via-card to-background tech-grid pt-16 pb-8 md:pt-24 md:pb-14 flex items-center animate-fade-in relative overflow-hidden">
       {/* Tech particles background effect */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-2 h-2 bg-primary rounded-full animate-float opacity-70"></div>
-        <div className="absolute top-40 right-20 w-1 h-1 bg-primary rounded-full animate-float opacity-50" style={{animationDelay: '1s'}}></div>
-        <div className="absolute bottom-20 left-1/4 w-1.5 h-1.5 bg-primary rounded-full animate-float opacity-60" style={{animationDelay: '2s'}}></div>
-        <div className="absolute top-60 right-1/3 w-1 h-1 bg-primary rounded-full animate-float opacity-40" style={{animationDelay: '0.5s'}}></div>
+        <div className="absolute top-40 right-20 w-1 h-1 bg-primary rounded-full animate-float opacity-50" style={{
+        animationDelay: '1s'
+      }}></div>
+        <div className="absolute bottom-20 left-1/4 w-1.5 h-1.5 bg-primary rounded-full animate-float opacity-60" style={{
+        animationDelay: '2s'
+      }}></div>
+        <div className="absolute top-60 right-1/3 w-1 h-1 bg-primary rounded-full animate-float opacity-40" style={{
+        animationDelay: '0.5s'
+      }}></div>
       </div>
       
       <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center md:items-stretch justify-between px-4 gap-8 md:gap-8 lg:gap-14 relative z-10">
         {/* Left: Headline & Actions */}
         <div className="flex-1 flex flex-col justify-center items-center md:items-start text-center md:text-left space-y-6 xs:space-y-7">
           <h1 className="font-extrabold leading-tight tracking-tight text-foreground drop-shadow-2xl text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl transition-all">
-            <span className="bg-gradient-to-r from-primary to-orange-300 bg-clip-text text-transparent">Digital Solutions</span>
+            <span className="bg-gradient-to-r from-primary to-orange-300 bg-clip-text text-orange-400">Digital Solutions</span>
             <br />
             <span className="text-foreground">for Business</span>
           </h1>
@@ -70,5 +72,4 @@ const Hero = () => {
       </div>
     </section>;
 };
-
 export default Hero;
