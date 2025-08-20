@@ -1,8 +1,17 @@
-
 import React, { useState, useEffect } from 'react';
 
 const TypewriterEffect = () => {
-  const services = ["Web Development", "Mobile App Design", "SEO Optimization", "Social Media Management", "Digital Marketing", "CCTV Installation", "Tech Solutions"];
+  const services = [
+    "Web Development", 
+    "Mobile App Design", 
+    "SEO Optimization", 
+    "Social Media Management", 
+    "Digital Marketing", 
+    "CCTV Installation", 
+    "Tech Solutions",
+    "AI Integration",
+    "Cloud Services"
+  ];
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentText, setCurrentText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
@@ -32,10 +41,15 @@ const TypewriterEffect = () => {
   }, [currentText, isDeleting, currentIndex, services, typeSpeed]);
 
   return (
-    <span className="text-primary my-0 py-[20px] text-3xl animate-neon-pulse">
-      {currentText}
-      <span className="animate-pulse text-primary">|</span>
-    </span>
+    <div className="relative">
+      <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent font-bold text-2xl md:text-4xl lg:text-5xl animate-pulse-glow">
+        {currentText}
+        <span className="animate-pulse text-blue-400 ml-1">|</span>
+      </span>
+      
+      {/* Glowing underline effect */}
+      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 opacity-50 animate-pulse"></div>
+    </div>
   );
 };
 
