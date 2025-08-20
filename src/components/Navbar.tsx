@@ -12,7 +12,7 @@ const Navbar = () => {
   return (
     <>
       {/* Desktop Navbar */}
-      <nav className="bg-white/95 backdrop-blur-sm shadow-lg fixed w-full z-50 transition-all duration-300 md:block hidden">
+      <nav className="bg-background/95 backdrop-blur-sm shadow-lg border-b border-border fixed w-full z-50 transition-all duration-300 md:block hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link to="/" className="flex items-center space-x-2">
@@ -22,26 +22,26 @@ const Navbar = () => {
                 const fallback = target.nextElementSibling as HTMLElement;
                 if (fallback) fallback.style.display = 'block';
               }} />
-              <div className="w-12 h-12 bg-orange-600 rounded-lg" style={{
+              <div className="w-12 h-12 bg-primary rounded-lg animate-glow" style={{
                 display: 'none'
               }}></div>
-              <span className="font-bold text-orange-700 text-4xl">Junooby</span>
+              <span className="font-bold text-primary text-4xl">Junooby</span>
             </Link>
             
             <div className="flex items-center space-x-8">
-              <Link to="/" className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive('/') ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:text-orange-600 hover:bg-gray-50'}`}>
+              <Link to="/" className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive('/') ? 'text-primary bg-accent' : 'text-foreground hover:text-primary hover:bg-accent'}`}>
                 Home
               </Link>
-              <Link to="/web" className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive('/web') ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:text-orange-600 hover:bg-gray-50'}`}>
+              <Link to="/web" className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive('/web') ? 'text-primary bg-accent' : 'text-foreground hover:text-primary hover:bg-accent'}`}>
                 Web
               </Link>
-              <Link to="/ecommerce" className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive('/ecommerce') ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:text-orange-600 hover:bg-gray-50'}`}>
+              <Link to="/ecommerce" className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive('/ecommerce') ? 'text-primary bg-accent' : 'text-foreground hover:text-primary hover:bg-accent'}`}>
                 Ecommerce
               </Link>
-              <Link to="/apps" className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive('/apps') ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:text-orange-600 hover:bg-gray-50'}`}>
+              <Link to="/apps" className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive('/apps') ? 'text-primary bg-accent' : 'text-foreground hover:text-primary hover:bg-accent'}`}>
                 Apps
               </Link>
-              <Link to="/contact" className="bg-orange-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-orange-700 transition-all duration-300 hover:scale-105">
+              <Link to="/contact" className="bg-primary text-primary-foreground px-6 py-2 rounded-lg font-medium hover:bg-primary/90 transition-all duration-300 hover:scale-105 animate-neon-pulse">
                 Contact Us
               </Link>
             </div>
@@ -50,7 +50,7 @@ const Navbar = () => {
       </nav>
 
       {/* Mobile Top Bar */}
-      <nav className="bg-white/95 backdrop-blur-sm shadow-lg fixed w-full z-50 transition-all duration-300 md:hidden block">
+      <nav className="bg-background/95 backdrop-blur-sm shadow-lg border-b border-border fixed w-full z-50 transition-all duration-300 md:hidden block">
         <div className="px-4">
           <div className="flex justify-between items-center h-16">
             <Link to="/" className="flex items-center space-x-2">
@@ -60,14 +60,14 @@ const Navbar = () => {
                 const fallback = target.nextElementSibling as HTMLElement;
                 if (fallback) fallback.style.display = 'block';
               }} />
-              <div className="w-12 h-12 bg-orange-600 rounded-lg" style={{
+              <div className="w-12 h-12 bg-primary rounded-lg animate-glow" style={{
                 display: 'none'
               }}></div>
-              <span className="font-extrabold text-4xl text-orange-600">Junooby</span>
+              <span className="font-extrabold text-4xl text-primary">Junooby</span>
             </Link>
             
             <div className="flex items-center space-x-2">
-              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 rounded-md text-gray-700 hover:text-orange-600 hover:bg-gray-50 transition-colors">
+              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 rounded-md text-foreground hover:text-primary hover:bg-accent transition-colors">
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
             </div>
@@ -76,21 +76,21 @@ const Navbar = () => {
 
         {/* Mobile Menu Overlay */}
         {isMenuOpen && (
-          <div className="absolute top-16 left-0 right-0 bg-white shadow-lg border-t">
+          <div className="absolute top-16 left-0 right-0 bg-background shadow-lg border-t border-border">
             <div className="py-4 space-y-2">
-              <Link to="/" onClick={() => setIsMenuOpen(false)} className={`block px-4 py-3 text-sm font-medium transition-colors ${isActive('/') ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:text-orange-600 hover:bg-gray-50'}`}>
+              <Link to="/" onClick={() => setIsMenuOpen(false)} className={`block px-4 py-3 text-sm font-medium transition-colors ${isActive('/') ? 'text-primary bg-accent' : 'text-foreground hover:text-primary hover:bg-accent'}`}>
                 Home
               </Link>
-              <Link to="/web" onClick={() => setIsMenuOpen(false)} className={`block px-4 py-3 text-sm font-medium transition-colors ${isActive('/web') ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:text-orange-600 hover:bg-gray-50'}`}>
+              <Link to="/web" onClick={() => setIsMenuOpen(false)} className={`block px-4 py-3 text-sm font-medium transition-colors ${isActive('/web') ? 'text-primary bg-accent' : 'text-foreground hover:text-primary hover:bg-accent'}`}>
                 Web
               </Link>
-              <Link to="/ecommerce" onClick={() => setIsMenuOpen(false)} className={`block px-4 py-3 text-sm font-medium transition-colors ${isActive('/ecommerce') ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:text-orange-600 hover:bg-gray-50'}`}>
+              <Link to="/ecommerce" onClick={() => setIsMenuOpen(false)} className={`block px-4 py-3 text-sm font-medium transition-colors ${isActive('/ecommerce') ? 'text-primary bg-accent' : 'text-foreground hover:text-primary hover:bg-accent'}`}>
                 Ecommerce
               </Link>
-              <Link to="/apps" onClick={() => setIsMenuOpen(false)} className={`block px-4 py-3 text-sm font-medium transition-colors ${isActive('/apps') ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:text-orange-600 hover:bg-gray-50'}`}>
+              <Link to="/apps" onClick={() => setIsMenuOpen(false)} className={`block px-4 py-3 text-sm font-medium transition-colors ${isActive('/apps') ? 'text-primary bg-accent' : 'text-foreground hover:text-primary hover:bg-accent'}`}>
                 Apps
               </Link>
-              <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="block mx-4 my-2 bg-orange-600 text-white px-6 py-3 rounded-lg font-medium text-center hover:bg-orange-700">
+              <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="block mx-4 my-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium text-center hover:bg-primary/90">
                 Contact Us
               </Link>
             </div>
