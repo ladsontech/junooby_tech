@@ -31,13 +31,13 @@ const AdvertisementSection: React.FC<AdvertisementSectionProps> = ({
   };
 
   return (
-    <section className="py-8 md:py-12 bg-gradient-to-br from-gray-50 to-blue-50">
+    <section className="py-8 md:py-12 bg-background tech-grid">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         <div className="text-center mb-6 md:mb-8 lg:mb-12">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-3">
             {title}
           </h2>
-          <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto">
             {description}
           </p>
         </div>
@@ -53,12 +53,11 @@ const AdvertisementSection: React.FC<AdvertisementSectionProps> = ({
             {advertisements.map((ad) => (
               <CarouselItem key={ad.id} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/4 2xl:basis-1/5">
                 <div 
-                  className={`bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 group ${
+                  className={`bg-card rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 group border border-border animate-neon-pulse ${
                     ad.link ? 'cursor-pointer' : ''
                   }`}
                   onClick={() => handleAdClick(ad)}
                 >
-                  {/* Advertisement Image with 16:9 ratio - Images only, no text */}
                   <div className="relative overflow-hidden">
                     <AspectRatio ratio={16/9}>
                       <img 
@@ -77,9 +76,8 @@ const AdvertisementSection: React.FC<AdvertisementSectionProps> = ({
             ))}
           </CarouselContent>
           
-          {/* Navigation Buttons - Always visible with better positioning */}
-          <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg border-0 h-10 w-10" />
-          <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg border-0 h-10 w-10" />
+          <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-card/90 hover:bg-card shadow-lg border border-border h-10 w-10 text-foreground" />
+          <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-card/90 hover:bg-card shadow-lg border border-border h-10 w-10 text-foreground" />
         </Carousel>
       </div>
     </section>
