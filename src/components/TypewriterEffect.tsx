@@ -42,13 +42,13 @@ const TypewriterEffect = () => {
 
   return (
     <div className="relative">
-      <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent font-bold text-2xl md:text-4xl lg:text-5xl animate-pulse-glow">
+      <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent font-bold text-2xl md:text-4xl lg:text-5xl animate-pulse-glow holographic text-glow">
         {currentText}
-        <span className="animate-pulse text-blue-400 ml-1">|</span>
+        <span className="animate-pulse text-blue-400 ml-1 glow-blue">|</span>
       </span>
       
       {/* Glowing underline effect */}
-      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 opacity-50 animate-pulse"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 opacity-70 animate-pulse glow-blue rounded-full"></div>
     </div>
   );
 };

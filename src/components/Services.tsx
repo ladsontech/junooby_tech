@@ -87,9 +87,9 @@ const Services = () => {
                 <div className="grid grid-cols-2 gap-1">
                   {service.features.slice(0, 6).map((feature, idx) => (
                     <div key={idx} className="flex items-center text-muted-foreground text-xs">
-                      <span className="w-1 h-1 bg-primary rounded-full mr-2 flex-shrink-0"></span>
+                className="space-card rounded-xl lg:rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 h-full flex flex-col group animate-neon-pulse"
                       <span className="truncate">{feature}</span>
-                    </div>
+                <div className={`w-12 h-12 ${service.bgColor} rounded-lg flex items-center justify-center text-2xl mb-4 flex-shrink-0 group-hover:scale-125 transition-transform duration-500 animate-glow text-primary-foreground glow-blue`}>
                   ))}
                 </div>
               </div>
@@ -115,7 +115,7 @@ const Services = () => {
               <div className="text-3xl mb-2">🏆</div>
               <div className="font-semibold text-foreground">Local Expertise</div>
               <div className="text-sm text-muted-foreground">Global Standards</div>
-            </div>
+                <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3 text-glow">
             <div className="flex flex-col items-center">
               <div className="text-3xl mb-2">⚡</div>
               <div className="font-semibold text-foreground">Fast Delivery</div>
@@ -124,16 +124,16 @@ const Services = () => {
             <div className="flex flex-col items-center">
               <div className="text-3xl mb-2">💰</div>
               <div className="font-semibold text-foreground">Competitive Pricing</div>
-              <div className="text-sm text-muted-foreground">Best Value</div>
+                      <span className="w-1.5 h-1.5 bg-primary rounded-full mr-2 flex-shrink-0 glow-blue"></span>
             </div>
-            <div className="flex flex-col items-center">
-              <div className="text-3xl mb-2">🛠️</div>
+            <div className="space-card rounded-2xl p-6 md:p-8 shadow-lg max-w-4xl mx-auto animate-neon-pulse">
+              <h3 className="text-xl md:text-2xl font-bold text-primary mb-4 text-glow">
               <div className="font-semibold text-foreground">24/7 Support</div>
               <div className="text-sm text-muted-foreground">Always Available</div>
             </div>
           </div>
-          <Link 
-            to="/motors"
+                <strong className="text-primary text-glow"> web development</strong>, <strong className="text-primary text-glow">mobile app development</strong>, 
+                <strong className="text-primary text-glow">CCTV security systems</strong>, and <strong className="text-primary text-glow">solar energy solutions</strong>. 
             className="inline-block bg-primary text-primary-foreground px-8 md:px-12 py-3 md:py-4 rounded-lg font-semibold text-base md:text-lg hover:bg-primary/90 transition-all duration-300 hover:scale-105"
           >
             Explore Our Motors
