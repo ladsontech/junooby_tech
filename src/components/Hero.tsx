@@ -31,7 +31,7 @@ const WhatsappButton = ({
 };
 
 const Hero = () => {
-  const avatarClass = "mx-auto rounded-full shadow-2xl border-4 border-primary/50 bg-card object-cover glow-blue animate-pulse-glow " + "w-[220px] h-[220px] xs:w-[260px] xs:h-[260px] sm:w-[300px] sm:h-[300px] md:w-[340px] md:h-[340px]";
+  const avatarClass = "mx-auto rounded-full shadow-2xl border-4 border-border bg-card object-cover glow-blue " + "w-[220px] h-[220px] xs:w-[260px] xs:h-[260px] sm:w-[300px] sm:h-[300px] md:w-[340px] md:h-[340px]";
   
   return (
     <section className="min-h-screen space-bg relative overflow-hidden flex items-center">
@@ -73,10 +73,10 @@ const Hero = () => {
       </div>
 
       {/* Floating orbs */}
-      <div className="absolute top-20 left-10 w-40 h-40 bg-blue-500/20 rounded-full blur-2xl animate-pulse-glow glow-blue"></div>
-      <div className="absolute bottom-20 right-10 w-48 h-48 bg-purple-500/20 rounded-full blur-2xl animate-pulse-glow glow-purple" style={{animationDelay: '1s'}}></div>
-      <div className="absolute top-1/2 left-1/4 w-32 h-32 bg-cyan-500/20 rounded-full blur-2xl animate-pulse-glow" style={{animationDelay: '2s'}}></div>
-      <div className="absolute top-1/3 right-1/3 w-24 h-24 bg-green-500/20 rounded-full blur-xl animate-pulse-glow glow-green" style={{animationDelay: '3s'}}></div>
+      <div className="absolute top-20 left-10 w-40 h-40 bg-white/10 rounded-full blur-2xl animate-pulse-glow glow-blue"></div>
+      <div className="absolute bottom-20 right-10 w-48 h-48 bg-white/10 rounded-full blur-2xl animate-pulse-glow glow-purple" style={{animationDelay: '1s'}}></div>
+      <div className="absolute top-1/2 left-1/4 w-32 h-32 bg-white/10 rounded-full blur-2xl animate-pulse-glow" style={{animationDelay: '2s'}}></div>
+      <div className="absolute top-1/3 right-1/3 w-24 h-24 bg-white/10 rounded-full blur-xl animate-pulse-glow glow-green" style={{animationDelay: '3s'}}></div>
 
       {/* Tech grid overlay */}
       <div className="absolute inset-0 tech-grid opacity-20"></div>
@@ -86,7 +86,7 @@ const Hero = () => {
         <div className="flex-1 flex flex-col justify-center items-center md:items-start text-center md:text-left space-y-8 animate-slide-in-up">
           <div className="space-y-6">
             <h1 className="font-extrabold leading-tight tracking-tight text-foreground text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-glow">
-              <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent animate-pulse-glow holographic">
+              <span className="bg-clip-text text-transparent text-glow" style={{backgroundImage: 'linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0.9))'}}>
                 Digital Solutions
               </span>
               <br />
@@ -100,7 +100,7 @@ const Hero = () => {
             <p className="text-muted-foreground text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl max-w-2xl leading-relaxed font-light text-glow">
               Empowering innovation with cutting-edge web, mobile, security, and marketing technology.
               <br className="hidden sm:block" />
-              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-medium text-glow-purple">
+              <span className="bg-clip-text text-transparent font-medium text-glow" style={{backgroundImage: 'linear-gradient(90deg, rgba(255,255,255,0.8), rgba(255,255,255,0.8))'}}>
                 Built with precision. Delivered with excellence.
               </span>
             </p>
@@ -109,9 +109,8 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto">
             <Link 
               to="/contact"
-              className="group relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 text-white px-8 md:px-10 py-4 md:py-5 rounded-xl font-semibold text-base md:text-lg transition-all duration-500 hover:scale-110 hover:shadow-2xl border border-blue-400/30 text-center animate-neon-pulse glow-blue"
+              className="group relative overflow-hidden bg-white/10 text-white px-8 md:px-10 py-4 md:py-5 rounded-xl font-semibold text-base md:text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl border border-white/20 text-center"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <span className="relative">Get Started</span>
             </Link>
             
@@ -123,16 +122,16 @@ const Hero = () => {
         <div className="flex-1 flex items-center justify-center w-full relative">
           <div className="relative">
             {/* Orbital rings */}
-            <div className="absolute inset-0 border-2 border-blue-500/30 rounded-full animate-spin glow-blue" style={{animationDuration: '25s'}}></div>
-            <div className="absolute inset-4 border border-purple-500/30 rounded-full animate-spin glow-purple" style={{animationDuration: '20s', animationDirection: 'reverse'}}></div>
-            <div className="absolute inset-8 border border-cyan-500/30 rounded-full animate-spin" style={{animationDuration: '30s'}}></div>
-            <div className="absolute inset-12 border border-green-500/20 rounded-full animate-spin glow-green" style={{animationDuration: '35s', animationDirection: 'reverse'}}></div>
+            <div className="absolute inset-0 border-2 border-white/20 rounded-full animate-spin glow-blue" style={{animationDuration: '25s'}}></div>
+            <div className="absolute inset-4 border border-white/15 rounded-full animate-spin glow-purple" style={{animationDuration: '20s', animationDirection: 'reverse'}}></div>
+            <div className="absolute inset-8 border border-white/10 rounded-full animate-spin" style={{animationDuration: '30s'}}></div>
+            <div className="absolute inset-12 border border-white/10 rounded-full animate-spin glow-green" style={{animationDuration: '35s', animationDirection: 'reverse'}}></div>
             
             {/* Orbiting elements */}
-            <div className="absolute top-0 left-1/2 w-4 h-4 bg-blue-500 rounded-full animate-orbit glow-blue" style={{animationDuration: '25s'}}></div>
-            <div className="absolute top-1/2 right-0 w-3 h-3 bg-purple-500 rounded-full animate-orbit glow-purple" style={{animationDuration: '20s', animationDirection: 'reverse'}}></div>
-            <div className="absolute bottom-0 left-1/2 w-3.5 h-3.5 bg-cyan-500 rounded-full animate-orbit" style={{animationDuration: '30s'}}></div>
-            <div className="absolute top-1/4 left-0 w-2.5 h-2.5 bg-green-500 rounded-full animate-orbit glow-green" style={{animationDuration: '35s', animationDirection: 'reverse'}}></div>
+            <div className="absolute top-0 left-1/2 w-4 h-4 bg-white/70 rounded-full animate-orbit glow-blue" style={{animationDuration: '25s'}}></div>
+            <div className="absolute top-1/2 right-0 w-3 h-3 bg-white/60 rounded-full animate-orbit glow-purple" style={{animationDuration: '20s', animationDirection: 'reverse'}}></div>
+            <div className="absolute bottom-0 left-1/2 w-3.5 h-3.5 bg-white/50 rounded-full animate-orbit" style={{animationDuration: '30s'}}></div>
+            <div className="absolute top-1/4 left-0 w-2.5 h-2.5 bg-white/60 rounded-full animate-orbit glow-green" style={{animationDuration: '35s', animationDirection: 'reverse'}}></div>
 
             <Avatar className={avatarClass}>
               <AvatarImage 
@@ -144,7 +143,7 @@ const Hero = () => {
                   (e.target as HTMLImageElement).style.display = 'none';
                 }} 
               />
-              <AvatarFallback className="bg-gradient-to-br from-blue-600 to-purple-600 border-2 border-primary/50 flex items-center justify-center text-white font-bold w-full h-full text-6xl glow-blue">
+              <AvatarFallback className="bg-white/10 border-2 border-white/20 flex items-center justify-center text-white font-bold w-full h-full text-6xl glow-blue">
                 JD
               </AvatarFallback>
             </Avatar>

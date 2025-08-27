@@ -268,17 +268,15 @@ const ProductDetail = () => {
                     {product.category === 'pcs' && "PC"}
                     {product.category === 'cctv' && "CCTV"}
                   </Badge>
-                  <Badge variant={product.condition === 'new' ? 'default' : 'secondary'} className={
-                    product.condition === 'new' ? 'bg-emerald-600' : 'bg-amber-600'
-                  }>
+                  <Badge variant={product.condition === 'new' ? 'default' : 'secondary'} className="bg-white/10 text-white">
                     {product.condition === 'new' ? 'Brand New' : 'Refurbished'}
                   </Badge>
                   {product.featured && (
-                    <Badge variant="destructive">Featured</Badge>
+                    <Badge variant="destructive" className="bg-white/10 text-white">Featured</Badge>
                   )}
                 </div>
                 <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">{product.name}</h1>
-                <p className="text-xl md:text-2xl font-bold text-blue-600 mb-3">{formatPrice(product.price)}</p>
+                <p className="text-xl md:text-2xl font-bold text-foreground mb-3">{formatPrice(product.price)}</p>
               </div>
 
               {/* Single Description Section */}
@@ -292,12 +290,12 @@ const ProductDetail = () => {
               </div>
 
               {product.specs && product.specs.length > 0 && (
-                <div className="bg-blue-50 rounded-lg p-4">
-                  <h2 className="text-lg font-semibold text-gray-900 mb-3">Specifications</h2>
+                <div className="bg-white/5 rounded-lg p-4 border border-border">
+                  <h2 className="text-lg font-semibold text-foreground mb-3">Specifications</h2>
                   <ul className="space-y-2">
                     {product.specs.map((spec, index) => (
-                      <li key={index} className="text-gray-700 text-sm flex items-start">
-                        <span className="text-blue-600 mr-2 font-bold">•</span>
+                      <li key={index} className="text-muted-foreground text-sm flex items-start">
+                        <span className="text-foreground mr-2 font-bold">•</span>
                         <span className="leading-relaxed">{spec}</span>
                       </li>
                     ))}
@@ -309,7 +307,7 @@ const ProductDetail = () => {
                 <Button 
                   onClick={() => product && handleAddToCart(product)}
                   size="lg"
-                  className="w-full bg-blue-600 hover:bg-blue-700 hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm md:text-base"
+                  className="w-full bg-white/10 hover:bg-white/15 hover:shadow-lg transition-all duration-300 text-sm md:text-base border border-white/20"
                 >
                   <ShoppingCart className="mr-2" size={18} />
                   Add to Cart
@@ -372,12 +370,12 @@ const ProductDetail = () => {
                     {/* Product Badges */}
                     <div className="absolute top-3 left-3 flex flex-col gap-1">
                       {relatedProduct.condition === 'new' && (
-                        <Badge className="bg-emerald-500 hover:bg-emerald-600 text-white text-xs px-2 py-1">
+                        <Badge className="bg-white/10 hover:bg-white/15 text-white text-xs px-2 py-1">
                           New
                         </Badge>
                       )}
                       {relatedProduct.featured && (
-                        <Badge className="bg-orange-500 hover:bg-orange-600 text-white text-xs px-2 py-1">
+                        <Badge className="bg-white/10 hover:bg-white/15 text-white text-xs px-2 py-1">
                           Featured
                         </Badge>
                       )}
@@ -388,7 +386,7 @@ const ProductDetail = () => {
                   <div className="p-4 md:p-5">
                     {/* Product Category */}
                     <div className="mb-2">
-                      <span className="text-xs font-medium text-blue-600 uppercase tracking-wide">
+                      <span className="text-xs font-medium text-foreground uppercase tracking-wide">
                         {relatedProduct.category === 'phones' && "Smartphone"}
                         {relatedProduct.category === 'pcs' && "Computer"}
                         {relatedProduct.category === 'cctv' && "Security"}
@@ -396,7 +394,7 @@ const ProductDetail = () => {
                     </div>
 
                     {/* Product Name */}
-                    <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-2 line-clamp-2 leading-tight group-hover:text-blue-600 transition-colors duration-300">
+                    <h3 className="text-base md:text-lg font-semibold text-foreground mb-2 line-clamp-2 leading-tight">
                       {relatedProduct.name}
                     </h3>
 
@@ -416,7 +414,7 @@ const ProductDetail = () => {
                     <div className="flex gap-2">
                       <button
                         onClick={() => handleAddToCart(relatedProduct)}
-                        className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-xl font-medium text-sm transition-all duration-300 hover:shadow-lg hover:scale-105 flex items-center justify-center gap-2"
+                        className="flex-1 bg-white/10 hover:bg-white/15 text-white py-2.5 px-4 rounded-xl font-medium text-sm transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2 border border-white/20"
                       >
                         <ShoppingCart size={16} />
                         Add to Cart
