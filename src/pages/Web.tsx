@@ -75,10 +75,10 @@ const Web = () => {
         </div>
 
         {/* Floating orbs */}
-        <div className="absolute top-20 left-10 w-48 h-48 bg-blue-500/20 rounded-full blur-3xl animate-pulse-glow glow-blue"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-purple-500/20 rounded-full blur-2xl animate-pulse-glow glow-purple" style={{animationDelay: '1s'}}></div>
-        <div className="absolute top-1/3 right-1/4 w-32 h-32 bg-cyan-500/20 rounded-full blur-2xl animate-pulse-glow" style={{animationDelay: '2s'}}></div>
-        <div className="absolute bottom-1/3 left-1/3 w-28 h-28 bg-green-500/15 rounded-full blur-xl animate-pulse-glow glow-green" style={{animationDelay: '3s'}}></div>
+        <div className="absolute top-20 left-10 w-48 h-48 bg-white/10 rounded-full blur-3xl animate-pulse-glow glow-blue"></div>
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl animate-pulse-glow glow-purple" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-1/3 right-1/4 w-32 h-32 bg-white/10 rounded-full blur-2xl animate-pulse-glow" style={{animationDelay: '2s'}}></div>
+        <div className="absolute bottom-1/3 left-1/3 w-28 h-28 bg-white/10 rounded-full blur-xl animate-pulse-glow glow-green" style={{animationDelay: '3s'}}></div>
 
         {/* Tech grid overlay */}
         <div className="absolute inset-0 tech-grid opacity-15"></div>
@@ -86,7 +86,7 @@ const Web = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 py-20">
           <div className="text-center animate-slide-in-up">
             <h1 className="text-4xl md:text-7xl lg:text-8xl font-bold mb-8 text-glow">
-              <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent animate-pulse-glow holographic">
+              <span className="bg-clip-text text-transparent text-glow" style={{backgroundImage: 'linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0.9))'}}>
                 Web Solutions
               </span>
               <br />
@@ -101,12 +101,11 @@ const Web = () => {
             
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <button className="group relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 text-white px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-500 hover:scale-110 hover:shadow-2xl border border-blue-400/30 animate-neon-pulse glow-blue">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <button className="group relative overflow-hidden bg-white/10 text-white px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl border border-white/20">
                 <span className="relative">Start Your Project</span>
               </button>
               
-              <button className="group relative overflow-hidden glass text-foreground px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-500 hover:scale-110 border border-border/50 hover:border-primary/50 space-card">
+              <button className="group relative overflow-hidden glass text-foreground px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 border border-white/20 space-card">
                 <span className="relative">View Portfolio</span>
               </button>
             </div>
@@ -164,7 +163,7 @@ const Web = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             <div className="text-center group">
-              <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-8 glow-blue group-hover:scale-125 transition-all duration-500 animate-pulse-glow">
+              <div className="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-8 glow-blue group-hover:scale-125 transition-all duration-500 animate-pulse-glow">
                 <span className="text-white text-3xl">🌍</span>
               </div>
               <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-500 text-glow">Global Reach</h3>
@@ -172,7 +171,7 @@ const Web = () => {
             </div>
 
             <div className="text-center group">
-              <div className="w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-8 glow-purple group-hover:scale-125 transition-all duration-500 animate-pulse-glow">
+              <div className="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-8 glow-purple group-hover:scale-125 transition-all duration-500 animate-pulse-glow">
                 <span className="text-white text-3xl">🏆</span>
               </div>
               <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-500 text-glow">Brand Credibility</h3>
@@ -180,7 +179,7 @@ const Web = () => {
             </div>
 
             <div className="text-center group">
-              <div className="w-24 h-24 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-8 group-hover:scale-125 transition-all duration-500 glow-green animate-pulse-glow">
+              <div className="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-8 group-hover:scale-125 transition-all duration-500 glow-green animate-pulse-glow">
                 <span className="text-white text-3xl">💰</span>
               </div>
               <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-500 text-glow">Cost-Effective Marketing</h3>
