@@ -17,22 +17,22 @@ const BottomNav = () => {
   ];
 
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-background border-t border-border z-40">
-      <div className="flex justify-around items-center py-2">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-background/90 backdrop-blur-xl border-t border-border z-40 pb-[env(safe-area-inset-bottom)]">
+      <div className="flex justify-around items-center py-1">
         {navItems.map((item) => {
           const Icon = item.icon;
           return (
             <Link
               key={item.path}
               to={item.path}
-              className={`flex flex-col items-center py-2 px-3 min-w-0 transition-colors ${
+              className={`flex flex-col items-center py-1 px-2 min-w-0 transition-colors ${
                 isActive(item.path)
                   ? 'text-primary'
                   : 'text-muted-foreground hover:text-primary'
               }`}
             >
-              <Icon size={20} className="mb-1" />
-              <span className="text-xs font-medium">{item.label}</span>
+              <Icon size={18} className="mb-0.5" />
+              <span className="text-[10px] leading-none font-medium">{item.label}</span>
             </Link>
           );
         })}
