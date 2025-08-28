@@ -1,7 +1,6 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import BottomNav from '@/components/BottomNav';
 
 const Web = () => {
   const webServices = [
@@ -36,7 +35,7 @@ const Web = () => {
       <Navbar />
       
       {/* Enhanced Hero Section with Space Theme */}
-      <section className="min-h-screen space-bg relative overflow-hidden flex items-center">
+      <section className="min-h-screen space-bg relative overflow-hidden flex items-center py-12 md:py-20">
         {/* Nebula background effect */}
         <div className="nebula-bg"></div>
         
@@ -118,7 +117,7 @@ const Web = () => {
       </section>
 
       {/* Services Grid */}
-      <section className="py-20 bg-background relative overflow-hidden">
+      <section className="py-12 md:py-20 bg-background relative overflow-hidden">
         <div className="absolute inset-0 tech-grid opacity-5"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -152,7 +151,7 @@ const Web = () => {
       </section>
 
       {/* Why Choose Web Solutions */}
-      <section className="py-20 bg-card/10 relative overflow-hidden">
+      <section className="py-12 md:py-20 bg-card/10 relative overflow-hidden">
         <div className="absolute inset-0 tech-grid opacity-8"></div>
         <div className="nebula-bg opacity-30"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
@@ -191,7 +190,6 @@ const Web = () => {
       </section>
 
       <Footer />
-      <BottomNav />
     </div>
   );
 };

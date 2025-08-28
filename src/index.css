@@ -42,6 +42,8 @@
     --sidebar-accent-foreground: 0 0% 98%;
     --sidebar-border: 0 0% 14.9%;
     --sidebar-ring: 217 91% 60%;
+    /* UI measurements */
+    --bottom-nav-height: 52px;
   }
 
   .dark {
