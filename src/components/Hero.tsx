@@ -34,54 +34,57 @@ const Hero = () => {
   const avatarClass = "mx-auto rounded-full shadow-2xl border-4 border-primary/50 bg-card object-cover glow-blue animate-pulse-glow " + "w-[220px] h-[220px] xs:w-[260px] xs:h-[260px] sm:w-[300px] sm:h-[300px] md:w-[340px] md:h-[340px]";
   
   return (
-    <section className="min-h-screen space-bg relative overflow-hidden flex items-center">
-      {/* Nebula background effect */}
-      <div className="nebula-bg"></div>
-      
-      {/* Galaxy spiral effect */}
-      <div className="galaxy-spiral"></div>
-      
-      {/* Warp speed lines */}
-      <div className="warp-lines">
-        {[...Array(8)].map((_, i) => (
-          <div
-            key={i}
-            className="warp-line"
-            style={{
-              top: `${10 + i * 12}%`,
-              animationDelay: `${i * 0.3}s`,
-              animationDuration: `${2 + Math.random() * 2}s`
-            }}
-          />
-        ))}
+    <section className="min-h-screen bg-black relative overflow-hidden flex items-center">
+      {/* Background layers with proper z-index */}
+      <div className="absolute inset-0 z-0">
+        {/* Nebula background effect */}
+        <div className="nebula-bg opacity-30"></div>
+        
+        {/* Galaxy spiral effect */}
+        <div className="galaxy-spiral opacity-20"></div>
+        
+        {/* Warp speed lines */}
+        <div className="warp-lines opacity-40">
+          {[...Array(8)].map((_, i) => (
+            <div
+              key={i}
+              className="warp-line"
+              style={{
+                top: `${10 + i * 12}%`,
+                animationDelay: `${i * 0.3}s`,
+                animationDuration: `${2 + Math.random() * 2}s`
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Animated background particles */}
+        <div className="particles absolute inset-0 opacity-30">
+          {[...Array(40)].map((_, i) => (
+            <div
+              key={i}
+              className="particle animate-float"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 12}s`,
+                animationDuration: `${8 + Math.random() * 8}s`
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Floating orbs */}
+        <div className="absolute top-20 left-10 w-40 h-40 bg-blue-500/10 rounded-full blur-2xl animate-pulse-glow glow-blue"></div>
+        <div className="absolute bottom-20 right-10 w-48 h-48 bg-purple-500/10 rounded-full blur-2xl animate-pulse-glow glow-purple" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-1/2 left-1/4 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl animate-pulse-glow" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-1/3 right-1/3 w-24 h-24 bg-green-500/10 rounded-full blur-xl animate-pulse-glow glow-green" style={{animationDelay: '3s'}}></div>
+
+        {/* Tech grid overlay */}
+        <div className="absolute inset-0 tech-grid opacity-10"></div>
       </div>
-
-      {/* Animated background particles */}
-      <div className="particles absolute inset-0">
-        {[...Array(40)].map((_, i) => (
-          <div
-            key={i}
-            className="particle animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 12}s`,
-              animationDuration: `${8 + Math.random() * 8}s`
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Floating orbs */}
-      <div className="absolute top-20 left-10 w-40 h-40 bg-blue-500/20 rounded-full blur-2xl animate-pulse-glow glow-blue"></div>
-      <div className="absolute bottom-20 right-10 w-48 h-48 bg-purple-500/20 rounded-full blur-2xl animate-pulse-glow glow-purple" style={{animationDelay: '1s'}}></div>
-      <div className="absolute top-1/2 left-1/4 w-32 h-32 bg-cyan-500/20 rounded-full blur-2xl animate-pulse-glow" style={{animationDelay: '2s'}}></div>
-      <div className="absolute top-1/3 right-1/3 w-24 h-24 bg-green-500/20 rounded-full blur-xl animate-pulse-glow glow-green" style={{animationDelay: '3s'}}></div>
-
-      {/* Tech grid overlay */}
-      <div className="absolute inset-0 tech-grid opacity-20"></div>
       
-      <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center md:items-stretch justify-between px-4 gap-8 md:gap-8 lg:gap-14 relative z-20 py-20 md:py-32">
+      <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center md:items-stretch justify-between px-4 gap-8 md:gap-8 lg:gap-14 relative z-50 py-20 md:py-32">
         {/* Left: Headline & Actions */}
         <div className="flex-1 flex flex-col justify-center items-center md:items-start text-center md:text-left space-y-8 animate-slide-in-up">
           <div className="space-y-6">
@@ -153,7 +156,7 @@ const Hero = () => {
       </div>
 
       {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background via-background/50 to-transparent z-10"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black via-black/50 to-transparent z-30"></div>
     </section>
   );
 };
