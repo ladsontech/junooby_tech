@@ -250,21 +250,7 @@
 }
 
 .space-bg::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.2), transparent),
-    radial-gradient(1px 1px at 40px 70px, rgba(59, 130, 246, 0.15), transparent),
-    radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.1), transparent);
-  background-repeat: repeat;
-  background-size: 300px 200px;
-  animation: starTwinkle 6s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 1;
+  display: none;
 }
 
 .space-bg::after {

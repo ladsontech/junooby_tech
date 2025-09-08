@@ -35,70 +35,23 @@ const Hero = () => {
   
   return (
     <section className="min-h-screen bg-black relative overflow-hidden flex items-center">
-      {/* Background layers with proper z-index */}
-      <div className="absolute inset-0 z-0">
-        {/* Nebula background effect */}
-        <div className="nebula-bg opacity-30"></div>
-        
-        {/* Galaxy spiral effect */}
-        <div className="galaxy-spiral opacity-20"></div>
-        
-        {/* Warp speed lines */}
-        <div className="warp-lines opacity-40">
-          {[...Array(8)].map((_, i) => (
-            <div
-              key={i}
-              className="warp-line"
-              style={{
-                top: `${10 + i * 12}%`,
-                animationDelay: `${i * 0.3}s`,
-                animationDuration: `${2 + Math.random() * 2}s`
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Animated background particles - reduced for mobile */}
-        <div className="particles absolute inset-0 opacity-20">
-          {[...Array(15)].map((_, i) => (
-            <div
-              key={i}
-              className="particle animate-float"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 12}s`,
-                animationDuration: `${8 + Math.random() * 8}s`
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Simplified floating orbs */}
-        <div className="absolute top-20 left-10 w-32 h-32 bg-blue-500/5 rounded-full blur-2xl animate-pulse-glow glow-blue"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-purple-500/5 rounded-full blur-2xl animate-pulse-glow glow-purple" style={{animationDelay: '2s'}}></div>
-
-        {/* Tech grid overlay */}
-        <div className="absolute inset-0 tech-grid opacity-5"></div>
-      </div>
-      
-      <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center md:items-stretch justify-between px-4 gap-8 md:gap-8 lg:gap-14 relative z-50 py-20 md:py-32">
+      <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center md:items-stretch justify-between px-4 gap-8 md:gap-8 lg:gap-14 relative z-10 py-20 md:py-32">
         {/* Left: Headline & Actions */}
-        <div className="flex-1 flex flex-col justify-center items-center md:items-start text-center md:text-left space-y-8 animate-slide-in-up">
-          <div className="space-y-6">
-            <h1 className="font-extrabold leading-tight tracking-tight text-white text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-8xl relative z-10">
+        <div className="flex-1 flex flex-col justify-center items-center md:items-start text-center md:text-left space-y-8 animate-slide-in-up z-20 relative bg-black/20 backdrop-blur-sm rounded-2xl p-8">
+          <div className="space-y-6 z-20 relative">
+            <h1 className="font-extrabold leading-tight tracking-tight text-white text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-8xl z-20 relative">
               <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent animate-pulse-glow holographic">
                 Digital Solutions
               </span>
               <br />
-              <span className="text-white relative z-10">for the Future</span>
+              <span className="text-white z-20 relative">for the Future</span>
             </h1>
             
-            <div className="h-12 xs:h-14 sm:h-16 flex items-center justify-center md:justify-start">
+            <div className="h-12 xs:h-14 sm:h-16 flex items-center justify-center md:justify-start z-20 relative">
               <TypewriterEffect />
             </div>
             
-            <p className="text-gray-300 text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl max-w-2xl leading-relaxed font-light relative z-10">
+            <p className="text-gray-300 text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl max-w-2xl leading-relaxed font-light z-20 relative">
               Empowering innovation with cutting-edge web, mobile, security, and marketing technology.
               <br className="hidden sm:block" />
               <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-medium">
