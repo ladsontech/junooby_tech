@@ -58,9 +58,9 @@ const Hero = () => {
           ))}
         </div>
 
-        {/* Animated background particles */}
-        <div className="particles absolute inset-0 opacity-30">
-          {[...Array(40)].map((_, i) => (
+        {/* Animated background particles - reduced for mobile */}
+        <div className="particles absolute inset-0 opacity-20">
+          {[...Array(15)].map((_, i) => (
             <div
               key={i}
               className="particle animate-float"
@@ -74,36 +74,34 @@ const Hero = () => {
           ))}
         </div>
 
-        {/* Floating orbs */}
-        <div className="absolute top-20 left-10 w-40 h-40 bg-blue-500/10 rounded-full blur-2xl animate-pulse-glow glow-blue"></div>
-        <div className="absolute bottom-20 right-10 w-48 h-48 bg-purple-500/10 rounded-full blur-2xl animate-pulse-glow glow-purple" style={{animationDelay: '1s'}}></div>
-        <div className="absolute top-1/2 left-1/4 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl animate-pulse-glow" style={{animationDelay: '2s'}}></div>
-        <div className="absolute top-1/3 right-1/3 w-24 h-24 bg-green-500/10 rounded-full blur-xl animate-pulse-glow glow-green" style={{animationDelay: '3s'}}></div>
+        {/* Simplified floating orbs */}
+        <div className="absolute top-20 left-10 w-32 h-32 bg-blue-500/5 rounded-full blur-2xl animate-pulse-glow glow-blue"></div>
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-purple-500/5 rounded-full blur-2xl animate-pulse-glow glow-purple" style={{animationDelay: '2s'}}></div>
 
         {/* Tech grid overlay */}
-        <div className="absolute inset-0 tech-grid opacity-10"></div>
+        <div className="absolute inset-0 tech-grid opacity-5"></div>
       </div>
       
       <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center md:items-stretch justify-between px-4 gap-8 md:gap-8 lg:gap-14 relative z-50 py-20 md:py-32">
         {/* Left: Headline & Actions */}
         <div className="flex-1 flex flex-col justify-center items-center md:items-start text-center md:text-left space-y-8 animate-slide-in-up">
           <div className="space-y-6">
-            <h1 className="font-extrabold leading-tight tracking-tight text-foreground text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-glow">
+            <h1 className="font-extrabold leading-tight tracking-tight text-white text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-8xl relative z-10">
               <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent animate-pulse-glow holographic">
                 Digital Solutions
               </span>
               <br />
-              <span className="text-foreground/95 text-glow">for the Future</span>
+              <span className="text-white relative z-10">for the Future</span>
             </h1>
             
             <div className="h-12 xs:h-14 sm:h-16 flex items-center justify-center md:justify-start">
               <TypewriterEffect />
             </div>
             
-            <p className="text-muted-foreground text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl max-w-2xl leading-relaxed font-light text-glow">
+            <p className="text-gray-300 text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl max-w-2xl leading-relaxed font-light relative z-10">
               Empowering innovation with cutting-edge web, mobile, security, and marketing technology.
               <br className="hidden sm:block" />
-              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-medium text-glow-purple">
+              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-medium">
                 Built with precision. Delivered with excellence.
               </span>
             </p>
@@ -122,20 +120,16 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Right: Enhanced Avatar with orbital elements */}
+        {/* Right: Simplified Avatar with minimal orbital elements */}
         <div className="flex-1 flex items-center justify-center w-full relative">
           <div className="relative">
-            {/* Orbital rings */}
-            <div className="absolute inset-0 border-2 border-blue-500/30 rounded-full animate-spin glow-blue" style={{animationDuration: '25s'}}></div>
-            <div className="absolute inset-4 border border-purple-500/30 rounded-full animate-spin glow-purple" style={{animationDuration: '20s', animationDirection: 'reverse'}}></div>
-            <div className="absolute inset-8 border border-cyan-500/30 rounded-full animate-spin" style={{animationDuration: '30s'}}></div>
-            <div className="absolute inset-12 border border-green-500/20 rounded-full animate-spin glow-green" style={{animationDuration: '35s', animationDirection: 'reverse'}}></div>
+            {/* Simplified orbital rings - only on desktop */}
+            <div className="hidden md:block absolute inset-0 border border-blue-500/20 rounded-full animate-spin glow-blue" style={{animationDuration: '30s'}}></div>
+            <div className="hidden md:block absolute inset-8 border border-purple-500/15 rounded-full animate-spin glow-purple" style={{animationDuration: '25s', animationDirection: 'reverse'}}></div>
             
-            {/* Orbiting elements */}
-            <div className="absolute top-0 left-1/2 w-4 h-4 bg-blue-500 rounded-full animate-orbit glow-blue" style={{animationDuration: '25s'}}></div>
-            <div className="absolute top-1/2 right-0 w-3 h-3 bg-purple-500 rounded-full animate-orbit glow-purple" style={{animationDuration: '20s', animationDirection: 'reverse'}}></div>
-            <div className="absolute bottom-0 left-1/2 w-3.5 h-3.5 bg-cyan-500 rounded-full animate-orbit" style={{animationDuration: '30s'}}></div>
-            <div className="absolute top-1/4 left-0 w-2.5 h-2.5 bg-green-500 rounded-full animate-orbit glow-green" style={{animationDuration: '35s', animationDirection: 'reverse'}}></div>
+            {/* Simplified orbiting elements - only on desktop */}
+            <div className="hidden md:block absolute top-0 left-1/2 w-3 h-3 bg-blue-500/60 rounded-full animate-orbit glow-blue" style={{animationDuration: '30s'}}></div>
+            <div className="hidden md:block absolute top-1/2 right-0 w-2 h-2 bg-purple-500/60 rounded-full animate-orbit glow-purple" style={{animationDuration: '25s', animationDirection: 'reverse'}}></div>
 
             <Avatar className={avatarClass}>
               <AvatarImage 

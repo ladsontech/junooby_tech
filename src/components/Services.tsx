@@ -25,11 +25,11 @@ const Services = () => {
   ];
 
   return (
-    <section className="py-12 md:py-20 bg-background relative overflow-hidden">
+    <section className="py-12 md:py-20 bg-black relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 md:mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">Our Services</h2>
-          <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Our Services</h2>
+          <p className="text-base md:text-lg text-gray-300 max-w-3xl mx-auto">
             Compact, efficient solutions tailored to your business needs.
           </p>
         </div>
@@ -41,8 +41,8 @@ const Services = () => {
               className="space-card rounded-xl p-4 md:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border hover:border-primary/30"
             >
               <div className="text-3xl md:text-4xl mb-3">{service.icon}</div>
-              <h3 className="text-lg md:text-xl font-bold mb-2 text-foreground">{service.title}</h3>
-              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+              <h3 className="text-lg md:text-xl font-bold mb-2 text-white">{service.title}</h3>
+              <p className="text-sm md:text-base text-gray-300 leading-relaxed">
                 {service.description}
               </p>
             </div>
