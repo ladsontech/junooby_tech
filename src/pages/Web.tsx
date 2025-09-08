@@ -1,37 +1,29 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-
 const Web = () => {
-  const webServices = [
-    {
-      title: "Corporate Websites",
-      description: "Professional websites that represent your company's brand and values",
-      features: ["Custom Design", "Responsive Layout", "SEO Optimized", "Content Management"],
-      icon: "🏢"
-    },
-    {
-      title: "Organization Websites", 
-      description: "Websites for NGOs, nonprofits, and community organizations",
-      features: ["Donation Integration", "Event Management", "Member Portal", "Newsletter Signup"],
-      icon: "🏛️"
-    },
-    {
-      title: "Portfolio Websites",
-      description: "Showcase your work and professional achievements",
-      features: ["Gallery Display", "Contact Forms", "Social Integration", "Mobile Optimized"],
-      icon: "💼"
-    },
-    {
-      title: "Landing Pages",
-      description: "High-converting pages for marketing campaigns",
-      features: ["Lead Generation", "A/B Testing", "Analytics Integration", "Fast Loading"],
-      icon: "🎯"
-    }
-  ];
-
-  return (
-    <div className="min-h-screen bg-background">
+  const webServices = [{
+    title: "Corporate Websites",
+    description: "Professional websites that represent your company's brand and values",
+    features: ["Custom Design", "Responsive Layout", "SEO Optimized", "Content Management"],
+    icon: "🏢"
+  }, {
+    title: "Organization Websites",
+    description: "Websites for NGOs, nonprofits, and community organizations",
+    features: ["Donation Integration", "Event Management", "Member Portal", "Newsletter Signup"],
+    icon: "🏛️"
+  }, {
+    title: "Portfolio Websites",
+    description: "Showcase your work and professional achievements",
+    features: ["Gallery Display", "Contact Forms", "Social Integration", "Mobile Optimized"],
+    icon: "💼"
+  }, {
+    title: "Landing Pages",
+    description: "High-converting pages for marketing campaigns",
+    features: ["Lead Generation", "A/B Testing", "Analytics Integration", "Fast Loading"],
+    icon: "🎯"
+  }];
+  return <div className="min-h-screen bg-background">
       <Navbar />
       
       {/* Enhanced Hero Section with Space Theme */}
@@ -44,40 +36,34 @@ const Web = () => {
         
         {/* Warp speed lines */}
         <div className="warp-lines">
-          {[...Array(6)].map((_, i) => (
-            <div
-              key={i}
-              className="warp-line"
-              style={{
-                top: `${15 + i * 15}%`,
-                animationDelay: `${i * 0.4}s`,
-                animationDuration: `${2.5 + Math.random() * 1.5}s`
-              }}
-            />
-          ))}
+          {[...Array(6)].map((_, i) => <div key={i} className="warp-line" style={{
+          top: `${15 + i * 15}%`,
+          animationDelay: `${i * 0.4}s`,
+          animationDuration: `${2.5 + Math.random() * 1.5}s`
+        }} />)}
         </div>
 
         {/* Animated background particles */}
         <div className="particles absolute inset-0">
-          {[...Array(30)].map((_, i) => (
-            <div
-              key={i}
-              className="particle animate-float"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 12}s`,
-                animationDuration: `${8 + Math.random() * 8}s`
-              }}
-            />
-          ))}
+          {[...Array(30)].map((_, i) => <div key={i} className="particle animate-float" style={{
+          left: `${Math.random() * 100}%`,
+          top: `${Math.random() * 100}%`,
+          animationDelay: `${Math.random() * 12}s`,
+          animationDuration: `${8 + Math.random() * 8}s`
+        }} />)}
         </div>
 
         {/* Floating orbs */}
         <div className="absolute top-20 left-10 w-48 h-48 bg-blue-500/20 rounded-full blur-3xl animate-pulse-glow glow-blue"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-purple-500/20 rounded-full blur-2xl animate-pulse-glow glow-purple" style={{animationDelay: '1s'}}></div>
-        <div className="absolute top-1/3 right-1/4 w-32 h-32 bg-cyan-500/20 rounded-full blur-2xl animate-pulse-glow" style={{animationDelay: '2s'}}></div>
-        <div className="absolute bottom-1/3 left-1/3 w-28 h-28 bg-green-500/15 rounded-full blur-xl animate-pulse-glow glow-green" style={{animationDelay: '3s'}}></div>
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-purple-500/20 rounded-full blur-2xl animate-pulse-glow glow-purple" style={{
+        animationDelay: '1s'
+      }}></div>
+        <div className="absolute top-1/3 right-1/4 w-32 h-32 bg-cyan-500/20 rounded-full blur-2xl animate-pulse-glow" style={{
+        animationDelay: '2s'
+      }}></div>
+        <div className="absolute bottom-1/3 left-1/3 w-28 h-28 bg-green-500/15 rounded-full blur-xl animate-pulse-glow glow-green" style={{
+        animationDelay: '3s'
+      }}></div>
 
         {/* Tech grid overlay */}
         <div className="absolute inset-0 tech-grid opacity-15"></div>
@@ -85,7 +71,7 @@ const Web = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 py-20">
           <div className="text-center animate-slide-in-up">
             <h1 className="text-4xl md:text-7xl lg:text-8xl font-bold mb-8 text-glow">
-              <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent animate-pulse-glow holographic">
+              <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text animate-pulse-glow holographic text-gray-50">
                 Web Solutions
               </span>
               <br />
@@ -131,21 +117,17 @@ const Web = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {webServices.map((service, index) => (
-              <div key={index} className="group space-card rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:border-primary/30 animate-neon-pulse">
+            {webServices.map((service, index) => <div key={index} className="group space-card rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:border-primary/30 animate-neon-pulse">
                 <div className="text-5xl mb-6 group-hover:scale-125 transition-transform duration-500 glow-blue">{service.icon}</div>
                 <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-500 text-glow">{service.title}</h3>
                 <p className="text-muted-foreground mb-6 text-lg leading-relaxed">{service.description}</p>
                 <div className="space-y-3">
-                  {service.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-center text-muted-foreground group-hover:text-foreground transition-colors duration-500">
+                  {service.features.map((feature, idx) => <div key={idx} className="flex items-center text-muted-foreground group-hover:text-foreground transition-colors duration-500">
                       <div className="w-2 h-2 bg-primary rounded-full mr-4 group-hover:shadow-lg group-hover:shadow-primary/50 transition-all duration-500 glow-blue"></div>
                       <span className="text-base">{feature}</span>
-                    </div>
-                  ))}
+                    </div>)}
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -190,8 +172,6 @@ const Web = () => {
       </section>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Web;
