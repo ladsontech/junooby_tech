@@ -1,37 +1,29 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-
 const Apps = () => {
-  const appServices = [
-    {
-      title: "iOS Apps",
-      description: "Native iOS applications for iPhone and iPad users",
-      features: ["Swift Development", "App Store Optimization", "Push Notifications", "In-App Purchases"],
-      icon: "📱"
-    },
-    {
-      title: "Android Apps",
-      description: "Native Android applications for Google Play Store",
-      features: ["Kotlin/Java Development", "Google Play Console", "Material Design", "Firebase Integration"],
-      icon: "🤖"
-    },
-    {
-      title: "Cross-Platform Apps",
-      description: "Build once, deploy everywhere with React Native or Flutter",
-      features: ["React Native", "Flutter", "Shared Codebase", "Platform-Specific Features"],
-      icon: "🔄"
-    },
-    {
-      title: "Progressive Web Apps",
-      description: "Web applications that work like native mobile apps",
-      features: ["Offline Functionality", "Push Notifications", "App-like Experience", "Cross-Platform"],
-      icon: "🌐"
-    }
-  ];
-
-  return (
-    <div className="min-h-screen bg-background">
+  const appServices = [{
+    title: "iOS Apps",
+    description: "Native iOS applications for iPhone and iPad users",
+    features: ["Swift Development", "App Store Optimization", "Push Notifications", "In-App Purchases"],
+    icon: "📱"
+  }, {
+    title: "Android Apps",
+    description: "Native Android applications for Google Play Store",
+    features: ["Kotlin/Java Development", "Google Play Console", "Material Design", "Firebase Integration"],
+    icon: "🤖"
+  }, {
+    title: "Cross-Platform Apps",
+    description: "Build once, deploy everywhere with React Native or Flutter",
+    features: ["React Native", "Flutter", "Shared Codebase", "Platform-Specific Features"],
+    icon: "🔄"
+  }, {
+    title: "Progressive Web Apps",
+    description: "Web applications that work like native mobile apps",
+    features: ["Offline Functionality", "Push Notifications", "App-like Experience", "Cross-Platform"],
+    icon: "🌐"
+  }];
+  return <div className="min-h-screen bg-background">
       <Navbar />
       
       {/* Enhanced Hero Section with Space Theme */}
@@ -44,40 +36,34 @@ const Apps = () => {
         
         {/* Warp speed lines */}
         <div className="warp-lines">
-          {[...Array(6)].map((_, i) => (
-            <div
-              key={i}
-              className="warp-line"
-              style={{
-                top: `${15 + i * 15}%`,
-                animationDelay: `${i * 0.4}s`,
-                animationDuration: `${2.5 + Math.random() * 1.5}s`
-              }}
-            />
-          ))}
+          {[...Array(6)].map((_, i) => <div key={i} className="warp-line" style={{
+          top: `${15 + i * 15}%`,
+          animationDelay: `${i * 0.4}s`,
+          animationDuration: `${2.5 + Math.random() * 1.5}s`
+        }} />)}
         </div>
 
         {/* Animated background particles */}
         <div className="particles absolute inset-0">
-          {[...Array(30)].map((_, i) => (
-            <div
-              key={i}
-              className="particle animate-float"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 12}s`,
-                animationDuration: `${8 + Math.random() * 8}s`
-              }}
-            />
-          ))}
+          {[...Array(30)].map((_, i) => <div key={i} className="particle animate-float" style={{
+          left: `${Math.random() * 100}%`,
+          top: `${Math.random() * 100}%`,
+          animationDelay: `${Math.random() * 12}s`,
+          animationDuration: `${8 + Math.random() * 8}s`
+        }} />)}
         </div>
 
         {/* Floating orbs */}
         <div className="absolute top-20 right-10 w-48 h-48 bg-purple-500/20 rounded-full blur-3xl animate-pulse-glow glow-purple"></div>
-        <div className="absolute bottom-20 left-10 w-40 h-40 bg-blue-500/20 rounded-full blur-2xl animate-pulse-glow glow-blue" style={{animationDelay: '1s'}}></div>
-        <div className="absolute top-1/3 left-1/4 w-32 h-32 bg-cyan-500/20 rounded-full blur-2xl animate-pulse-glow" style={{animationDelay: '2s'}}></div>
-        <div className="absolute bottom-1/3 right-1/3 w-28 h-28 bg-pink-500/15 rounded-full blur-xl animate-pulse-glow" style={{animationDelay: '3s'}}></div>
+        <div className="absolute bottom-20 left-10 w-40 h-40 bg-blue-500/20 rounded-full blur-2xl animate-pulse-glow glow-blue" style={{
+        animationDelay: '1s'
+      }}></div>
+        <div className="absolute top-1/3 left-1/4 w-32 h-32 bg-cyan-500/20 rounded-full blur-2xl animate-pulse-glow" style={{
+        animationDelay: '2s'
+      }}></div>
+        <div className="absolute bottom-1/3 right-1/3 w-28 h-28 bg-pink-500/15 rounded-full blur-xl animate-pulse-glow" style={{
+        animationDelay: '3s'
+      }}></div>
 
         {/* Tech grid overlay */}
         <div className="absolute inset-0 tech-grid opacity-15"></div>
@@ -85,7 +71,7 @@ const Apps = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 py-20">
           <div className="text-center animate-slide-in-up">
             <h1 className="text-4xl md:text-7xl lg:text-8xl font-bold mb-8 text-glow">
-              <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-blue-400 bg-clip-text text-transparent animate-pulse-glow holographic">
+              <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-blue-400 bg-clip-text animate-pulse-glow holographic text-gray-50">
                 Mobile Apps
               </span>
               <br />
@@ -131,21 +117,17 @@ const Apps = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {appServices.map((service, index) => (
-              <div key={index} className="group space-card rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:border-primary/30 animate-neon-pulse">
+            {appServices.map((service, index) => <div key={index} className="group space-card rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:border-primary/30 animate-neon-pulse">
                 <div className="text-5xl mb-6 group-hover:scale-125 transition-transform duration-500 glow-purple">{service.icon}</div>
                 <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-500 text-glow">{service.title}</h3>
                 <p className="text-muted-foreground mb-6 text-lg leading-relaxed">{service.description}</p>
                 <div className="space-y-3">
-                  {service.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-center text-muted-foreground group-hover:text-foreground transition-colors duration-500">
+                  {service.features.map((feature, idx) => <div key={idx} className="flex items-center text-muted-foreground group-hover:text-foreground transition-colors duration-500">
                       <div className="w-2 h-2 bg-primary rounded-full mr-4 group-hover:shadow-lg group-hover:shadow-primary/50 transition-all duration-500 glow-purple"></div>
                       <span className="text-base">{feature}</span>
-                    </div>
-                  ))}
+                    </div>)}
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -190,8 +172,6 @@ const Apps = () => {
       </section>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Apps;
