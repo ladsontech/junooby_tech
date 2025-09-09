@@ -1,31 +1,26 @@
-
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-
 const Navbar = () => {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
   const isActive = (path: string) => location.pathname === path;
-
-  return (
-    <>
+  return <>
       {/* Desktop Navbar */}
       <nav className="bg-background/90 backdrop-blur-xl shadow-2xl border-b border-border/30 fixed w-full z-50 transition-all duration-500 md:block hidden space-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link to="/" className="flex items-center space-x-2">
               <img src="/images/junooby_logo.png" alt="Junooby Logo" className="w-12 h-12 object-contain" onError={e => {
-                const target = e.target as HTMLImageElement;
-                target.style.display = 'none';
-                const fallback = target.nextElementSibling as HTMLElement;
-                if (fallback) fallback.style.display = 'block';
-              }} />
+              const target = e.target as HTMLImageElement;
+              target.style.display = 'none';
+              const fallback = target.nextElementSibling as HTMLElement;
+              if (fallback) fallback.style.display = 'block';
+            }} />
               <div className="w-12 h-12 bg-primary rounded-lg animate-glow glow-blue" style={{
-                display: 'none'
-              }}></div>
-              <span className="font-bold text-primary text-4xl text-glow">Junooby</span>
+              display: 'none'
+            }}></div>
+              
             </Link>
             
             <div className="flex items-center space-x-8">
@@ -58,14 +53,14 @@ const Navbar = () => {
           <div className="flex justify-between items-center h-16">
             <Link to="/" className="flex items-center space-x-2">
               <img src="/images/junooby_logo.png" alt="Junooby Logo" className="w-12 h-12 object-contain" onError={e => {
-                const target = e.target as HTMLImageElement;
-                target.style.display = 'none';
-                const fallback = target.nextElementSibling as HTMLElement;
-                if (fallback) fallback.style.display = 'block';
-              }} />
+              const target = e.target as HTMLImageElement;
+              target.style.display = 'none';
+              const fallback = target.nextElementSibling as HTMLElement;
+              if (fallback) fallback.style.display = 'block';
+            }} />
               <div className="w-12 h-12 bg-primary rounded-lg animate-glow glow-blue" style={{
-                display: 'none'
-              }}></div>
+              display: 'none'
+            }}></div>
               <span className="font-extrabold text-4xl text-primary text-glow">Junooby</span>
             </Link>
             
@@ -78,8 +73,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Overlay */}
-        {isMenuOpen && (
-          <div className="absolute top-16 left-0 right-0 bg-background/95 backdrop-blur-xl shadow-2xl border-t border-border/30 space-card">
+        {isMenuOpen && <div className="absolute top-16 left-0 right-0 bg-background/95 backdrop-blur-xl shadow-2xl border-t border-border/30 space-card">
             <div className="py-4 space-y-2">
               <Link to="/" onClick={() => setIsMenuOpen(false)} className={`block px-4 py-3 text-sm font-medium transition-colors duration-300 ${isActive('/') ? 'text-primary bg-accent glow-blue' : 'text-foreground hover:text-primary hover:bg-accent'}`}>
                 Home
@@ -100,11 +94,8 @@ const Navbar = () => {
                 Contact Us
               </Link>
             </div>
-          </div>
-        )}
+          </div>}
       </nav>
-    </>
-  );
+    </>;
 };
-
 export default Navbar;
