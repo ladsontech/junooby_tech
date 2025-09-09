@@ -12,16 +12,7 @@ const WhatsappButton = ({
     const url = `https://wa.me/${phoneNumber.replace('+', '')}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   };
-  
-  return (
-    <button
-      onClick={handleClick}
-      className="group relative overflow-hidden bg-green-500 hover:bg-green-600 text-white px-8 md:px-10 py-4 md:py-5 rounded-xl font-semibold text-base md:text-lg transition-all duration-500 hover:scale-110 hover:shadow-2xl border border-green-400/30 text-center"
-      aria-label="Chat on WhatsApp"
-    >
-      <span className="relative">Chat on WhatsApp</span>
-    </button>
-  );
+  return;
 };
 const Hero = () => {
   const avatarClass = "mx-auto rounded-full shadow-2xl border-4 border-primary/50 bg-card object-cover glow-blue animate-pulse-glow " + "w-[220px] h-[220px] xs:w-[260px] xs:h-[260px] sm:w-[300px] sm:h-[300px] md:w-[340px] md:h-[340px]";
@@ -49,14 +40,7 @@ const Hero = () => {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto">
-            <Link to="/contact" className="group relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 text-white px-8 md:px-10 py-4 md:py-5 rounded-xl font-semibold text-base md:text-lg transition-all duration-500 hover:scale-110 hover:shadow-2xl border border-blue-400/30 text-center animate-neon-pulse glow-blue">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <span className="relative">Get Started</span>
-            </Link>
-            
-            <WhatsappButton message="Hello! I'm interested in your digital solutions." />
-          </div>
+          
         </div>
 
         {/* Right: Simplified Avatar with minimal orbital elements */}
