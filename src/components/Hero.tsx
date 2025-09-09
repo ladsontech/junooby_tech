@@ -35,10 +35,8 @@ const Hero = () => {
             
             <p className="text-gray-300 text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl max-w-2xl leading-relaxed font-light z-20 relative">
               Empowering innovation with cutting-edge web, mobile, security, and marketing technology.
-              <br className="hidden sm:block" />
-              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-medium">
-                Built with precision. Delivered with excellence.
-              </span>
+              
+              
             </p>
           </div>
 
