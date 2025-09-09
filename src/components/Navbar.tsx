@@ -11,13 +11,13 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link to="/" className="flex items-center space-x-2">
-              <img src="/images/junooby_logo.png" alt="Junooby Logo" className="w-12 h-12 object-contain" onError={e => {
+              <img src="/images/junooby_logo.png" alt="Junooby Logo" className="h-14 w-auto object-contain" onError={e => {
               const target = e.target as HTMLImageElement;
               target.style.display = 'none';
               const fallback = target.nextElementSibling as HTMLElement;
               if (fallback) fallback.style.display = 'block';
             }} />
-              <div className="w-12 h-12 bg-primary rounded-lg animate-glow glow-blue" style={{
+              <div className="h-14 w-auto bg-primary rounded-lg animate-glow glow-blue" style={{
               display: 'none'
             }}></div>
               
@@ -52,13 +52,13 @@ const Navbar = () => {
         <div className="px-4">
           <div className="flex justify-between items-center h-16">
             <Link to="/" className="flex items-center space-x-2">
-              <img src="/images/junooby_logo.png" alt="Junooby Logo" className="w-12 h-12 object-contain" onError={e => {
+              <img src="/images/junooby_logo.png" alt="Junooby Logo" className="h-14 w-auto object-contain" onError={e => {
               const target = e.target as HTMLImageElement;
               target.style.display = 'none';
               const fallback = target.nextElementSibling as HTMLElement;
               if (fallback) fallback.style.display = 'block';
             }} />
-              <div className="w-12 h-12 bg-primary rounded-lg animate-glow glow-blue" style={{
+              <div className="h-14 w-auto bg-primary rounded-lg animate-glow glow-blue" style={{
               display: 'none'
             }}></div>
               
