@@ -12,7 +12,16 @@ const WhatsappButton = ({
     const url = `https://wa.me/${phoneNumber.replace('+', '')}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   };
-  return;
+  
+  return (
+    <button
+      onClick={handleClick}
+      className="group relative overflow-hidden bg-green-500 hover:bg-green-600 text-white px-8 md:px-10 py-4 md:py-5 rounded-xl font-semibold text-base md:text-lg transition-all duration-500 hover:scale-110 hover:shadow-2xl border border-green-400/30 text-center"
+      aria-label="Chat on WhatsApp"
+    >
+      <span className="relative">Chat on WhatsApp</span>
+    </button>
+  );
 };
 const Hero = () => {
   const avatarClass = "mx-auto rounded-full shadow-2xl border-4 border-primary/50 bg-card object-cover glow-blue animate-pulse-glow " + "w-[220px] h-[220px] xs:w-[260px] xs:h-[260px] sm:w-[300px] sm:h-[300px] md:w-[340px] md:h-[340px]";
