@@ -21,12 +21,12 @@ const Hero = () => {
         {/* Left: Headline & Actions */}
         <div className="flex-1 flex flex-col justify-center items-center md:items-start text-center md:text-left space-y-8 animate-slide-in-up z-20 relative bg-black/20 backdrop-blur-sm rounded-2xl p-8">
           <div className="space-y-6 z-20 relative">
-            <h1 className="font-extrabold leading-tight tracking-tight text-white text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-8xl z-20 relative">
+            <h1 className="font-extrabold leading-tight tracking-tight text-white text-3xl xs:text-4xl sm:text-6xl md:text-7xl z-20 relative lg:text-7xl">
               <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text animate-pulse-glow holographic text-zinc-50">
                 Digital Solutions
               </span>
               <br />
-              <span className="text-white z-20 relative">for the Future</span>
+              <span className="text-white z-20 relative">To Scale</span>
             </h1>
             
             <div className="h-12 xs:h-14 sm:h-16 flex items-center justify-center md:justify-start z-20 relative">
