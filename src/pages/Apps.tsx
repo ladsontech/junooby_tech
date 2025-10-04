@@ -29,24 +29,24 @@ const Apps = () => {
       
       {/* Enhanced Hero Section with Space Theme */}
       <section className="min-h-screen space-bg relative overflow-hidden flex items-center py-12 md:py-20">
-        {/* Nebula background effect */}
-        <div className="nebula-bg"></div>
+        {/* Nebula background effect - reduced on mobile */}
+        <div className="nebula-bg hidden md:block"></div>
         
-        {/* Galaxy spiral effect */}
-        <div className="galaxy-spiral"></div>
+        {/* Galaxy spiral effect - reduced on mobile */}
+        <div className="galaxy-spiral hidden md:block"></div>
         
-        {/* Warp speed lines */}
+        {/* Warp speed lines - reduced on mobile */}
         <div className="warp-lines">
-          {[...Array(6)].map((_, i) => <div key={i} className="warp-line" style={{
+          {[...Array(6)].map((_, i) => <div key={i} className="warp-line hidden md:block" style={{
           top: `${15 + i * 15}%`,
           animationDelay: `${i * 0.4}s`,
           animationDuration: `${2.5 + Math.random() * 1.5}s`
         }} />)}
         </div>
 
-        {/* Animated background particles */}
+        {/* Animated background particles - fewer on mobile */}
         <div className="particles absolute inset-0">
-          {[...Array(30)].map((_, i) => <div key={i} className="particle animate-float" style={{
+          {[...Array(30)].map((_, i) => <div key={i} className={`particle animate-float ${i > 9 ? 'hidden md:block' : ''}`} style={{
           left: `${Math.random() * 100}%`,
           top: `${Math.random() * 100}%`,
           animationDelay: `${Math.random() * 12}s`,
@@ -54,15 +54,15 @@ const Apps = () => {
         }} />)}
         </div>
 
-        {/* Floating orbs */}
-        <div className="absolute top-20 right-10 w-48 h-48 bg-purple-500/20 rounded-full blur-3xl animate-pulse-glow glow-purple"></div>
-        <div className="absolute bottom-20 left-10 w-40 h-40 bg-blue-500/20 rounded-full blur-2xl animate-pulse-glow glow-blue" style={{
+        {/* Floating orbs - no blur on mobile */}
+        <div className="absolute top-20 right-10 w-48 h-48 bg-purple-500/20 rounded-full md:blur-3xl animate-pulse-glow glow-purple"></div>
+        <div className="absolute bottom-20 left-10 w-40 h-40 bg-blue-500/20 rounded-full md:blur-2xl animate-pulse-glow glow-blue" style={{
         animationDelay: '1s'
       }}></div>
-        <div className="absolute top-1/3 left-1/4 w-32 h-32 bg-cyan-500/20 rounded-full blur-2xl animate-pulse-glow" style={{
+        <div className="absolute top-1/3 left-1/4 w-32 h-32 bg-cyan-500/20 rounded-full md:blur-2xl animate-pulse-glow hidden md:block" style={{
         animationDelay: '2s'
       }}></div>
-        <div className="absolute bottom-1/3 right-1/3 w-28 h-28 bg-pink-500/15 rounded-full blur-xl animate-pulse-glow" style={{
+        <div className="absolute bottom-1/3 right-1/3 w-28 h-28 bg-pink-500/15 rounded-full md:blur-xl animate-pulse-glow hidden md:block" style={{
         animationDelay: '3s'
       }}></div>
 

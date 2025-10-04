@@ -247,6 +247,9 @@
   background: #000000;
   position: relative;
   overflow: hidden;
+  /* Mobile performance optimization */
+  will-change: transform;
+  contain: layout style paint;
 }
 
 .space-bg::before {
@@ -364,6 +367,7 @@ html {
   height: 100%;
   overflow: hidden;
   pointer-events: none;
+  will-change: transform;
 }
 
 .particle {
@@ -374,6 +378,14 @@ html {
   border-radius: 50%;
   animation: float 12s ease-in-out infinite;
   box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+  will-change: transform;
+}
+
+/* Mobile optimization - simpler particles */
+@media (max-width: 768px) {
+  .particle {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
+  }
 }
 
 .particle:nth-child(2n) {
@@ -434,6 +446,16 @@ html {
     radial-gradient(ellipse at 50% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
   animation: nebula 20s ease-in-out infinite;
   pointer-events: none;
+  will-change: transform;
+}
+
+/* Mobile optimization - reduce nebula complexity */
+@media (max-width: 768px) {
+  .nebula-bg {
+    width: 150%;
+    height: 150%;
+    animation-duration: 30s;
+  }
 }
 
 /* Galaxy spiral effect */

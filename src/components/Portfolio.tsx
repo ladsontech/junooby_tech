@@ -69,7 +69,7 @@ const projects: Project[] = [
     name: 'GD Clothing',
     description: 'Fashion and apparel store',
     logo: '/images/gdclothing_logo.png',
-    link: 'https://www.gdclothing.com',
+    link: 'https://www.gdclothing.online',
     categories: ['web', 'ecommerce'],
   },
   {
@@ -83,7 +83,7 @@ const projects: Project[] = [
     name: 'Noble Home Experts',
     description: 'Home improvement services',
     logo: '/images/noblehomeexperts_logo.png',
-    link: '#',
+    link: 'https://www.noblehomeexpert.online',
     categories: ['web'],
   },
 ];
