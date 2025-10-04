@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Portfolio from '@/components/Portfolio';
 const Ecommerce = () => {
   const ecommerceServices = [{
     title: "Online Stores",
@@ -132,6 +133,12 @@ const Ecommerce = () => {
           </div>
         </div>
       </section>
+
+      <Portfolio 
+        filter="ecommerce"
+        title="Our Ecommerce Portfolio"
+        description="Discover the successful online stores we've launched for businesses selling products and services."
+      />
 
       {/* Features Section */}
       <section className="py-12 md:py-20 bg-card/10 relative overflow-hidden">

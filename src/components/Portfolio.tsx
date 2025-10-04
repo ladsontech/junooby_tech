@@ -1,12 +1,18 @@
 import React from 'react';
-import { ExternalLink, Smartphone } from 'lucide-react';
+import { ExternalLink, Smartphone, ShoppingCart, Share2 } from 'lucide-react';
 
 interface Project {
   name: string;
   description: string;
   logo: string;
   link: string;
-  category: 'website' | 'app' | 'both';
+  categories: ('web' | 'app' | 'ecommerce' | 'social')[];
+}
+
+interface PortfolioProps {
+  filter?: 'web' | 'app' | 'ecommerce' | 'social' | 'all';
+  title?: string;
+  description?: string;
 }
 
 const projects: Project[] = [
@@ -15,88 +21,98 @@ const projects: Project[] = [
     description: 'Gas delivery ecommerce platform',
     logo: '/images/flamia_logo.png',
     link: 'https://www.flamia.store',
-    category: 'both',
+    categories: ['web', 'app', 'ecommerce'],
   },
   {
     name: 'eSale Uganda',
     description: 'Electronics ecommerce marketplace',
     logo: '/images/esaleuganda_logo.png',
     link: 'https://www.esaleuganda.com',
-    category: 'both',
+    categories: ['web', 'app', 'ecommerce'],
   },
   {
     name: 'Gavi Gadgets UG',
     description: 'Electronics, phones and gadgets store',
     logo: '/images/gavigadgets_logo.png',
     link: 'https://www.gavigadgets.ug',
-    category: 'both',
+    categories: ['web', 'app', 'ecommerce'],
   },
   {
     name: 'Bocasif',
     description: 'Non-profit organization for boy child',
     logo: '/images/bocasif_logo.png',
     link: 'https://bosfug.org',
-    category: 'website',
+    categories: ['web'],
   },
   {
     name: 'Hostel Connect',
     description: 'Online hostel booking platform in Uganda',
     logo: '/images/hostelconnect _logo.png',
     link: 'https://www.hostelconnect.online',
-    category: 'website',
+    categories: ['web'],
   },
   {
     name: 'Haga Water Limited',
     description: 'Professional plumbing services',
     logo: '/images/hagawaterlimited_logo.png',
     link: 'https://hagawaterlimited.com',
-    category: 'website',
+    categories: ['web'],
   },
   {
     name: 'API Health Products',
     description: 'Premium bee products supplier',
     logo: '/images/apihealth_products_logo.png',
     link: 'https://apihealthproducts.com',
-    category: 'website',
+    categories: ['web', 'ecommerce'],
   },
   {
     name: 'GD Clothing',
     description: 'Fashion and apparel store',
     logo: '/images/gdclothing_logo.png',
     link: 'https://www.gdclothing.com',
-    category: 'website',
+    categories: ['web', 'ecommerce'],
   },
   {
     name: 'Mosa Adonai',
     description: 'Business services platform',
     logo: '/images/mosa_adonai _logo.png',
     link: '#',
-    category: 'website',
+    categories: ['web'],
   },
   {
     name: 'Noble Home Experts',
     description: 'Home improvement services',
     logo: '/images/noblehomeexperts_logo.png',
     link: '#',
-    category: 'website',
+    categories: ['web'],
   },
 ];
 
-const Portfolio = () => {
+const Portfolio: React.FC<PortfolioProps> = ({ 
+  filter = 'all',
+  title = 'Our Portfolio',
+  description = 'Trusted by leading businesses across Uganda. See what we\'ve built for our clients.'
+}) => {
+  const filteredProjects = filter === 'all' 
+    ? projects 
+    : projects.filter(project => project.categories.includes(filter));
+
+  if (filteredProjects.length === 0) return null;
+
   return (
     <section className="py-20 bg-gradient-to-b from-background to-muted/20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            Our Portfolio
+            {title}
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Trusted by leading businesses across Uganda. See what we've built for our clients.
+            {description}
           </p>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {projects.map((project, index) => (
+          {filteredProjects.map((project, index) => (
             <a
               key={index}
               href={project.link}
@@ -125,17 +141,29 @@ const Portfolio = () => {
                   </p>
                 </div>
 
-                <div className="flex gap-2 text-xs">
-                  {(project.category === 'website' || project.category === 'both') && (
+                <div className="flex flex-wrap gap-2 text-xs justify-center">
+                  {project.categories.includes('web') && (
                     <div className="flex items-center gap-1 text-muted-foreground">
                       <ExternalLink className="w-3 h-3" />
                       <span>Web</span>
                     </div>
                   )}
-                  {(project.category === 'app' || project.category === 'both') && (
+                  {project.categories.includes('app') && (
                     <div className="flex items-center gap-1 text-muted-foreground">
                       <Smartphone className="w-3 h-3" />
                       <span>App</span>
+                    </div>
+                  )}
+                  {project.categories.includes('ecommerce') && (
+                    <div className="flex items-center gap-1 text-muted-foreground">
+                      <ShoppingCart className="w-3 h-3" />
+                      <span>Shop</span>
+                    </div>
+                  )}
+                  {project.categories.includes('social') && (
+                    <div className="flex items-center gap-1 text-muted-foreground">
+                      <Share2 className="w-3 h-3" />
+                      <span>Social</span>
                     </div>
                   )}
                 </div>

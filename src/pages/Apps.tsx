@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Portfolio from '@/components/Portfolio';
 const Apps = () => {
   const appServices = [{
     title: "iOS Apps",
@@ -131,6 +132,12 @@ const Apps = () => {
           </div>
         </div>
       </section>
+
+      <Portfolio 
+        filter="app"
+        title="Our Mobile App Portfolio"
+        description="Explore the innovative mobile applications we've developed for businesses across various industries."
+      />
 
       {/* Features Section */}
       <section className="py-12 md:py-20 bg-card/10 relative overflow-hidden">

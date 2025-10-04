@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Portfolio from '@/components/Portfolio';
 import { Check, Star, TrendingUp, Users, Calendar, Image, Megaphone } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -224,6 +225,12 @@ const Socials = () => {
           </div>
         </div>
       </section>
+
+      <Portfolio 
+        filter="social"
+        title="Our Social Media Success Stories"
+        description="See how we've helped businesses grow their social media presence and engagement."
+      />
 
       {/* CTA Section */}
       <section className="py-16 px-4">

@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Portfolio from '@/components/Portfolio';
 
 const Web = () => {
   const webServices = [
@@ -165,6 +166,12 @@ const Web = () => {
           </div>
         </div>
       </section>
+
+      <Portfolio 
+        filter="web"
+        title="Our Web Development Portfolio"
+        description="See the amazing websites and web applications we've built for our clients across Uganda."
+      />
 
       {/* Why Choose Our Solutions */}
       <section className="py-16 md:py-24 bg-background">
