@@ -1,13 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    service: 'Select a service',
+    message: ''
+  });
+
   const handleWhatsAppClick = () => {
     const phoneNumber = '+256789572007';
     const message = 'Hello! I would like to know more about your services.';
     const url = `https://wa.me/${phoneNumber.replace('+', '')}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const message = `Hello! My name is ${formData.firstName} ${formData.lastName}.
+
+Email: ${formData.email}
+Service Interest: ${formData.service}
+
+Message: ${formData.message}`;
+    
+    const url = `https://wa.me/256789572007?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
 
   return (
@@ -27,12 +55,16 @@ const Contact = () => {
             {/* Contact Form */}
             <div className="bg-white rounded-xl p-4 md:p-6 lg:p-8 shadow-lg">
               <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 md:mb-6">Send us a message</h2>
-              <form className="space-y-4 md:space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
                     <input 
-                      type="text" 
+                      type="text"
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleInputChange}
+                      required
                       className="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-sm md:text-base"
                       placeholder="John"
                     />
@@ -40,7 +72,11 @@ const Contact = () => {
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
                     <input 
-                      type="text" 
+                      type="text"
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleInputChange}
+                      required
                       className="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-sm md:text-base"
                       placeholder="Doe"
                     />
@@ -50,7 +86,11 @@ const Contact = () => {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
                   <input 
-                    type="email" 
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
                     className="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-sm md:text-base"
                     placeholder="john@example.com"
                   />
@@ -58,7 +98,13 @@ const Contact = () => {
                 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Service Interest</label>
-                  <select className="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-sm md:text-base">
+                  <select 
+                    name="service"
+                    value={formData.service}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-sm md:text-base"
+                  >
                     <option>Select a service</option>
                     <option>Web Development</option>
                     <option>Mobile App Design</option>
@@ -72,6 +118,10 @@ const Contact = () => {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
                   <textarea 
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    required
                     rows={4}
                     className="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-sm md:text-base"
                     placeholder="Tell us about your project..."
@@ -108,7 +158,16 @@ const Contact = () => {
                     </div>
                     <div>
                       <p className="font-medium text-gray-900 text-sm md:text-base">Phone</p>
-                      <p className="text-gray-600 text-sm md:text-base">+256 789 572 007</p>
+                      <button 
+                        onClick={() => {
+                          const message = 'Hello! I found your contact information and would like to inquire about your services.';
+                          const url = `https://wa.me/256789572007?text=${encodeURIComponent(message)}`;
+                          window.open(url, '_blank');
+                        }}
+                        className="text-gray-600 text-sm md:text-base hover:text-green-600 transition-colors"
+                      >
+                        +256 789 572 007
+                      </button>
                     </div>
                   </div>
                   

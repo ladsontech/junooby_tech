@@ -116,7 +116,14 @@ const Socials = () => {
             We create, manage, and optimize your social media to drive real business results.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-lg font-semibold">
+            <Button 
+              onClick={() => {
+                const message = 'Hello! I am interested in your social media management services. Can you provide more details?';
+                const url = `https://wa.me/256789572007?text=${encodeURIComponent(message)}`;
+                window.open(url, '_blank');
+              }}
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-lg font-semibold"
+            >
               Get Started Today
             </Button>
             <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-800 px-8 py-3">
@@ -190,6 +197,11 @@ const Socials = () => {
                   </ul>
                   
                   <Button 
+                    onClick={() => {
+                      const message = `Hello! I am interested in the ${pkg.name} social media management package. Can you provide more details?`;
+                      const url = `https://wa.me/256789572007?text=${encodeURIComponent(message)}`;
+                      window.open(url, '_blank');
+                    }}
                     className={`w-full bg-gradient-to-r ${pkg.color} hover:opacity-90 text-white font-semibold py-3 rounded-lg transition-all duration-300 hover:scale-105`}
                   >
                     Choose {pkg.name}
@@ -243,10 +255,25 @@ const Socials = () => {
             Get started today and see the difference professional management makes.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-lg font-semibold">
+            <Button 
+              onClick={() => {
+                const message = 'Hello! I want to start my first week of social media management. Can we discuss the packages?';
+                const url = `https://wa.me/256789572007?text=${encodeURIComponent(message)}`;
+                window.open(url, '_blank');
+              }}
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-lg font-semibold"
+            >
               Start Your First Week
             </Button>
-            <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-800 px-8 py-3">
+            <Button 
+              onClick={() => {
+                const message = 'Hello! I would like to schedule a consultation for social media management services.';
+                const url = `https://wa.me/256789572007?text=${encodeURIComponent(message)}`;
+                window.open(url, '_blank');
+              }}
+              variant="outline" 
+              className="border-gray-600 text-gray-300 hover:bg-gray-800 px-8 py-3"
+            >
               Schedule Consultation
             </Button>
           </div>

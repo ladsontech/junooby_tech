@@ -89,7 +89,14 @@ const Web = () => {
             
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <button className="bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg">
+              <button 
+                onClick={() => {
+                  const message = 'Hello! I am interested in starting a web development project. Can you provide more information?';
+                  const url = `https://wa.me/256789572007?text=${encodeURIComponent(message)}`;
+                  window.open(url, '_blank');
+                }}
+                className="bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              >
                 Start Your Project
               </button>
               

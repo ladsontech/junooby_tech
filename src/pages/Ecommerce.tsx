@@ -88,7 +88,14 @@ const Ecommerce = () => {
             
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <button className="group relative overflow-hidden bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 text-white px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-500 hover:scale-110 hover:shadow-2xl border border-green-400/30 animate-neon-pulse glow-green">
+              <button 
+                onClick={() => {
+                  const message = 'Hello! I am interested in launching an ecommerce store. Can you help me get started?';
+                  const url = `https://wa.me/256789572007?text=${encodeURIComponent(message)}`;
+                  window.open(url, '_blank');
+                }}
+                className="group relative overflow-hidden bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 text-white px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-500 hover:scale-110 hover:shadow-2xl border border-green-400/30 animate-neon-pulse glow-green"
+              >
                 <div className="absolute inset-0 bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <span className="relative">Launch Your Store</span>
               </button>

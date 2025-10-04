@@ -87,7 +87,14 @@ const Apps = () => {
             
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <button className="group relative overflow-hidden bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 text-white px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-500 hover:scale-110 hover:shadow-2xl border border-purple-400/30 animate-neon-pulse glow-purple">
+              <button 
+                onClick={() => {
+                  const message = 'Hello! I am interested in building a mobile app. Can you help me get started?';
+                  const url = `https://wa.me/256789572007?text=${encodeURIComponent(message)}`;
+                  window.open(url, '_blank');
+                }}
+                className="group relative overflow-hidden bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 text-white px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-500 hover:scale-110 hover:shadow-2xl border border-purple-400/30 animate-neon-pulse glow-purple"
+              >
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <span className="relative">Build Your App</span>
               </button>
