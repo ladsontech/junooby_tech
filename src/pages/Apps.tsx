@@ -2,9 +2,6 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Portfolio from '@/components/Portfolio';
-import ScrollReveal from '@/components/animations/ScrollReveal';
-import FloatingCube from '@/components/3d/FloatingCube';
-import ParallaxSection from '@/components/animations/ParallaxSection';
 const Apps = () => {
   const appServices = [{
     title: "iOS Apps",
@@ -32,16 +29,11 @@ const Apps = () => {
       
       {/* Enhanced Hero Section with Space Theme */}
       <section className="min-h-screen space-bg relative overflow-hidden flex items-center py-12 md:py-20">
-        {/* 3D Floating Cube */}
-        <FloatingCube />
+        {/* Nebula background effect - reduced on mobile */}
+        <div className="nebula-bg hidden md:block"></div>
         
-        {/* Animated morphing shapes */}
-        <ParallaxSection speed={0.4}>
-          <div className="absolute top-32 left-10 w-72 h-72 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-3xl animate-morph" />
-        </ParallaxSection>
-        <ParallaxSection speed={0.6}>
-          <div className="absolute bottom-40 right-20 w-80 h-80 bg-gradient-to-tr from-blue-500/20 to-cyan-500/20 rounded-full blur-3xl animate-morph" style={{ animationDelay: '3s' }} />
-        </ParallaxSection>
+        {/* Galaxy spiral effect - reduced on mobile */}
+        <div className="galaxy-spiral hidden md:block"></div>
         
         {/* Warp speed lines - reduced on mobile */}
         <div className="warp-lines">
@@ -78,7 +70,7 @@ const Apps = () => {
         <div className="absolute inset-0 tech-grid opacity-15"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 py-20">
-          <ScrollReveal className="text-center">
+          <div className="text-center animate-slide-in-up">
             <h1 className="text-4xl md:text-7xl lg:text-8xl font-bold mb-8 text-glow">
               <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-blue-400 bg-clip-text animate-pulse-glow holographic text-gray-50">
                 Mobile Apps
@@ -111,7 +103,7 @@ const Apps = () => {
                 <span className="relative">View Examples</span>
               </button>
             </div>
-          </ScrollReveal>
+          </div>
         </div>
 
         {/* Bottom gradient fade */}
@@ -120,12 +112,9 @@ const Apps = () => {
 
       {/* Services Grid */}
       <section className="py-12 md:py-20 bg-background relative overflow-hidden">
-        <ParallaxSection speed={0.2}>
-          <div className="absolute inset-0 tech-grid opacity-5" />
-        </ParallaxSection>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <ScrollReveal className="text-center mb-16">
+        <div className="absolute inset-0 tech-grid opacity-5"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6 text-glow">
               Mobile App Development Services
             </h2>
@@ -133,12 +122,10 @@ const Apps = () => {
               From native iOS and Android apps to cross-platform solutions, we create 
               mobile experiences that users love and businesses rely on.
             </p>
-          </ScrollReveal>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {appServices.map((service, index) => (
-              <ScrollReveal key={index} delay={index * 0.1} direction="up">
-                <div className="group space-card rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover-lift">
+            {appServices.map((service, index) => <div key={index} className="group space-card rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:border-primary/30 animate-neon-pulse">
                 <div className="text-5xl mb-6 group-hover:scale-125 transition-transform duration-500 glow-purple">{service.icon}</div>
                 <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-500 text-glow">{service.title}</h3>
                 <p className="text-muted-foreground mb-6 text-lg leading-relaxed">{service.description}</p>
@@ -148,9 +135,7 @@ const Apps = () => {
                       <span className="text-base">{feature}</span>
                     </div>)}
                 </div>
-                </div>
-              </ScrollReveal>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -163,48 +148,39 @@ const Apps = () => {
 
       {/* Features Section */}
       <section className="py-12 md:py-20 bg-card/10 relative overflow-hidden">
-        <ParallaxSection speed={0.2}>
-          <div className="absolute inset-0 tech-grid opacity-8" />
-        </ParallaxSection>
+        <div className="absolute inset-0 tech-grid opacity-8"></div>
         <div className="nebula-bg opacity-30"></div>
-        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
-          <ScrollReveal className="text-center mb-16">
+          <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-8 text-glow">
               Why Choose Our Mobile App Development
             </h2>
-          </ScrollReveal>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <ScrollReveal delay={0} direction="up">
-              <div className="text-center group">
+            <div className="text-center group">
               <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-8 glow-blue group-hover:scale-125 transition-all duration-500 animate-pulse-glow">
                 <span className="text-white text-3xl">⚡</span>
               </div>
               <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-500 text-glow">High Performance</h3>
               <p className="text-muted-foreground text-lg leading-relaxed">Optimized for speed and efficiency with smooth animations and lightning-fast loading times.</p>
-              </div>
-            </ScrollReveal>
+            </div>
 
-            <ScrollReveal delay={0.1} direction="up">
-              <div className="text-center group">
+            <div className="text-center group">
               <div className="w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-8 glow-purple group-hover:scale-125 transition-all duration-500 animate-pulse-glow">
                 <span className="text-white text-3xl">🎨</span>
               </div>
               <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-500 text-glow">Beautiful Design</h3>
               <p className="text-muted-foreground text-lg leading-relaxed">Intuitive and attractive user interfaces that follow platform-specific design guidelines and modern aesthetics.</p>
-              </div>
-            </ScrollReveal>
+            </div>
 
-            <ScrollReveal delay={0.2} direction="up">
-              <div className="text-center group">
+            <div className="text-center group">
               <div className="w-24 h-24 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-8 group-hover:scale-125 transition-all duration-500 glow-green animate-pulse-glow">
                 <span className="text-white text-3xl">🔒</span>
               </div>
               <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-500 text-glow">Secure & Reliable</h3>
               <p className="text-muted-foreground text-lg leading-relaxed">Built with security best practices and thorough testing for reliable performance across all devices.</p>
-              </div>
-            </ScrollReveal>
+            </div>
           </div>
         </div>
       </section>

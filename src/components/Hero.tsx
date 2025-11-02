@@ -2,9 +2,6 @@ import React from 'react';
 import TypewriterEffect from './TypewriterEffect';
 import { Link } from 'react-router-dom';
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { motion } from 'framer-motion';
-import FloatingSphere from './3d/FloatingSphere';
-import ParallaxSection from './animations/ParallaxSection';
 const WhatsappButton = ({
   message
 }: {
@@ -28,26 +25,9 @@ const WhatsappButton = ({
 const Hero = () => {
   const avatarClass = "mx-auto rounded-full shadow-2xl border-4 border-primary/50 bg-card object-cover glow-blue animate-pulse-glow " + "w-[220px] h-[220px] xs:w-[260px] xs:h-[260px] sm:w-[300px] sm:h-[300px] md:w-[340px] md:h-[340px]";
   return <section className="min-h-screen bg-black relative overflow-hidden flex items-center">
-      {/* 3D Floating Spheres */}
-      <FloatingSphere className="absolute top-20 left-[5%] hidden lg:block" size="sm" delay={0} />
-      <FloatingSphere className="absolute bottom-32 right-[8%] hidden lg:block" size="md" delay={2} />
-      
-      {/* Animated gradient orbs */}
-      <ParallaxSection speed={0.3}>
-        <div className="absolute top-40 right-20 w-96 h-96 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full blur-3xl animate-morph" />
-      </ParallaxSection>
-      <ParallaxSection speed={0.5}>
-        <div className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-tr from-accent/20 to-primary/20 rounded-full blur-3xl animate-morph" style={{ animationDelay: '4s' }} />
-      </ParallaxSection>
-
       <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center md:items-stretch justify-between px-4 gap-8 md:gap-8 lg:gap-14 relative z-10 py-20 md:py-32">
         {/* Left: Headline & Actions */}
-        <motion.div 
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, ease: [0.25, 0.4, 0.25, 1] }}
-          className="flex-1 flex flex-col justify-center items-center md:items-start text-center md:text-left space-y-8 z-20 relative bg-black/20 backdrop-blur-sm rounded-2xl p-8 hover-lift"
-        >
+        <div className="flex-1 flex flex-col justify-center items-center md:items-start text-center md:text-left space-y-8 animate-slide-in-up z-20 relative bg-black/20 backdrop-blur-sm rounded-2xl p-8">
           <div className="space-y-6 z-20 relative">
             <h1 className="font-extrabold leading-tight tracking-tight text-white text-3xl xs:text-4xl sm:text-6xl md:text-7xl z-20 relative lg:text-7xl">
               <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text animate-pulse-glow holographic text-zinc-50">
@@ -69,15 +49,10 @@ const Hero = () => {
           </div>
 
           
-        </motion.div>
+        </div>
 
         {/* Right: Simplified Avatar with minimal orbital elements */}
-        <motion.div 
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
-          className="flex-1 flex items-center justify-center w-full relative"
-        >
+        <div className="flex-1 flex items-center justify-center w-full relative">
           <div className="relative">
             {/* Simplified orbital rings - only on desktop */}
             <div className="hidden md:block absolute inset-0 border border-blue-500/20 rounded-full animate-spin glow-blue" style={{
@@ -110,7 +85,7 @@ const Hero = () => {
               </AvatarFallback>
             </Avatar>
           </div>
-        </motion.div>
+        </div>
       </div>
 
       {/* Bottom gradient fade */}
