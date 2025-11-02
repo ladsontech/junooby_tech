@@ -105,28 +105,28 @@ const Socials = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-24 pb-16 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-pink-900/20"></div>
+      <section className="pt-16 md:pt-24 pb-8 md:pb-16 px-4 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 md:from-blue-900/20 via-purple-900/10 md:via-purple-900/20 to-pink-900/10 md:to-pink-900/20"></div>
         <div className="max-w-7xl mx-auto text-center relative z-10">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6">
             Social Media <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Management</span>
           </h1>
-          <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-6 md:mb-8 max-w-3xl mx-auto px-4">
             Transform your social media presence with our comprehensive weekly packages. 
             We create, manage, and optimize your social media to drive real business results.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4 px-4">
             <Button 
               onClick={() => {
                 const message = 'Hello! I am interested in your social media management services. Can you provide more details?';
                 const url = `https://wa.me/256789572007?text=${encodeURIComponent(message)}`;
                 window.open(url, '_blank');
               }}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-lg font-semibold"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-2.5 md:px-8 md:py-3 rounded-lg font-semibold text-sm md:text-base"
             >
               Get Started Today
             </Button>
-            <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-800 px-8 py-3">
+            <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-800 px-6 py-2.5 md:px-8 md:py-3 text-sm md:text-base">
               View Portfolio
             </Button>
           </div>
@@ -134,18 +134,18 @@ const Socials = () => {
       </section>
 
       {/* Services Overview */}
-      <section className="py-16 px-4 bg-gray-900/50">
+      <section className="py-8 md:py-12 lg:py-16 px-4 bg-gray-900/50">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-12">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-white mb-6 md:mb-8 lg:mb-12">
             What We Do
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
             {services.map((service, index) => (
               <Card key={index} className="bg-gray-800/50 border-gray-700 hover:bg-gray-800/70 transition-all duration-300 group">
-                <CardContent className="p-6">
-                  <service.icon className="w-12 h-12 text-blue-400 mb-4 group-hover:scale-110 transition-transform duration-300" />
-                  <h3 className="text-xl font-semibold text-white mb-2">{service.title}</h3>
-                  <p className="text-gray-400">{service.description}</p>
+                <CardContent className="p-4 md:p-5 lg:p-6">
+                  <service.icon className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 text-blue-400 mb-3 md:mb-4 transition-transform duration-300 md:group-hover:scale-110" />
+                  <h3 className="text-base md:text-lg lg:text-xl font-semibold text-white mb-1.5 md:mb-2">{service.title}</h3>
+                  <p className="text-sm md:text-base text-gray-400">{service.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -154,44 +154,44 @@ const Socials = () => {
       </section>
 
       {/* Pricing Packages */}
-      <section className="py-16 px-4">
+      <section className="py-8 md:py-12 lg:py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <div className="text-center mb-8 md:mb-12 lg:mb-16">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 md:mb-4 lg:mb-6">
               Weekly Packages
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-base md:text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto px-4">
               Choose the perfect package for your business size and goals. All packages include premium design, 
               strategic planning, and dedicated account management.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
             {packages.map((pkg, index) => (
-              <Card key={index} className={`relative bg-gray-900/80 border-gray-700 hover:bg-gray-900 transition-all duration-300 ${pkg.popular ? 'ring-2 ring-blue-500 scale-105' : ''}`}>
+              <Card key={index} className={`relative bg-gray-900/80 border-gray-700 hover:bg-gray-900 transition-all duration-300 ${pkg.popular ? 'ring-2 ring-blue-500 md:scale-105' : ''}`}>
                 {pkg.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                  <div className="absolute -top-3 md:-top-4 left-1/2 transform -translate-x-1/2">
+                    <span className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 py-0.5 md:px-4 md:py-1 rounded-full text-xs md:text-sm font-semibold">
                       Most Popular
                     </span>
                   </div>
                 )}
                 
-                <CardHeader className="text-center pb-4">
-                  <CardTitle className="text-2xl font-bold text-white mb-2">{pkg.name}</CardTitle>
-                  <div className={`text-4xl font-bold bg-gradient-to-r ${pkg.color} bg-clip-text text-transparent mb-2`}>
+                <CardHeader className="text-center pb-3 md:pb-4 pt-6">
+                  <CardTitle className="text-xl md:text-2xl font-bold text-white mb-1.5 md:mb-2">{pkg.name}</CardTitle>
+                  <div className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${pkg.color} bg-clip-text text-transparent mb-1.5 md:mb-2`}>
                     UGX {pkg.price}
                   </div>
-                  <p className="text-gray-400">{pkg.period}</p>
-                  <p className="text-gray-300 mt-4">{pkg.description}</p>
+                  <p className="text-sm md:text-base text-gray-400">{pkg.period}</p>
+                  <p className="text-sm md:text-base text-gray-300 mt-2 md:mt-4">{pkg.description}</p>
                 </CardHeader>
 
-                <CardContent className="pt-0">
-                  <ul className="space-y-3 mb-8">
+                <CardContent className="pt-0 px-4 md:px-6">
+                  <ul className="space-y-2 md:space-y-3 mb-6 md:mb-8">
                     {pkg.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-start gap-2">
-                        <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                        <span className="text-gray-300">{feature}</span>
+                        <Check className="w-4 h-4 md:w-5 md:h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                        <span className="text-xs md:text-sm lg:text-base text-gray-300">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -202,7 +202,7 @@ const Socials = () => {
                       const url = `https://wa.me/256789572007?text=${encodeURIComponent(message)}`;
                       window.open(url, '_blank');
                     }}
-                    className={`w-full bg-gradient-to-r ${pkg.color} hover:opacity-90 text-white font-semibold py-3 rounded-lg transition-all duration-300 hover:scale-105`}
+                    className={`w-full bg-gradient-to-r ${pkg.color} hover:opacity-90 text-white font-semibold py-2.5 md:py-3 rounded-lg transition-all duration-300 active:scale-95 md:hover:scale-105 text-sm md:text-base`}
                   >
                     Choose {pkg.name}
                   </Button>
@@ -214,12 +214,12 @@ const Socials = () => {
       </section>
 
       {/* Process Section */}
-      <section className="py-16 px-4 bg-gray-900/50">
+      <section className="py-8 md:py-12 lg:py-16 px-4 bg-gray-900/50">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-12">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-white mb-6 md:mb-8 lg:mb-12">
             Our Process
           </h2>
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {[
               { step: "01", title: "Strategy Session", description: "We analyze your brand and create a custom social media strategy" },
               { step: "02", title: "Content Creation", description: "Our designers create stunning graphics tailored to your brand" },
@@ -227,11 +227,11 @@ const Socials = () => {
               { step: "04", title: "Monitor & Optimize", description: "We track performance and continuously optimize for better results" }
             ].map((process, index) => (
               <div key={index} className="text-center group">
-                <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg md:text-xl mx-auto mb-3 md:mb-4 transition-transform duration-300 active:scale-95 md:group-hover:scale-110">
                   {process.step}
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-2">{process.title}</h3>
-                <p className="text-gray-400">{process.description}</p>
+                <h3 className="text-base md:text-lg lg:text-xl font-semibold text-white mb-1.5 md:mb-2">{process.title}</h3>
+                <p className="text-sm md:text-base text-gray-400">{process.description}</p>
               </div>
             ))}
           </div>
@@ -245,23 +245,23 @@ const Socials = () => {
       />
 
       {/* CTA Section */}
-      <section className="py-16 px-4">
+      <section className="py-8 md:py-12 lg:py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 md:mb-4 lg:mb-6">
             Ready to Transform Your Social Media?
           </h2>
-          <p className="text-xl text-gray-300 mb-8">
+          <p className="text-base md:text-lg lg:text-xl text-gray-300 mb-6 md:mb-8 px-4">
             Join hundreds of businesses that trust us with their social media presence. 
             Get started today and see the difference professional management makes.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center px-4">
             <Button 
               onClick={() => {
                 const message = 'Hello! I want to start my first week of social media management. Can we discuss the packages?';
                 const url = `https://wa.me/256789572007?text=${encodeURIComponent(message)}`;
                 window.open(url, '_blank');
               }}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-lg font-semibold"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-2.5 md:px-8 md:py-3 rounded-lg font-semibold text-sm md:text-base"
             >
               Start Your First Week
             </Button>
@@ -272,7 +272,7 @@ const Socials = () => {
                 window.open(url, '_blank');
               }}
               variant="outline" 
-              className="border-gray-600 text-gray-300 hover:bg-gray-800 px-8 py-3"
+              className="border-gray-600 text-gray-300 hover:bg-gray-800 px-6 py-2.5 md:px-8 md:py-3 text-sm md:text-base"
             >
               Schedule Consultation
             </Button>
