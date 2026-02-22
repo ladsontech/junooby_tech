@@ -33,12 +33,6 @@ const Navbar = () => {
             <Link to="/ecommerce" className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 ${isActive('/ecommerce') ? 'text-primary bg-accent glow-blue' : 'text-foreground hover:text-primary hover:bg-accent'}`}>
               Ecommerce
             </Link>
-            <Link to="/apps" className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 ${isActive('/apps') ? 'text-primary bg-accent glow-blue' : 'text-foreground hover:text-primary hover:bg-accent'}`}>
-              Apps
-            </Link>
-            <Link to="/socials" className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 ${isActive('/socials') ? 'text-primary bg-accent glow-blue' : 'text-foreground hover:text-primary hover:bg-accent'}`}>
-              Socials
-            </Link>
             <Link to="/contact" className="bg-primary text-primary-foreground px-6 py-2 rounded-lg font-medium hover:bg-primary/90 transition-all duration-500 hover:scale-110 animate-neon-pulse glow-blue">
               Contact Us
             </Link>
@@ -83,12 +77,6 @@ const Navbar = () => {
           </Link>
           <Link to="/ecommerce" onClick={() => setIsMenuOpen(false)} className={`block px-4 py-3 text-sm font-medium transition-colors duration-300 ${isActive('/ecommerce') ? 'text-primary bg-accent glow-blue' : 'text-foreground hover:text-primary hover:bg-accent'}`}>
             Ecommerce
-          </Link>
-          <Link to="/apps" onClick={() => setIsMenuOpen(false)} className={`block px-4 py-3 text-sm font-medium transition-colors duration-300 ${isActive('/apps') ? 'text-primary bg-accent glow-blue' : 'text-foreground hover:text-primary hover:bg-accent'}`}>
-            Apps
-          </Link>
-          <Link to="/socials" onClick={() => setIsMenuOpen(false)} className={`block px-4 py-3 text-sm font-medium transition-colors duration-300 ${isActive('/socials') ? 'text-primary bg-accent glow-blue' : 'text-foreground hover:text-primary hover:bg-accent'}`}>
-            Socials
           </Link>
           <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="block mx-4 my-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium text-center hover:bg-primary/90 animate-neon-pulse glow-blue">
             Contact Us

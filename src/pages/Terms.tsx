@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Shield, FileText, CreditCard, Clock, RefreshCw, Edit3, Image, Key, Globe, MessageCircle, Ban, Settings, Smartphone, Building2 } from 'lucide-react';
+import { ArrowLeft, Shield, FileText, CreditCard, Clock, RefreshCw, Edit3, Image, Key, Globe, MessageCircle, Ban, Settings, Smartphone, Building2, Copy, Check } from 'lucide-react';
 
 const termsData = [
     {
@@ -120,6 +120,12 @@ const termsData = [
 ];
 
 const Terms = () => {
+    const [copied, setCopied] = React.useState('');
+    const copyToClipboard = (text: string, label: string) => {
+        navigator.clipboard.writeText(text);
+        setCopied(label);
+        setTimeout(() => setCopied(''), 2000);
+    };
     return (
         <div className="min-h-screen bg-background">
             <Navbar />
@@ -204,7 +210,12 @@ const Terms = () => {
                                     </div>
                                     <h4 className="font-semibold text-foreground">Mobile Money</h4>
                                 </div>
-                                <p className="text-foreground font-mono text-lg font-bold mb-1">+256 766 650 630</p>
+                                <div className="flex items-center gap-2">
+                                    <p className="text-foreground font-mono text-lg font-bold">+256 766 650 630</p>
+                                    <button onClick={() => copyToClipboard('0766650630', 'momo')} className="p-1 rounded-md hover:bg-primary/10 transition-colors" title="Copy number">
+                                        {copied === 'momo' ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4 text-muted-foreground" />}
+                                    </button>
+                                </div>
                                 <p className="text-muted-foreground text-sm">Ladu David</p>
                             </div>
                             <div className="bg-primary/5 border border-primary/20 rounded-xl p-4">
@@ -214,7 +225,12 @@ const Terms = () => {
                                     </div>
                                     <h4 className="font-semibold text-foreground">Bank Transfer</h4>
                                 </div>
-                                <p className="text-foreground font-mono text-lg font-bold mb-1">9030020559399</p>
+                                <div className="flex items-center gap-2">
+                                    <p className="text-foreground font-mono text-lg font-bold">9030020559399</p>
+                                    <button onClick={() => copyToClipboard('9030020559399', 'bank')} className="p-1 rounded-md hover:bg-primary/10 transition-colors" title="Copy account number">
+                                        {copied === 'bank' ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4 text-muted-foreground" />}
+                                    </button>
+                                </div>
                                 <p className="text-muted-foreground text-sm">Ladu David — Stanbic Bank</p>
                             </div>
                         </div>

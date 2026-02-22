@@ -10,6 +10,7 @@ const Contact = () => {
     service: 'Select a service',
     message: ''
   });
+  const [copied, setCopied] = useState('');
 
   const handleWhatsAppClick = () => {
     const phoneNumber = '+256789572007';
@@ -209,7 +210,12 @@ Message: ${formData.message}`;
                     </div>
                     <div>
                       <p className="font-medium text-gray-900 text-sm">Mobile Money</p>
-                      <p className="text-gray-800 font-mono font-bold">+256 766 650 630</p>
+                      <div className="flex items-center gap-2">
+                        <p className="text-gray-800 font-mono font-bold">+256 766 650 630</p>
+                        <button onClick={() => { navigator.clipboard.writeText('0766650630'); setCopied('momo'); setTimeout(() => setCopied(''), 2000); }} className="p-1 rounded hover:bg-green-100 transition-colors" title="Copy number">
+                          {copied === 'momo' ? <span className="text-green-600 text-xs">✓</span> : <span className="text-gray-400 text-xs">📋</span>}
+                        </button>
+                      </div>
                       <p className="text-gray-500 text-xs">Ladu David</p>
                     </div>
                   </div>
@@ -219,7 +225,12 @@ Message: ${formData.message}`;
                     </div>
                     <div>
                       <p className="font-medium text-gray-900 text-sm">Stanbic Bank</p>
-                      <p className="text-gray-800 font-mono font-bold">9030020559399</p>
+                      <div className="flex items-center gap-2">
+                        <p className="text-gray-800 font-mono font-bold">9030020559399</p>
+                        <button onClick={() => { navigator.clipboard.writeText('9030020559399'); setCopied('bank'); setTimeout(() => setCopied(''), 2000); }} className="p-1 rounded hover:bg-blue-100 transition-colors" title="Copy account number">
+                          {copied === 'bank' ? <span className="text-green-600 text-xs">✓</span> : <span className="text-gray-400 text-xs">📋</span>}
+                        </button>
+                      </div>
                       <p className="text-gray-500 text-xs">Ladu David</p>
                     </div>
                   </div>
