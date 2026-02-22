@@ -149,7 +149,7 @@ Message: ${formData.message}`;
                     </div>
                     <div>
                       <p className="font-medium text-gray-900 text-sm md:text-base">Email</p>
-                      <p className="text-gray-600 text-sm md:text-base">info@junooby.com</p>
+                      <p className="text-gray-600 text-sm md:text-base">junoobytech@gmail.com</p>
                     </div>
                   </div>
 
@@ -178,7 +178,7 @@ Message: ${formData.message}`;
                     </div>
                     <div>
                       <p className="font-medium text-gray-900 text-sm md:text-base">Location</p>
-                      <p className="text-gray-600 text-sm md:text-base">Kampala, Uganda</p>
+                      <p className="text-gray-600 text-sm md:text-base">Kyambogo, Kampala Uganda</p>
                     </div>
                   </div>
                 </div>
