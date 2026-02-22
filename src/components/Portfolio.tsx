@@ -1,21 +1,29 @@
-import React from 'react';
-import { ExternalLink, Smartphone, ShoppingCart, Share2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { ExternalLink, Smartphone, ShoppingCart, Share2, Filter } from 'lucide-react';
 
 interface Project {
   name: string;
   description: string;
   logo: string;
   link: string;
-  categories: ('web' | 'app' | 'ecommerce' | 'social')[];
+  categories: ('web' | 'app' | 'ecommerce' | 'social' | 'ngo')[];
 }
 
 interface PortfolioProps {
-  filter?: 'web' | 'app' | 'ecommerce' | 'social' | 'all';
+  filter?: 'web' | 'app' | 'ecommerce' | 'social' | 'ngo' | 'all';
   title?: string;
   description?: string;
+  showFilters?: boolean;
 }
 
 const projects: Project[] = [
+  {
+    name: 'Step Up Uganda Youth League',
+    description: 'Youth empowerment and NGO organization',
+    logo: '/images/suyel_logo.png',
+    link: 'https://www.suyel.org',
+    categories: ['web', 'ngo'],
+  },
   {
     name: 'Flamia',
     description: 'Gas delivery ecommerce platform',
@@ -42,7 +50,7 @@ const projects: Project[] = [
     description: 'Non-profit organization for boy child',
     logo: '/images/bocasif_logo.png',
     link: 'https://basfug.org',
-    categories: ['web'],
+    categories: ['web', 'ngo'],
   },
   {
     name: 'Hostel Connect',
@@ -91,11 +99,26 @@ const projects: Project[] = [
 const Portfolio: React.FC<PortfolioProps> = ({
   filter = 'all',
   title = 'Our Portfolio',
-  description = 'Trusted by leading businesses across Uganda. See what we\'ve built for our clients.'
+  description = 'Trusted by leading businesses across Uganda. See what we\'ve built for our clients.',
+  showFilters = true
 }) => {
-  const filteredProjects = filter === 'all'
+  const [activeFilter, setActiveFilter] = useState<'all' | 'web' | 'app' | 'ecommerce' | 'social' | 'ngo'>(filter);
+
+  // If the prop changes, update the internal state (useful if parent navigates)
+  React.useEffect(() => {
+    setActiveFilter(filter);
+  }, [filter]);
+
+  const filteredProjects = activeFilter === 'all'
     ? projects
-    : projects.filter(project => project.categories.includes(filter));
+    : projects.filter(project => project.categories.includes(activeFilter));
+
+  const filterCategories = [
+    { id: 'all', label: 'All Projects' },
+    { id: 'ecommerce', label: 'E-commerce' },
+    { id: 'ngo', label: 'NGOs' },
+    { id: 'web', label: 'Websites' },
+  ] as const;
 
   if (filteredProjects.length === 0) return null;
 
@@ -110,6 +133,23 @@ const Portfolio: React.FC<PortfolioProps> = ({
             {description}
           </p>
         </div>
+
+        {showFilters && (
+          <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-10 md:mb-12">
+            {filterCategories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => setActiveFilter(category.id)}
+                className={`px-4 md:px-6 py-2 rounded-full text-sm md:text-base font-medium transition-all duration-300 ${activeFilter === category.id
+                    ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/20 scale-105'
+                    : 'bg-card text-foreground border border-border hover:border-primary/50 hover:text-primary'
+                  }`}
+              >
+                {category.label}
+              </button>
+            ))}
+          </div>
+        )}
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {filteredProjects.map((project, index) => (
