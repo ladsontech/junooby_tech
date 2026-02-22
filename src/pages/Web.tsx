@@ -149,8 +149,32 @@ const Web = () => {
                 <div className="text-4xl mb-4">{tier.icon}</div>
                 <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">{tier.title}</h3>
                 <p className="text-muted-foreground mb-4 leading-relaxed text-sm">{tier.subtitle}</p>
+
+                <div className="mb-6 flex-grow">
+                  <p className="font-semibold text-foreground text-sm mb-3">Package Includes:</p>
+                  <ul className="space-y-2">
+                    {packageIncludes.map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-muted-foreground text-xs md:text-sm">
+                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
                 <div className="mt-auto pt-4 border-t border-border/50">
-                  <span className="text-lg md:text-xl font-bold text-primary">{tier.price}</span>
+                  <span className="text-lg md:text-xl font-bold text-primary block mb-4">{tier.price}</span>
+                  <button
+                    onClick={() => {
+                      const message = `Hello! I am interested in the ${tier.title} website package (${tier.price}). Can we discuss further?`;
+                      const url = `https://wa.me/256789572007?text=${encodeURIComponent(message)}`;
+                      window.open(url, '_blank');
+                    }}
+                    className="w-full bg-primary/10 hover:bg-primary text-primary hover:text-primary-foreground border border-primary/20 hover:border-primary px-4 py-2.5 rounded-xl font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    Request Package
+                  </button>
                 </div>
               </div>
             ))}
@@ -189,25 +213,7 @@ const Web = () => {
         </div>
       </section>
 
-      {/* What Every Package Includes */}
-      <section className="py-16 md:py-24 bg-card/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              What Every Website Package Includes
-            </h2>
-          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
-            {packageIncludes.map((item, index) => (
-              <div key={index} className="flex items-center gap-3 bg-card border border-border rounded-xl p-4 transition-all duration-300 hover:border-primary/30">
-                <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
-                <span className="text-foreground text-sm md:text-base">{item}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Payment Structure + Requirements */}
       <section className="py-16 md:py-24 bg-background">
