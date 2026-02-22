@@ -92,18 +92,27 @@ const Web = () => {
             </p>
 
             {/* Key Highlights */}
-            <div className="flex flex-col sm:flex-row gap-4 md:gap-8 justify-center items-center mb-12">
-              <div className="flex items-center gap-2 bg-card border border-border rounded-full px-5 py-3">
-                <Clock className="w-5 h-5 text-primary" />
-                <span className="text-foreground font-medium">Delivery: 3–5 working days</span>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-12 max-w-3xl mx-auto">
+              <div className="bg-card/80 border border-border rounded-xl p-4 text-center">
+                <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <Clock className="w-5 h-5 text-primary" />
+                </div>
+                <p className="text-foreground font-semibold text-sm">3–5 Working Days</p>
+                <p className="text-muted-foreground text-xs mt-1">Fast delivery</p>
               </div>
-              <div className="flex items-center gap-2 bg-card border border-border rounded-full px-5 py-3">
-                <DollarSign className="w-5 h-5 text-primary" />
-                <span className="text-foreground font-medium">Starting from UGX 250,000</span>
+              <div className="bg-card/80 border border-border rounded-xl p-4 text-center">
+                <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <DollarSign className="w-5 h-5 text-primary" />
+                </div>
+                <p className="text-foreground font-semibold text-sm">From UGX 250,000</p>
+                <p className="text-muted-foreground text-xs mt-1">Affordable pricing</p>
               </div>
-              <div className="flex items-center gap-2 bg-card border border-border rounded-full px-5 py-3">
-                <Globe className="w-5 h-5 text-primary" />
-                <span className="text-foreground font-medium">Free domain & hosting (1st year)</span>
+              <div className="bg-card/80 border border-border rounded-xl p-4 text-center">
+                <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <Globe className="w-5 h-5 text-primary" />
+                </div>
+                <p className="text-foreground font-semibold text-sm">Free Domain & Hosting</p>
+                <p className="text-muted-foreground text-xs mt-1">First year included</p>
               </div>
             </div>
 

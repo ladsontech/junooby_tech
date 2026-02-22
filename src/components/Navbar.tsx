@@ -73,7 +73,7 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu Overlay */}
-      {isMenuOpen && <div className="absolute top-16 left-0 right-0 bg-background shadow-2xl border-t border-b border-border space-card">
+      {isMenuOpen && <div className="absolute top-16 left-0 right-0 bg-black shadow-2xl border-t border-b border-border/50" style={{ background: '#0a0a0a' }}>
         <div className="py-4 space-y-2">
           <Link to="/" onClick={() => setIsMenuOpen(false)} className={`block px-4 py-3 text-sm font-medium transition-colors duration-300 ${isActive('/') ? 'text-primary bg-accent glow-blue' : 'text-foreground hover:text-primary hover:bg-accent'}`}>
             Home
