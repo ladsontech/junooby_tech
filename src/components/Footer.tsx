@@ -64,7 +64,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-border/30 mt-8 md:mt-12 pt-6 md:pt-8 text-center text-muted-foreground">
-          <p>&copy; 2024 Junooby. All rights reserved. Made with <span className="text-primary glow-blue">❤️</span> in Kampala, Uganda.</p>
+          <p>&copy; 2026 Junooby. All rights reserved. Made with <span className="text-primary glow-blue">❤️</span> in Kampala, Uganda.</p>
         </div>
       </div>
     </footer>
