@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Shield, FileText, CreditCard, Clock, RefreshCw, Edit3, Image, Key, Globe, MessageCircle, Ban, Settings } from 'lucide-react';
+import { ArrowLeft, Shield, FileText, CreditCard, Clock, RefreshCw, Edit3, Image, Key, Globe, MessageCircle, Ban, Settings, Smartphone, Building2 } from 'lucide-react';
 
 const termsData = [
     {
@@ -31,6 +31,7 @@ const termsData = [
             "Final payment is due upon completion of the project.",
             "If full payment is not completed within 7 days after project completion, the website will be temporarily suspended (taken offline).",
             "Continued non-payment may attract additional charges or permanent suspension until payment is settled.",
+            "Payments can be made via Mobile Money or Bank Transfer (see payment details below).",
         ],
     },
     {
@@ -182,6 +183,41 @@ const Terms = () => {
                                 </div>
                             </div>
                         ))}
+                    </div>
+
+                    {/* Payment Methods */}
+                    <div className="mt-8 bg-card border border-border rounded-2xl p-5 md:p-6">
+                        <div className="flex items-start gap-4 mb-6">
+                            <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0 text-primary">
+                                <CreditCard className="w-5 h-5" />
+                            </div>
+                            <div>
+                                <h3 className="text-lg md:text-xl font-bold text-foreground">Payment Methods</h3>
+                                <p className="text-muted-foreground text-sm mt-1">Choose the option that works best for you</p>
+                            </div>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div className="bg-primary/5 border border-primary/20 rounded-xl p-4">
+                                <div className="flex items-center gap-3 mb-3">
+                                    <div className="w-8 h-8 bg-green-500/10 rounded-lg flex items-center justify-center">
+                                        <Smartphone className="w-4 h-4 text-green-500" />
+                                    </div>
+                                    <h4 className="font-semibold text-foreground">Mobile Money</h4>
+                                </div>
+                                <p className="text-foreground font-mono text-lg font-bold mb-1">+256 766 650 630</p>
+                                <p className="text-muted-foreground text-sm">Ladu David</p>
+                            </div>
+                            <div className="bg-primary/5 border border-primary/20 rounded-xl p-4">
+                                <div className="flex items-center gap-3 mb-3">
+                                    <div className="w-8 h-8 bg-blue-500/10 rounded-lg flex items-center justify-center">
+                                        <Building2 className="w-4 h-4 text-blue-500" />
+                                    </div>
+                                    <h4 className="font-semibold text-foreground">Bank Transfer</h4>
+                                </div>
+                                <p className="text-foreground font-mono text-lg font-bold mb-1">9030020559399</p>
+                                <p className="text-muted-foreground text-sm">Ladu David — Stanbic Bank</p>
+                            </div>
+                        </div>
                     </div>
 
                     {/* CTA at bottom */}

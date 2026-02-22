@@ -26,7 +26,7 @@ Email: ${formData.email}
 Service Interest: ${formData.service}
 
 Message: ${formData.message}`;
-    
+
     const url = `https://wa.me/256789572007?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   };
@@ -41,7 +41,7 @@ Message: ${formData.message}`;
   return (
     <div className="min-h-screen">
       <Navbar />
-      
+
       <section className="pt-16 md:pt-20 lg:pt-24 pb-8 md:pb-16 lg:pb-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 md:mb-12 lg:mb-16">
@@ -50,7 +50,7 @@ Message: ${formData.message}`;
               Ready to transform your business with cutting-edge technology? Get in touch with our expert team
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12">
             {/* Contact Form */}
             <div className="bg-white rounded-xl p-4 md:p-6 lg:p-8 shadow-lg">
@@ -59,7 +59,7 @@ Message: ${formData.message}`;
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-                    <input 
+                    <input
                       type="text"
                       name="firstName"
                       value={formData.firstName}
@@ -71,7 +71,7 @@ Message: ${formData.message}`;
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-                    <input 
+                    <input
                       type="text"
                       name="lastName"
                       value={formData.lastName}
@@ -82,10 +82,10 @@ Message: ${formData.message}`;
                     />
                   </div>
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                  <input 
+                  <input
                     type="email"
                     name="email"
                     value={formData.email}
@@ -95,10 +95,10 @@ Message: ${formData.message}`;
                     placeholder="john@example.com"
                   />
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Service Interest</label>
-                  <select 
+                  <select
                     name="service"
                     value={formData.service}
                     onChange={handleInputChange}
@@ -114,10 +114,10 @@ Message: ${formData.message}`;
                     <option>CCTV Installation</option>
                   </select>
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                  <textarea 
+                  <textarea
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
@@ -127,8 +127,8 @@ Message: ${formData.message}`;
                     placeholder="Tell us about your project..."
                   ></textarea>
                 </div>
-                
-                <button 
+
+                <button
                   type="submit"
                   className="w-full bg-blue-600 text-white py-3 md:py-4 rounded-lg font-semibold text-base md:text-lg hover:bg-blue-700 hover:shadow-xl transition-all duration-300 hover:scale-105"
                 >
@@ -136,7 +136,7 @@ Message: ${formData.message}`;
                 </button>
               </form>
             </div>
-            
+
             {/* Contact Info */}
             <div className="space-y-4 md:space-y-6 lg:space-y-8">
               <div className="bg-white rounded-xl p-4 md:p-6 lg:p-8 shadow-lg">
@@ -151,14 +151,14 @@ Message: ${formData.message}`;
                       <p className="text-gray-600 text-sm md:text-base">info@junooby.com</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center space-x-3 md:space-x-4">
                     <div className="w-10 h-10 md:w-12 md:h-12 bg-green-100 rounded-xl flex items-center justify-center">
                       📞
                     </div>
                     <div>
                       <p className="font-medium text-gray-900 text-sm md:text-base">Phone</p>
-                      <button 
+                      <button
                         onClick={() => {
                           const message = 'Hello! I found your contact information and would like to inquire about your services.';
                           const url = `https://wa.me/256789572007?text=${encodeURIComponent(message)}`;
@@ -170,7 +170,7 @@ Message: ${formData.message}`;
                       </button>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center space-x-3 md:space-x-4">
                     <div className="w-10 h-10 md:w-12 md:h-12 bg-purple-100 rounded-xl flex items-center justify-center">
                       📍
@@ -189,7 +189,7 @@ Message: ${formData.message}`;
                 <p className="text-sm md:text-base mb-4 md:mb-6">
                   Get instant responses to your questions. Chat with us directly on WhatsApp for quick support and quotes.
                 </p>
-                <button 
+                <button
                   onClick={handleWhatsAppClick}
                   className="w-full bg-white text-green-600 py-3 md:py-4 rounded-lg font-semibold text-base md:text-lg hover:bg-gray-100 transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2"
                 >
@@ -197,7 +197,35 @@ Message: ${formData.message}`;
                   <span>Chat on WhatsApp</span>
                 </button>
               </div>
-              
+
+              {/* Payment Methods */}
+              <div className="bg-white rounded-xl p-4 md:p-6 lg:p-8 shadow-lg">
+                <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-4 md:mb-6">Payment Methods</h3>
+                <p className="text-gray-600 text-sm mb-4">Make payments via Mobile Money or Bank Transfer:</p>
+                <div className="space-y-3">
+                  <div className="flex items-start space-x-3 bg-green-50 rounded-lg p-3">
+                    <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      📱
+                    </div>
+                    <div>
+                      <p className="font-medium text-gray-900 text-sm">Mobile Money</p>
+                      <p className="text-gray-800 font-mono font-bold">+256 766 650 630</p>
+                      <p className="text-gray-500 text-xs">Ladu David</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3 bg-blue-50 rounded-lg p-3">
+                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      🏦
+                    </div>
+                    <div>
+                      <p className="font-medium text-gray-900 text-sm">Stanbic Bank</p>
+                      <p className="text-gray-800 font-mono font-bold">9030020559399</p>
+                      <p className="text-gray-500 text-xs">Ladu David</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div className="bg-blue-600 rounded-xl p-4 md:p-6 lg:p-8 text-white">
                 <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4">Why Choose Junooby?</h3>
                 <ul className="space-y-2 md:space-y-3">
@@ -223,7 +251,7 @@ Message: ${formData.message}`;
           </div>
         </div>
       </section>
-      
+
       <Footer />
     </div>
   );
