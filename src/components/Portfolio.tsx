@@ -25,6 +25,13 @@ const projects: Project[] = [
     categories: ['web', 'ngo'],
   },
   {
+    name: 'Elite Rides UG',
+    description: 'Car and van rental service',
+    logo: '/images/eliterides_logo.png',
+    link: 'https://www.eliteridesug.online',
+    categories: ['web'],
+  },
+  {
     name: 'Flamia',
     description: 'Gas delivery ecommerce platform',
     logo: '/images/flamia_logo.png',
@@ -141,8 +148,8 @@ const Portfolio: React.FC<PortfolioProps> = ({
                 key={category.id}
                 onClick={() => setActiveFilter(category.id)}
                 className={`px-4 md:px-6 py-2 rounded-full text-sm md:text-base font-medium transition-all duration-300 ${activeFilter === category.id
-                    ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/20 scale-105'
-                    : 'bg-card text-foreground border border-border hover:border-primary/50 hover:text-primary'
+                  ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/20 scale-105'
+                  : 'bg-card text-foreground border border-border hover:border-primary/50 hover:text-primary'
                   }`}
               >
                 {category.label}
