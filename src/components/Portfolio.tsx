@@ -20,7 +20,7 @@ const projects: Project[] = [
     name: 'Flamia',
     description: 'Gas delivery ecommerce platform',
     logo: '/images/flamia_logo.png',
-    link: 'https://www.flamia.store',
+    link: 'https://www.flamia.ug',
     categories: ['web', 'app', 'ecommerce'],
   },
   {
@@ -41,7 +41,7 @@ const projects: Project[] = [
     name: 'Bocasif',
     description: 'Non-profit organization for boy child',
     logo: '/images/bocasif_logo.png',
-    link: 'https://bosfug.org',
+    link: 'https://basfug.org',
     categories: ['web'],
   },
   {
@@ -88,13 +88,13 @@ const projects: Project[] = [
   },
 ];
 
-const Portfolio: React.FC<PortfolioProps> = ({ 
+const Portfolio: React.FC<PortfolioProps> = ({
   filter = 'all',
   title = 'Our Portfolio',
   description = 'Trusted by leading businesses across Uganda. See what we\'ve built for our clients.'
 }) => {
-  const filteredProjects = filter === 'all' 
-    ? projects 
+  const filteredProjects = filter === 'all'
+    ? projects
     : projects.filter(project => project.categories.includes(filter));
 
   if (filteredProjects.length === 0) return null;
@@ -131,7 +131,7 @@ const Portfolio: React.FC<PortfolioProps> = ({
                     }}
                   />
                 </div>
-                
+
                 <div className="space-y-2">
                   <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
                     {project.name}

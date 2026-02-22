@@ -12,6 +12,7 @@ import Ecommerce from "./pages/Ecommerce";
 import Apps from "./pages/Apps";
 import Socials from "./pages/Socials";
 import NotFound from "./pages/NotFound";
+import Terms from "./pages/Terms";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ const App = () => (
             <Route path="/apps" element={<Apps />} />
             <Route path="/socials" element={<Socials />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/terms" element={<Terms />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

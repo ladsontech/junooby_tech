@@ -2,94 +2,114 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Portfolio from '@/components/Portfolio';
+import { Link } from 'react-router-dom';
+import { Clock, DollarSign, Globe, CheckCircle2, FileText, MessageCircle, Send } from 'lucide-react';
 
 const Web = () => {
-  const webServices = [
+  const pricingTiers = [
     {
-      title: "Corporate Websites",
-      description: "Professional websites that represent your company's brand and values",
-      features: ["Custom Design", "Responsive Layout", "SEO Optimized", "Content Management"],
-      icon: "🏢"
+      title: "Non-Profit & Community Organizations",
+      subtitle: "NGOs, CBOs, churches, charities, foundations",
+      price: "UGX 250,000 – 350,000",
+      icon: "🏛️",
     },
     {
-      title: "Organization Websites",
-      description: "Websites for NGOs, nonprofits, and community organizations",
-      features: ["Donation Integration", "Event Management", "Member Portal", "Newsletter Signup"],
-      icon: "🏛️"
+      title: "Companies & Corporate Businesses",
+      subtitle: "SMEs, startups, registered companies",
+      price: "UGX 300,000 – 450,000",
+      icon: "🏢",
     },
     {
-      title: "Portfolio Websites",
-      description: "Showcase your work and professional achievements",
-      features: ["Gallery Display", "Contact Forms", "Social Integration", "Mobile Optimized"],
-      icon: "💼"
+      title: "Tourism & Hospitality",
+      subtitle: "Tours, travel agencies, hotels, lodges",
+      price: "UGX 350,000 – 600,000",
+      icon: "✈️",
     },
     {
-      title: "Landing Pages",
-      description: "High-converting pages for marketing campaigns",
-      features: ["Lead Generation", "A/B Testing", "Analytics Integration", "Fast Loading"],
-      icon: "🎯"
-    }
+      title: "Schools & Educational Institutions",
+      subtitle: "Schools, colleges, training centers",
+      price: "UGX 300,000 – 500,000",
+      icon: "🎓",
+    },
+    {
+      title: "Local Service Providers",
+      subtitle: "Plumbers, electricians, cleaners, mechanics",
+      price: "UGX 200,000 – 300,000",
+      icon: "🔧",
+    },
   ];
 
-  const ecommerceServices = [
-    {
-      title: "Online Stores",
-      description: "Complete ecommerce websites with shopping cart and payment integration",
-      features: ["Product Catalog", "Shopping Cart", "Payment Gateway", "Order Management"],
-      icon: "🛒"
-    },
-    {
-      title: "Mobile Apps",
-      description: "Native and cross-platform mobile apps for iOS and Android",
-      features: ["Push Notifications", "Offline Mode", "User Authentication", "In-App Purchases"],
-      icon: "📱"
-    },
-    {
-      title: "Marketplace Integration",
-      description: "Connect your store to popular marketplaces and platforms",
-      features: ["Multi-Channel Selling", "Inventory Sync", "Order Consolidation", "Automated Listings"],
-      icon: "🌐"
-    },
-    {
-      title: "Digital Payments",
-      description: "Secure payment processing and financial management tools",
-      features: ["Mobile Money", "Credit Cards", "Digital Wallets", "Fraud Protection"],
-      icon: "💳"
-    }
+  const customSystems = [
+    "School management systems",
+    "Booking & reservation systems",
+    "Membership & subscription platforms",
+    "Inventory & sales systems",
+    "Dashboards & admin panels",
+    "Custom mobile-friendly web apps",
+  ];
+
+  const packageIncludes = [
+    "Free .com / .org domain (first year)",
+    "Free hosting (first year)",
+    "Mobile-responsive design",
+    "Basic SEO setup",
+    "WhatsApp & social media integration",
+    "Secure & fast website",
+  ];
+
+  const clientRequirements = [
+    "Official logo",
+    "About / company information (Word document preferred)",
+    "High-quality images",
+    "Contact details & links",
   ];
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      
-      {/* Simplified Hero Section */}
+
+      {/* Hero Section */}
       <section className="min-h-screen bg-gradient-to-br from-background via-background to-card/10 relative overflow-hidden flex items-center pt-16">
-        {/* Minimal background elements */}
         <div className="absolute inset-0">
           <div className="absolute top-20 left-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
           <div className="absolute bottom-20 right-10 w-40 h-40 bg-accent/10 rounded-full blur-2xl"></div>
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-muted/5 rounded-full blur-3xl"></div>
         </div>
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8">
               <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-                Web Solutions
+                Website Design
               </span>
               <br />
               <span className="text-foreground text-3xl md:text-4xl lg:text-5xl">
-                & Ecommerce Development
+                & Custom System Development
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light mb-12">
-              Professional websites, online stores, and mobile apps designed to drive business growth, 
-              enhance brand credibility, and maximize conversions across the digital landscape.
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light mb-8">
+              We design modern websites and custom digital systems for organizations, businesses, and service providers.
             </p>
-            
+
+            {/* Key Highlights */}
+            <div className="flex flex-col sm:flex-row gap-4 md:gap-8 justify-center items-center mb-12">
+              <div className="flex items-center gap-2 bg-card border border-border rounded-full px-5 py-3">
+                <Clock className="w-5 h-5 text-primary" />
+                <span className="text-foreground font-medium">Delivery: 3–5 working days</span>
+              </div>
+              <div className="flex items-center gap-2 bg-card border border-border rounded-full px-5 py-3">
+                <DollarSign className="w-5 h-5 text-primary" />
+                <span className="text-foreground font-medium">Starting from UGX 250,000</span>
+              </div>
+              <div className="flex items-center gap-2 bg-card border border-border rounded-full px-5 py-3">
+                <Globe className="w-5 h-5 text-primary" />
+                <span className="text-foreground font-medium">Free domain & hosting (1st year)</span>
+              </div>
+            </div>
+
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <button 
+              <button
                 onClick={() => {
                   const message = 'Hello! I am interested in starting a web development project. Can you provide more information?';
                   const url = `https://wa.me/256789572007?text=${encodeURIComponent(message)}`;
@@ -99,82 +119,158 @@ const Web = () => {
               >
                 Start Your Project
               </button>
-              
-              <button className="border border-border bg-card text-foreground px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:border-primary/50">
-                View Portfolio
+
+              <button
+                onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
+                className="border border-border bg-card text-foreground px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:border-primary/50"
+              >
+                View Pricing
               </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Web Development Services */}
-      <section className="py-16 md:py-24 bg-background">
+      {/* Pricing Tiers */}
+      <section id="pricing" className="py-16 md:py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Web Development Services
+              Our Services & Pricing
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-              From corporate websites to organization portals, we create digital experiences 
-              that represent your brand and achieve your goals.
+              Transparent pricing tailored to your industry. Every package includes a complete, professional website.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {webServices.map((service, index) => (
-              <div key={index} className="bg-card border border-border rounded-2xl p-8 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary/30">
-                <div className="text-4xl mb-6">{service.icon}</div>
-                <h3 className="text-2xl font-bold text-foreground mb-4">{service.title}</h3>
-                <p className="text-muted-foreground mb-6 leading-relaxed">{service.description}</p>
-                <div className="space-y-3">
-                  {service.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-center text-muted-foreground">
-                      <div className="w-2 h-2 bg-primary rounded-full mr-4"></div>
-                      <span>{feature}</span>
-                    </div>
-                  ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {pricingTiers.map((tier, index) => (
+              <div key={index} className="bg-card border border-border rounded-2xl p-6 md:p-8 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary/30 flex flex-col">
+                <div className="text-4xl mb-4">{tier.icon}</div>
+                <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">{tier.title}</h3>
+                <p className="text-muted-foreground mb-4 leading-relaxed text-sm">{tier.subtitle}</p>
+                <div className="mt-auto pt-4 border-t border-border/50">
+                  <span className="text-lg md:text-xl font-bold text-primary">{tier.price}</span>
                 </div>
               </div>
             ))}
+
+            {/* Custom Systems Card */}
+            <div className="bg-gradient-to-br from-primary/10 to-accent/10 border border-primary/30 rounded-2xl p-6 md:p-8 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex flex-col md:col-span-2 lg:col-span-1">
+              <div className="text-4xl mb-4">⚙️</div>
+              <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">Custom Systems & Web Applications</h3>
+              <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
+                For clients who need more than a website.
+              </p>
+              <ul className="space-y-2 mb-6 flex-grow">
+                {customSystems.map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2 text-muted-foreground text-sm">
+                    <div className="w-1.5 h-1.5 bg-primary rounded-full mt-1.5 flex-shrink-0"></div>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="pt-4 border-t border-border/50">
+                <p className="text-sm text-muted-foreground mb-2">📩 Pricing: Available on request</p>
+                <button
+                  onClick={() => {
+                    const message = 'Hello! I need a custom system/web application. Can I get a quotation?';
+                    const url = `https://wa.me/256789572007?text=${encodeURIComponent(message)}`;
+                    window.open(url, '_blank');
+                  }}
+                  className="w-full bg-primary text-primary-foreground px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center justify-center gap-2"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  Inbox Us for a Quotation
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Ecommerce Services */}
+      {/* What Every Package Includes */}
       <section className="py-16 md:py-24 bg-card/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Ecommerce Development Services
+              What Every Website Package Includes
             </h2>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-              From simple online stores to complex marketplace platforms, we build 
-              ecommerce solutions that scale with your business.
-            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {ecommerceServices.map((service, index) => (
-              <div key={index} className="bg-card border border-border rounded-2xl p-8 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary/30">
-                <div className="text-4xl mb-6">{service.icon}</div>
-                <h3 className="text-2xl font-bold text-foreground mb-4">{service.title}</h3>
-                <p className="text-muted-foreground mb-6 leading-relaxed">{service.description}</p>
-                <div className="space-y-3">
-                  {service.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-center text-muted-foreground">
-                      <div className="w-2 h-2 bg-primary rounded-full mr-4"></div>
-                      <span>{feature}</span>
-                    </div>
-                  ))}
-                </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
+            {packageIncludes.map((item, index) => (
+              <div key={index} className="flex items-center gap-3 bg-card border border-border rounded-xl p-4 transition-all duration-300 hover:border-primary/30">
+                <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
+                <span className="text-foreground text-sm md:text-base">{item}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <Portfolio 
+      {/* Payment Structure + Requirements */}
+      <section className="py-16 md:py-24 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+
+            {/* Payment Structure */}
+            <div className="bg-card border border-border rounded-2xl p-6 md:p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <DollarSign className="w-6 h-6 text-primary" />
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground">Payment Structure</h2>
+              </div>
+              <div className="space-y-4">
+                <div className="bg-primary/5 border border-primary/20 rounded-xl p-4">
+                  <p className="font-semibold text-foreground mb-1">Deposit</p>
+                  <p className="text-muted-foreground text-sm">UGX 100,000 to start a project</p>
+                </div>
+                <div className="bg-muted/30 rounded-xl p-4">
+                  <p className="font-semibold text-foreground mb-1">Balance</p>
+                  <p className="text-muted-foreground text-sm">Payable before or immediately after completion</p>
+                </div>
+                <div className="bg-muted/30 rounded-xl p-4">
+                  <p className="font-semibold text-foreground mb-1">Work Begins</p>
+                  <p className="text-muted-foreground text-sm">Only after deposit is confirmed</p>
+                </div>
+              </div>
+
+              <div className="mt-6 pt-6 border-t border-border/50">
+                <h3 className="text-lg font-bold text-foreground mb-2">Annual Subscription (From Second Year)</h3>
+                <p className="text-muted-foreground text-sm">
+                  <span className="text-primary font-semibold text-base">UGX 180,000 per year</span><br />
+                  Covers domain renewal, hosting & basic maintenance
+                </p>
+              </div>
+            </div>
+
+            {/* Project Requirements */}
+            <div className="bg-card border border-border rounded-2xl p-6 md:p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <FileText className="w-6 h-6 text-primary" />
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground">Project Requirements</h2>
+              </div>
+              <p className="text-muted-foreground mb-6 text-sm">Clients must provide the following materials:</p>
+              <div className="space-y-3">
+                {clientRequirements.map((req, index) => (
+                  <div key={index} className="flex items-center gap-3 bg-muted/30 rounded-xl p-4">
+                    <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
+                    <span className="text-foreground text-sm">{req}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 pt-4 border-t border-border/50">
+                <p className="text-muted-foreground text-sm italic flex items-start gap-2">
+                  <span className="text-primary">⏳</span>
+                  Delivery timeline starts only after all required materials are submitted.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Portfolio
         filter="web"
         title="Our Web Development Portfolio"
         description="See the amazing websites and web applications we've built for our clients across Uganda."
@@ -219,6 +315,38 @@ const Web = () => {
                 Your website works as a powerful marketing tool, generating leads and sales continuously.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 md:py-20 bg-gradient-to-br from-primary/10 via-background to-accent/10">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            Need a Website or Custom System?
+          </h2>
+          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Contact us today to get started. Inbox us with your idea, and we'll guide you step by step.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              onClick={() => {
+                const message = 'Hello! I would like to get a website built. Can we discuss?';
+                const url = `https://wa.me/256789572007?text=${encodeURIComponent(message)}`;
+                window.open(url, '_blank');
+              }}
+              className="bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center justify-center gap-2"
+            >
+              <Send className="w-5 h-5" />
+              Contact Us Today
+            </button>
+            <Link
+              to="/terms"
+              className="border border-border bg-card text-foreground px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:border-primary/50 flex items-center justify-center gap-2"
+            >
+              <FileText className="w-5 h-5" />
+              View Terms & Conditions
+            </Link>
           </div>
         </div>
       </section>
