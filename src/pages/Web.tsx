@@ -285,9 +285,81 @@ const Web = () => {
         </div>
       </section>
 
+      {/* Mobile App Development */}
+      <section className="py-16 md:py-24 bg-card/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+              Mobile App Development
+            </h2>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+              From native iOS and Android apps to cross-platform solutions, we create
+              mobile experiences that users love and businesses rely on.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            {[
+              {
+                title: "iOS Apps",
+                description: "Native iOS applications for iPhone and iPad users",
+                features: ["Swift Development", "App Store Optimization", "Push Notifications", "In-App Purchases"],
+                icon: "📱"
+              },
+              {
+                title: "Android Apps",
+                description: "Native Android applications for Google Play Store",
+                features: ["Kotlin/Java Development", "Google Play Console", "Material Design", "Firebase Integration"],
+                icon: "🤖"
+              },
+              {
+                title: "Cross-Platform Apps",
+                description: "Build once, deploy everywhere with React Native or Flutter",
+                features: ["React Native", "Flutter", "Shared Codebase", "Platform-Specific Features"],
+                icon: "🔄"
+              },
+              {
+                title: "Progressive Web Apps",
+                description: "Web applications that work like native mobile apps",
+                features: ["Offline Functionality", "Push Notifications", "App-like Experience", "Cross-Platform"],
+                icon: "🌐"
+              }
+            ].map((service, index) => (
+              <div key={index} className="bg-card border border-border rounded-2xl p-6 md:p-8 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary/30">
+                <div className="text-4xl mb-4">{service.icon}</div>
+                <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3">{service.title}</h3>
+                <p className="text-muted-foreground mb-4 leading-relaxed text-sm">{service.description}</p>
+                <div className="space-y-2">
+                  {service.features.map((feature, idx) => (
+                    <div key={idx} className="flex items-center text-muted-foreground text-sm">
+                      <div className="w-1.5 h-1.5 bg-primary rounded-full mr-3 flex-shrink-0"></div>
+                      <span>{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-8">
+            <button
+              onClick={() => {
+                const message = 'Hello! I am interested in building a mobile app. Can you help me get started?';
+                const url = `https://wa.me/256789572007?text=${encodeURIComponent(message)}`;
+                window.open(url, '_blank');
+              }}
+              className="bg-primary text-primary-foreground px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg inline-flex items-center gap-2"
+            >
+              <MessageCircle className="w-5 h-5" />
+              Discuss Your App Project
+            </button>
+          </div>
+        </div>
+      </section>
+
       <Portfolio
-        filter="web"
-        title="Our Web Development Portfolio"
+        filter="all"
+        title="Our Portfolio"
         description="See the amazing websites and web applications we've built for our clients across Uganda."
       />
 
