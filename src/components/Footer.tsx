@@ -23,7 +23,7 @@ const Footer = () => {
               <span className="text-2xl font-bold text-primary text-glow">Junooby</span>
             </div>
             <p className="text-muted-foreground leading-relaxed">
-              Bringing cutting-edge technology solutions to Sub-Saharan Africa. Your trusted tech partner in the digital age.
+              Bringing cutting-edge technology solutions to Uganda. Your trusted tech partner in the digital age.
             </p>
           </div>
 
@@ -57,14 +57,14 @@ const Footer = () => {
                 <span className="text-primary glow-blue">📞</span> +256789572007
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-primary glow-blue">📍</span> Sub-Saharan Africa
+                <span className="text-primary glow-blue">📍</span> Kyambogo, Kampala Uganda
               </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-border/30 mt-8 md:mt-12 pt-6 md:pt-8 text-center text-muted-foreground">
-          <p>&copy; 2024 Junooby. All rights reserved. Made with <span className="text-primary glow-blue">❤️</span> in Sub-Saharan Africa.</p>
+          <p>&copy; 2024 Junooby. All rights reserved. Made with <span className="text-primary glow-blue">❤️</span> in Kampala, Uganda.</p>
         </div>
       </div>
     </footer>
