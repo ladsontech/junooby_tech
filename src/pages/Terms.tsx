@@ -77,7 +77,6 @@ const termsData = [
         title: "Ownership & Website Management",
         icon: <Key className="w-5 h-5" />,
         points: [
-            "All websites we build are static websites — they do not have admin panels, dashboards, or login systems.",
             "Websites are hosted and managed by Junooby Tech on behalf of the client.",
             "Full ownership rights are transferred to the client after full payment is completed.",
             "Content updates and modifications can be requested through our team at any time.",
