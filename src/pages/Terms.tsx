@@ -11,6 +11,7 @@ const termsData = [
         icon: <Clock className="w-5 h-5" />,
         points: [
             "A project officially starts after deposit payment is received.",
+            "The initial deposit is UGX 100,000 (or USD 30).",
             "No work will begin without a confirmed deposit.",
         ],
     },

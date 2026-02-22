@@ -238,7 +238,7 @@ const Web = () => {
               <div className="space-y-4">
                 <div className="bg-primary/5 border border-primary/20 rounded-xl p-4">
                   <p className="font-semibold text-foreground mb-1">Deposit</p>
-                  <p className="text-muted-foreground text-sm">UGX 100,000 to start a project</p>
+                  <p className="text-muted-foreground text-sm">UGX 100,000 (or USD 30) to start a project</p>
                 </div>
                 <div className="bg-muted/30 rounded-xl p-4">
                   <p className="font-semibold text-foreground mb-1">Balance</p>
