@@ -95,6 +95,13 @@ const projects: Project[] = [
     categories: ['web'],
   },
   {
+    name: 'St. Noa Mawaggali S.S.S',
+    description: 'Secondary school website',
+    logo: '/images/stnoa_logo.png',
+    link: 'https://stnoamawagalisss.ac.ug',
+    categories: ['web'],
+  },
+  {
     name: 'Mosa Adonai',
     description: 'Business services platform',
     logo: '/images/mosa_adonai _logo.png',
