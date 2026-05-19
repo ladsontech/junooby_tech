@@ -3,65 +3,188 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Portfolio from '@/components/Portfolio';
 import { Link } from 'react-router-dom';
-import { Clock, DollarSign, Globe, CheckCircle2, FileText, MessageCircle, Send } from 'lucide-react';
+import { Clock, DollarSign, Globe, CheckCircle2, FileText, MessageCircle, Send, CreditCard, RefreshCw, Folder } from 'lucide-react';
+
+const openWhatsApp = (message: string) => {
+  const url = `https://wa.me/256789572007?text=${encodeURIComponent(message)}`;
+  window.open(url, '_blank');
+};
 
 const Web = () => {
-  const pricingTiers = [
+  const websiteTiers = [
     {
-      title: "Non-Profit & Community Organizations",
-      subtitle: "NGOs, CBOs, churches, charities, foundations",
-      price: "UGX 250,000 – 350,000",
-      icon: "🏛️",
+      icon: '🟢',
+      title: 'Starter Tier',
+      subtitle: 'Perfect for startups, small businesses, personal brands, and local service providers.',
+      price: 'UGX 350,000 / $100',
+      delivery: '2–5 Days',
+      deposit: '50% Before Work Begins',
+      renewal: 'UGX 180,000 / $50 per year',
+      idealFor: ['Local Businesses', 'Salons & Barbershops', 'Restaurants', 'Plumbers & Electricians', 'Mechanics', 'Personal Brands', 'Churches & Small NGOs'],
+      includes: [
+        '1–3 Professional Pages',
+        'Mobile Responsive Design',
+        'WhatsApp Chat Integration',
+        'Contact Forms',
+        'Social Media Integration',
+        'Google Maps Integration',
+        'Basic SEO Setup',
+        'Fast & Secure Website',
+        'Free Domain (First Year)',
+        'Free Hosting (First Year)',
+      ],
     },
     {
-      title: "Companies & Corporate Businesses",
-      subtitle: "SMEs, startups, registered companies",
-      price: "UGX 300,000 – 450,000",
-      icon: "🏢",
+      icon: '🔵',
+      title: 'Business Tier',
+      subtitle: 'Designed for growing businesses, companies, schools, and professional organizations.',
+      price: 'UGX 700,000 / $200',
+      delivery: '1–2 Weeks',
+      deposit: '40%',
+      renewal: 'UGX 280,000 / $80 per year',
+      idealFor: ['Companies', 'Schools', 'NGOs', 'SACCOs', 'Hotels', 'Travel Agencies', 'Medium Businesses'],
+      includes: [
+        'Up to 5–10 Pages',
+        'Professional Custom Design',
+        'Mobile Responsive Layout',
+        'WhatsApp Integration',
+        'Gallery & Portfolio Sections',
+        'Contact & Inquiry Forms',
+        'SEO Optimization',
+        'Analytics Setup',
+        'Speed Optimization',
+        'Secure Website Setup',
+        'Free Domain (First Year)',
+        'Free Hosting (First Year)',
+      ],
     },
     {
-      title: "Tourism & Hospitality",
-      subtitle: "Tours, travel agencies, hotels, lodges",
-      price: "UGX 350,000 – 600,000",
-      icon: "✈️",
+      icon: '🟣',
+      title: 'Professional Tier',
+      subtitle: 'Built for larger organizations and businesses that require advanced functionality and stronger branding.',
+      price: 'UGX 1,500,000 / $430',
+      delivery: '2–4 Weeks',
+      deposit: '40%',
+      renewal: 'UGX 450,000 / $130 per year',
+      idealFor: ['Corporate Companies', 'Universities', 'Tourism Companies', 'Ecommerce Brands', 'Large NGOs', 'Growing Startups'],
+      includes: [
+        'Up to 15+ Pages',
+        'Premium Custom UI/UX Design',
+        'Admin Dashboard',
+        'Blog/News System',
+        'Booking/Reservation Features',
+        'Advanced SEO Optimization',
+        'Email Integration',
+        'Advanced Security Setup',
+        'Performance Optimization',
+        'Multiple Contact Forms',
+        'Analytics & Tracking',
+        'Free Domain (First Year)',
+        'Free Hosting (First Year)',
+      ],
     },
     {
-      title: "Schools & Educational Institutions",
-      subtitle: "Schools, colleges, training centers",
-      price: "UGX 300,000 – 500,000",
-      icon: "🎓",
-    },
-    {
-      title: "Local Service Providers",
-      subtitle: "Plumbers, electricians, cleaners, mechanics",
-      price: "UGX 200,000 – 300,000",
-      icon: "🔧",
+      icon: '🛒',
+      title: 'Ecommerce Tier',
+      subtitle: 'Professional online stores and ecommerce platforms built for sales and growth.',
+      price: 'UGX 1,800,000 / $520',
+      delivery: '3–6 Weeks',
+      deposit: '50%',
+      renewal: 'UGX 650,000 / $185 per year',
+      idealFor: ['Online Shops', 'Fashion Stores', 'Electronics Stores', 'Delivery Businesses', 'Supermarkets', 'Ecommerce Startups'],
+      includes: [
+        'Product Listings',
+        'Shopping Cart',
+        'Online Payments',
+        'Customer Accounts',
+        'Order Tracking',
+        'Admin Dashboard',
+        'Discounts & Coupons',
+        'Inventory Management',
+        'Delivery Integration',
+        'Mobile Responsive Design',
+        'SEO Optimization',
+        'Free Domain (First Year)',
+        'Free Hosting (First Year)',
+      ],
     },
   ];
 
-  const customSystems = [
-    "School management systems",
-    "Booking & reservation systems",
-    "Membership & subscription platforms",
-    "Inventory & sales systems",
-    "Dashboards & admin panels",
-    "Custom mobile-friendly web apps",
-  ];
+  const customSystem = {
+    icon: '⚙️',
+    title: 'Custom Systems & Web Applications',
+    subtitle: 'For businesses and organizations that need advanced systems beyond standard websites.',
+    price: 'Starting From UGX 3,000,000 / $860',
+    delivery: '1–4 Months',
+    deposit: '30%–50%',
+    renewal: 'UGX 850,000 / $240 per year',
+    solutions: [
+      'School Management Systems',
+      'Booking Platforms',
+      'Membership Systems',
+      'Inventory Systems',
+      'Dashboards & Admin Panels',
+      'Delivery Platforms',
+      'AI Integrations',
+      'Sales Management Systems',
+      'Custom Business Platforms',
+    ],
+    includes: [
+      'Fully Custom Development',
+      'Role-Based Authentication',
+      'Real-Time Database',
+      'Reports & Analytics',
+      'API Integrations',
+      'Cloud Deployment',
+      'Advanced Security Features',
+      'Mobile-Friendly Interfaces',
+    ],
+  };
 
-  const packageIncludes = [
-    "Free .com / .org domain (first year)",
-    "Free hosting (first year)",
-    "Mobile-responsive design",
-    "Basic SEO setup",
-    "WhatsApp & social media integration",
-    "Secure & fast website",
+  const mobileApps = [
+    {
+      icon: '📱',
+      title: 'Basic Mobile App',
+      price: 'UGX 1,500,000 / $430',
+      delivery: '2–4 Weeks',
+      deposit: '50%',
+      renewal: 'UGX 450,000 / $130 per year',
+      features: [
+        'Android App',
+        'Modern UI Design',
+        'Authentication System',
+        'Push Notifications',
+        'Firebase Integration',
+        'Basic Admin Panel',
+      ],
+    },
+    {
+      icon: '🚀',
+      title: 'Advanced Mobile App',
+      price: 'UGX 3,500,000 / $1,000',
+      delivery: '1–3 Months',
+      deposit: '40%',
+      renewal: 'UGX 950,000 / $270 per year',
+      features: [
+        'Android & iOS Support',
+        'Payment Integration',
+        'GPS & Maps Features',
+        'Real-Time Features',
+        'Chat & Messaging',
+        'Admin Dashboard',
+        'Analytics & Reports',
+        'Advanced Backend Infrastructure',
+        'Enhanced Security Features',
+      ],
+    },
   ];
 
   const clientRequirements = [
-    "Official logo",
-    "About / company information (Word document preferred)",
-    "High-quality images",
-    "Contact details & links",
+    'Official Logo',
+    'Business Information',
+    'High-Quality Images',
+    'Contact Details',
+    'Social Media Links',
   ];
 
   return (
@@ -80,32 +203,31 @@ const Web = () => {
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8">
               <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-                Website Design
+                Professional Website
               </span>
               <br />
               <span className="text-foreground text-3xl md:text-4xl lg:text-5xl">
-                & Custom System Development
+                Development Packages
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light mb-8">
-              We design modern websites and custom digital systems for organizations, businesses, and service providers.
+              Modern, secure, mobile-friendly websites built for businesses, organizations, startups, and brands across Uganda.
             </p>
 
-            {/* Key Highlights */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-12 max-w-3xl mx-auto">
               <div className="bg-card/80 border border-border rounded-xl p-4 text-center">
                 <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
                   <Clock className="w-5 h-5 text-primary" />
                 </div>
-                <p className="text-foreground font-semibold text-sm">3–5 Working Days</p>
-                <p className="text-muted-foreground text-xs mt-1">Fast delivery</p>
+                <p className="text-foreground font-semibold text-sm">Fast Delivery</p>
+                <p className="text-muted-foreground text-xs mt-1">From 2–5 days</p>
               </div>
               <div className="bg-card/80 border border-border rounded-xl p-4 text-center">
                 <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
                   <DollarSign className="w-5 h-5 text-primary" />
                 </div>
-                <p className="text-foreground font-semibold text-sm">From UGX 250,000</p>
-                <p className="text-muted-foreground text-xs mt-1">Affordable pricing</p>
+                <p className="text-foreground font-semibold text-sm">From UGX 350,000</p>
+                <p className="text-muted-foreground text-xs mt-1">Starter tier</p>
               </div>
               <div className="bg-card/80 border border-border rounded-xl p-4 text-center">
                 <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
@@ -116,53 +238,65 @@ const Web = () => {
               </div>
             </div>
 
-            {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <button
-                onClick={() => {
-                  const message = 'Hello! I am interested in starting a web development project. Can you provide more information?';
-                  const url = `https://wa.me/256789572007?text=${encodeURIComponent(message)}`;
-                  window.open(url, '_blank');
-                }}
+                onClick={() => openWhatsApp('Hello! I would like to get started with a website project. Can we discuss?')}
                 className="bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg"
               >
-                Start Your Project
+                Get Started
               </button>
-
               <button
                 onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
                 className="border border-border bg-card text-foreground px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:border-primary/50"
               >
-                View Pricing
+                View Packages
               </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Pricing Tiers */}
+      {/* Website Tiers */}
       <section id="pricing" className="py-16 md:py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Our Services & Pricing
+              🚀 Website Development Packages
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-              Transparent pricing tailored to your industry. Every package includes a complete, professional website.
+              Professional, modern, fast, and mobile-friendly websites built for every stage of your business.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {pricingTiers.map((tier, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            {websiteTiers.map((tier, index) => (
               <div key={index} className="bg-card border border-border rounded-2xl p-6 md:p-8 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary/30 flex flex-col">
-                <div className="text-4xl mb-4">{tier.icon}</div>
-                <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">{tier.title}</h3>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="text-4xl">{tier.icon}</div>
+                  <h3 className="text-xl md:text-2xl font-bold text-foreground">{tier.title}</h3>
+                </div>
                 <p className="text-muted-foreground mb-4 leading-relaxed text-sm">{tier.subtitle}</p>
+
+                <div className="bg-primary/5 border border-primary/20 rounded-xl p-4 mb-4">
+                  <p className="text-xs text-muted-foreground mb-1">Starting From</p>
+                  <p className="text-lg md:text-xl font-bold text-primary">{tier.price}</p>
+                </div>
+
+                <div className="mb-4">
+                  <p className="font-semibold text-foreground text-sm mb-2">Ideal For:</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {tier.idealFor.map((item, idx) => (
+                      <span key={idx} className="bg-muted/40 text-muted-foreground text-xs px-2.5 py-1 rounded-full">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
 
                 <div className="mb-6 flex-grow">
                   <p className="font-semibold text-foreground text-sm mb-3">Package Includes:</p>
                   <ul className="space-y-2">
-                    {packageIncludes.map((item, idx) => (
+                    {tier.includes.map((item, idx) => (
                       <li key={idx} className="flex items-start gap-2 text-muted-foreground text-xs md:text-sm">
                         <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
                         <span>{item}</span>
@@ -171,114 +305,94 @@ const Web = () => {
                   </ul>
                 </div>
 
-                <div className="mt-auto pt-4 border-t border-border/50">
-                  <span className="text-lg md:text-xl font-bold text-primary block mb-4">{tier.price}</span>
-                  <button
-                    onClick={() => {
-                      const message = `Hello! I am interested in the ${tier.title} website package (${tier.price}). Can we discuss further?`;
-                      const url = `https://wa.me/256789572007?text=${encodeURIComponent(message)}`;
-                      window.open(url, '_blank');
-                    }}
-                    className="w-full bg-primary/10 hover:bg-primary text-primary hover:text-primary-foreground border border-primary/20 hover:border-primary px-4 py-2.5 rounded-xl font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2"
-                  >
-                    <MessageCircle className="w-4 h-4" />
-                    Request Package
-                  </button>
+                <div className="grid grid-cols-3 gap-2 mb-4 text-center">
+                  <div className="bg-muted/30 rounded-lg p-2">
+                    <p className="text-[10px] text-muted-foreground uppercase">Delivery</p>
+                    <p className="text-xs font-semibold text-foreground mt-0.5">{tier.delivery}</p>
+                  </div>
+                  <div className="bg-muted/30 rounded-lg p-2">
+                    <p className="text-[10px] text-muted-foreground uppercase">Deposit</p>
+                    <p className="text-xs font-semibold text-foreground mt-0.5">{tier.deposit}</p>
+                  </div>
+                  <div className="bg-muted/30 rounded-lg p-2">
+                    <p className="text-[10px] text-muted-foreground uppercase">Renewal/yr</p>
+                    <p className="text-xs font-semibold text-foreground mt-0.5">{tier.renewal.split(' /')[0]}</p>
+                  </div>
                 </div>
+
+                <button
+                  onClick={() => openWhatsApp(`Hello! I am interested in the ${tier.title} (${tier.price}). Can we discuss further?`)}
+                  className="w-full bg-primary text-primary-foreground px-4 py-3 rounded-xl font-semibold text-sm transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center justify-center gap-2"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  Request Package
+                </button>
               </div>
             ))}
+          </div>
 
-            {/* Custom Systems Card */}
-            <div className="bg-gradient-to-br from-primary/10 to-accent/10 border border-primary/30 rounded-2xl p-6 md:p-8 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex flex-col md:col-span-2 lg:col-span-1">
-              <div className="text-4xl mb-4">⚙️</div>
-              <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">Custom Systems & Web Applications</h3>
-              <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
-                For clients who need more than a website.
-              </p>
-              <ul className="space-y-2 mb-6 flex-grow">
-                {customSystems.map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-2 text-muted-foreground text-sm">
-                    <div className="w-1.5 h-1.5 bg-primary rounded-full mt-1.5 flex-shrink-0"></div>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="pt-4 border-t border-border/50">
-                <p className="text-sm text-muted-foreground mb-2">📩 Pricing: Available on request</p>
+          {/* Custom Systems Card */}
+          <div className="mt-8 bg-gradient-to-br from-primary/10 to-accent/10 border border-primary/30 rounded-2xl p-6 md:p-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="text-4xl">{customSystem.icon}</div>
+                  <h3 className="text-2xl md:text-3xl font-bold text-foreground">{customSystem.title}</h3>
+                </div>
+                <p className="text-muted-foreground mb-4 text-sm">{customSystem.subtitle}</p>
+
+                <div className="bg-card/60 border border-border rounded-xl p-4 mb-4">
+                  <p className="text-xs text-muted-foreground mb-1">Pricing</p>
+                  <p className="text-lg md:text-xl font-bold text-primary">{customSystem.price}</p>
+                </div>
+
+                <div className="grid grid-cols-3 gap-2 mb-4 text-center">
+                  <div className="bg-card/60 rounded-lg p-2">
+                    <p className="text-[10px] text-muted-foreground uppercase">Delivery</p>
+                    <p className="text-xs font-semibold text-foreground mt-0.5">{customSystem.delivery}</p>
+                  </div>
+                  <div className="bg-card/60 rounded-lg p-2">
+                    <p className="text-[10px] text-muted-foreground uppercase">Deposit</p>
+                    <p className="text-xs font-semibold text-foreground mt-0.5">{customSystem.deposit}</p>
+                  </div>
+                  <div className="bg-card/60 rounded-lg p-2">
+                    <p className="text-[10px] text-muted-foreground uppercase">Renewal/yr</p>
+                    <p className="text-xs font-semibold text-foreground mt-0.5">UGX 850K</p>
+                  </div>
+                </div>
+
                 <button
-                  onClick={() => {
-                    const message = 'Hello! I need a custom system/web application. Can I get a quotation?';
-                    const url = `https://wa.me/256789572007?text=${encodeURIComponent(message)}`;
-                    window.open(url, '_blank');
-                  }}
+                  onClick={() => openWhatsApp('Hello! I need a custom system/web application. Can I get a quotation?')}
                   className="w-full bg-primary text-primary-foreground px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center justify-center gap-2"
                 >
                   <MessageCircle className="w-4 h-4" />
                   Inbox Us for a Quotation
                 </button>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-
-
-      {/* Payment Structure + Requirements */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
-
-            {/* Payment Structure */}
-            <div className="bg-card border border-border rounded-2xl p-6 md:p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <DollarSign className="w-6 h-6 text-primary" />
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground">Payment Structure</h2>
-              </div>
-              <div className="space-y-4">
-                <div className="bg-primary/5 border border-primary/20 rounded-xl p-4">
-                  <p className="font-semibold text-foreground mb-1">Deposit</p>
-                  <p className="text-muted-foreground text-sm">UGX 100,000 (or USD 30) to start a project</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <p className="font-semibold text-foreground text-sm mb-3">Solutions Include:</p>
+                  <ul className="space-y-2">
+                    {customSystem.solutions.map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-muted-foreground text-xs">
+                        <div className="w-1.5 h-1.5 bg-primary rounded-full mt-1.5 flex-shrink-0"></div>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <div className="bg-muted/30 rounded-xl p-4">
-                  <p className="font-semibold text-foreground mb-1">Balance</p>
-                  <p className="text-muted-foreground text-sm">Payable before or immediately after completion</p>
+                <div>
+                  <p className="font-semibold text-foreground text-sm mb-3">Package Includes:</p>
+                  <ul className="space-y-2">
+                    {customSystem.includes.map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-muted-foreground text-xs">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <div className="bg-muted/30 rounded-xl p-4">
-                  <p className="font-semibold text-foreground mb-1">Work Begins</p>
-                  <p className="text-muted-foreground text-sm">Only after deposit is confirmed</p>
-                </div>
-              </div>
-
-              <div className="mt-6 pt-6 border-t border-border/50">
-                <h3 className="text-lg font-bold text-foreground mb-2">Annual Subscription (From Second Year)</h3>
-                <p className="text-muted-foreground text-sm">
-                  <span className="text-primary font-semibold text-base">UGX 180,000 per year</span><br />
-                  Covers domain renewal, hosting & basic maintenance
-                </p>
-              </div>
-            </div>
-
-            {/* Project Requirements */}
-            <div className="bg-card border border-border rounded-2xl p-6 md:p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <FileText className="w-6 h-6 text-primary" />
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground">Project Requirements</h2>
-              </div>
-              <p className="text-muted-foreground mb-6 text-sm">Clients must provide the following materials:</p>
-              <div className="space-y-3">
-                {clientRequirements.map((req, index) => (
-                  <div key={index} className="flex items-center gap-3 bg-muted/30 rounded-xl p-4">
-                    <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span className="text-foreground text-sm">{req}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 pt-4 border-t border-border/50">
-                <p className="text-muted-foreground text-sm italic flex items-start gap-2">
-                  <span className="text-primary">⏳</span>
-                  Delivery timeline starts only after all required materials are submitted.
-                </p>
               </div>
             </div>
           </div>
@@ -290,69 +404,133 @@ const Web = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Mobile App Development
+              📱 Mobile App Development
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-              From native iOS and Android apps to cross-platform solutions, we create
-              mobile experiences that users love and businesses rely on.
+              Modern Android & iOS applications designed for businesses and startups.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            {[
-              {
-                title: "iOS Apps",
-                description: "Native iOS applications for iPhone and iPad users",
-                features: ["Swift Development", "App Store Optimization", "Push Notifications", "In-App Purchases"],
-                icon: "📱"
-              },
-              {
-                title: "Android Apps",
-                description: "Native Android applications for Google Play Store",
-                features: ["Kotlin/Java Development", "Google Play Console", "Material Design", "Firebase Integration"],
-                icon: "🤖"
-              },
-              {
-                title: "Cross-Platform Apps",
-                description: "Build once, deploy everywhere with React Native or Flutter",
-                features: ["React Native", "Flutter", "Shared Codebase", "Platform-Specific Features"],
-                icon: "🔄"
-              },
-              {
-                title: "Progressive Web Apps",
-                description: "Web applications that work like native mobile apps",
-                features: ["Offline Functionality", "Push Notifications", "App-like Experience", "Cross-Platform"],
-                icon: "🌐"
-              }
-            ].map((service, index) => (
-              <div key={index} className="bg-card border border-border rounded-2xl p-6 md:p-8 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary/30">
-                <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3">{service.title}</h3>
-                <p className="text-muted-foreground mb-4 leading-relaxed text-sm">{service.description}</p>
-                <div className="space-y-2">
-                  {service.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-center text-muted-foreground text-sm">
-                      <div className="w-1.5 h-1.5 bg-primary rounded-full mr-3 flex-shrink-0"></div>
-                      <span>{feature}</span>
-                    </div>
-                  ))}
+            {mobileApps.map((app, index) => (
+              <div key={index} className="bg-card border border-border rounded-2xl p-6 md:p-8 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary/30 flex flex-col">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="text-4xl">{app.icon}</div>
+                  <h3 className="text-xl md:text-2xl font-bold text-foreground">{app.title}</h3>
                 </div>
+
+                <div className="bg-primary/5 border border-primary/20 rounded-xl p-4 mb-4">
+                  <p className="text-xs text-muted-foreground mb-1">Starting From</p>
+                  <p className="text-lg md:text-xl font-bold text-primary">{app.price}</p>
+                </div>
+
+                <div className="mb-4 flex-grow">
+                  <p className="font-semibold text-foreground text-sm mb-3">Features:</p>
+                  <ul className="space-y-2">
+                    {app.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-muted-foreground text-sm">
+                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="grid grid-cols-3 gap-2 mb-4 text-center">
+                  <div className="bg-muted/30 rounded-lg p-2">
+                    <p className="text-[10px] text-muted-foreground uppercase">Delivery</p>
+                    <p className="text-xs font-semibold text-foreground mt-0.5">{app.delivery}</p>
+                  </div>
+                  <div className="bg-muted/30 rounded-lg p-2">
+                    <p className="text-[10px] text-muted-foreground uppercase">Deposit</p>
+                    <p className="text-xs font-semibold text-foreground mt-0.5">{app.deposit}</p>
+                  </div>
+                  <div className="bg-muted/30 rounded-lg p-2">
+                    <p className="text-[10px] text-muted-foreground uppercase">Renewal/yr</p>
+                    <p className="text-xs font-semibold text-foreground mt-0.5">{app.renewal.split(' /')[0]}</p>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => openWhatsApp(`Hello! I am interested in the ${app.title} (${app.price}). Can we discuss further?`)}
+                  className="w-full bg-primary text-primary-foreground px-4 py-3 rounded-xl font-semibold text-sm transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center justify-center gap-2"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  Request Package
+                </button>
               </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="text-center mt-8">
-            <button
-              onClick={() => {
-                const message = 'Hello! I am interested in building a mobile app. Can you help me get started?';
-                const url = `https://wa.me/256789572007?text=${encodeURIComponent(message)}`;
-                window.open(url, '_blank');
-              }}
-              className="bg-primary text-primary-foreground px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg inline-flex items-center gap-2"
-            >
-              <MessageCircle className="w-5 h-5" />
-              Discuss Your App Project
-            </button>
+      {/* Payment + Requirements + Subscription */}
+      <section className="py-16 md:py-24 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+            {/* Payment Structure */}
+            <div className="bg-card border border-border rounded-2xl p-6 md:p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <CreditCard className="w-6 h-6 text-primary" />
+                <h2 className="text-xl md:text-2xl font-bold text-foreground">💳 Payment Structure</h2>
+              </div>
+              <div className="space-y-4">
+                <div className="bg-primary/5 border border-primary/20 rounded-xl p-4">
+                  <p className="font-semibold text-foreground mb-1">Minimum Deposit</p>
+                  <p className="text-primary font-bold">UGX 200,000 / $60</p>
+                </div>
+                <div className="bg-muted/30 rounded-xl p-4">
+                  <p className="font-semibold text-foreground mb-1">Balance</p>
+                  <p className="text-muted-foreground text-sm">Cleared before or immediately after project completion</p>
+                </div>
+                <div className="bg-muted/30 rounded-xl p-4">
+                  <p className="font-semibold text-foreground mb-1">Work Begins</p>
+                  <p className="text-muted-foreground text-sm">Only after deposit confirmation and submission of all required materials</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Annual Subscription */}
+            <div className="bg-card border border-border rounded-2xl p-6 md:p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <RefreshCw className="w-6 h-6 text-primary" />
+                <h2 className="text-xl md:text-2xl font-bold text-foreground">🔄 Annual Subscription</h2>
+              </div>
+              <p className="text-muted-foreground text-sm mb-4">From the second year. Covers:</p>
+              <ul className="space-y-2 mb-6">
+                {['Domain Renewal', 'Hosting Renewal', 'SSL Security', 'Basic Website Maintenance'].map((item, i) => (
+                  <li key={i} className="flex items-start gap-2 text-muted-foreground text-sm">
+                    <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="bg-primary/5 border border-primary/20 rounded-xl p-4">
+                <p className="text-xs text-muted-foreground mb-1">Starting From</p>
+                <p className="text-primary font-bold">UGX 180,000 / $50 per year</p>
+              </div>
+            </div>
+
+            {/* Project Requirements */}
+            <div className="bg-card border border-border rounded-2xl p-6 md:p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <Folder className="w-6 h-6 text-primary" />
+                <h2 className="text-xl md:text-2xl font-bold text-foreground">📂 Project Requirements</h2>
+              </div>
+              <p className="text-muted-foreground text-sm mb-4">Clients should provide:</p>
+              <div className="space-y-2">
+                {clientRequirements.map((req, index) => (
+                  <div key={index} className="flex items-center gap-3 bg-muted/30 rounded-xl p-3">
+                    <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
+                    <span className="text-foreground text-sm">{req}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="text-muted-foreground text-xs italic mt-4 flex items-start gap-2">
+                <span className="text-primary">⏳</span>
+                Delivery timelines start after all required materials are submitted.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -363,45 +541,30 @@ const Web = () => {
         description="See the amazing websites and web applications we've built for our clients across Uganda."
       />
 
-      {/* Why Choose Our Solutions */}
+      {/* Why Choose Us */}
       <section className="py-16 md:py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8">
-              Why Choose Our Web & Ecommerce Solutions
+              🌟 Why Choose Us?
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <div className="text-center group">
-              <div className="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-6 transition-transform duration-300 group-hover:scale-110">
-                <span className="text-white text-2xl">🌍</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { icon: '🌍', title: 'Global Reach', desc: 'Reach customers online 24/7 from anywhere in the world.' },
+              { icon: '🏆', title: 'Professional Brand Presence', desc: 'Build trust and credibility with a modern digital experience.' },
+              { icon: '⚡', title: 'Fast & Secure Systems', desc: 'Optimized for speed, security, and performance.' },
+              { icon: '📱', title: 'Mobile-First Design', desc: 'Websites and apps built to work perfectly on all devices.' },
+              { icon: '💰', title: 'Affordable Business Growth', desc: 'Your digital platform becomes a long-term marketing and sales tool.' },
+              { icon: '🛠️', title: 'Ongoing Technical Support', desc: 'We stay with you beyond launch with reliable maintenance.' },
+            ].map((item, i) => (
+              <div key={i} className="bg-card border border-border rounded-2xl p-6 text-center hover:border-primary/30 transition-all duration-300 hover:-translate-y-1">
+                <div className="text-4xl mb-4">{item.icon}</div>
+                <h3 className="text-lg md:text-xl font-bold text-foreground mb-3">{item.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
               </div>
-              <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">Global Reach</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Reach customers worldwide, 24/7, expanding your business beyond geographical boundaries.
-              </p>
-            </div>
-
-            <div className="text-center group">
-              <div className="w-20 h-20 bg-gradient-to-br from-accent to-primary rounded-full flex items-center justify-center mx-auto mb-6 transition-transform duration-300 group-hover:scale-110">
-                <span className="text-white text-2xl">🏆</span>
-              </div>
-              <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">Brand Credibility</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Establish trust and professionalism with modern, well-designed digital experiences.
-              </p>
-            </div>
-
-            <div className="text-center group">
-              <div className="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-6 transition-transform duration-300 group-hover:scale-110">
-                <span className="text-white text-2xl">💰</span>
-              </div>
-              <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">Cost-Effective Growth</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Your website works as a powerful marketing tool, generating leads and sales continuously.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -410,29 +573,32 @@ const Web = () => {
       <section className="py-16 md:py-20 bg-gradient-to-br from-primary/10 via-background to-accent/10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Need a Website or Custom System?
+            🚀 Need a Website, App, or Custom System?
           </h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Contact us today to get started. Inbox us with your idea, and we'll guide you step by step.
+            Contact us today and let's bring your idea to life.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
-              onClick={() => {
-                const message = 'Hello! I would like to get a website built. Can we discuss?';
-                const url = `https://wa.me/256789572007?text=${encodeURIComponent(message)}`;
-                window.open(url, '_blank');
-              }}
+              onClick={() => openWhatsApp('Hello! I would like to get started with a project. Can we discuss?')}
               className="bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center justify-center gap-2"
             >
               <Send className="w-5 h-5" />
-              Contact Us Today
+              Get Started
+            </button>
+            <button
+              onClick={() => openWhatsApp('Hello! I would like to request a quote for a project.')}
+              className="border border-border bg-card text-foreground px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:border-primary/50 flex items-center justify-center gap-2"
+            >
+              <MessageCircle className="w-5 h-5" />
+              Request Quote
             </button>
             <Link
               to="/terms"
               className="border border-border bg-card text-foreground px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:border-primary/50 flex items-center justify-center gap-2"
             >
               <FileText className="w-5 h-5" />
-              View Terms & Conditions
+              Terms & Conditions
             </Link>
           </div>
         </div>
